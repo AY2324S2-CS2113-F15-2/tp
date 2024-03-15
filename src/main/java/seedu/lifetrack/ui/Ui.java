@@ -30,6 +30,8 @@ public class Ui {
             calorieList.addEntry(line);
         } else if (line.startsWith("list")) {
             calorieList.printCalorieList();
+        } else if (line.startsWith("delete")) {
+            calorieList.deleteEntry(line);
         }
     }
 

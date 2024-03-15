@@ -4,36 +4,40 @@ import seedu.lifetrack.activity.Activity;
 import seedu.lifetrack.calories.Calorie;
 import seedu.lifetrack.parser.Parser;
 import seedu.lifetrack.exceptions.InvalidInputException;
+
 import java.util.ArrayList;
 
 public class CalorieList {
-    
+
     private ArrayList<Entry> calorieArrayList;
+    private final int SIZE_OF_DELETE = 7;
 
     public CalorieList() {
-        calorieArrayList= new ArrayList<>();
+        calorieArrayList = new ArrayList<>();
     }
 
     /**
      * Index should be in an integer from 1 to size of the list.
-     * @param index the index of calorie record user want to delete
+     *
+     * @param line the index of calorie record user want to delete
      */
-    public void deleteEntry(int index) {
+    public void deleteEntry(String line) {
         try {
-            if(index > calorieArrayList.size()) {
+            int index = Integer.parseInt(line.substring(SIZE_OF_DELETE).trim());
+            if (index > calorieArrayList.size()) {
                 System.out.println("Sorry, this index is out of out of range. Please enter a valid index.");
                 return;
             }
-            calorieArrayList.remove((index-1));  // transfer to scope 0 to size-1
+            calorieArrayList.remove((index - 1));  // transfer to scope 0 to size-1
             System.out.println("Successfully delete the calorie record.");
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
             System.out.println("Sorry, this index is invalid. Please enter a positive integer.");
         }
     }
 
     /**
      * Parses a string input representing calorie intake and adds it to the calorie list.
-     *
+     * <p>
      * This method takes a string input representing calorie intake information and
      * attempts to parse it using the parseCaloriesIn method from the Parser class.
      * If the input format is incorrect or contains missing components, it catches
