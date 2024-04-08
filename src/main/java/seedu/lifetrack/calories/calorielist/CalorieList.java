@@ -158,7 +158,7 @@ public class CalorieList {
 //            // Handle exception
 //            e.printStackTrace();
 //        }
-        return 0; // Default value if file doesn't exist or error occurs
+        return FileHandler.getMaxCaloriesID(); // Default value if file doesn't exist or error occurs
     }
 
 
