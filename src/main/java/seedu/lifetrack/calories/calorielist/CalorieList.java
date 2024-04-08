@@ -37,6 +37,8 @@ public class CalorieList {
         try {
             fileHandler = new FileHandler(filePath);
             calorieArrayList = fileHandler.getCalorieEntriesFromFile();
+            // Initialize lastEntryID from stored data or default to 0 if not available
+            this.lastEntryID = loadLastEntryID();
         } catch (FileNotFoundException e) {
             calorieArrayList = new ArrayList<>();
             System.out.println(ErrorMessages.getFileNotFoundMessage());
@@ -144,4 +146,20 @@ public class CalorieList {
         }
         return totalCalories;
     }
+
+    private int loadLastEntryID() {
+        // Load lastEntryID from file, if file doesn't exist or error occurs, return 0
+//        try (BufferedReader reader = new BufferedReader(new FileReader("lastEntryID.txt"))) {
+//            String line = reader.readLine();
+//            if (line != null) {
+//                return Integer.parseInt(line);
+//            }
+//        } catch (IOException | NumberFormatException e) {
+//            // Handle exception
+//            e.printStackTrace();
+//        }
+        return 0; // Default value if file doesn't exist or error occurs
+    }
+
+
 }
