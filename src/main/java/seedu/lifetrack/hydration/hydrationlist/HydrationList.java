@@ -139,16 +139,6 @@ public class HydrationList {
     }
 
     private int loadLastEntryID() {
-        // Load lastEntryID from file, if file doesn't exist or error occurs, return 0
-//        try (BufferedReader reader = new BufferedReader(new FileReader("lastEntryID.txt"))) {
-//            String line = reader.readLine();
-//            if (line != null) {
-//                return Integer.parseInt(line);
-//            }
-//        } catch (IOException | NumberFormatException e) {
-//            // Handle exception
-//            e.printStackTrace();
-//        }
         return 0; // Default value if file doesn't exist or error occurs
     }
 }

@@ -79,7 +79,8 @@ public class ParserHydration {
      * @param date the date of the hydration entry
      * @return a new HydrationEntry object with the specified attributes
      */
-    private static HydrationEntry makeNewInputEntry(int lastHydrationEntryID, String description, int volume, LocalDate date) {
+    private static HydrationEntry makeNewInputEntry(int lastHydrationEntryID, String description, int volume,
+                                                    LocalDate date) {
         return new HydrationEntry(lastHydrationEntryID, description, volume, date);
     }
 

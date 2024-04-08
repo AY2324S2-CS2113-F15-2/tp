@@ -287,7 +287,8 @@ public class ParserCalories {
      * @param foodMacros an array containing food macros (carbs, proteins, fats)
      * @return a new InputEntry object with food macros
      */
-    private static Entry makeNewInputEntry(int lastEntryID, String description, int calories, LocalDate date, int[] foodMacros) {
+    private static Entry makeNewInputEntry(int lastEntryID, String description, int calories, LocalDate date,
+                                           int[] foodMacros) {
 
         Food newFood = new Food(foodMacros[CARBS_IDX], foodMacros[PROTEINS_IDX], foodMacros[FATS_IDX]);
 

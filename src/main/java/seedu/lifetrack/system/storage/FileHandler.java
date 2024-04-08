@@ -52,12 +52,12 @@ public class FileHandler {
 
     private String filePath;
 
-    public static int getMaxCaloriesID() {
-        return maxCaloriesID;
-    }
-
     public FileHandler(String filePath) {
         this.filePath = filePath;
+    }
+
+    public static int getMaxCaloriesID() {
+        return maxCaloriesID;
     }
 
     private void writeToFile(String textToAdd) throws IOException {
