@@ -1,3 +1,4 @@
+//@@author rexyyong
 package seedu.lifetrack.calories.calorielist;
 
 import seedu.lifetrack.Entry;
