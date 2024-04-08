@@ -16,7 +16,7 @@ public class ParserHydrationTest {
 
         // Call methods to test
         try {
-            parseHydrationInput(invalidInput);
+            parseHydrationInput(invalidInput, 0);
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that you have entered all keywords!\n" +
@@ -32,7 +32,7 @@ public class ParserHydrationTest {
 
         // Call methods to test
         try {
-            parseHydrationInput(invalidInput);
+            parseHydrationInput(invalidInput, 0);
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that you have entered all keywords!\n" +
@@ -48,7 +48,7 @@ public class ParserHydrationTest {
 
         // Call methods to test
         try {
-            parseHydrationInput(invalidInput);
+            parseHydrationInput(invalidInput, 0);
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that you have entered all keywords!\n" +
@@ -64,7 +64,7 @@ public class ParserHydrationTest {
 
         // Call methods to test
         try {
-            parseHydrationInput(invalidInput);
+            parseHydrationInput(invalidInput, 0);
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that you have keyed the input in the correct order!\n" +
@@ -79,7 +79,7 @@ public class ParserHydrationTest {
 
         // Call methods to test
         try {
-            parseHydrationInput(invalidInput);
+            parseHydrationInput(invalidInput, 0);
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that positive integer value is keyed in for volume!\n" +
@@ -94,7 +94,7 @@ public class ParserHydrationTest {
 
         // Call methods to test
         try {
-            parseHydrationInput(invalidInput);
+            parseHydrationInput(invalidInput, 0);
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that positive integer value is keyed in for volume!\n" +
@@ -106,7 +106,7 @@ public class ParserHydrationTest {
     @Test
     public void parseHydrationInput_missingKeywords_exceptionThrown() {
         try {
-            parseHydrationInput("liquids in");
+            parseHydrationInput("liquids in", 0);
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that you have entered all keywords!\n" +
@@ -117,7 +117,7 @@ public class ParserHydrationTest {
     @Test
     public void parseHydrationInput_incompleteInput_exceptionThrown() {
         try {
-            parseHydrationInput("liquids in b/Milo");
+            parseHydrationInput("liquids in b/Milo", 0);
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that you have entered all keywords!\n" +
@@ -129,7 +129,7 @@ public class ParserHydrationTest {
     @Test
     public void parseHydrationInput_emptyBeverageName_exceptionThrown() {
         try {
-            parseHydrationInput("liquids in v/1000");
+            parseHydrationInput("liquids in v/1000", 0);
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that you have entered all keywords!\n" +
@@ -140,7 +140,7 @@ public class ParserHydrationTest {
     @Test
     public void parseHydrationInput_emptyVolumeDescription_exceptionThrown() {
         try {
-            parseHydrationInput("liquids in Milo v/   ");
+            parseHydrationInput("liquids in Milo v/   ", 0);
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that you have entered all keywords!\n" +
