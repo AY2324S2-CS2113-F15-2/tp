@@ -6,8 +6,10 @@ public abstract class Entry {
 
     private String description;
     private LocalDate date;
+    private int lastEntryID;
 
-    public Entry(String description, LocalDate date){
+    public Entry(int lastEntryID, String description, LocalDate date){
+        this.lastEntryID = lastEntryID;
         this.description = description;
         this.date = date;
     }
@@ -21,10 +23,10 @@ public abstract class Entry {
     }
 
     public String toString() {
-        return String.format("\t Date: " + date + ", Description: " + description);
+        return String.format("\t EntryID: " + lastEntryID + ", Date: " + date + ", Description: " + description);
     }
 
     public String toFileFriendlyString() {
-        return String.format(date + ";" + description);
+        return String.format(lastEntryID + ";" + date + ";" + description);
     }
 }
