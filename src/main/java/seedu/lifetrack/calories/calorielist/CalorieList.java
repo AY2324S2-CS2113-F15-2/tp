@@ -20,6 +20,7 @@ public class CalorieList {
     private final int SIZE_OF_DELETE = 16;
     private ArrayList<Entry> calorieArrayList;
     private FileHandler fileHandler;
+    private int lastEntryID;
 
     //constructor for JUnit tests
     public CalorieList() {
@@ -94,10 +95,11 @@ public class CalorieList {
         assert (input.startsWith("calories in") || input.startsWith("calories out")) : "ensures that input is correct";
         logr.setLevel(Level.WARNING);
         try {
-            Entry newEntry = ParserCalories.parseCaloriesInput(input);
+            Entry newEntry = ParserCalories.parseCaloriesInput(input, lastEntryID);
             calorieArrayList.add(newEntry);
             updateFile();
             CalorieListUi.printNewCalorieEntry(newEntry);
+            lastEntryID ++;
         } catch (InvalidInputException e) {
             logr.log(Level.WARNING, e.getMessage(), e);
         }
