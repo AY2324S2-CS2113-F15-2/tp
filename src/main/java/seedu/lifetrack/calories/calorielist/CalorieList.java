@@ -18,6 +18,9 @@ public class CalorieList {
     private static Logger logr = Logger.getLogger(CalorieList.class.getName());
 
     private final int SIZE_OF_DELETE = 16;
+
+    //constant for finding entry index from entryID
+    private final int NO_INDEX_FOUND = -1;
     private ArrayList<Entry> calorieArrayList;
     private FileHandler fileHandler;
     private int lastEntryID;
@@ -70,16 +73,31 @@ public class CalorieList {
         assert (line.startsWith("calories delete") ) : "ensures that input is correct";
 
         try {
-            int index = Integer.parseInt(line.substring(SIZE_OF_DELETE).trim());
-            Entry toDelete = calorieArrayList.get(index-1);
-            calorieArrayList.remove((index-1));  // transfer to scope 0 to size-1
-            updateFile();
-            CalorieListUi.successfulDeletedMessage(toDelete);
+            int entryID = Integer.parseInt(line.substring(SIZE_OF_DELETE).trim());
+            int index = getIndexFromEntryID(entryID);
+            if (index == NO_INDEX_FOUND) {
+                CalorieListUi.unsuccessfulDeletedMessage(entryID);
+            } else {
+                Entry toDelete = calorieArrayList.get(index);
+                calorieArrayList.remove((index));
+                CalorieListUi.successfulDeletedMessage(toDelete);
+                updateFile();
+            }
         } catch (IndexOutOfBoundsException e) {
             System.out.println(CalorieListUi.deleteLogIndexMessage());
         } catch (NumberFormatException e) {
             System.out.println(CalorieListUi.deleteLogNumberMessage());
         }
+    }
+
+    //method that returns index of entry in arrayList according to lastEntryID
+    public int getIndexFromEntryID(int lastEntryID) {
+        for (int i = 0; i < calorieArrayList.size(); i++) {
+            if (calorieArrayList.get(i).getLastEntryID() == lastEntryID) {
+                return i;
+            }
+        }
+        return NO_INDEX_FOUND;
     }
 
     /**

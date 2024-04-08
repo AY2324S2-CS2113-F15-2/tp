@@ -9,6 +9,10 @@ public class CalorieListUi {
         System.out.println("\t The following calorie record has been successfully deleted!");
         System.out.println("\t " + toDelete.toString());
     }
+    public static void unsuccessfulDeletedMessage(int entryID) {
+        System.out.println("\t The following calorie record corresponding to entry ID " + entryID + " could " +
+                "not be found");
+    }
 
     public static void emptyListMessage() {
         System.out.println("\t Your caloric list is empty. Add new entries to populate your list :)");

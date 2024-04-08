@@ -6,6 +6,7 @@ public abstract class Entry {
 
     private String description;
     private LocalDate date;
+
     private int lastEntryID;
 
     public Entry(int lastEntryID, String description, LocalDate date){
@@ -20,6 +21,10 @@ public abstract class Entry {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    public int getLastEntryID() {
+        return lastEntryID;
     }
 
     public String toString() {
