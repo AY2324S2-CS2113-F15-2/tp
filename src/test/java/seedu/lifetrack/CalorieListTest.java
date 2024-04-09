@@ -3,7 +3,6 @@ package seedu.lifetrack;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.lifetrack.system.parser.ParserHydration.parseHydrationInput;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -12,7 +11,6 @@ import java.time.LocalDate;
 import seedu.lifetrack.calories.calorielist.CalorieList;
 import seedu.lifetrack.calories.calorielist.InputEntry;
 import seedu.lifetrack.calories.calorielist.OutputEntry;
-import seedu.lifetrack.system.exceptions.InvalidInputException;
 
 public class CalorieListTest {
 
@@ -100,7 +98,7 @@ public class CalorieListTest {
                 "\t Your Caloric List:" + lineSeparator + lineSeparator +
                 "\t Your Caloric Inflow List:" + lineSeparator +
                 "\t 1. \t EntryID: 1, Date: 2024-03-14, Description: burger king, Calories: 200" + lineSeparator +
-                lineSeparator + "\t Your Caloric outflow list:" + lineSeparator;
+                lineSeparator + "\t Your Caloric Outflow List:" + lineSeparator;
         assertEquals(expectedOutput, outputStream.toString());
     }
 
@@ -135,7 +133,7 @@ public class CalorieListTest {
                 .append("\t 3. \t EntryID: 5, Date: 2024-03-14, Description: commhall dinner, Calories: 300")
                 .append(lineSeparator)
                 .append(lineSeparator)
-                .append("\t Your Caloric outflow list:")
+                .append("\t Your Caloric Outflow List:")
                 .append(lineSeparator)
                 .append("\t 1. \t EntryID: 2, Date: 2024-03-14, Description: Walk, Calories: 150")
                 .append(lineSeparator)
@@ -169,7 +167,7 @@ public class CalorieListTest {
         expectedOutput.append("\t Your Caloric List:")
                 .append(lineSeparator)
                 .append(lineSeparator)
-                .append("\t Your caloric inflow list:")
+                .append("\t Your Caloric Inflow List:")
                 .append(lineSeparator)
                 .append("\t 1. \t EntryID: 5, Date: 2021-01-11, Description: commhall dinner, Calories: 300")
                 .append(lineSeparator)
@@ -178,7 +176,7 @@ public class CalorieListTest {
                 .append("\t 3. \t EntryID: 1, Date: 2024-03-14, Description: burger king, Calories: 200")
                 .append(lineSeparator)
                 .append(lineSeparator)
-                .append("\t Your caloric outflow list:")
+                .append("\t Your Caloric Outflow List:")
                 .append(lineSeparator)
                 .append("\t 1. \t EntryID: 6, Date: 2021-01-11, Description: play pool, Calories: 69")
                 .append(lineSeparator)
