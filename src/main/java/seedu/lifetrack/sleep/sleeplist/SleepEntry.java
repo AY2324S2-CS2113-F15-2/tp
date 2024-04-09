@@ -27,7 +27,6 @@ public class SleepEntry extends Entry {
         super(sleepEntryID, "SLEEP", date);
         this.date = date;
         this.duration = duration;
-        this.sleepEntryID=sleepEntryID;
     }
 
     public LocalDate getDate() {
@@ -37,6 +36,8 @@ public class SleepEntry extends Entry {
     public double getDuration() {
         return duration;
     }
+
+    public int getSleepEntryID() {return sleepEntryID;}
 
     public String toString() {
         return "\t Date: " + date +

@@ -38,7 +38,7 @@ public class FileHandler {
     private static final int VOLUME_INDEX = 3;
 
     //sleep list constants
-    private static final int DURATION_INDEX = 2;
+    private static final int DURATION_INDEX = 3;
 
     //user data constants
     private static final int NAME_INDEX = 0;

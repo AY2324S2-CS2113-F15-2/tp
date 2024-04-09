@@ -34,7 +34,6 @@ public class ParserSleep {
 
         String strDate = parts[DATE_IDX].trim();
         String strDuration = parts[DURATION_IDX].trim();
-        System.out.println(strDate);
 
         duration = parseDuration(strDuration);
         date = parseDate(strDate);
