@@ -13,7 +13,7 @@ public class ParserSleepTest {
         String invalidInput = "sleep add 8.0 9.2";
         // Call methods to test
         try {
-            parseSleepInput(invalidInput);
+            parseSleepInput(invalidInput, 0);
         } catch (InvalidInputException e) {
             assertEquals("Invalid date format", e.getMessage());
         }
@@ -24,7 +24,7 @@ public class ParserSleepTest {
         String invalidInput = "sleep add d/110324 d/280524";
         // Call methods to test
         try {
-            parseSleepInput(invalidInput);
+            parseSleepInput(invalidInput, 0);
         } catch (InvalidInputException e) {
             assertEquals("Please ensure that you have keyed in the correct format: " +
                     "sleep add <duration> d/<strDate>", e.getMessage());
@@ -36,7 +36,7 @@ public class ParserSleepTest {
         String invalidInput = "sleep add d/110324";
         // Call methods to test
         try {
-            parseSleepInput(invalidInput);
+            parseSleepInput(invalidInput, 0);
         } catch (InvalidInputException e) {
             assertEquals("Please ensure that you have keyed in the correct format: " +
                     "sleep add <duration> d/<strDate>", e.getMessage());
@@ -50,7 +50,7 @@ public class ParserSleepTest {
 
         // Call methods to test
         try {
-            parseSleepInput(invalidInput);
+            parseSleepInput(invalidInput, 0);
         } catch (InvalidInputException e) {
             assertEquals("\t Please input only positive real number into the sleep duration field!"
                     , e.getMessage());
@@ -60,7 +60,7 @@ public class ParserSleepTest {
     public void parseLiquidInput_missingKeywords_exceptionThrown() {
 
         try {
-            parseSleepInput("sleep add");
+            parseSleepInput("sleep add", 0);
         } catch (InvalidInputException e) {
             assertEquals("Please ensure that you have keyed in the correct format: " +
                     "sleep add <duration> d/<strDate>", e.getMessage());

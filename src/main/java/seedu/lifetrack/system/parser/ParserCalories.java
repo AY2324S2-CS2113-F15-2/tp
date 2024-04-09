@@ -40,7 +40,7 @@ public class ParserCalories {
      * @return an Entry object representing calorie intake
      * @throws InvalidInputException if the input string is missing components or contains empty fields
      */
-    public static Entry parseCaloriesInput(String input) throws InvalidInputException {
+    public static Entry parseCaloriesInput(String input, int lastEntryID) throws InvalidInputException {
         int caloriesIndex = input.indexOf("c/");
         int dateIndex = input.indexOf("d/");
         int macrosIndex = input.indexOf("m/");
@@ -102,11 +102,14 @@ public class ParserCalories {
         //@@author
 
         if (command.equals("calories out")) {
-            return makeNewOutputEntry(description, calories, date);
+            lastEntryID++;
+            return makeNewOutputEntry(lastEntryID, description, calories, date);
         } else if (macros == null) {
-            return makeNewInputEntry(description, calories, date);
+            lastEntryID++;
+            return makeNewInputEntry(lastEntryID, description, calories, date);
         } else {
-            return makeNewInputEntry(description, calories, date, macros);
+            lastEntryID++;
+            return makeNewInputEntry(lastEntryID, description, calories, date, macros);
         }
     }
 
@@ -256,10 +259,10 @@ public class ParserCalories {
      * @param date the date of the entry
      * @return a new OutputEntry object
      */
-    private static Entry makeNewOutputEntry(String description, int calories, LocalDate date) {
+    private static Entry makeNewOutputEntry(int lastEntryID, String description, int calories, LocalDate date) {
         Activity newActivity = new Activity();
 
-        return new OutputEntry(description, calories, date, newActivity);
+        return new OutputEntry(lastEntryID, description, calories, date, newActivity);
     }
 
     /**
@@ -270,9 +273,9 @@ public class ParserCalories {
      * @param date the date of the entry
      * @return a new InputEntry object
      */
-    private static Entry makeNewInputEntry(String description, int calories, LocalDate date) {
+    private static Entry makeNewInputEntry(int lastEntryID, String description, int calories, LocalDate date) {
 
-        return new InputEntry(description, calories, date);
+        return new InputEntry(lastEntryID, description, calories, date);
     }
 
     /**
@@ -284,10 +287,11 @@ public class ParserCalories {
      * @param foodMacros an array containing food macros (carbs, proteins, fats)
      * @return a new InputEntry object with food macros
      */
-    private static Entry makeNewInputEntry(String description, int calories, LocalDate date, int[] foodMacros) {
+    private static Entry makeNewInputEntry(int lastEntryID, String description, int calories, LocalDate date,
+                                           int[] foodMacros) {
 
         Food newFood = new Food(foodMacros[CARBS_IDX], foodMacros[PROTEINS_IDX], foodMacros[FATS_IDX]);
 
-        return new InputEntry(description, calories, date, newFood);
+        return new InputEntry(lastEntryID, description, calories, date, newFood);
     }
 }

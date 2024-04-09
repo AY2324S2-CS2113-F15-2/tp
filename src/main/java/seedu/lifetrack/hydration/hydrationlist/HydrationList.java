@@ -24,6 +24,7 @@ public class HydrationList {
     private final int DELETE_PADDING = 16;
     private ArrayList<Entry> hydrationArrayList;
     private FileHandler fileHandler;
+    private int lastHydrationEntryID;
 
     //constructor for JUnit tests
     public HydrationList() {
@@ -35,6 +36,7 @@ public class HydrationList {
         try {
             fileHandler = new FileHandler(filePath);
             hydrationArrayList = fileHandler.getHydrationEntriesFromFile();
+            this.lastHydrationEntryID = loadLastEntryID();
         } catch (FileNotFoundException e) {
             hydrationArrayList = new ArrayList<>();
             System.out.println(ErrorMessages.getFileNotFoundMessage());
@@ -88,7 +90,7 @@ public class HydrationList {
     public void addEntry(String input) {
         assert (input.startsWith("hydration add")) : "ensures that input is correct";
         try {
-            Entry newEntry = ParserHydration.parseHydrationInput(input);
+            Entry newEntry = ParserHydration.parseHydrationInput(input, lastHydrationEntryID);
             hydrationArrayList.add(newEntry);
             updateFile();
             HydrationListUI.printNewHydrationEntry(newEntry);
@@ -134,5 +136,9 @@ public class HydrationList {
      */
     public int getSize() {
         return hydrationArrayList.size();
+    }
+
+    private int loadLastEntryID() {
+        return 0; // Default value if file doesn't exist or error occurs
     }
 }

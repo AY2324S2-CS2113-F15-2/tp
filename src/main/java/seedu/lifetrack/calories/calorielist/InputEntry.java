@@ -1,3 +1,4 @@
+//@@author rexyyong
 package seedu.lifetrack.calories.calorielist;
 
 import seedu.lifetrack.Entry;
@@ -22,8 +23,8 @@ public class InputEntry extends Entry {
      * @param calories the number of calories consumed
      * @param date the date of the entry
      */
-    public InputEntry(String description, int calories, LocalDate date) {
-        super(description, date);
+    public InputEntry(int lastEntryID, String description, int calories, LocalDate date) {
+        super(lastEntryID, description, date);
         this.calories = calories;
     }
 
@@ -36,8 +37,8 @@ public class InputEntry extends Entry {
      * @param date the date of the entry
      * @param food the food details with macronutrients associated with the entry
      */
-    public InputEntry(String description, int calories, LocalDate date, Food food) {
-        super(description, date);
+    public InputEntry(int lastEntryID, String description, int calories, LocalDate date, Food food) {
+        super(lastEntryID, description, date);
         this.food = food;
         this.calories = calories;
         this.doesFoodExist = true;

@@ -1,3 +1,4 @@
+//@@author rexyyong
 package seedu.lifetrack.calories.calorielist;
 
 import seedu.lifetrack.Entry;
@@ -22,8 +23,8 @@ public class OutputEntry extends Entry {
      * @param calories the number of calories burnt
      * @param date the date of the entry
      */
-    public OutputEntry(String description, int calories, LocalDate date) {
-        super(description, date);
+    public OutputEntry(int lastEntryID, String description, int calories, LocalDate date) {
+        super(lastEntryID, description, date);
         this.calories = calories;
     }
 
@@ -35,8 +36,8 @@ public class OutputEntry extends Entry {
      * @param date the date of the entry
      * @param activity the activity details associated with the entry
      */
-    public OutputEntry(String description, int calories, LocalDate date, Activity activity) {
-        super(description, date);
+    public OutputEntry(int lastEntryID, String description, int calories, LocalDate date, Activity activity) {
+        super(lastEntryID, description, date);
         this.activity = activity;
         this.calories = calories;
         this.doesActivityExist = true;

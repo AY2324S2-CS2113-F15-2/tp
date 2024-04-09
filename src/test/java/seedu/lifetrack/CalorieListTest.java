@@ -96,7 +96,7 @@ public class CalorieListTest {
         String expectedOutput = addedEntryHeader + lineSeparator +
                 "\t " + calorieList.getEntry(0).toString() + lineSeparator +
                 "\t Your Caloric List:" + lineSeparator +
-                "\t 1. \t Date: 2024-03-14, Description: Run, Calories: 200" + lineSeparator;
+                "\t 1. \t EntryID: 1, Date: 2024-03-14, Description: Run, Calories: 200" + lineSeparator;
         assertEquals(expectedOutput, outputStream.toString());
     }
 
@@ -121,15 +121,15 @@ public class CalorieListTest {
         }
         expectedOutput.append("\t Your Caloric List:")
                 .append(lineSeparator)
-                .append("\t 1. \t Date: 2024-03-14, Description: Run, Calories: 200")
+                .append("\t 1. \t EntryID: 1, Date: 2024-03-14, Description: Run, Calories: 200")
                 .append(lineSeparator)
-                .append("\t 2. \t Date: 2024-03-14, Description: Walk, Calories: 150")
+                .append("\t 2. \t EntryID: 2, Date: 2024-03-14, Description: Walk, Calories: 150")
                 .append(lineSeparator)
-                .append("\t 3. \t Date: 2024-03-14, Description: Eat, Calories: 500")
+                .append("\t 3. \t EntryID: 3, Date: 2024-03-14, Description: Eat, Calories: 500")
                 .append(lineSeparator)
-                .append("\t 4. \t Date: 2024-03-14, Description: Run, Calories: 250")
+                .append("\t 4. \t EntryID: 4, Date: 2024-03-14, Description: Run, Calories: 250")
                 .append(lineSeparator)
-                .append("\t 5. \t Date: 2024-03-14, Description: Eat, Calories: 300")
+                .append("\t 5. \t EntryID: 5, Date: 2024-03-14, Description: Eat, Calories: 300")
                 .append(lineSeparator);
         assertEquals(expectedOutput.toString(), outputStream.toString());
         assertEquals(5, calorieList.getSize());
