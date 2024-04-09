@@ -15,6 +15,7 @@ import seedu.lifetrack.calories.calorielist.OutputEntry;
 public class CalorieListTest {
 
     private final String addedEntryHeader = "\t The following entry has been added to your caloric list!";
+    private final String deleteEntryHeader = "\t The following calorie record has been successfully deleted!";
 
     @Test
     public void addEntry_validInput_entryAdded() {
@@ -188,4 +189,45 @@ public class CalorieListTest {
         assertEquals(6, calorieList.getSize());
     }
 
+    @Test
+    public void testDeleteEntry_deleteUsingEntryID_correctlyDeletesBasedOnEntryID() {
+        String lineSeparator = System.lineSeparator();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+        CalorieList calorieList = new CalorieList();
+        calorieList.addEntry("calories in burger king c/200 d/2022-02-22");
+        calorieList.addEntry("calories out Walk c/150 d/2022-02-22");
+        calorieList.addEntry("calories in acai c/500 d/2022-02-22");
+
+        System.setOut(System.out);
+        StringBuilder expectedOutput = new StringBuilder();
+        for (int i = 1; i < 4; i++) {
+            expectedOutput.append(addedEntryHeader)
+                    .append(lineSeparator).append("\t ")
+                    .append(calorieList.getEntry(calorieList.getIndexFromEntryID(i)).toString())
+                    .append(lineSeparator);
+        }
+        expectedOutput.append(deleteEntryHeader)
+                        .append(lineSeparator).append("\t ")
+                        .append(calorieList.getEntry(calorieList.getIndexFromEntryID(3)).toString())
+                        .append(lineSeparator);
+
+        calorieList.deleteEntry("calories delete 3");
+        calorieList.printCalorieList();
+
+        expectedOutput.append("\t Your Caloric List:")
+                .append(lineSeparator)
+                .append(lineSeparator)
+                .append("\t Your Caloric Inflow List:")
+                .append(lineSeparator)
+                .append("\t 1. \t EntryID: 1, Date: 2022-02-22, Description: burger king, Calories: 200")
+                .append(lineSeparator)
+                .append(lineSeparator)
+                .append("\t Your Caloric Outflow List:")
+                .append(lineSeparator)
+                .append("\t 1. \t EntryID: 2, Date: 2022-02-22, Description: Walk, Calories: 150")
+                .append(lineSeparator);
+        assertEquals(expectedOutput.toString(), outputStream.toString());
+        assertEquals(2, calorieList.getSize());
+    }
 }
