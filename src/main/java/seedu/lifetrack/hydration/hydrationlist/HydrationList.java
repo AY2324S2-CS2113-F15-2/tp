@@ -110,6 +110,7 @@ public class HydrationList {
             hydrationArrayList.add(newEntry);
             updateFile();
             HydrationListUI.printNewHydrationEntry(newEntry);
+            lastHydrationEntryID ++;
         } catch (InvalidInputException e) {
             logr.log(Level.WARNING, e.getMessage(), e);
         }
