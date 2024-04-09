@@ -7,10 +7,11 @@ import java.time.LocalDate;
 
 public class SleepEntry extends Entry {
 
+    private static int sleepEntryNum=0;
     private LocalDate date;
     private double duration;
     private int sleepEntryID;
-    private static int sleepEntryNum=0;
+
 
     /***
      * Sleep constructor: date can be empty. If date input is empty, automatically fill with N/A;
@@ -40,7 +41,9 @@ public class SleepEntry extends Entry {
         return duration;
     }
 
-    public int getSleepEntryID() {return sleepEntryID;}
+    public int getSleepEntryID() {
+        return sleepEntryID;
+    }
 
     public String toString() {
         return "\t Date: " + date +
