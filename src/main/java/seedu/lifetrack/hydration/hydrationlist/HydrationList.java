@@ -103,7 +103,7 @@ public class HydrationList {
      * @param input the input string containing liquid entry information
      */
     public void addEntry(String input) {
-        assert (input.startsWith("hydration add")) : "ensures that input is correct";
+        assert (input.startsWith("hydration in")) : "ensures that input is correct";
         logr.setLevel(Level.SEVERE);
         try {
             Entry newEntry = ParserHydration.parseHydrationInput(input, lastHydrationEntryID);
