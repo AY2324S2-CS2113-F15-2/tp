@@ -8,6 +8,8 @@ import seedu.lifetrack.system.parser.ParserCalories;
 import seedu.lifetrack.system.storage.FileHandler;
 import seedu.lifetrack.ui.CalorieListUi;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.io.FileNotFoundException;
@@ -120,6 +122,11 @@ public class CalorieList {
             updateFile();
             CalorieListUi.printNewCalorieEntry(newEntry);
             lastEntryID ++;
+            //only sort if newly added date is earlier than date in final entry before adding entry
+            if (calorieArrayList.size() > 1 &&
+                    calorieArrayList.get(calorieArrayList.size() - 2).getDate().compareTo(newEntry.getDate()) > 0 ) {
+                sortEntriesByDate();
+            }
         } catch (InvalidInputException e) {
             logr.log(Level.WARNING, e.getMessage(), e);
         }
@@ -191,6 +198,16 @@ public class CalorieList {
     //method that loads LastEntryID from txt file
     private int loadLastEntryID() {
         return FileHandler.getMaxCaloriesID(); // Default value if file doesn't exist or error occurs
+    }
+
+    //Method to sort entries by date
+    public void sortEntriesByDate() {
+        Collections.sort(calorieArrayList, new Comparator<Entry>() {
+            @Override
+            public int compare(Entry entry1, Entry entry2) {
+                return entry1.getDate().compareTo(entry2.getDate());
+            }
+        });
     }
 
 
