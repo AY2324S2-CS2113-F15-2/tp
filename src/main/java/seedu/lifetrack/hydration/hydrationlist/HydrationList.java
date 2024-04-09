@@ -21,7 +21,9 @@ public class HydrationList {
 
     private static Logger logr = Logger.getLogger(CalorieList.class.getName());
 
-    private final int DELETE_PADDING = 16;
+    private final int SIZE_OF_DELETE = 16;
+
+    private final int NO_INDEX_FOUND = -1;
     private ArrayList<Entry> hydrationArrayList;
     private FileHandler fileHandler;
     private int lastHydrationEntryID;
@@ -70,16 +72,29 @@ public class HydrationList {
      */
     public void deleteEntry(String line) {
         try {
-            int index = Integer.parseInt(line.substring(DELETE_PADDING).trim());
-            Entry toDelete = hydrationArrayList.get(index - 1);
-            hydrationArrayList.remove(index - 1);
-            updateFile();
-            HydrationListUI.successfulDeletedMessage(toDelete);
+            int entryID = Integer.parseInt(line.substring(SIZE_OF_DELETE).trim());
+            int index = getIndexFromEntryID(entryID);
+            if (index == NO_INDEX_FOUND) {
+                HydrationListUI.unsuccessfulDeletedMessage(entryID);
+            } else {
+                Entry toDelete = hydrationArrayList.get(index);
+                hydrationArrayList.remove((index));
+                HydrationListUI.successfulDeletedMessage(toDelete);
+                updateFile();
+            }
         } catch (IndexOutOfBoundsException e) {
             System.out.println(HydrationListUI.deleteLogIndexMessage());
         } catch (NumberFormatException e) {
             System.out.println(HydrationListUI.deleteLogNumberMessage());
         }
+    }
+    public int getIndexFromEntryID(int lastEntryID) {
+        for (int i = 0; i < hydrationArrayList.size(); i++) {
+            if (hydrationArrayList.get(i).getLastEntryID() == lastEntryID) {
+                return i;
+            }
+        }
+        return NO_INDEX_FOUND;
     }
 
     /**
@@ -88,12 +103,14 @@ public class HydrationList {
      * @param input the input string containing liquid entry information
      */
     public void addEntry(String input) {
-        assert (input.startsWith("hydration add")) : "ensures that input is correct";
+        assert (input.startsWith("hydration in")) : "ensures that input is correct";
+        logr.setLevel(Level.WARNING);
         try {
             Entry newEntry = ParserHydration.parseHydrationInput(input, lastHydrationEntryID);
             hydrationArrayList.add(newEntry);
             updateFile();
             HydrationListUI.printNewHydrationEntry(newEntry);
+            lastHydrationEntryID ++;
         } catch (InvalidInputException e) {
             logr.log(Level.WARNING, e.getMessage(), e);
         }
@@ -139,6 +156,6 @@ public class HydrationList {
     }
 
     private int loadLastEntryID() {
-        return 0; // Default value if file doesn't exist or error occurs
+        return FileHandler.getMaxHydrationID();
     }
 }

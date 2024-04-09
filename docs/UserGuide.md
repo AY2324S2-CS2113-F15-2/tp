@@ -144,6 +144,15 @@ Show the list of all hydration records in the hydration tracker.
 
 **Format:**
 `hydration list`
+#### Expected output
+         -----------------------------------------------------------------------------
+	 Your Hydration List:
+	 1. 	 Date: 2022-01-01, Description: teh peng, Volume: 100
+	 2. 	 Date: 2022-01-01, Description: milo, Volume: 100
+	 3. 	 Date: 2022-01-02, Description: water, Volume: 100
+	 4. 	 Date: 2022-01-02, Description: milo, Volume: 200
+	 5. 	 Date: 2022-01-01, Description: milo, Volume: 100
+         -----------------------------------------------------------------------------
 
 ### Deleting a hydration item: `hydration delete`
 Deletes the hydration record according to the index.
