@@ -29,7 +29,7 @@ public class SleepListTest {
         assertEquals(initialSize, sleepList.getSize());
     }
     @Test
-    public void testPrintLiquidListEmpty() {
+    public void testPrintSleepListEmpty() {
         String lineSeparator = System.lineSeparator();
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));

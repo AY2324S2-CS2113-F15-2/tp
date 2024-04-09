@@ -50,7 +50,7 @@ public class ErrorMessages {
     }
 
     public static String getIncorrectSleepInputMessage() {
-        return "\t Please input only positive real number into the sleep duration field!";
+        return "\t Please input one positive real number into the sleep duration field!";
     }
 
     public static String getIncorrectSleepDateInputMessage() {

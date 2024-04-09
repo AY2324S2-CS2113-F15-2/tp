@@ -30,7 +30,7 @@ public class ParserSleep {
         assert dateIndex != -1 : "The d/ keyword should exist!";
 
         String[] parts = input.substring(SLEEP_HEADER.length()).split(DATE_ICON);
-        checkValidFormat(parts.length);
+        checkValidFormat(parts);
 
         String strDate = parts[DATE_IDX].trim();
         String strDuration = parts[DURATION_IDX].trim();
@@ -76,11 +76,12 @@ public class ParserSleep {
         }
     }
 
-    private static void checkValidFormat(int length) throws InvalidInputException {
-        if (length != STRING_PARTS_LEN) {
+    private static void checkValidFormat(String[] parts) throws InvalidInputException {
+        if (parts.length != STRING_PARTS_LEN || parts[DURATION_IDX].isEmpty()) {
             throw new InvalidInputException("Please ensure that you have keyed in the correct format: " +
                     "sleep add <duration> d/<strDate>");
         }
+
     }
 }
 //@@author
