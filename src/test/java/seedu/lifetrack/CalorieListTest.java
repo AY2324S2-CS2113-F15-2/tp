@@ -90,13 +90,15 @@ public class CalorieListTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
         CalorieList calorieList = new CalorieList();
-        calorieList.addEntry("calories in Run c/200 d/2024-03-14");
+        calorieList.addEntry("calories in burger king c/200 d/2024-03-14");
         calorieList.printCalorieList();
         System.setOut(System.out);
         String expectedOutput = addedEntryHeader + lineSeparator +
                 "\t " + calorieList.getEntry(0).toString() + lineSeparator +
-                "\t Your Caloric List:" + lineSeparator +
-                "\t 1. \t EntryID: 1, Date: 2024-03-14, Description: Run, Calories: 200" + lineSeparator;
+                "\t Your Caloric List:" + lineSeparator + lineSeparator +
+                "\t Your Caloric Inflow List:" + lineSeparator +
+                "\t 1. \t EntryID: 1, Date: 2024-03-14, Description: burger king, Calories: 200" + lineSeparator +
+                lineSeparator + "\t Your Caloric outflow list:" + lineSeparator;
         assertEquals(expectedOutput, outputStream.toString());
     }
 
@@ -106,11 +108,11 @@ public class CalorieListTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
         CalorieList calorieList = new CalorieList();
-        calorieList.addEntry("calories in Run c/200 d/2024-03-14");
+        calorieList.addEntry("calories in burger king c/200 d/2024-03-14");
         calorieList.addEntry("calories out Walk c/150 d/2024-03-14");
-        calorieList.addEntry("calories in Eat c/500 d/2024-03-14");
+        calorieList.addEntry("calories in acai c/500 d/2024-03-14");
         calorieList.addEntry("calories out Run c/250 d/2024-03-14");
-        calorieList.addEntry("calories in Eat c/300 d/2024-03-14");
+        calorieList.addEntry("calories in commhall dinner c/300 d/2024-03-14");
         calorieList.printCalorieList();
         System.setOut(System.out);
         StringBuilder expectedOutput = new StringBuilder();
@@ -121,15 +123,21 @@ public class CalorieListTest {
         }
         expectedOutput.append("\t Your Caloric List:")
                 .append(lineSeparator)
-                .append("\t 1. \t EntryID: 1, Date: 2024-03-14, Description: Run, Calories: 200")
                 .append(lineSeparator)
-                .append("\t 2. \t EntryID: 2, Date: 2024-03-14, Description: Walk, Calories: 150")
+                .append("\t Your Caloric Inflow List:")
                 .append(lineSeparator)
-                .append("\t 3. \t EntryID: 3, Date: 2024-03-14, Description: Eat, Calories: 500")
+                .append("\t 1. \t EntryID: 1, Date: 2024-03-14, Description: burger king, Calories: 200")
                 .append(lineSeparator)
-                .append("\t 4. \t EntryID: 4, Date: 2024-03-14, Description: Run, Calories: 250")
+                .append("\t 2. \t EntryID: 3, Date: 2024-03-14, Description: acai, Calories: 500")
                 .append(lineSeparator)
-                .append("\t 5. \t EntryID: 5, Date: 2024-03-14, Description: Eat, Calories: 300")
+                .append("\t 3. \t EntryID: 5, Date: 2024-03-14, Description: commhall dinner, Calories: 300")
+                .append(lineSeparator)
+                .append(lineSeparator)
+                .append("\t Your Caloric outflow list:")
+                .append(lineSeparator)
+                .append("\t 1. \t EntryID: 2, Date: 2024-03-14, Description: Walk, Calories: 150")
+                .append(lineSeparator)
+                .append("\t 2. \t EntryID: 4, Date: 2024-03-14, Description: Run, Calories: 250")
                 .append(lineSeparator);
         assertEquals(expectedOutput.toString(), outputStream.toString());
         assertEquals(5, calorieList.getSize());
