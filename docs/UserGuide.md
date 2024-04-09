@@ -131,9 +131,9 @@ Adds a hydration record into the hydration tracker.
 **Format:**
 `hydration in DESCRIPTION v/VOLUME d/DATE`
 
-* The volume must be a positive integer 1, 2, 3, …, measured in milliliters.
-* The time indicated should follow the 24-hour system.
-* The date provided should be of the form YYYY-MM-DD.
+* The `DESCRIPTION` refers to the food that the person consumed.
+* The `VOLUME` must be a positive integer 1, 2, 3, …, measured in milliliters.
+* The `DATE` provided should be of the form YYYY-MM-DD, such as 2024-03-04.
 
 **Examples:**
 * `hydration in Milo v/1000 d/2022-03-25`
@@ -144,6 +144,15 @@ Show the list of all hydration records in the hydration tracker.
 
 **Format:**
 `hydration list`
+#### Expected output
+         -----------------------------------------------------------------------------
+	 Your Hydration List:
+	 1. 	 Date: 2022-01-01, Description: teh peng, Volume: 100
+	 2. 	 Date: 2022-01-01, Description: milo, Volume: 100
+	 3. 	 Date: 2022-01-02, Description: water, Volume: 100
+	 4. 	 Date: 2022-01-02, Description: milo, Volume: 200
+	 5. 	 Date: 2022-01-01, Description: milo, Volume: 100
+         -----------------------------------------------------------------------------
 
 ### Deleting a hydration item: `hydration delete`
 Deletes the hydration record according to the index.

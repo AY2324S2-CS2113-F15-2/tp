@@ -19,7 +19,7 @@ class ParserCaloriesTest {
     @Test
     public void parseCaloriesInput_missingKeywords_exceptionThrown() {
         try {
-            parseCaloriesInput("calories in burger");
+            parseCaloriesInput("calories in burger", 0);
         } catch (InvalidInputException e) {
             assertEquals(getCaloriesMissingKeywordsMessage(), e.getMessage());
         }
@@ -28,7 +28,7 @@ class ParserCaloriesTest {
     @Test
     public void parseCaloriesInput_incompleteInput_exceptionThrown() {
         try {
-            parseCaloriesInput("calories in burger c/ d/220224");
+            parseCaloriesInput("calories in burger c/ d/220224", 0);
         } catch (InvalidInputException e) {
             assertEquals(getWhitespaceInInputMessage(), e.getMessage());
         }
@@ -37,7 +37,7 @@ class ParserCaloriesTest {
     @Test
     public void parseCaloriesInput_incorrectlyOrderedInput_exceptionThrown() {
         try {
-            parseCaloriesInput("calories in burger d/220224 c/123");
+            parseCaloriesInput("calories in burger d/220224 c/123", 0);
         } catch (InvalidInputException e) {
             assertEquals(getCaloriesIncorrectOrderMessage(), e.getMessage());
         }
@@ -46,7 +46,7 @@ class ParserCaloriesTest {
     @Test
     public void parseCaloriesInput_incorrectMacrosInput_exceptionThrown() {
         try {
-            parseCaloriesInput("calories in burger c/123 d/2024-03-22 m/abc");
+            parseCaloriesInput("calories in burger c/123 d/2024-03-22 m/abc", 0);
         } catch (InvalidInputException e) {
             assertEquals(getIncorrectMacrosInputMessage(), e.getMessage());
         }
@@ -55,7 +55,7 @@ class ParserCaloriesTest {
     @Test
     public void parseCaloriesInput_incorrectCaloriesInput_exceptionThrown() {
         try {
-            parseCaloriesInput("calories out Running c/abc d/220324");
+            parseCaloriesInput("calories out Running c/abc d/220324", 0);
         } catch (InvalidInputException e) {
             assertEquals(getIncorrectCaloriesInputMessage(), e.getMessage());
         }
@@ -64,7 +64,7 @@ class ParserCaloriesTest {
     @Test
     public void parseCaloriesInput_incompleteMacrosInput_exceptionThrown() {
         try {
-            parseCaloriesInput("calories in burger c/123 d/220324 m/123,132");
+            parseCaloriesInput("calories in burger c/123 d/220324 m/123,132", 0);
         } catch (InvalidInputException e) {
             assertEquals(getIncompleteMacrosMessage(), e.getMessage());
         }
@@ -73,7 +73,7 @@ class ParserCaloriesTest {
     @Test
     public void parseCaloriesInput_macrosInCaloriesOut_exceptionThrown() {
         try {
-            parseCaloriesInput("calories out running c/123 d/220324 m/123,123,132");
+            parseCaloriesInput("calories out running c/123 d/220324 m/123,123,132", 0);
         } catch (InvalidInputException e) {
             assertEquals(getMacrosInCaloriesOutMessage(), e.getMessage());
         }
@@ -82,7 +82,7 @@ class ParserCaloriesTest {
     @Test
     public void parseCaloriesInput_whitespaceInMacrosInput_exceptionThrown() {
         try {
-            parseCaloriesInput("calories in burger c/123 d/220324 m/123,  ,132");
+            parseCaloriesInput("calories in burger c/123 d/220324 m/123,  ,132", 0);
         } catch (InvalidInputException e) {
             assertEquals(getWhitespaceInMacrosInputMessage(), e.getMessage());
         }

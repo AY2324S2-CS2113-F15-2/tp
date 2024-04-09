@@ -21,9 +21,12 @@ public class HydrationList {
 
     private static Logger logr = Logger.getLogger(CalorieList.class.getName());
 
-    private final int DELETE_PADDING = 16;
+    private final int SIZE_OF_DELETE = 16;
+
+    private final int NO_INDEX_FOUND = -1;
     private ArrayList<Entry> hydrationArrayList;
     private FileHandler fileHandler;
+    private int lastHydrationEntryID;
 
     //constructor for JUnit tests
     public HydrationList() {
@@ -35,6 +38,7 @@ public class HydrationList {
         try {
             fileHandler = new FileHandler(filePath);
             hydrationArrayList = fileHandler.getHydrationEntriesFromFile();
+            this.lastHydrationEntryID = loadLastEntryID();
         } catch (FileNotFoundException e) {
             hydrationArrayList = new ArrayList<>();
             System.out.println(ErrorMessages.getFileNotFoundMessage());
@@ -68,16 +72,29 @@ public class HydrationList {
      */
     public void deleteEntry(String line) {
         try {
-            int index = Integer.parseInt(line.substring(DELETE_PADDING).trim());
-            Entry toDelete = hydrationArrayList.get(index - 1);
-            hydrationArrayList.remove(index - 1);
-            updateFile();
-            HydrationListUI.successfulDeletedMessage(toDelete);
+            int entryID = Integer.parseInt(line.substring(SIZE_OF_DELETE).trim());
+            int index = getIndexFromEntryID(entryID);
+            if (index == NO_INDEX_FOUND) {
+                HydrationListUI.unsuccessfulDeletedMessage(entryID);
+            } else {
+                Entry toDelete = hydrationArrayList.get(index);
+                hydrationArrayList.remove((index));
+                HydrationListUI.successfulDeletedMessage(toDelete);
+                updateFile();
+            }
         } catch (IndexOutOfBoundsException e) {
             System.out.println(HydrationListUI.deleteLogIndexMessage());
         } catch (NumberFormatException e) {
             System.out.println(HydrationListUI.deleteLogNumberMessage());
         }
+    }
+    public int getIndexFromEntryID(int lastEntryID) {
+        for (int i = 0; i < hydrationArrayList.size(); i++) {
+            if (hydrationArrayList.get(i).getLastEntryID() == lastEntryID) {
+                return i;
+            }
+        }
+        return NO_INDEX_FOUND;
     }
 
     /**
@@ -89,12 +106,12 @@ public class HydrationList {
         assert (input.startsWith("hydration add")) : "ensures that input is correct";
         logr.setLevel(Level.SEVERE);
         try {
-            Entry newEntry = ParserHydration.parseHydrationInput(input);
+            Entry newEntry = ParserHydration.parseHydrationInput(input, lastHydrationEntryID);
             hydrationArrayList.add(newEntry);
             updateFile();
             HydrationListUI.printNewHydrationEntry(newEntry);
+            lastHydrationEntryID ++;
         } catch (InvalidInputException e) {
-            System.out.println(e.getMessage());
             logr.log(Level.WARNING, e.getMessage(), e);
         }
     }
@@ -136,5 +153,9 @@ public class HydrationList {
      */
     public int getSize() {
         return hydrationArrayList.size();
+    }
+
+    private int loadLastEntryID() {
+        return FileHandler.getMaxHydrationID();
     }
 }

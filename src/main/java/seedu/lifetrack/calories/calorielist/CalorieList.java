@@ -1,3 +1,4 @@
+//@@author rexyyong
 package seedu.lifetrack.calories.calorielist;
 
 import seedu.lifetrack.Entry;
@@ -17,8 +18,12 @@ public class CalorieList {
     private static Logger logr = Logger.getLogger(CalorieList.class.getName());
 
     private final int SIZE_OF_DELETE = 16;
+
+    //constant for finding entry index from entryID
+    private final int NO_INDEX_FOUND = -1;
     private ArrayList<Entry> calorieArrayList;
     private FileHandler fileHandler;
+    private int lastEntryID;
 
     //constructor for JUnit tests
     public CalorieList() {
@@ -35,6 +40,8 @@ public class CalorieList {
         try {
             fileHandler = new FileHandler(filePath);
             calorieArrayList = fileHandler.getCalorieEntriesFromFile();
+            // Initialize lastEntryID from stored data or default to 0 if not available
+            this.lastEntryID = loadLastEntryID();
         } catch (FileNotFoundException e) {
             calorieArrayList = new ArrayList<>();
             System.out.println(ErrorMessages.getFileNotFoundMessage());
@@ -67,11 +74,16 @@ public class CalorieList {
         assert (line.startsWith("calories delete") ) : "ensures that input is correct";
 
         try {
-            int index = Integer.parseInt(line.substring(SIZE_OF_DELETE).trim());
-            Entry toDelete = calorieArrayList.get(index-1);
-            calorieArrayList.remove((index-1));  // transfer to scope 0 to size-1
-            updateFile();
-            CalorieListUi.successfulDeletedMessage(toDelete);
+            int entryID = Integer.parseInt(line.substring(SIZE_OF_DELETE).trim());
+            int index = getIndexFromEntryID(entryID);
+            if (index == NO_INDEX_FOUND) {
+                CalorieListUi.unsuccessfulDeletedMessage(entryID);
+            } else {
+                Entry toDelete = calorieArrayList.get(index);
+                calorieArrayList.remove((index));
+                CalorieListUi.successfulDeletedMessage(toDelete);
+                updateFile();
+            }
         } catch (IndexOutOfBoundsException e) {
             System.out.println(CalorieListUi.deleteLogIndexMessage());
         } catch (NumberFormatException e) {
@@ -79,6 +91,16 @@ public class CalorieList {
         }
     }
     //@@author
+
+    //method that returns index of entry in arrayList according to lastEntryID
+    public int getIndexFromEntryID(int lastEntryID) {
+        for (int i = 0; i < calorieArrayList.size(); i++) {
+            if (calorieArrayList.get(i).getLastEntryID() == lastEntryID) {
+                return i;
+            }
+        }
+        return NO_INDEX_FOUND;
+    }
 
     /**
      * Parses a string input representing calorie intake and adds it to the calorie list.
@@ -95,10 +117,11 @@ public class CalorieList {
         assert (input.startsWith("calories in") || input.startsWith("calories out")) : "ensures that input is correct";
         logr.setLevel(Level.SEVERE);
         try {
-            Entry newEntry = ParserCalories.parseCaloriesInput(input);
+            Entry newEntry = ParserCalories.parseCaloriesInput(input, lastEntryID);
             calorieArrayList.add(newEntry);
             updateFile();
             CalorieListUi.printNewCalorieEntry(newEntry);
+            lastEntryID ++;
         } catch (InvalidInputException e) {
             logr.log(Level.WARNING, e.getMessage(), e);
             System.out.println(e.getMessage());
@@ -115,12 +138,35 @@ public class CalorieList {
             CalorieListUi.emptyListMessage();
         } else {
             CalorieListUi.calorieListHeader();
-            for (int i = 0; i < calorieArrayList.size(); i++) {
-                Entry entry = calorieArrayList.get(i);
-                System.out.println("\t " + (i + 1) + ". " + entry);
+            printCalorieInflow();
+            printCalorieOutflow();
+        }
+    }
+
+    public void printCalorieInflow() {
+        CalorieListUi.inputCalorieListHeader();
+        int serialNumber = 1;
+        for (Entry value : calorieArrayList) {
+            if (value instanceof InputEntry) {
+                Entry entry = value;
+                System.out.println("\t " + serialNumber + ". " + entry);
+                serialNumber++;
             }
         }
     }
+
+    public void printCalorieOutflow() {
+        CalorieListUi.outputCalorieListHeader();
+        int serialNumber = 1;
+        for (Entry value : calorieArrayList) {
+            if (value instanceof OutputEntry) {
+                Entry entry = value;
+                System.out.println("\t " + serialNumber + ". " + entry);
+                serialNumber++;
+            }
+        }
+    }
+
 
     /**
      * Returns the size of the list of calorie entries.
@@ -143,5 +189,10 @@ public class CalorieList {
             totalCalories += tempEntry.getCalories();
         }
         return totalCalories;
+    }
+
+    //method that loads LastEntryID from txt file
+    private int loadLastEntryID() {
+        return FileHandler.getMaxCaloriesID(); // Default value if file doesn't exist or error occurs
     }
 }

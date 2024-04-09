@@ -11,8 +11,8 @@ public class InvalidInputExceptionMessage {
     private static final String CALORIES_OUT_INPUT = "\t Example input: calories out DESCRIPTION " +
             "c/INTEGER_CALORIES d/DATE";
     private static final String MACROS_INPUT = "\t Example input: ....... m/CARBS_INT, PROTEIN_INT, FATS_INT";
-    private static final String HYDRATION_IN_INPUT = "\t Example input: hydration add Milo v/1000 d/2024-04-19" ;
     private static final String SLEEP_IN_INPUT = "\t Example input: sleep add 7.5 d/2024-03-11" ;
+    private static final String HYDRATION_IN_INPUT = "\t Example input: hydration in Milo v/1000 d/2024-04-19" ;
     private static final String USER_SETUP_INPUT = "\t Example input: user set up Tom h/170 w/80 a/25 s/male e/4 g/3";
 
     //calories list related methods

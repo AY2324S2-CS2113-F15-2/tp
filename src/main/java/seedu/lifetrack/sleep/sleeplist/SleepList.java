@@ -15,7 +15,8 @@ public class SleepList {
 
     private ArrayList<Entry> sleepList;
     private FileHandler fileHandler;
-    
+    private int lastSleepEntryID;
+
     //constructor for JUnit tests
     public SleepList() {
         sleepList = new ArrayList<>();
@@ -26,6 +27,7 @@ public class SleepList {
         try {
             fileHandler = new FileHandler(filePath);
             sleepList = fileHandler.getSleepEntriesFromFile();
+            this.lastSleepEntryID = loadLastEntryID();
         } catch (FileNotFoundException e) {
             sleepList = new ArrayList<>();
             System.out.println(ErrorMessages.getFileNotFoundMessage());
@@ -45,7 +47,7 @@ public class SleepList {
 
     public void addSleep(String input) {
         try {
-            Entry newSleep = ParserSleep.parseSleepInput(input);
+            Entry newSleep = ParserSleep.parseSleepInput(input, lastSleepEntryID);
             sleepList.add(newSleep);
             updateFile();
             SleepListUi.printNewSleepEntry(newSleep);
@@ -84,5 +86,8 @@ public class SleepList {
         return sleepList.size();
     }
 
+    private int loadLastEntryID() {
+        return 0; // Default value if file doesn't exist or error occurs
+    }
 }
 //@@author

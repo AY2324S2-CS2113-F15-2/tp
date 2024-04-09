@@ -8,8 +8,8 @@ public class HydrationEntry extends Entry {
 
     private int volume;
 
-    public HydrationEntry(String description, int volume, LocalDate date){
-        super(description, date);
+    public HydrationEntry(int lastHydrationEntryID, String description, int volume, LocalDate date){
+        super(lastHydrationEntryID, description, date);
         this.volume= volume;
     }
 

@@ -32,7 +32,7 @@ public class ParserHydration {
      * @throws InvalidInputException if the input string is missing components or
      *                              contains empty fields
      */
-    public static Entry parseHydrationInput(String input) throws InvalidInputException {
+    public static Entry parseHydrationInput(String input, int lastHydrationEntryID) throws InvalidInputException {
         
         int volumeIndex = input.indexOf("v/");
         int dateIndex = input.indexOf("d/");
@@ -67,8 +67,8 @@ public class ParserHydration {
             throw new InvalidInputException("Invalid date format");
         }
         //@@author
-
-        return makeNewInputEntry(description, volume, date);
+        lastHydrationEntryID++;
+        return makeNewInputEntry(lastHydrationEntryID, description, volume, date);
     }
 
     /**
@@ -79,8 +79,9 @@ public class ParserHydration {
      * @param date the date of the hydration entry
      * @return a new HydrationEntry object with the specified attributes
      */
-    private static HydrationEntry makeNewInputEntry(String description, int volume, LocalDate date) {
-        return new HydrationEntry(description, volume, date);
+    private static HydrationEntry makeNewInputEntry(int lastHydrationEntryID, String description, int volume,
+                                                    LocalDate date) {
+        return new HydrationEntry(lastHydrationEntryID, description, volume, date);
     }
 
     /**
