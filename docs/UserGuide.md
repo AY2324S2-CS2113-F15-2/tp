@@ -131,9 +131,9 @@ Adds a hydration record into the hydration tracker.
 **Format:**
 `hydration in DESCRIPTION v/VOLUME d/DATE`
 
-* The volume must be a positive integer 1, 2, 3, …, measured in milliliters.
-* The time indicated should follow the 24-hour system.
-* The date provided should be of the form YYYY-MM-DD.
+* The `DESCRIPTION` refers to the food that the person consumed.
+* The `VOLUME` must be a positive integer 1, 2, 3, …, measured in milliliters.
+* The `DATE` provided should be of the form YYYY-MM-DD, such as 2024-03-04.
 
 **Examples:**
 * `hydration in Milo v/1000 d/2022-03-25`
