@@ -25,7 +25,7 @@ public class SleepEntry extends Entry {
     }
     public SleepEntry (int sleepEntryID,double duration, LocalDate date){
         super(sleepEntryID, "SLEEP", date);
-        if(sleepEntryNum<sleepEntryID){
+        if(sleepEntryNum<=sleepEntryID){
             sleepEntryNum=sleepEntryID+1;
         }
         this.date = date;
