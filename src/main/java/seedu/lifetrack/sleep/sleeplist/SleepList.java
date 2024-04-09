@@ -47,7 +47,7 @@ public class SleepList {
 
     public void addSleep(String input) {
         try {
-            Entry newSleep = ParserSleep.parseSleepInput(input, lastSleepEntryID);
+            Entry newSleep = ParserSleep.parseSleepInput(input);
             sleepList.add(newSleep);
             updateFile();
             SleepListUi.printNewSleepEntry(newSleep);

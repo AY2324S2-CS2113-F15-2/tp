@@ -10,6 +10,7 @@ public class SleepEntry extends Entry {
     private LocalDate date;
     private double duration;
     private int sleepEntryID;
+    private static int sleepEntryNum=0;
 
     /***
      * Sleep constructor: date can be empty. If date input is empty, automatically fill with N/A;
@@ -17,10 +18,16 @@ public class SleepEntry extends Entry {
      * @param date
      * @param duration
      */
-    public SleepEntry (int sleepEntryID, double duration, LocalDate date){
+    public SleepEntry (double duration, LocalDate date){
+        super(sleepEntryNum++, "SLEEP", date);
+        this.date = date;
+        this.duration = duration;
+    }
+    public SleepEntry (int sleepEntryID,double duration, LocalDate date){
         super(sleepEntryID, "SLEEP", date);
         this.date = date;
         this.duration = duration;
+        this.sleepEntryID=sleepEntryID;
     }
 
     public LocalDate getDate() {
