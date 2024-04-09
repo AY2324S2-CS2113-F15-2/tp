@@ -135,12 +135,35 @@ public class CalorieList {
             CalorieListUi.emptyListMessage();
         } else {
             CalorieListUi.calorieListHeader();
-            for (int i = 0; i < calorieArrayList.size(); i++) {
-                Entry entry = calorieArrayList.get(i);
-                System.out.println("\t " + (i + 1) + ". " + entry);
+            printCalorieInflow();
+            printCalorieOutflow();
+        }
+    }
+
+    public void printCalorieInflow() {
+        CalorieListUi.inputCalorieListHeader();
+        int serialNumber = 1;
+        for (Entry value : calorieArrayList) {
+            if (value instanceof InputEntry) {
+                Entry entry = value;
+                System.out.println("\t " + serialNumber + ". " + entry);
+                serialNumber++;
             }
         }
     }
+
+    public void printCalorieOutflow() {
+        CalorieListUi.outputCalorieListHeader();
+        int serialNumber = 1;
+        for (Entry value : calorieArrayList) {
+            if (value instanceof OutputEntry) {
+                Entry entry = value;
+                System.out.println("\t " + serialNumber + ". " + entry);
+                serialNumber++;
+            }
+        }
+    }
+
 
     /**
      * Returns the size of the list of calorie entries.

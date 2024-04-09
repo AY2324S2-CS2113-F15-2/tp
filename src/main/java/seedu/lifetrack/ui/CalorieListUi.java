@@ -30,6 +30,16 @@ public class CalorieListUi {
         System.out.println("\t Your Caloric List:");
     }
 
+    public static void outputCalorieListHeader() {
+        System.out.println("");
+        System.out.println("\t Your Caloric outflow list:");
+    }
+
+    public static void inputCalorieListHeader() {
+        System.out.println("");
+        System.out.println("\t Your Caloric Inflow List:");
+    }
+
     public static void printNewCalorieEntry(Entry newEntry) {
         System.out.println("\t The following entry has been added to your caloric list!");
         System.out.println("\t " + newEntry.toString());
