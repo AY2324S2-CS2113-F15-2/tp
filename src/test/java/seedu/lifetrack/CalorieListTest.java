@@ -3,6 +3,7 @@ package seedu.lifetrack;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.lifetrack.system.parser.ParserHydration.parseHydrationInput;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 import seedu.lifetrack.calories.calorielist.CalorieList;
 import seedu.lifetrack.calories.calorielist.InputEntry;
 import seedu.lifetrack.calories.calorielist.OutputEntry;
+import seedu.lifetrack.system.exceptions.InvalidInputException;
 
 public class CalorieListTest {
 
@@ -143,5 +145,49 @@ public class CalorieListTest {
         assertEquals(5, calorieList.getSize());
     }
 
+    @Test
+    public void testAddEntry_addDifferentDates_datesSortedCorrectly() {
+        String lineSeparator = System.lineSeparator();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+        CalorieList calorieList = new CalorieList();
+        calorieList.addEntry("calories in burger king c/200 d/2024-03-14");
+        calorieList.addEntry("calories out Walk c/150 d/2022-02-22");
+        calorieList.addEntry("calories in acai c/500 d/2022-02-22");
+        calorieList.addEntry("calories out Run c/250 d/2024-03-14");
+        calorieList.addEntry("calories in commhall dinner c/300 d/2021-01-11");
+        calorieList.addEntry("calories out play pool c/69 d/2021-01-11");
+        calorieList.printCalorieList();
+        System.setOut(System.out);
+        StringBuilder expectedOutput = new StringBuilder();
+        for (int i = 1; i < 7; i++) {
+            expectedOutput.append(addedEntryHeader)
+                    .append(lineSeparator).append("\t ")
+                    .append(calorieList.getEntry(calorieList.getIndexFromEntryID(i)).toString())
+                    .append(lineSeparator);
+        }
+        expectedOutput.append("\t Your Caloric List:")
+                .append(lineSeparator)
+                .append(lineSeparator)
+                .append("\t Your caloric inflow list:")
+                .append(lineSeparator)
+                .append("\t 1. \t EntryID: 5, Date: 2021-01-11, Description: commhall dinner, Calories: 300")
+                .append(lineSeparator)
+                .append("\t 2. \t EntryID: 3, Date: 2022-02-22, Description: acai, Calories: 500")
+                .append(lineSeparator)
+                .append("\t 3. \t EntryID: 1, Date: 2024-03-14, Description: burger king, Calories: 200")
+                .append(lineSeparator)
+                .append(lineSeparator)
+                .append("\t Your caloric outflow list:")
+                .append(lineSeparator)
+                .append("\t 1. \t EntryID: 6, Date: 2021-01-11, Description: play pool, Calories: 69")
+                .append(lineSeparator)
+                .append("\t 2. \t EntryID: 2, Date: 2022-02-22, Description: Walk, Calories: 150")
+                .append(lineSeparator)
+                .append("\t 3. \t EntryID: 4, Date: 2024-03-14, Description: Run, Calories: 250")
+                .append(lineSeparator);
+        assertEquals(expectedOutput.toString(), outputStream.toString());
+        assertEquals(6, calorieList.getSize());
+    }
 
 }

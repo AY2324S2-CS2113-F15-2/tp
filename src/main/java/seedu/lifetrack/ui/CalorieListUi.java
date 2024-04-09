@@ -32,12 +32,12 @@ public class CalorieListUi {
 
     public static void outputCalorieListHeader() {
         System.out.println("");
-        System.out.println("\t Your Caloric outflow list:");
+        System.out.println("\t Your caloric outflow list:");
     }
 
     public static void inputCalorieListHeader() {
         System.out.println("");
-        System.out.println("\t Your Caloric Inflow List:");
+        System.out.println("\t Your caloric inflow list:");
     }
 
     public static void printNewCalorieEntry(Entry newEntry) {
