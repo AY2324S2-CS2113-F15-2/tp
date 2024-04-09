@@ -1,3 +1,4 @@
+//@@author rexyyong
 package seedu.lifetrack.ui;
 
 import seedu.lifetrack.Entry;
@@ -7,6 +8,10 @@ public class CalorieListUi {
     public static void successfulDeletedMessage(Entry toDelete) {
         System.out.println("\t The following calorie record has been successfully deleted!");
         System.out.println("\t " + toDelete.toString());
+    }
+    public static void unsuccessfulDeletedMessage(int entryID) {
+        System.out.println("\t The following calorie record corresponding to entry ID " + entryID + " could " +
+                "not be found");
     }
 
     public static void emptyListMessage() {

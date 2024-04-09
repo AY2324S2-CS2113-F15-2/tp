@@ -19,19 +19,23 @@ import seedu.lifetrack.user.User;
 
 public class FileHandler {
 
+    //public member for lastEntryID calories
+    public static int maxCaloriesID = 0;
+
     //general list constants
-    private static final int DATE_INDEX = 0;
-    private static final int DESCRIPTION_INDEX = 1;
+    private static final int ENTRYID_INDEX = 0;
+    private static final int DATE_INDEX = 1;
+    private static final int DESCRIPTION_INDEX = 2;
 
     //calorie list constants
-    private static final int ENTRY_TYPE_INDEX = 2;
-    private static final int CALORIES_INDEX = 3;
-    private static final int CARBOHYDRATES_INDEX = 4;
-    private static final int PROTEINS_INDEX = 5;
-    private static final int FATS_INDEX = 6;
+    private static final int ENTRY_TYPE_INDEX = 3;
+    private static final int CALORIES_INDEX = 4;
+    private static final int CARBOHYDRATES_INDEX = 5;
+    private static final int PROTEINS_INDEX = 6;
+    private static final int FATS_INDEX = 7;
 
     //liquids list constants
-    private static final int VOLUME_INDEX = 2;
+    private static final int VOLUME_INDEX = 3;
 
     //sleep list constants
     private static final int DURATION_INDEX = 2;
@@ -50,6 +54,10 @@ public class FileHandler {
 
     public FileHandler(String filePath) {
         this.filePath = filePath;
+    }
+
+    public static int getMaxCaloriesID() {
+        return maxCaloriesID;
     }
 
     private void writeToFile(String textToAdd) throws IOException {
@@ -86,23 +94,32 @@ public class FileHandler {
         while (s.hasNext()) {
             line = s.nextLine();
             String[] words = line.split(";");
+            int entryID = Integer.parseInt(words[ENTRYID_INDEX]);
+            calculateMaxCaloriesEntry(entryID);
             LocalDate date = LocalDate.parse(words[DATE_INDEX]);
             String description = words[DESCRIPTION_INDEX];
             int calories = Integer.parseInt(words[CALORIES_INDEX]);
             String entryType = words[ENTRY_TYPE_INDEX];
-            if (entryType.equals("C_IN") && words.length == 5) {
+            if (entryType.equals("C_IN") && words.length == 8) {
                 int carbohydrates = Integer.parseInt(words[CARBOHYDRATES_INDEX]);
                 int proteins = Integer.parseInt(words[PROTEINS_INDEX]);
                 int fats = Integer.parseInt(words[FATS_INDEX]);
                 Food food = new Food(carbohydrates, proteins, fats);
-                entries.add(new InputEntry(description, calories, date, food));
+                entries.add(new InputEntry(entryID, description, calories, date, food));
             } else if (entryType.equals("C_IN")) {
-                entries.add(new InputEntry(description, calories, date));
+                entries.add(new InputEntry(entryID, description, calories, date));
             } else {
-                entries.add(new OutputEntry(description, calories, date));
+                entries.add(new OutputEntry(entryID, description, calories, date));
             }
         }
         return entries;
+    }
+
+    // Method calculates the max calories entry ID
+    public void calculateMaxCaloriesEntry(int entryID) {
+        if (entryID > maxCaloriesID) {
+            maxCaloriesID = entryID;
+        }
     }
 
     public ArrayList<Entry> getHydrationEntriesFromFile() throws FileNotFoundException {
@@ -113,10 +130,11 @@ public class FileHandler {
         while (s.hasNext()) {
             line = s.nextLine();
             String[] words = line.split(";");
+            int lastHydrationEntryID = Integer.parseInt(words[ENTRYID_INDEX]);
             LocalDate date = LocalDate.parse(words[DATE_INDEX]);
             String description = words[DESCRIPTION_INDEX];
             int volume = Integer.parseInt(words[VOLUME_INDEX]);
-            entries.add(new HydrationEntry(description, volume, date));
+            entries.add(new HydrationEntry(lastHydrationEntryID, description, volume, date));
         }
         return entries;
     }
@@ -129,9 +147,10 @@ public class FileHandler {
         while (s.hasNext()) {
             line = s.nextLine();
             String[] words = line.split(";");
+            int lastSleepEntryID = Integer.parseInt(words[ENTRYID_INDEX]);
             LocalDate date = LocalDate.parse(words[DATE_INDEX]);
             double duration = Double.parseDouble(words[DURATION_INDEX]);
-            entries.add(new SleepEntry(duration, date));
+            entries.add(new SleepEntry(lastSleepEntryID, duration, date));
         }
         return entries;
     }

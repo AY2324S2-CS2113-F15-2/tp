@@ -54,9 +54,9 @@ public class HydrationListTest {
         hydrationList.printHydrationList();
         System.setOut(System.out);
         String expectedOutput = "\t The following entry has been added to your hydration list!" + lineSeparator +
-                "\t \t Date: 2024-02-22, Description: Milo, Volume: 200" + lineSeparator +
+                "\t \t EntryID: 1, Date: 2024-02-22, Description: Milo, Volume: 200" + lineSeparator +
                 "\t Your Hydration List:" + lineSeparator +
-                "\t 1. \t Date: 2024-02-22, Description: Milo, Volume: 200" + lineSeparator;
+                "\t 1. \t EntryID: 1, Date: 2024-02-22, Description: Milo, Volume: 200" + lineSeparator;
         assertEquals(expectedOutput, outputStream.toString());
     }
 
@@ -72,15 +72,15 @@ public class HydrationListTest {
         hydrationList.printHydrationList();
         System.setOut(System.out);
         String expectedOutput = "\t The following entry has been added to your hydration list!" + lineSeparator +
-                "\t \t Date: 2024-02-22, Description: Milo, Volume: 200" + lineSeparator +
+                "\t \t EntryID: 1, Date: 2024-02-22, Description: Milo, Volume: 200" + lineSeparator +
                 "\t The following entry has been added to your hydration list!" + lineSeparator +
-                "\t \t Date: 2024-02-22, Description: Water, Volume: 300" + lineSeparator +
+                "\t \t EntryID: 1, Date: 2024-02-22, Description: Water, Volume: 300" + lineSeparator +
                 "\t The following entry has been added to your hydration list!" + lineSeparator +
-                "\t \t Date: 2024-02-22, Description: Juice, Volume: 150" + lineSeparator +
+                "\t \t EntryID: 1, Date: 2024-02-22, Description: Juice, Volume: 150" + lineSeparator +
                 "\t Your Hydration List:" + lineSeparator +
-                "\t 1. \t Date: 2024-02-22, Description: Milo, Volume: 200" + lineSeparator +
-                "\t 2. \t Date: 2024-02-22, Description: Water, Volume: 300" + lineSeparator +
-                "\t 3. \t Date: 2024-02-22, Description: Juice, Volume: 150" + lineSeparator;
+                "\t 1. \t EntryID: 1, Date: 2024-02-22, Description: Milo, Volume: 200" + lineSeparator +
+                "\t 2. \t EntryID: 1, Date: 2024-02-22, Description: Water, Volume: 300" + lineSeparator +
+                "\t 3. \t EntryID: 1, Date: 2024-02-22, Description: Juice, Volume: 150" + lineSeparator;
         assertEquals(expectedOutput, outputStream.toString());
         assertEquals(3, hydrationList.getSize());
     }
@@ -121,12 +121,12 @@ public class HydrationListTest {
         hydrationList.printHydrationList();
         System.setOut(System.out);
         String expectedOutput = "\t The following entry has been added to your hydration list!" + lineSeparator +
-                "\t \t Date: 2024-02-22, Description: Coffee, Volume: 150" + lineSeparator +
+                "\t \t EntryID: 1, Date: 2024-02-22, Description: Coffee, Volume: 150" + lineSeparator +
                 "\t The following entry has been added to your hydration list!" + lineSeparator +
-                "\t \t Date: 2024-02-22, Description: Tea, Volume: 200" + lineSeparator +
+                "\t \t EntryID: 1, Date: 2024-02-22, Description: Tea, Volume: 200" + lineSeparator +
                 "\t Your Hydration List:" + lineSeparator +
-                "\t 1. \t Date: 2024-02-22, Description: Coffee, Volume: 150" + lineSeparator +
-                "\t 2. \t Date: 2024-02-22, Description: Tea, Volume: 200" + lineSeparator;
+                "\t 1. \t EntryID: 1, Date: 2024-02-22, Description: Coffee, Volume: 150" + lineSeparator +
+                "\t 2. \t EntryID: 1, Date: 2024-02-22, Description: Tea, Volume: 200" + lineSeparator;
         assertEquals(expectedOutput, outputStream.toString());
         assertEquals(2, hydrationList.getSize());
     }

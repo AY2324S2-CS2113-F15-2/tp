@@ -12,7 +12,7 @@ import java.time.format.DateTimeParseException;
 //@@author a-wild-chocloate
 public class ParserSleep {
 
-    public static SleepEntry parseSleepInput(String input) throws InvalidInputException {
+    public static SleepEntry parseSleepInput(String input, int lastSleepEntryID) throws InvalidInputException {
         try {
             String strDate = "N/A"; // Default if no strDate is provided
             LocalDate date = null;
@@ -40,8 +40,9 @@ public class ParserSleep {
             } catch (DateTimeParseException e) {
                 throw new InvalidInputException("Invalid date format");
             }
+            lastSleepEntryID++;
             //@@author
-            return new SleepEntry(duration, date);
+            return new SleepEntry(lastSleepEntryID, duration, date);
         } catch (NumberFormatException e) {
             throw new InvalidInputException("Please ensure that you have keyed in the correct format: " +
                     "sleep add <duration> d/<date>");
