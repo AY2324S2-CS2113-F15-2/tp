@@ -30,10 +30,10 @@ LifeTrack is a desktop app for students to track their health data, optimized fo
 
 ## Quick Start
 
-{Give steps to get started quickly}
-
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `LifeTrack` from [here](https://github.com/AY2324S2-CS2113-F15-2/tp/releases).
+2. Download the latest version of `LifeTrack` from [here](https://github.com/AY2324S2-CS2113-F15-2/tp/releases). You may move the JAR file to anywhere in your computer if you wish.
+3. Open a terminal window and change directories to where the JAR file is located.
+4. Run the command `java -jar tp.jar` and the application will start running.
 
 [//]: # (## Features )
 
@@ -264,9 +264,13 @@ If you have not set your user up beforehand, this command will prompt you to do 
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer? 
+**Q**: How do I transfer my data to another computer?
 
-**A**: {your answer here}
+**A**: In the same directory as where the JAR file is located, the application will automatically create a `/data` directory which stores all the data files required for the application. Simply copy the entire directory and its contents to your new computer and ensure that it is in the same directory as your JAR file, then run the application as per normal.
+
+**Q**: Why must I input integers for my calories when it is a continuous variable?
+
+**A**: Although calories is technically a continuous variable, we chose to only take in integer inputs in our application as the difference is just not that significant, i.e. users can just round up values that have decimal values of 0.5 and above, and round down any values below that. An average human will have calorie intake in the thousands daily, thus such a small inaccuracy is insignificant in comparison. An `int` is also much easier to work with than `float`, which is why we chose to only use the former.
 
 ## Coming soon
 
