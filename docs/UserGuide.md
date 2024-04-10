@@ -33,7 +33,7 @@ LifeTrack is a desktop app for students to track their health data, optimized fo
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `LifeTrack` from [here](http://link.to/duke).
+2. Download the latest version of `LifeTrack` from [here](https://github.com/AY2324S2-CS2113-F15-2/tp/releases).
 
 [//]: # (## Features )
 
