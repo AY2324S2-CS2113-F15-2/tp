@@ -106,25 +106,29 @@ All entries are sorted by date, in ascending order, from earlier dates to presen
 	 Your Caloric List:
 
 	 Your Caloric Inflow List:
-	 1. 	 EntryID: 2, Date: 2024-02-02, Description: commhall dinner, Calories: 6969 (C: 69, P: 69, F: 69)
-	 2. 	 EntryID: 1, Date: 2024-04-09, Description: wingstop, Calories: 1000 (C: 100, P: 100, F: 100)
+	 1. 	 caloriesID: 1, Date: 2024-04-09, Description: wingstop, Calories: 1000 (C: 100, P: 100, F: 100)
+	 2. 	 caloriesID: 2, Date: 2024-04-09, Description: wingstop, Calories: 1000 (C: 100, P: 100, F: 100)
+	 3. 	 caloriesID: 3, Date: 2024-04-09, Description: wingstop, Calories: 1000 (C: 100, P: 100, F: 100)
 
 	 Your Caloric Outflow List:
-	 1. 	 EntryID: 3, Date: 2024-01-01, Description: gym, Calories: 2000
-	 2. 	 EntryID: 4, Date: 2024-04-09, Description: sprint, Calories: 400
+	 1. 	 caloriesID: 7, Date: 2024-04-10, Description: basketball, Calories: 1000
+	 2. 	 caloriesID: 9, Date: 2024-04-10, Description: run, Calories: 200
          -----------------------------------------------------------------------------
 
 
+
+
+
 ### Deleting a calorie item: `calories delete`
-Deletes the specified entry from the calories tracker according to the `ENTRYID`.
+Deletes the specified calories ID entry from the calories tracker according to the `CALORIESID`.
 
 **Format:**
-`calories delete ENTRYID`
-* The `ENTRYID` must be a positive **integer** 1, 2, 3 and so on.
+`calories delete CALORIESID`
+* The `CALORIESID` must be a positive **integer** 1, 2, 3 and so on.
 
 **Examples:**
 
-* `calories list` followed by `calories delete 2` deletes the entry with `ENTRYID` 2 in the calories tracker.
+* `calories list` followed by `calories delete 2` deletes the entry with `CALORIESID` 2 in the calories tracker.
 
 ## Hydration Tracker
 
@@ -150,22 +154,20 @@ Show the list of all hydration records in the hydration tracker.
 #### Expected output
          -----------------------------------------------------------------------------
 	 Your Hydration List:
-	 1. 	 Date: 2022-01-01, Description: teh peng, Volume: 100
-	 2. 	 Date: 2022-01-01, Description: milo, Volume: 100
-	 3. 	 Date: 2022-01-02, Description: water, Volume: 100
-	 4. 	 Date: 2022-01-02, Description: milo, Volume: 200
-	 5. 	 Date: 2022-01-01, Description: milo, Volume: 100
+	 1. 	 hydrationID: 1, Date: 2024-04-10, Description: milo, Volume: 100
+	 2. 	 hydrationID: 2, Date: 2024-04-10, Description: coke, Volume: 1000
          -----------------------------------------------------------------------------
 
+
 ### Deleting a hydration item: `hydration delete`
-Deletes the specified hydration entry according to the `ENTRYID`.
+Deletes the specified hydration entry according to the `HYDRATIONID`.
 
 **Format:**
-`hydration delete ENTRYID`
-* The `ENTRYID` must be a positive **integer** 1, 2, 3 and so on.
+`hydration delete HYDRATIONID`
+* The `HYDRATIONID` must be a positive **integer** 1, 2, 3 and so on.
 
 **Examples:**
-* `hydration list` followed by `hydration delete 2` deletes the entry with `ENTRYID` 2 in the hydration tracker.
+* `hydration list` followed by `hydration delete 2` deletes the entry with `HYDRATIONID` 2 in the hydration tracker.
 
 ## Sleep Tracker
 

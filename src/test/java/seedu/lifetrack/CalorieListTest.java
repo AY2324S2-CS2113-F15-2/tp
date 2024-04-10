@@ -102,7 +102,7 @@ public class CalorieListTest {
                 "\t " + calorieList.getEntry(0).toString() + lineSeparator +
                 "\t Your Caloric List:" + lineSeparator + lineSeparator +
                 "\t Your Caloric Inflow List:" + lineSeparator +
-                "\t 1. \t EntryID: 1, Date: 2024-03-14, Description: burger king, Calories: 200" + lineSeparator +
+                "\t 1. \t caloriesID: 1, Date: 2024-03-14, Description: burger king, Calories: 200" + lineSeparator +
                 lineSeparator + "\t Your Caloric Outflow List:" + lineSeparator;
         assertEquals(expectedOutput, outputStream.toString());
     }
@@ -131,18 +131,18 @@ public class CalorieListTest {
                 .append(lineSeparator)
                 .append("\t Your Caloric Inflow List:")
                 .append(lineSeparator)
-                .append("\t 1. \t EntryID: 1, Date: 2024-03-14, Description: burger king, Calories: 200")
+                .append("\t 1. \t caloriesID: 1, Date: 2024-03-14, Description: burger king, Calories: 200")
                 .append(lineSeparator)
-                .append("\t 2. \t EntryID: 3, Date: 2024-03-14, Description: acai, Calories: 500")
+                .append("\t 2. \t caloriesID: 3, Date: 2024-03-14, Description: acai, Calories: 500")
                 .append(lineSeparator)
-                .append("\t 3. \t EntryID: 5, Date: 2024-03-14, Description: commhall dinner, Calories: 300")
+                .append("\t 3. \t caloriesID: 5, Date: 2024-03-14, Description: commhall dinner, Calories: 300")
                 .append(lineSeparator)
                 .append(lineSeparator)
                 .append("\t Your Caloric Outflow List:")
                 .append(lineSeparator)
-                .append("\t 1. \t EntryID: 2, Date: 2024-03-14, Description: Walk, Calories: 150")
+                .append("\t 1. \t caloriesID: 2, Date: 2024-03-14, Description: Walk, Calories: 150")
                 .append(lineSeparator)
-                .append("\t 2. \t EntryID: 4, Date: 2024-03-14, Description: Run, Calories: 250")
+                .append("\t 2. \t caloriesID: 4, Date: 2024-03-14, Description: Run, Calories: 250")
                 .append(lineSeparator);
         assertEquals(expectedOutput.toString(), outputStream.toString());
         assertEquals(5, calorieList.getSize());
@@ -180,20 +180,20 @@ public class CalorieListTest {
                 .append(lineSeparator)
                 .append("\t Your Caloric Inflow List:")
                 .append(lineSeparator)
-                .append("\t 1. \t EntryID: 5, Date: 2021-01-11, Description: commhall dinner, Calories: 300")
+                .append("\t 1. \t caloriesID: 5, Date: 2021-01-11, Description: commhall dinner, Calories: 300")
                 .append(lineSeparator)
-                .append("\t 2. \t EntryID: 3, Date: 2022-02-22, Description: acai, Calories: 500")
+                .append("\t 2. \t caloriesID: 3, Date: 2022-02-22, Description: acai, Calories: 500")
                 .append(lineSeparator)
-                .append("\t 3. \t EntryID: 1, Date: 2024-03-14, Description: burger king, Calories: 200")
+                .append("\t 3. \t caloriesID: 1, Date: 2024-03-14, Description: burger king, Calories: 200")
                 .append(lineSeparator)
                 .append(lineSeparator)
                 .append("\t Your Caloric Outflow List:")
                 .append(lineSeparator)
-                .append("\t 1. \t EntryID: 6, Date: 2021-01-11, Description: play pool, Calories: 69")
+                .append("\t 1. \t caloriesID: 6, Date: 2021-01-11, Description: play pool, Calories: 69")
                 .append(lineSeparator)
-                .append("\t 2. \t EntryID: 2, Date: 2022-02-22, Description: Walk, Calories: 150")
+                .append("\t 2. \t caloriesID: 2, Date: 2022-02-22, Description: Walk, Calories: 150")
                 .append(lineSeparator)
-                .append("\t 3. \t EntryID: 4, Date: 2024-03-14, Description: Run, Calories: 250")
+                .append("\t 3. \t caloriesID: 4, Date: 2024-03-14, Description: Run, Calories: 250")
                 .append(lineSeparator);
         assertEquals(expectedOutput.toString(), outputStream.toString());
         assertEquals(6, calorieList.getSize());
@@ -234,12 +234,12 @@ public class CalorieListTest {
                 .append(lineSeparator)
                 .append("\t Your Caloric Inflow List:")
                 .append(lineSeparator)
-                .append("\t 1. \t EntryID: 1, Date: 2022-02-22, Description: burger king, Calories: 200")
+                .append("\t 1. \t caloriesID: 1, Date: 2022-02-22, Description: burger king, Calories: 200")
                 .append(lineSeparator)
                 .append(lineSeparator)
                 .append("\t Your Caloric Outflow List:")
                 .append(lineSeparator)
-                .append("\t 1. \t EntryID: 2, Date: 2022-02-22, Description: Walk, Calories: 150")
+                .append("\t 1. \t caloriesID: 2, Date: 2022-02-22, Description: Walk, Calories: 150")
                 .append(lineSeparator);
         assertEquals(expectedOutput.toString(), outputStream.toString());
         assertEquals(2, calorieList.getSize());
@@ -289,15 +289,15 @@ public class CalorieListTest {
                 .append(lineSeparator)
                 .append("\t Your Caloric Inflow List:")
                 .append(lineSeparator)
-                .append("\t 1. \t EntryID: 1, Date: 2022-02-22, Description: burger king, Calories: 200")
+                .append("\t 1. \t caloriesID: 1, Date: 2022-02-22, Description: burger king, Calories: 200")
                 .append(lineSeparator)
-                .append("\t 2. \t EntryID: 4, Date: 2022-02-22, Description: yong tau foo, Calories: 688 " +
+                .append("\t 2. \t caloriesID: 4, Date: 2022-02-22, Description: yong tau foo, Calories: 688 " +
                         "(C: 10, P: 10, F: 10)")
                 .append(lineSeparator)
                 .append(lineSeparator)
                 .append("\t Your Caloric Outflow List:")
                 .append(lineSeparator)
-                .append("\t 1. \t EntryID: 2, Date: 2022-02-22, Description: Walk, Calories: 150")
+                .append("\t 1. \t caloriesID: 2, Date: 2022-02-22, Description: Walk, Calories: 150")
                 .append(lineSeparator);
         assertEquals(expectedOutput.toString(), outputStream.toString());
         assertEquals(3, calorieList.getSize());
