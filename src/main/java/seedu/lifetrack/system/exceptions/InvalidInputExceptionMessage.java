@@ -22,10 +22,14 @@ public class InvalidInputExceptionMessage {
         return message;
     }
 
-    //calories list related methods
+    //calories list related messages
     public static String getCaloriesIncorrectOrderMessage() {
         String message = "\t Please ensure that you have keyed the input in the correct order!\n";
         return HEADER + message + CALORIES_IN_INPUT;
+    }
+
+    public static String getIncorrectCaloriesInputMessage() {
+        return "\t Please input only positive integers into the calories field!";
     }
 
     public static String getCaloriesMissingKeywordsMessage() {
@@ -43,6 +47,10 @@ public class InvalidInputExceptionMessage {
         return HEADER + message + MACROS_INPUT;
     }
 
+    public static String getIncorrectMacrosInputMessage() {
+        return "\t Please input only positive integers into the macronutrients field!";
+    }
+
     public static String getIncompleteMacrosMessage() {
         String message = "\t Please ensure that all macronutrients fields are filled up!\n";
         return HEADER + message + MACROS_INPUT;
@@ -58,15 +66,10 @@ public class InvalidInputExceptionMessage {
         return HEADER + message + CALORIES_OUT_INPUT;
     }
 
-    //hydration list related methods
+    //hydration list related messages
     public static String getHydrationMissingKeywordMessage() {
         String message = "\t Please ensure that you have entered all keywords!\n";
         return HEADER + message + HYDRATION_IN_INPUT;
-    }
-
-    public static String getSleepMissingKeywordMessage() {
-        String message = "\t Please ensure that you have entered all keywords!\n";
-        return HEADER + message + SLEEP_IN_INPUT;
     }
 
     public static String getHydrationIncorrectOrderMessage() {
@@ -84,7 +87,25 @@ public class InvalidInputExceptionMessage {
         return HEADER + message + HYDRATION_IN_INPUT;
     }
 
-    // User related Messages
+    public static String getIncorrectVolumeInputMessage() {
+        return "\t Please input only positive integers into the volume field!";
+    }
+
+    //sleep list related messages
+    public static String getSleepMissingKeywordMessage() {
+        String message = "\t Please ensure that you have entered all keywords!\n";
+        return HEADER + message + SLEEP_IN_INPUT;
+    }
+
+    public static String getIncorrectSleepInputMessage() {
+        return "\t Please input one positive real number into the sleep duration field!";
+    }
+
+    public static String getTooLongSleepDurationMessage() {
+        return "\t Please enter a sleep duration less than 24 hours.";
+    }
+
+    //user related messages
     public static String getOutOfGoalRangeMessage() {
         return "\t Please key in a number between 1 and 5! 1 being quick fat loss " +
                 "and 5 being quick bulking";
@@ -97,5 +118,46 @@ public class InvalidInputExceptionMessage {
 
     public static String getEmptyUserSetupInputMessage() {
         return HEADER + "\t Please key in the relevant user fields!\n" + USER_SETUP_INPUT;
+    }
+
+    public static String getInvalidNumberOfSetUpInputs() {
+        return "\t Sorry, this command is invalid. Please enter the setup command in the following format " +
+                "user setup {NAME} h/{HEIGHT} w/{WEIGHT} a/{AGE} s/{SEX} e/{EXERCISE LEVELS} g/{GOAL}";
+    }
+
+    public static String getInvalidGoalNumberMessage() {
+        return "\t Invalid input for goal number. Please enter a number between 1 and 5.";
+    }
+
+    public static String getInvalidExerciseLevelsNumberMessage() {
+        return "\t Invalid input for exercise level. Please enter a number between 1 and 5.";
+    }
+
+    public static String getHeightOutOfRangeMessage() {
+        return "\t Please enter a valid height!";
+    }
+
+    public static String getInvalidHeightNumberMessage(){
+        return "\t Please enter your height(in cm) as an integer!";
+    }
+
+    public static String getWeightOutOfRangeMessage(){
+        return "\t Please enter a valid weight!";
+    }
+
+    public static String  getInvalidWeightNumberMessage(){
+        return "\t Please enter your weight(in kg) as an integer!";
+    }
+
+    public static String getUnderAgeMessage(){
+        return "\t You are too young to use this app :(";
+    }
+
+    public static String getAgeOutOfRangeMessage(){
+        return "\t Please enter a valid age!";
+    }
+
+    public static String getInvalidAgeNumberMessage(){
+        return "\t Please enter your age as an integer!";
     }
 }

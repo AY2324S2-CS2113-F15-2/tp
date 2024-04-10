@@ -1,6 +1,5 @@
 package seedu.lifetrack.user;
 
-import seedu.lifetrack.system.exceptions.ErrorMessages;
 import seedu.lifetrack.system.exceptions.InvalidInputException;
 import seedu.lifetrack.system.storage.FileHandler;
 import seedu.lifetrack.user.usergoals.UserGoals;

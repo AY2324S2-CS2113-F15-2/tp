@@ -9,8 +9,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import static seedu.lifetrack.system.exceptions.ErrorMessages.getIncorrectSleepInputMessage;
-import static seedu.lifetrack.system.exceptions.ErrorMessages.getTooLongSleepDurationMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncorrectSleepInputMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getTooLongSleepDurationMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidDateMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getSleepMissingKeywordMessage;
 

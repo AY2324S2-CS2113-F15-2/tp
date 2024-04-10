@@ -8,7 +8,7 @@ import seedu.lifetrack.system.exceptions.InvalidInputException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-import static seedu.lifetrack.system.exceptions.ErrorMessages.getIncorrectVolumeInputMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncorrectVolumeInputMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHydrationEmptyDescriptionMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHydrationIncorrectOrderMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHydrationMissingKeywordMessage;
