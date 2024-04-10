@@ -10,6 +10,7 @@ import static seedu.lifetrack.system.exceptions.ErrorMessages.getIncorrectCalori
 import static seedu.lifetrack.system.exceptions.ErrorMessages.getIncorrectMacrosInputMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getWhitespaceInInputMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncompleteMacrosMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidDateMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getMacrosInCaloriesOutMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getCaloriesIncorrectOrderMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getCaloriesMissingKeywordsMessage;
@@ -101,18 +102,16 @@ public class ParserCalories {
         try {
             date = getLocalDateFromInput(strDate);
         } catch (DateTimeParseException e) {
-            throw new InvalidInputException("Invalid date format");
+            throw new InvalidInputException(getInvalidDateMessage());
         }
         //@@author owx0130
 
+        lastEntryID++;
         if (command.equals("calories out")) {
-            lastEntryID++;
             return makeNewOutputEntry(lastEntryID, description, calories, date);
         } else if (macros == null) {
-            lastEntryID++;
             return makeNewInputEntry(lastEntryID, description, calories, date);
         } else {
-            lastEntryID++;
             return makeNewInputEntry(lastEntryID, description, calories, date, macros);
         }
     }
@@ -192,7 +191,7 @@ public class ParserCalories {
                 throw new InvalidInputException(getIncompleteMacrosMessage());
             }
         } catch (NumberFormatException e) {
-            System.out.println(getIncorrectMacrosInputMessage());
+            throw new InvalidInputException(getIncorrectMacrosInputMessage());
         }
         return macros;
     }

@@ -16,6 +16,12 @@ public class InvalidInputExceptionMessage {
     private static final String HYDRATION_IN_INPUT = "\t Example input: hydration in Milo v/1000 d/2024-04-19" ;
     private static final String USER_SETUP_INPUT = "\t Example input: user setup Tom h/170 w/80 a/25 s/male e/4 g/3";
 
+    //general error messages
+    public static String getInvalidDateMessage() {
+        String message = "\t Invalid date! Please enter a valid date in format YYYY-MM-DD.";
+        return message;
+    }
+
     //calories list related methods
     public static String getCaloriesIncorrectOrderMessage() {
         String message = "\t Please ensure that you have keyed the input in the correct order!\n";

@@ -30,7 +30,6 @@ public class SleepList {
             this.lastSleepEntryID = loadLastEntryID();
         } catch (FileNotFoundException e) {
             sleepList = new ArrayList<>();
-            System.out.println(ErrorMessages.getFileNotFoundMessage());
         }
     }
 

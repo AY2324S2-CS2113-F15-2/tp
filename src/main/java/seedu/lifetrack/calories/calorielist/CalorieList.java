@@ -44,7 +44,6 @@ public class CalorieList {
             this.lastEntryID = loadLastEntryID();
         } catch (FileNotFoundException e) {
             calorieArrayList = new ArrayList<>();
-            System.out.println(ErrorMessages.getFileNotFoundMessage());
         }
     }
 

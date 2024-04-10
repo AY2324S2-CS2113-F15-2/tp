@@ -11,6 +11,7 @@ import java.time.format.DateTimeParseException;
 
 import static seedu.lifetrack.system.exceptions.ErrorMessages.getIncorrectSleepInputMessage;
 import static seedu.lifetrack.system.exceptions.ErrorMessages.getTooLongSleepDurationMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidDateMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getSleepMissingKeywordMessage;
 
 public class ParserSleep {
@@ -66,7 +67,7 @@ public class ParserSleep {
         try {
             return LocalDate.parse(strDate, DateTimeFormatter.ISO_LOCAL_DATE);
         } catch (DateTimeParseException e) {
-            throw new InvalidInputException("\tInvalid date! Please enter a valid date in format YYYY-MM-DD.");
+            throw new InvalidInputException(getInvalidDateMessage());
         }
     }
 

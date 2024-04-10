@@ -41,7 +41,6 @@ public class HydrationList {
             this.lastHydrationEntryID = loadLastEntryID();
         } catch (FileNotFoundException e) {
             hydrationArrayList = new ArrayList<>();
-            System.out.println(ErrorMessages.getFileNotFoundMessage());
         }
     }
 
