@@ -1,3 +1,4 @@
+//@@author owx0130
 package seedu.lifetrack.system.parser;
 
 import seedu.lifetrack.calories.calorielist.InputEntry;
@@ -5,14 +6,17 @@ import seedu.lifetrack.calories.calorielist.OutputEntry;
 import seedu.lifetrack.calories.Activity;
 import seedu.lifetrack.calories.Food;
 import seedu.lifetrack.system.exceptions.InvalidInputException;
-import static seedu.lifetrack.system.exceptions.ErrorMessages.getIncorrectCaloriesInputMessage;
-import static seedu.lifetrack.system.exceptions.ErrorMessages.getIncorrectMacrosInputMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncorrectCaloriesInputMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncorrectMacrosInputMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getWhitespaceInInputMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncompleteMacrosMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidDateMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getMacrosInCaloriesOutMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getCaloriesIncorrectOrderMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getCaloriesMissingKeywordsMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getEmptyMacrosMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getWhitespaceInMacrosInputMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getDateLaterThanPresentDateMessage;
 
 import seedu.lifetrack.Entry;
 
@@ -58,7 +62,7 @@ public class ParserCalories {
         String description = getDescriptionFromInput(input, command, caloriesIndex);
         String strCalories = parts[1].trim();
 
-        // Try catch here is needed because if i input , calories in chicken c/1000 d/  , code fails
+        // Try catch here is needed because if user inputs "calories in chicken c/1000 d/  "",
         // code fails because index out of bounds occurs due to parts[2].trim()
         String strDate = null;
         try {
@@ -78,11 +82,13 @@ public class ParserCalories {
             if (command.equals("calories out")) {
                 throw new InvalidInputException(getMacrosInCaloriesOutMessage());
             }
-            String macroString = parts[3].trim();
             try {
+                String macroString = parts[3].trim();
                 macros = getMacrosFromInput(macroString);
             } catch (InvalidInputException e) {
                 throw new InvalidInputException(e.getMessage());
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new InvalidInputException(getEmptyMacrosMessage());
             }
         }
 
@@ -96,19 +102,21 @@ public class ParserCalories {
         LocalDate date = null;
         try {
             date = getLocalDateFromInput(strDate);
-        } catch (DateTimeParseException e) {
-            throw new InvalidInputException("Invalid date format");
-        }
-        //@@author
 
+            if (date.isAfter(LocalDate.now())) {
+                throw new InvalidInputException(getDateLaterThanPresentDateMessage());
+            }
+        } catch (DateTimeParseException e) {
+            throw new InvalidInputException(getInvalidDateMessage());
+        }
+        //@@author owx0130
+
+        lastEntryID++;
         if (command.equals("calories out")) {
-            lastEntryID++;
             return makeNewOutputEntry(lastEntryID, description, calories, date);
         } else if (macros == null) {
-            lastEntryID++;
             return makeNewInputEntry(lastEntryID, description, calories, date);
         } else {
-            lastEntryID++;
             return makeNewInputEntry(lastEntryID, description, calories, date, macros);
         }
     }
@@ -125,7 +133,7 @@ public class ParserCalories {
         LocalDate date = LocalDate.parse(strDate);
         return date;
     }
-    //@@author
+    //@@author owx0130
 
     /**
      * Parses a string representation of calories and returns an integer value.
@@ -188,7 +196,7 @@ public class ParserCalories {
                 throw new InvalidInputException(getIncompleteMacrosMessage());
             }
         } catch (NumberFormatException e) {
-            System.out.println(getIncorrectMacrosInputMessage());
+            throw new InvalidInputException(getIncorrectMacrosInputMessage());
         }
         return macros;
     }

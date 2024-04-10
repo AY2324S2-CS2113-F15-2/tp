@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import seedu.lifetrack.system.exceptions.InvalidInputException;
 import static seedu.lifetrack.system.parser.ParserCalories.parseCaloriesInput;
-import static seedu.lifetrack.system.exceptions.ErrorMessages.getIncorrectCaloriesInputMessage;
-import static seedu.lifetrack.system.exceptions.ErrorMessages.getIncorrectMacrosInputMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncorrectCaloriesInputMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncorrectMacrosInputMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getWhitespaceInInputMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncompleteMacrosMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getMacrosInCaloriesOutMessage;

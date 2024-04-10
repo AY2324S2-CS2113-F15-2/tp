@@ -2,12 +2,13 @@
 package seedu.lifetrack.calories.calorielist;
 
 import seedu.lifetrack.Entry;
-import seedu.lifetrack.system.exceptions.ErrorMessages;
 import seedu.lifetrack.system.exceptions.InvalidInputException;
 import seedu.lifetrack.system.parser.ParserCalories;
 import seedu.lifetrack.system.storage.FileHandler;
 import seedu.lifetrack.ui.CalorieListUi;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.io.FileNotFoundException;
@@ -25,7 +26,10 @@ public class CalorieList {
     private FileHandler fileHandler;
     private int lastEntryID;
 
-    //constructor for JUnit tests
+    /**
+     * Constructs a new CalorieList object.
+     * This constructor is used for JUnit tests and initializes an empty list of calorie entries.
+     */
     public CalorieList() {
         calorieArrayList = new ArrayList<>();
     }
@@ -44,7 +48,6 @@ public class CalorieList {
             this.lastEntryID = loadLastEntryID();
         } catch (FileNotFoundException e) {
             calorieArrayList = new ArrayList<>();
-            System.out.println(ErrorMessages.getFileNotFoundMessage());
         }
     }
 
@@ -64,18 +67,21 @@ public class CalorieList {
 
 
     /**
-     * Deletes a calorie entry from the list based on the provided index.
-     * Index should be in an integer from 1 to size of the list.
+     * Deletes a calorie entry from the list based on the provided entryID.
+     * entryID should be in an integer from 1 to size of the list, and be present in the calorieArrayList.
      *
-     * @param line the string containing the index of calorie record user want to delete
+     * @param line the string containing the entryID of calorie record user want to delete
      */
+    //@@author a-wild-chocolate
     public void deleteEntry(String line) {
         assert (line.startsWith("calories delete") ) : "ensures that input is correct";
 
         try {
             int entryID = Integer.parseInt(line.substring(SIZE_OF_DELETE).trim());
             int index = getIndexFromEntryID(entryID);
-            if (index == NO_INDEX_FOUND) {
+            if (calorieArrayList.isEmpty()) {
+                CalorieListUi.emptyCalorieList();;
+            } else if (index == NO_INDEX_FOUND) {
                 CalorieListUi.unsuccessfulDeletedMessage(entryID);
             } else {
                 Entry toDelete = calorieArrayList.get(index);
@@ -84,16 +90,22 @@ public class CalorieList {
                 updateFile();
             }
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(CalorieListUi.deleteLogIndexMessage());
+            System.out.println(CalorieListUi.deleteLogNumberMessage());
         } catch (NumberFormatException e) {
             System.out.println(CalorieListUi.deleteLogNumberMessage());
         }
     }
+    //@@author
 
-    //method that returns index of entry in arrayList according to lastEntryID
-    public int getIndexFromEntryID(int lastEntryID) {
+    /**
+     * Returns the index of the entry in the calorie ArrayList based on the given entry ID.
+     *
+     * @param entryID the entry ID to search for in the list
+     * @return the index of the entry with the specified entry ID, or NO_INDEX_FOUND if not found
+     */
+    public int getIndexFromEntryID(int entryID) {
         for (int i = 0; i < calorieArrayList.size(); i++) {
-            if (calorieArrayList.get(i).getLastEntryID() == lastEntryID) {
+            if (calorieArrayList.get(i).getLastEntryID() == entryID) {
                 return i;
             }
         }
@@ -104,24 +116,32 @@ public class CalorieList {
      * Parses a string input representing calorie intake and adds it to the calorie list.
      *
      * This method takes a string input representing calorie intake information and
-     * attempts to parse it using the parseCaloriesIn method from the Parser class.
+     * attempts to parse it using the parseCaloriesInput method from the ParserCalories class.
      * If the input format is incorrect or contains missing components, it catches
      * the InvalidInputException and prints an error message. Otherwise, it adds
      * the parsed Entry object to the calorieArrayList.
+     * Additionally, if the date of the newly added entry is earlier than the date of the final
+     * entry before adding the new entry, the list is sorted by date.
      *
      * @param input the input string containing date, time, activity, and calorie count
      */
     public void addEntry(String input) {
         assert (input.startsWith("calories in") || input.startsWith("calories out")) : "ensures that input is correct";
-        logr.setLevel(Level.WARNING);
+        logr.setLevel(Level.SEVERE);
         try {
             Entry newEntry = ParserCalories.parseCaloriesInput(input, lastEntryID);
             calorieArrayList.add(newEntry);
             updateFile();
             CalorieListUi.printNewCalorieEntry(newEntry);
             lastEntryID ++;
+            //only sort if newly added date is earlier than date in final entry before adding entry
+            if (calorieArrayList.size() > 1 &&
+                    calorieArrayList.get(calorieArrayList.size() - 2).getDate().compareTo(newEntry.getDate()) > 0 ) {
+                sortEntriesByDate();
+            }
         } catch (InvalidInputException e) {
             logr.log(Level.WARNING, e.getMessage(), e);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -129,6 +149,7 @@ public class CalorieList {
      * Prints the list of calorie entries along with its activity description.
      * If the list is empty, it prints a message indicating that the list is empty.
      * Otherwise, it prints each entry's activity description and calorie count.
+     * It prints calorieInflow entries, followed by calorieOutflow entries.
      */
     public void printCalorieList() {
         if (calorieArrayList.isEmpty()) {
@@ -140,6 +161,10 @@ public class CalorieList {
         }
     }
 
+    /**
+     * Prints the list of calorie entries representing calorie intake along with their activity descriptions.
+     * This method prints each entry's activity description and calorie count if it represents calorie intake.
+     */
     public void printCalorieInflow() {
         CalorieListUi.inputCalorieListHeader();
         int serialNumber = 1;
@@ -152,6 +177,10 @@ public class CalorieList {
         }
     }
 
+    /**
+     * Prints the list of calorie entries representing calorie expenditure along with their activity descriptions.
+     * This method prints each entry's activity description and calorie count if it represents calorie expenditure.
+     */
     public void printCalorieOutflow() {
         CalorieListUi.outputCalorieListHeader();
         int serialNumber = 1;
@@ -193,8 +222,29 @@ public class CalorieList {
         return totalCalories;
     }
 
-    //method that loads LastEntryID from txt file
+    /**
+     * Loads the last entry ID from a text file.
+     * This method retrieves the last entry ID from the file using the FileHandler.getMaxCaloriesID method.
+     * If the file doesn't exist or an error occurs during the process, it returns a default value.
+     *
+     * @return the last entry ID loaded from the file, or a default value if the file doesn't exist or an error occurs
+     */
     private int loadLastEntryID() {
         return FileHandler.getMaxCaloriesID(); // Default value if file doesn't exist or error occurs
+    }
+
+    /**
+     * Sorts the list of calorie entries by date.
+     * This method uses the Collections.sort(List, Comparator) method to sort the list of
+     * calorie entries in ascending order based on their dates. It provides a custom comparator that
+     * compares the dates of two entries and returns the result of the comparison.
+     */
+    public void sortEntriesByDate() {
+        Collections.sort(calorieArrayList, new Comparator<Entry>() {
+            @Override
+            public int compare(Entry entry1, Entry entry2) {
+                return entry1.getDate().compareTo(entry2.getDate());
+            }
+        });
     }
 }

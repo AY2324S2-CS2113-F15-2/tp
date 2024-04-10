@@ -2,7 +2,6 @@ package seedu.lifetrack.hydration.hydrationlist;
 
 import seedu.lifetrack.Entry;
 import seedu.lifetrack.calories.calorielist.CalorieList;
-import seedu.lifetrack.system.exceptions.ErrorMessages;
 import seedu.lifetrack.system.exceptions.InvalidInputException;
 import seedu.lifetrack.system.parser.ParserHydration;
 import seedu.lifetrack.system.storage.FileHandler;
@@ -41,7 +40,6 @@ public class HydrationList {
             this.lastHydrationEntryID = loadLastEntryID();
         } catch (FileNotFoundException e) {
             hydrationArrayList = new ArrayList<>();
-            System.out.println(ErrorMessages.getFileNotFoundMessage());
         }
     }
 
@@ -104,7 +102,7 @@ public class HydrationList {
      */
     public void addEntry(String input) {
         assert (input.startsWith("hydration in")) : "ensures that input is correct";
-        logr.setLevel(Level.WARNING);
+        logr.setLevel(Level.SEVERE);
         try {
             Entry newEntry = ParserHydration.parseHydrationInput(input, lastHydrationEntryID);
             hydrationArrayList.add(newEntry);

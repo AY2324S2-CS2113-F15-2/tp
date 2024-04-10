@@ -1,4 +1,4 @@
-// @@author paturikarthik
+//@@author paturikarthik
 package seedu.lifetrack.ui;
 
 import seedu.lifetrack.calories.calorielist.CalorieList;
@@ -35,7 +35,7 @@ public class Ui {
     /**
      * Reads in the input from the user
      *
-     * @param calorieList   list containing all entries pertinent to calories
+     * @param calorieList list containing all entries pertinent to calories
      * @param hydrationList list containing all entries pertinent to liquids
      */
     public static void readUserInput(CalorieList calorieList, HydrationList hydrationList,
@@ -78,7 +78,9 @@ public class Ui {
             handleUnknownInput();
         }
     }
+    //@@author
 
+    //@@author a-wild-chocolate
     public static void handleSleepInput(String line, SleepList sleepList) {
         assert !line.startsWith("bye") : "exit the app";
         if (line.startsWith("sleep add")) {
@@ -91,7 +93,9 @@ public class Ui {
             handleUnknownInput();
         }
     }
+    //@@author
 
+    //@@author paturikarthik
     public static void handleUserInput(String line, CalorieList calorieList, HydrationList hydrationList,
                                        User user, SleepList sleepList) {
         if (!line.trim().equalsIgnoreCase("bye")) {
@@ -168,15 +172,15 @@ public class Ui {
         System.out.println("\t - help: Displays a list of available commands and their descriptions.");
         printLine();
         System.out.println("\t - calories in <food> c/<calories> d/<date, format:YYYY-MM-DD> " +
-                "m/[carbohydrates, proteins, fats]: Adds a calorie gaining entry into the calories tracker.");
-        System.out.println("\t - calories out <activity> c/<calories> d/<date, format:YYYY-MM-DD>: " +
-                "Adds a calorie burning entry into the calories tracker.");
+                "m/[carbohydrates, proteins, fats]:\n" + "\t Adds a calorie gaining entry into the calories tracker.");
+        System.out.println("\t - calories out <activity> c/<calories> d/<date, format:YYYY-MM-DD>:\n" +
+                "\t Adds a calorie burning entry into the calories tracker.");
         System.out.println("\t - calories list: Displays all entries currently stored in the calorie list.");
         System.out.println("\t - calories delete <index>: Deletes the entry at the specified index" +
                 " from the calorie list.");
         printLine();
-        System.out.println("\t - hydration in <type of beverage> v/<volume> d/<date, format:YYYY-MM-DD>: " +
-                "Adds a hydration entry into the hydration tracker.");
+        System.out.println("\t - hydration in <beverage> v/<volume> d/<date, format:YYYY-MM-DD>:\n" +
+                "\t Adds a hydration entry into the hydration tracker.");
         System.out.println("\t - hydration list: Displays all entries currently stored in the hydration list.");
         System.out.println("\t - hydration delete <index>: Deletes the hydration entry at the specified index " +
                 "from the hydration list.");
@@ -188,9 +192,10 @@ public class Ui {
                 "from the sleep list.");
         printLine();
         System.out.println("\t - user setup <name> h/<height> w/<weight> a/<age> s/<sex> e/<exercise_level> " +
-                "g/<body_goal>: Create a new user, or edit an existing one.");
+                "g/<body_goal>:\n" + "\t Create a new user, or edit an existing one.");
         System.out.println("\t - user progress: Display calories and hydration progress towards the daily " +
                 "requirement.");
+        System.out.println("\t - user update name/height/weight/age/sex/exercise levels/goal <UPDATED VALUE>");
     }
 }
 //@@author

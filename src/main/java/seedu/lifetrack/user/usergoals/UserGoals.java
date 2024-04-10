@@ -1,4 +1,4 @@
-//@@ author paturikarthik
+//@@author paturikarthik
 package seedu.lifetrack.user.usergoals;
 
 import seedu.lifetrack.user.User;
