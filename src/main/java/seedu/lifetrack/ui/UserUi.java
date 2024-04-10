@@ -3,7 +3,7 @@ package seedu.lifetrack.ui;
 import seedu.lifetrack.user.User;
 
 public class UserUi {
-    private final static String CHANGE_MADE_MESSAGE = "\t The following change has been made:\n";
+    private static final String CHANGE_MADE_MESSAGE = "\t The following change has been made:\n";
 
     public static void printUserCaloriesRequired(int caloriesRequired) {
         System.out.println("\t You need to consume " + caloriesRequired + " calories per day to hit your goals!");
