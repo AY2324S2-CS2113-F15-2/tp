@@ -188,16 +188,16 @@ Show the list of all sleep records in the sleep tracker.
 `sleep list`
 
 ### Deleting a sleep record: `sleep delete`
-Deletes the sleep record according to the index.
+Deletes the sleep record according to the sleep id.
 
 **Format:**
-`sleep delete INDEX`
-* Delete the sleep record at the specific index.
-* The index refers to the index number shown in the displayed sleeping records list.
-* The index must be a positive integer 1, 2, 3, …​
+`sleep delete SLEEPID`
+* Delete the sleep record with specific id.
+* The id refers to the id number shown in the displayed sleeping records list.
+* The id must be a positive integer 1, 2, 3, …​
 
 **Examples:**
-* `list` followed by `sleep delete 2` deletes the 2nd sleep record from the sleep tracker.
+* `list` followed by `sleep delete 2` deletes the sleep record with id 2 from the sleep tracker.
 
 ## User Profile
 

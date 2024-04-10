@@ -15,7 +15,7 @@ public class SleepListUi {
     }
 
     public static String deleteLogIndexMessage() {
-        return "\t Sorry, this index is invalid. Please enter a positive integer within the index of the list.";
+        return "\t Sorry, this index is invalid. Please enter a positive integer within the sleep id of the list.";
     }
 
     public static String deleteLogNumberMessage() {
