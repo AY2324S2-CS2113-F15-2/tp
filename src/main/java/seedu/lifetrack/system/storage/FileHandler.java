@@ -21,7 +21,7 @@ public class FileHandler {
 
     //public member for lastEntryID calories
     public static int maxCaloriesID = 0;
-
+    public static int maxHydrationID = 0;
     //general list constants
     private static final int ENTRYID_INDEX = 0;
     private static final int DATE_INDEX = 1;
@@ -38,7 +38,7 @@ public class FileHandler {
     private static final int VOLUME_INDEX = 3;
 
     //sleep list constants
-    private static final int DURATION_INDEX = 2;
+    private static final int DURATION_INDEX = 3;
 
     //user data constants
     private static final int NAME_INDEX = 0;
@@ -58,6 +58,10 @@ public class FileHandler {
 
     public static int getMaxCaloriesID() {
         return maxCaloriesID;
+    }
+
+    public static int getMaxHydrationID() {
+        return maxHydrationID;
     }
 
     private void writeToFile(String textToAdd) throws IOException {
@@ -119,6 +123,12 @@ public class FileHandler {
     public void calculateMaxCaloriesEntry(int entryID) {
         if (entryID > maxCaloriesID) {
             maxCaloriesID = entryID;
+        }
+    }
+
+    public void calculateMaxHydrationEntry(int entryID) {
+        if (entryID > maxHydrationID) {
+            maxHydrationID = entryID;
         }
     }
 

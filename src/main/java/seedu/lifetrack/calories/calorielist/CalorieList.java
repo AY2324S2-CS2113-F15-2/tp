@@ -74,6 +74,7 @@ public class CalorieList {
      *
      * @param line the string containing the entryID of calorie record user want to delete
      */
+    //@@author a-wild-chocolate
     public void deleteEntry(String line) {
         assert (line.startsWith("calories delete") ) : "ensures that input is correct";
 
@@ -94,6 +95,7 @@ public class CalorieList {
             System.out.println(CalorieListUi.deleteLogNumberMessage());
         }
     }
+    //@@author
 
     /**
      * Returns the index of the entry in the calorie ArrayList based on the given entry ID.
@@ -125,7 +127,7 @@ public class CalorieList {
      */
     public void addEntry(String input) {
         assert (input.startsWith("calories in") || input.startsWith("calories out")) : "ensures that input is correct";
-        logr.setLevel(Level.WARNING);
+        logr.setLevel(Level.SEVERE);
         try {
             Entry newEntry = ParserCalories.parseCaloriesInput(input, lastEntryID);
             calorieArrayList.add(newEntry);
@@ -139,6 +141,7 @@ public class CalorieList {
             }
         } catch (InvalidInputException e) {
             logr.log(Level.WARNING, e.getMessage(), e);
+            System.out.println(e.getMessage());
         }
     }
 

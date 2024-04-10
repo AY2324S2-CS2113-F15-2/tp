@@ -131,9 +131,9 @@ Adds a hydration record into the hydration tracker.
 **Format:**
 `hydration in DESCRIPTION v/VOLUME d/DATE`
 
-* The volume must be a positive integer 1, 2, 3, …, measured in milliliters.
-* The time indicated should follow the 24-hour system.
-* The date provided should be of the form YYYY-MM-DD.
+* The `DESCRIPTION` refers to the food that the person consumed.
+* The `VOLUME` must be a positive integer 1, 2, 3, …, measured in milliliters.
+* The `DATE` provided should be of the form YYYY-MM-DD, such as 2024-03-04.
 
 **Examples:**
 * `hydration in Milo v/1000 d/2022-03-25`
@@ -144,6 +144,15 @@ Show the list of all hydration records in the hydration tracker.
 
 **Format:**
 `hydration list`
+#### Expected output
+         -----------------------------------------------------------------------------
+	 Your Hydration List:
+	 1. 	 Date: 2022-01-01, Description: teh peng, Volume: 100
+	 2. 	 Date: 2022-01-01, Description: milo, Volume: 100
+	 3. 	 Date: 2022-01-02, Description: water, Volume: 100
+	 4. 	 Date: 2022-01-02, Description: milo, Volume: 200
+	 5. 	 Date: 2022-01-01, Description: milo, Volume: 100
+         -----------------------------------------------------------------------------
 
 ### Deleting a hydration item: `hydration delete`
 Deletes the hydration record according to the index.
@@ -164,7 +173,7 @@ Adds a sleep record into the sleep tracker.
 **Format:**
 `sleep add DURATION d/DATE`
 * The duration provided must be a positive real number.
-* The time indicated should follow the 24-hour system.
+* The duration should not exceed 24 hours.
 * The date provided should be of the form YYYY-MM-DD.
 
 
@@ -179,16 +188,16 @@ Show the list of all sleep records in the sleep tracker.
 `sleep list`
 
 ### Deleting a sleep record: `sleep delete`
-Deletes the sleep record according to the index.
+Deletes the sleep record according to the sleep id.
 
 **Format:**
-`sleep delete INDEX`
-* Delete the sleep record at the specific index.
-* The index refers to the index number shown in the displayed sleeping records list.
-* The index must be a positive integer 1, 2, 3, …​
+`sleep delete SLEEPID`
+* Delete the sleep record with specific id.
+* The id refers to the id number shown in the displayed sleeping records list.
+* The id must be a positive integer 1, 2, 3, …​
 
 **Examples:**
-* `list` followed by `sleep delete 2` deletes the 2nd sleep record from the sleep tracker.
+* `list` followed by `sleep delete 2` deletes the sleep record with id 2 from the sleep tracker.
 
 ## User Profile
 

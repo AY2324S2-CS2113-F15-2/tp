@@ -20,7 +20,7 @@ public class ParserHydrationTest {
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that you have entered all keywords!\n" +
-                    "\t Example input: hydration add Milo v/1000 d/2024-04-19", e.getMessage());
+                    "\t Example input: hydration in Milo v/1000 d/2024-04-19", e.getMessage());
 
         }
     }
@@ -36,7 +36,7 @@ public class ParserHydrationTest {
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that you have entered all keywords!\n" +
-                    "\t Example input: hydration add Milo v/1000 d/2024-04-19", e.getMessage());
+                    "\t Example input: hydration in Milo v/1000 d/2024-04-19", e.getMessage());
 
         }
     }
@@ -52,7 +52,7 @@ public class ParserHydrationTest {
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that you have entered all keywords!\n" +
-                    "\t Example input: hydration add Milo v/1000 d/2024-04-19", e.getMessage());
+                    "\t Example input: hydration in Milo v/1000 d/2024-04-19", e.getMessage());
 
         }
     }
@@ -68,14 +68,14 @@ public class ParserHydrationTest {
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that you have keyed the input in the correct order!\n" +
-                    "\t Example input: hydration add Milo v/1000 d/2024-04-19", e.getMessage());
+                    "\t Example input: hydration in Milo v/1000 d/2024-04-19", e.getMessage());
         }
     }
 
     @Test
     public void parseHydrationInput_inputNonIntegerValueForVolume_invalidInputExceptionThrown() {
         // setup test
-        String invalidInput = "hydration add Milo v/##s100 d/221024";
+        String invalidInput = "hydration in Milo v/##s100 d/221024";
 
         // Call methods to test
         try {
@@ -83,7 +83,7 @@ public class ParserHydrationTest {
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that positive integer value is keyed in for volume!\n" +
-                    "\t Example input: hydration add Milo v/1000 d/2024-04-19", e.getMessage());
+                    "\t Example input: hydration in Milo v/1000 d/2024-04-19", e.getMessage());
         }
     }
 
@@ -98,7 +98,7 @@ public class ParserHydrationTest {
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that positive integer value is keyed in for volume!\n" +
-                    "\t Example input: hydration add Milo v/1000 d/2024-04-19", e.getMessage());
+                    "\t Example input: hydration in Milo v/1000 d/2024-04-19", e.getMessage());
         }
     }
 
@@ -110,7 +110,7 @@ public class ParserHydrationTest {
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that you have entered all keywords!\n" +
-                    "\t Example input: hydration add Milo v/1000 d/2024-04-19", e.getMessage());
+                    "\t Example input: hydration in Milo v/1000 d/2024-04-19", e.getMessage());
         }
     }
 
@@ -121,7 +121,7 @@ public class ParserHydrationTest {
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that you have entered all keywords!\n" +
-                    "\t Example input: hydration add Milo v/1000 d/2024-04-19", e.getMessage());
+                    "\t Example input: hydration in Milo v/1000 d/2024-04-19", e.getMessage());
 
         }
     }
@@ -133,7 +133,7 @@ public class ParserHydrationTest {
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that you have entered all keywords!\n" +
-                    "\t Example input: hydration add Milo v/1000 d/2024-04-19", e.getMessage());
+                    "\t Example input: hydration in Milo v/1000 d/2024-04-19", e.getMessage());
 
         }
     }
@@ -144,7 +144,7 @@ public class ParserHydrationTest {
         } catch (InvalidInputException e) {
             assertEquals("\t Invalid input!\n" +
                     "\t Please ensure that you have entered all keywords!\n" +
-                    "\t Example input: hydration add Milo v/1000 d/2024-04-19", e.getMessage());
+                    "\t Example input: hydration in Milo v/1000 d/2024-04-19", e.getMessage());
 
         }
     }

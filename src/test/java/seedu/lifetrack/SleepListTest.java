@@ -14,8 +14,9 @@ public class SleepListTest {
         SleepList sleepList = new SleepList();
         sleepList.addSleep("sleep add 7.5 d/2024-11-03");
         sleepList.addSleep("sleep add 8 d/2024-12-10");
+        sleepList.printSleepList();
         int initialSize = sleepList.getSize();
-        sleepList.deleteSleep("sleep delete 1");
+        sleepList.deleteSleep("sleep delete "+sleepList.getSleep(1).getLastEntryID());
         assertEquals(initialSize - 1, sleepList.getSize());
     }
     @Test
@@ -24,12 +25,12 @@ public class SleepListTest {
         sleepList.addSleep("sleep add 7.5 d/110324");
         sleepList.addSleep("sleep add 8");
         int initialSize = sleepList.getSize();
-        sleepList.deleteSleep("sleep delete 5"); // Index out of bounds
+        sleepList.deleteSleep("sleep delete 100"); // Index out of bounds
         sleepList.deleteSleep("sleep delete -1");
         assertEquals(initialSize, sleepList.getSize());
     }
     @Test
-    public void testPrintLiquidListEmpty() {
+    public void testPrintSleepListEmpty() {
         String lineSeparator = System.lineSeparator();
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
@@ -50,9 +51,9 @@ public class SleepListTest {
         sleepList.printSleepList();
         System.setOut(System.out);
         String expectedOutput = "\t The following entry has been added to your sleep list!" + lineSeparator +
-                "\t \t Date: 2024-03-11, Duration: 7.5 hours" + lineSeparator +
+                "\t \t Sleep ID: 0, Date: 2024-03-11, Duration: 7.5 hours" + lineSeparator +
                 "\t Your Sleep List:" + lineSeparator +
-                "\t 1. \t Date: 2024-03-11, Duration: 7.5 hours" + lineSeparator;
+                "\t 1. \t Sleep ID: 0, Date: 2024-03-11, Duration: 7.5 hours" + lineSeparator;
         assertEquals(expectedOutput, outputStream.toString());
     }
 
@@ -68,15 +69,15 @@ public class SleepListTest {
         sleepList.printSleepList();
         System.setOut(System.out);
         String expectedOutput = "\t The following entry has been added to your sleep list!" + lineSeparator +
-                "\t \t Date: 2024-03-11, Duration: 7.5 hours" + lineSeparator +
+                "\t \t Sleep ID: 1, Date: 2024-03-11, Duration: 7.5 hours" + lineSeparator +
                 "\t The following entry has been added to your sleep list!" + lineSeparator +
-                "\t \t Date: 2024-05-28, Duration: 8.0 hours" + lineSeparator +
+                "\t \t Sleep ID: 2, Date: 2024-05-28, Duration: 8.0 hours" + lineSeparator +
                 "\t The following entry has been added to your sleep list!" + lineSeparator +
-                "\t \t Date: 2024-06-15, Duration: 4.2 hours" + lineSeparator +
+                "\t \t Sleep ID: 3, Date: 2024-06-15, Duration: 4.2 hours" + lineSeparator +
                 "\t Your Sleep List:" + lineSeparator +
-                "\t 1. \t Date: 2024-03-11, Duration: 7.5 hours" + lineSeparator +
-                "\t 2. \t Date: 2024-05-28, Duration: 8.0 hours" + lineSeparator +
-                "\t 3. \t Date: 2024-06-15, Duration: 4.2 hours" + lineSeparator;
+                "\t 1. \t Sleep ID: 1, Date: 2024-03-11, Duration: 7.5 hours" + lineSeparator +
+                "\t 2. \t Sleep ID: 2, Date: 2024-05-28, Duration: 8.0 hours" + lineSeparator +
+                "\t 3. \t Sleep ID: 3, Date: 2024-06-15, Duration: 4.2 hours" + lineSeparator;
         assertEquals(expectedOutput, outputStream.toString());
         assertEquals(3, sleepList.getSize());
     }

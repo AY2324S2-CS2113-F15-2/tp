@@ -1,3 +1,4 @@
+//@@author a-wild-chocolate
 package seedu.lifetrack.sleep.sleeplist;
 
 import seedu.lifetrack.Entry;
@@ -9,14 +10,14 @@ import seedu.lifetrack.ui.SleepListUi;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import static seedu.lifetrack.system.exceptions.ErrorMessages.getIncorrectSleepInputMessage;
 
 public class SleepList {
 
+    private static int DELETE_IDX = 2;
     private ArrayList<Entry> sleepList;
     private FileHandler fileHandler;
     private int lastSleepEntryID;
-    
+
     //constructor for JUnit tests
     public SleepList() {
         sleepList = new ArrayList<>();
@@ -47,23 +48,27 @@ public class SleepList {
 
     public void addSleep(String input) {
         try {
-            Entry newSleep = ParserSleep.parseSleepInput(input, lastSleepEntryID);
+            Entry newSleep = ParserSleep.parseSleepInput(input);
             sleepList.add(newSleep);
             updateFile();
             SleepListUi.printNewSleepEntry(newSleep);
         } catch (InvalidInputException e) {
-            System.out.println(getIncorrectSleepInputMessage());
+            System.out.println(e.getMessage());
         }
     }
     
     public void deleteSleep(String line) {
         try {
-            int index = Integer.parseInt(line.split(" ")[2]) ; //User input format: sleep delete INDEX, here get index
-            Entry toDelete = sleepList.get(index-1);
-            sleepList.remove(index - 1);
-            updateFile();
-            SleepListUi.successfulDeletedMessage(toDelete);
-        } catch (IndexOutOfBoundsException e) {
+            int index = Integer.parseInt(line.split(" ")[DELETE_IDX]) ; //User input format: sleep delete ID
+            for(int i=0; i<sleepList.size(); i++) {
+                SleepEntry cur_sleep = (SleepEntry) sleepList.get(i);
+                if(cur_sleep.getSleepEntryID()==index) {
+                    sleepList.remove(i);
+                    updateFile();
+                    SleepListUi.successfulDeletedMessage(cur_sleep);
+                    return;
+                }
+            }
             System.out.println(SleepListUi.deleteLogIndexMessage());
         } catch (NumberFormatException e) {
             System.out.println(SleepListUi.deleteLogNumberMessage());
@@ -90,3 +95,4 @@ public class SleepList {
         return 0; // Default value if file doesn't exist or error occurs
     }
 }
+//@@author

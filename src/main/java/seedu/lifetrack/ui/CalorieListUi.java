@@ -19,7 +19,7 @@ public class CalorieListUi {
     public static void emptyListMessage() {
         System.out.println("\t Your caloric list is empty. Add new entries to populate your list :)");
     }
-
+    //@@author a-wild-chocolate
     public static String deleteLogIndexMessage() {
         return "\t Sorry, this index is invalid. Please enter a positive integer within the size of the list.";
     }
@@ -28,7 +28,7 @@ public class CalorieListUi {
         return "\t Please enter a valid positive integer for the entryID you wish to delete.\n" +
                 CALORIES_DELETE_SAMPLE_INPUT;
     }
-
+    //@@author
     public static void calorieListHeader() {
         System.out.println("\t Your Caloric List:");
     }
