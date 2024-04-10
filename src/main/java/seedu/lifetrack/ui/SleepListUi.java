@@ -1,3 +1,4 @@
+//@@author a-wild-chocolate
 package seedu.lifetrack.ui;
 
 import seedu.lifetrack.Entry;
@@ -24,9 +25,11 @@ public class SleepListUi {
     public static void sleepListHeader() {
         System.out.println("\t Your Sleep List:");
     }
+    //@@author
 
     public static void printNewSleepEntry(Entry newEntry) {
         System.out.println("\t The following entry has been added to your sleep list!");
         System.out.println("\t " + newEntry.toString());
     }
 }
+//@@author

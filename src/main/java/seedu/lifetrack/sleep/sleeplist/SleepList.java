@@ -1,3 +1,4 @@
+//@@author a-wild-chocolate
 package seedu.lifetrack.sleep.sleeplist;
 
 import seedu.lifetrack.Entry;
@@ -9,14 +10,13 @@ import seedu.lifetrack.ui.SleepListUi;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import static seedu.lifetrack.system.exceptions.ErrorMessages.getIncorrectSleepInputMessage;
 
 public class SleepList {
 
     private ArrayList<Entry> sleepList;
     private FileHandler fileHandler;
     private int lastSleepEntryID;
-    
+
     //constructor for JUnit tests
     public SleepList() {
         sleepList = new ArrayList<>();
@@ -47,12 +47,12 @@ public class SleepList {
 
     public void addSleep(String input) {
         try {
-            Entry newSleep = ParserSleep.parseSleepInput(input, lastSleepEntryID);
+            Entry newSleep = ParserSleep.parseSleepInput(input);
             sleepList.add(newSleep);
             updateFile();
             SleepListUi.printNewSleepEntry(newSleep);
         } catch (InvalidInputException e) {
-            System.out.println(getIncorrectSleepInputMessage());
+            System.out.println(e.getMessage());
         }
     }
     
@@ -90,3 +90,4 @@ public class SleepList {
         return 0; // Default value if file doesn't exist or error occurs
     }
 }
+//@@author

@@ -1,3 +1,4 @@
+//@@author a-wild-chocolate
 package seedu.lifetrack.sleep.sleeplist;
 
 import seedu.lifetrack.Entry;
@@ -6,9 +7,11 @@ import java.time.LocalDate;
 
 public class SleepEntry extends Entry {
 
+    private static int sleepEntryNum=0;
     private LocalDate date;
     private double duration;
     private int sleepEntryID;
+
 
     /***
      * Sleep constructor: date can be empty. If date input is empty, automatically fill with N/A;
@@ -16,8 +19,16 @@ public class SleepEntry extends Entry {
      * @param date
      * @param duration
      */
-    public SleepEntry (int sleepEntryID, double duration, LocalDate date){
+    public SleepEntry (double duration, LocalDate date){
+        super(sleepEntryNum++, "SLEEP", date);
+        this.date = date;
+        this.duration = duration;
+    }
+    public SleepEntry (int sleepEntryID,double duration, LocalDate date){
         super(sleepEntryID, "SLEEP", date);
+        if(sleepEntryNum<=sleepEntryID){
+            sleepEntryNum=sleepEntryID+1;
+        }
         this.date = date;
         this.duration = duration;
     }
@@ -30,6 +41,10 @@ public class SleepEntry extends Entry {
         return duration;
     }
 
+    public int getSleepEntryID() {
+        return sleepEntryID;
+    }
+
     public String toString() {
         return "\t Date: " + date +
                 ", Duration: " + String.format("%.1f", duration) + " hours";
@@ -39,3 +54,4 @@ public class SleepEntry extends Entry {
         return String.format(super.toFileFriendlyString() + ";" + duration);
     }
 }
+//@@author

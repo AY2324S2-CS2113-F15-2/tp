@@ -104,7 +104,7 @@ public class HydrationList {
      */
     public void addEntry(String input) {
         assert (input.startsWith("hydration in")) : "ensures that input is correct";
-        logr.setLevel(Level.WARNING);
+        logr.setLevel(Level.SEVERE);
         try {
             Entry newEntry = ParserHydration.parseHydrationInput(input, lastHydrationEntryID);
             hydrationArrayList.add(newEntry);

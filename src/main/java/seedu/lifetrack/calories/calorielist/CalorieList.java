@@ -69,6 +69,7 @@ public class CalorieList {
      *
      * @param line the string containing the index of calorie record user want to delete
      */
+    //@@author a-wild-chocolate
     public void deleteEntry(String line) {
         assert (line.startsWith("calories delete") ) : "ensures that input is correct";
 
@@ -89,6 +90,7 @@ public class CalorieList {
             System.out.println(CalorieListUi.deleteLogNumberMessage());
         }
     }
+    //@@author
 
     //method that returns index of entry in arrayList according to lastEntryID
     public int getIndexFromEntryID(int lastEntryID) {
@@ -113,7 +115,7 @@ public class CalorieList {
      */
     public void addEntry(String input) {
         assert (input.startsWith("calories in") || input.startsWith("calories out")) : "ensures that input is correct";
-        logr.setLevel(Level.WARNING);
+        logr.setLevel(Level.SEVERE);
         try {
             Entry newEntry = ParserCalories.parseCaloriesInput(input, lastEntryID);
             calorieArrayList.add(newEntry);
@@ -122,6 +124,7 @@ public class CalorieList {
             lastEntryID ++;
         } catch (InvalidInputException e) {
             logr.log(Level.WARNING, e.getMessage(), e);
+            System.out.println(e.getMessage());
         }
     }
 
