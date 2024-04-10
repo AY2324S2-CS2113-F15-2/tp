@@ -149,6 +149,7 @@ public class CalorieListTest {
         String lineSeparator = System.lineSeparator();
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
+
         CalorieList calorieList = new CalorieList();
         calorieList.addEntry("calories in burger king c/200 d/2024-03-14");
         calorieList.addEntry("calories out Walk c/150 d/2022-02-22");
@@ -157,14 +158,19 @@ public class CalorieListTest {
         calorieList.addEntry("calories in commhall dinner c/300 d/2021-01-11");
         calorieList.addEntry("calories out play pool c/69 d/2021-01-11");
         calorieList.printCalorieList();
+
         System.setOut(System.out);
         StringBuilder expectedOutput = new StringBuilder();
+
+        // expected output string for adding entries
         for (int i = 1; i < 7; i++) {
             expectedOutput.append(addedEntryHeader)
                     .append(lineSeparator).append("\t ")
                     .append(calorieList.getEntry(calorieList.getIndexFromEntryID(i)).toString())
                     .append(lineSeparator);
         }
+
+        // expected output string for printing calorie list
         expectedOutput.append("\t Your Caloric List:")
                 .append(lineSeparator)
                 .append(lineSeparator)
@@ -194,6 +200,7 @@ public class CalorieListTest {
         String lineSeparator = System.lineSeparator();
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
+
         CalorieList calorieList = new CalorieList();
         calorieList.addEntry("calories in burger king c/200 d/2022-02-22");
         calorieList.addEntry("calories out Walk c/150 d/2022-02-22");
@@ -201,12 +208,14 @@ public class CalorieListTest {
 
         System.setOut(System.out);
         StringBuilder expectedOutput = new StringBuilder();
+        // expected output string for adding entries
         for (int i = 1; i < 4; i++) {
             expectedOutput.append(addedEntryHeader)
                     .append(lineSeparator).append("\t ")
                     .append(calorieList.getEntry(calorieList.getIndexFromEntryID(i)).toString())
                     .append(lineSeparator);
         }
+        // expected output string for deleting entry
         expectedOutput.append(deleteEntryHeader)
                         .append(lineSeparator).append("\t ")
                         .append(calorieList.getEntry(calorieList.getIndexFromEntryID(3)).toString())
@@ -215,6 +224,7 @@ public class CalorieListTest {
         calorieList.deleteEntry("calories delete 3");
         calorieList.printCalorieList();
 
+        // expected output string for printing calories list
         expectedOutput.append("\t Your Caloric List:")
                 .append(lineSeparator)
                 .append(lineSeparator)
@@ -229,5 +239,63 @@ public class CalorieListTest {
                 .append(lineSeparator);
         assertEquals(expectedOutput.toString(), outputStream.toString());
         assertEquals(2, calorieList.getSize());
+    }
+
+    @Test
+    public void testAddEntry_addAndDeleteEntries_entryIDIncrementsProperly() {
+        String lineSeparator = System.lineSeparator();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        CalorieList calorieList = new CalorieList();
+        calorieList.addEntry("calories in burger king c/200 d/2022-02-22");
+        calorieList.addEntry("calories out Walk c/150 d/2022-02-22");
+        calorieList.addEntry("calories in acai c/500 d/2022-02-22");
+
+        System.setOut(System.out);
+        StringBuilder expectedOutput = new StringBuilder();
+        // expected output string for first 3 added entries
+        for (int i = 1; i < 4; i++) {
+            expectedOutput.append(addedEntryHeader)
+                    .append(lineSeparator).append("\t ")
+                    .append(calorieList.getEntry(calorieList.getIndexFromEntryID(i)).toString())
+                    .append(lineSeparator);
+        }
+
+        // expected output string for first deleted entry
+        expectedOutput.append(deleteEntryHeader)
+                .append(lineSeparator).append("\t ")
+                .append(calorieList.getEntry(calorieList.getIndexFromEntryID(3)).toString())
+                .append(lineSeparator);
+
+        calorieList.deleteEntry("calories delete 3");
+        calorieList.addEntry("calories in yong tau foo c/688 d/2022-02-22 m/10,10,10");
+
+        // expected output string for fourth added entry
+        expectedOutput.append(addedEntryHeader)
+                .append(lineSeparator).append("\t ")
+                .append(calorieList.getEntry(calorieList.getIndexFromEntryID(4)).toString())
+                .append(lineSeparator);
+
+        calorieList.printCalorieList();
+
+        // expected output string for printing calorie list
+        expectedOutput.append("\t Your Caloric List:")
+                .append(lineSeparator)
+                .append(lineSeparator)
+                .append("\t Your Caloric Inflow List:")
+                .append(lineSeparator)
+                .append("\t 1. \t EntryID: 1, Date: 2022-02-22, Description: burger king, Calories: 200")
+                .append(lineSeparator)
+                .append("\t 2. \t EntryID: 4, Date: 2022-02-22, Description: yong tau foo, Calories: 688 " +
+                        "(C: 10, P: 10, F: 10)")
+                .append(lineSeparator)
+                .append(lineSeparator)
+                .append("\t Your Caloric Outflow List:")
+                .append(lineSeparator)
+                .append("\t 1. \t EntryID: 2, Date: 2022-02-22, Description: Walk, Calories: 150")
+                .append(lineSeparator);
+        assertEquals(expectedOutput.toString(), outputStream.toString());
+        assertEquals(3, calorieList.getSize());
     }
 }
