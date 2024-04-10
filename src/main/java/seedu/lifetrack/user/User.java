@@ -1,3 +1,4 @@
+//@@ author paturikarthik
 package seedu.lifetrack.user;
 
 import seedu.lifetrack.system.exceptions.ErrorMessages;
@@ -9,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import static seedu.lifetrack.system.parser.ParserUser.parseSetUp;
+import static seedu.lifetrack.system.parser.ParserUser.parseUpdate;
 
 public class User {
 
@@ -60,6 +62,15 @@ public class User {
     public void setUp(String line) {
         try {
             parseSetUp(line, this);
+            fileHandler.writeUserData(this);
+        } catch (InvalidInputException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void update(String line) {
+        try {
+            parseUpdate(line, this);
             fileHandler.writeUserData(this);
         } catch (InvalidInputException e) {
             System.out.println(e.getMessage());

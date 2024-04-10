@@ -181,9 +181,14 @@ public class CalorieList {
      */
     public int getCaloriesConsumed() {
         int totalCalories = 0;
-        for (int i = 0; i < calorieArrayList.size(); i++) {
-            InputEntry tempEntry = (InputEntry) calorieArrayList.get(i);
-            totalCalories += tempEntry.getCalories();
+        for (Entry entry : calorieArrayList) {
+            if (entry instanceof InputEntry) {
+                InputEntry tempEntry = (InputEntry) entry;
+                totalCalories += tempEntry.getCalories();
+            } else if (entry instanceof OutputEntry) {
+                OutputEntry tempEntry = (OutputEntry) entry;
+                totalCalories -= tempEntry.getCalories();
+            }
         }
         return totalCalories;
     }

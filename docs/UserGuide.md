@@ -208,7 +208,7 @@ Creates/edits an existing user profile.
 `user setup NAME h/HEIGHT w/WEIGHT a/AGE s/GENDER e/EXERCISE LEVELS g/BODY GOAL`
 * The height provided must be an integer between 90 and 225 cms.
 * The weight provided must be an integer between 30 and 200 kgs.
-* The age provided must be an integer between 13 and 110 years old.
+* The age provided must be an integer between 13 and 30 years old.
 * The gender provided must be either `male` or `female`.
 * The exercise levels provided must be an integer between 1 and 5.
 * The body goal provided must be an integer between 1 and 5.

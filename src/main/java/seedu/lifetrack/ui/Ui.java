@@ -1,3 +1,4 @@
+// @@author paturikarthik
 package seedu.lifetrack.ui;
 
 import seedu.lifetrack.calories.calorielist.CalorieList;
@@ -34,11 +35,11 @@ public class Ui {
     /**
      * Reads in the input from the user
      *
-     * @param calorieList list containing all entries pertinent to calories
+     * @param calorieList   list containing all entries pertinent to calories
      * @param hydrationList list containing all entries pertinent to liquids
      */
     public static void readUserInput(CalorieList calorieList, HydrationList hydrationList,
-            User user, SleepList sleepList) {
+                                     User user, SleepList sleepList) {
         String line;
         do {
             line = new Scanner(System.in).nextLine();
@@ -47,8 +48,9 @@ public class Ui {
     }
 
     /**
-     * handles input from the user 
-     * @param line input from the user
+     * handles input from the user
+     *
+     * @param line        input from the user
      * @param calorieList list containing all entries pertinent to calories
      */
     public static void handleCaloriesInput(String line, CalorieList calorieList) {
@@ -76,9 +78,10 @@ public class Ui {
             handleUnknownInput();
         }
     }
+
     public static void handleSleepInput(String line, SleepList sleepList) {
         assert !line.startsWith("bye") : "exit the app";
-        if (line.startsWith("sleep add"))  {
+        if (line.startsWith("sleep add")) {
             sleepList.addSleep(line);
         } else if (line.startsWith("sleep list")) {
             sleepList.printSleepList();
@@ -90,8 +93,8 @@ public class Ui {
     }
 
     public static void handleUserInput(String line, CalorieList calorieList, HydrationList hydrationList,
-            User user ,SleepList sleepList) {
-        if (!line.startsWith("bye")) {
+                                       User user, SleepList sleepList) {
+        if (!line.trim().equalsIgnoreCase("bye")) {
             printLine();
             line = line.trim().toLowerCase();
             if (line.isEmpty()) {
@@ -114,23 +117,26 @@ public class Ui {
     }
 
     public static void handleUserCommands(String line, User user) {
-        if (line.contains("setup")) {
+        if (line.startsWith("user setup")) {
             user.setUp(line);
-        } else if (line.contains("progress")) {
+        } else if (line.startsWith("user progress")) {
             handleUserProgress(user);
+        } else if (line.startsWith("user update")) {
+            user.update(line);
         } else {
             handleUnknownInput();
         }
     }
 
     private static void handleUserProgress(User user) {
-        if (user.getName() == null){
+        if (user.getName() == null) {
             printNoUserYetMessage();
         } else {
             user.getCaloriesProgressBar();
             user.getHydrationProgressBar();
         }
     }
+
     public static void sayHello() {
         System.out.println(WHITESPACE + "Hello from\n\n" + logo);
         System.out.println(WHITESPACE + "How can I help you today?");
@@ -187,3 +193,4 @@ public class Ui {
                 "requirement.");
     }
 }
+//@@author

@@ -7,7 +7,7 @@ public class ErrorMessages {
 
     private static final String WHITESPACE = "         ";
 
-    public static void printIndexOutOfBoundsError(){
+    public static void printIndexOutOfBoundsError() {
         System.out.println("\t Sorry, this index is invalid. Please enter a positive integer " +
                 "within the size of the list.");
     }
@@ -60,24 +60,40 @@ public class ErrorMessages {
     public static String getHeightOutOfRangeMessage() {
         return "\t Please enter a valid height!";
     }
-    public static String getInvalidHeightNumberMessage(){
+
+    public static String getInvalidHeightNumberMessage() {
         return "\t Please enter your height(in cm) as an integer!";
     }
-    public static String getWeightOutOfRangeMessage(){
+
+    public static String getWeightOutOfRangeMessage() {
         return "\t Please enter a valid weight!";
     }
-    public static String  getInvalidWeightNumberMessage(){
+
+    public static String getInvalidWeightNumberMessage() {
         return "\t Please enter your weight(in kg) as an integer!";
     }
-    public static String getUnderAgeMessage(){
+
+    public static String getUnderAgeMessage() {
         return "\t You are too young to use this app :(";
     }
 
-    public static String getAgeOutOfRangeMessage(){
-        return "\t Please enter a valid age!";
+    public static String getAgeOutOfRangeMessage() {
+        return "\t Please enter a valid age between 13 and 30!";
     }
 
-    public static String getInvalidAgeNumberMessage(){
+    public static String getInvalidAgeNumberMessage() {
         return "\t Please enter your age as an integer!";
+    }
+
+    public static String getEmptyGenderInputMessage() {
+        return "\t Please enter your gender!";
+    }
+
+    public static String getInvalidGenderInputMessage() {
+        return "\t Please enter either male or female as your gender!";
+    }
+
+    public static String getEmptyNameInputMessage() {
+        return "\t Please enter a non-empty name!";
     }
 }
