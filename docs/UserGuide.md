@@ -173,7 +173,7 @@ Adds a sleep record into the sleep tracker.
 **Format:**
 `sleep add DURATION d/DATE`
 * The duration provided must be a positive real number.
-* The time indicated should follow the 24-hour system.
+* The duration should not exceed 24 hours.
 * The date provided should be of the form YYYY-MM-DD.
 
 
