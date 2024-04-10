@@ -4,9 +4,12 @@ import seedu.lifetrack.system.exceptions.InvalidInputException;
 import seedu.lifetrack.user.User;
 
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getAgeOutOfRangeMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getEmptyGenderInputMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getEmptyNameInputMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHeightOutOfRangeMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidAgeNumberMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidExerciseLevelsNumberMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidGenderInputMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidGoalNumberMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidHeightNumberMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidNumberOfSetUpInputs;
@@ -14,8 +17,10 @@ import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.get
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getUnderAgeMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getWeightOutOfRangeMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getEmptyUserSetupInputMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getEmptyUserUpdateInputMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getOutOfExerciseLevelsRangeMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getOutOfGoalRangeMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getUnknownUpdateMesssage;
 import static seedu.lifetrack.ui.UserUi.printUserSetUpComplete;
 
 /**
@@ -23,6 +28,21 @@ import static seedu.lifetrack.ui.UserUi.printUserSetUpComplete;
  */
 public class ParserUser {
     private static final int LENGTH_OF_SETUP_COMMAND = "user setup".length();
+    private static final int USER_INPUT_NAME_INDEX = 0;
+    private static final int USER_INPUT_HEIGHT_INDEX = 1;
+    private static final int USER_INPUT_WEIGHT_INDEX = 2;
+    private static final int USER_INPUT_AGE_INDEX = 3;
+    private static final int USER_INPUT_GENDER_INDEX = 4;
+    private static final int USER_INPUT_EXERCISE_LEVELS_INDEX = 5;
+    private static final int USER_INPUT_GOAL_INDEX = 6;
+    private static final int LENGTH_OF_UPDATE_COMMAND = "user update".length();
+    private static final int LENGTH_OF_NAME = "name".length();
+    private static final int LENGTH_OF_HEIGHT = "height".length();
+    private static final int LENGTH_OF_WEIGHT = "weight".length();
+    private static final int LENGTH_OF_AGE = "age".length();
+    private static final int LENGTH_OF_SEX = "sex".length();
+    private static final int LENGTH_OF_EXERCISE_LEVELS = "exercise levels".length();
+    private static final int LENGTH_OF_GOAL = "goal".length();
 
     /**
      * Parses the input from user to sieve out name, height, weight, age, gender, exercise levels and goals of the user
@@ -52,13 +72,13 @@ public class ParserUser {
         if (parts.length != 7) {
             throw new InvalidInputException(getInvalidNumberOfSetUpInputs());
         }
-        String name = parts[0].substring(LENGTH_OF_SETUP_COMMAND).trim();
-        int height = parseHeightIndex(parts[1].trim());
-        int weight = parseWeightIndex(parts[2].trim());
-        int age = parseAgeIndex(parts[3].trim());
-        String sex = parts[4].trim().toLowerCase();
-        int exerciseLevels = parseExerciseLevels(parts[5].trim());
-        int goal = parseGoalIndex(parts[6].trim());
+        String name = parseName(parts[USER_INPUT_NAME_INDEX].substring(LENGTH_OF_SETUP_COMMAND).trim());
+        int height = parseHeightIndex(parts[USER_INPUT_HEIGHT_INDEX].trim());
+        int weight = parseWeightIndex(parts[USER_INPUT_WEIGHT_INDEX].trim());
+        int age = parseAgeIndex(parts[USER_INPUT_AGE_INDEX].trim());
+        String sex = parseGenderIndex(parts[USER_INPUT_GENDER_INDEX].trim().toLowerCase());
+        int exerciseLevels = parseExerciseLevels(parts[USER_INPUT_EXERCISE_LEVELS_INDEX].trim());
+        int goal = parseGoalIndex(parts[USER_INPUT_GOAL_INDEX].trim());
 
         user.setName(name);
         user.setHeight(height);
@@ -72,18 +92,25 @@ public class ParserUser {
         printUserSetUpComplete(user.getName(), caloriesRequired);
     }
 
+    private static String parseName(String input) throws InvalidInputException {
+        if (input.isEmpty()) {
+            throw new InvalidInputException(getEmptyNameInputMessage());
+        }
+        return input;
+    }
+
     /**
      * Parses the user's height input for an Integer
      *
      * @param input user's height input
      * @return user's height as an integer
      * @throws InvalidInputException if the height input is not an integer or if the user's height is not between
-     *     90 and 225 cm
+     *                               90 and 225 cm
      */
     private static int parseHeightIndex(String input) throws InvalidInputException {
         try {
             int height = Integer.parseInt(input);
-            if (height < 90 || height > 225){
+            if (height < 90 || height > 225) {
                 throw new InvalidInputException(getHeightOutOfRangeMessage());
             }
             return height;
@@ -93,21 +120,45 @@ public class ParserUser {
     }
 
     /**
+     * Parses the user's gender input for a String
+     *
+     * @param input user's gender input
+     * @return user's gender as a string
+     * @throws InvalidInputException if the gender input is empty or if it is not male/m or female/f
+     */
+    private static String parseGenderIndex(String input) throws InvalidInputException {
+        try {
+            if (input.isEmpty()) {
+                throw new InvalidInputException(getEmptyGenderInputMessage());
+            }
+            if (input.equals("male") || input.equals("m")) {
+                return "male";
+            }
+            if (input.equals("female") || input.equals("f")) {
+                return "female";
+            }
+            throw new InvalidInputException(getInvalidGenderInputMessage());
+        } catch (NullPointerException e) {
+            throw new InvalidInputException(getEmptyUserSetupInputMessage());
+        }
+    }
+
+    /**
      * Parses the user's weight input for an Integer
      *
      * @param input user's weight input
      * @return user's weight as an integer
      * @throws InvalidInputException if the weight input is not an integer or if the user's weight is not between
-     *     30 and 200 kg
+     *                               30 and 200 kg
      */
     private static int parseWeightIndex(String input) throws InvalidInputException {
         try {
             int weight = Integer.parseInt(input);
-            if (weight<30 || weight > 200){
+            if (weight < 30 || weight > 200) {
                 throw new InvalidInputException(getWeightOutOfRangeMessage());
             }
             return weight;
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new InvalidInputException(getInvalidWeightNumberMessage());
         }
     }
@@ -118,19 +169,19 @@ public class ParserUser {
      * @param input user's age input
      * @return user's age as an integer
      * @throws InvalidInputException if the age input is not an integer or if the user's age is not between
-     *     13 and 110 years old
+     *                               13 and 30 years old
      */
-    private static int parseAgeIndex(String input) throws InvalidInputException{
-        try{
+    private static int parseAgeIndex(String input) throws InvalidInputException {
+        try {
             int age = Integer.parseInt(input);
-            if(age <13 && age > 0){
+            if (age < 13 && age > 0) {
                 throw new InvalidInputException(getUnderAgeMessage());
             }
-            if (age <0 || age > 110) {
+            if (age < 0 || age > 30) {
                 throw new InvalidInputException(getAgeOutOfRangeMessage());
             }
             return age;
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new InvalidInputException(getInvalidAgeNumberMessage());
         }
     }
@@ -206,4 +257,40 @@ public class ParserUser {
             throw new InvalidInputException(getEmptyUserSetupInputMessage());
         }
     }
+
+    public static void parseUpdate(String input, User user) throws InvalidInputException {
+        checkEmptyUpdateInput(input);
+        String fieldToUpdate = input.substring(LENGTH_OF_UPDATE_COMMAND).trim();
+        if (fieldToUpdate.startsWith("name ")) {
+            String name = parseName(fieldToUpdate.substring(LENGTH_OF_NAME).trim());
+            user.setName(name);
+        } else if (fieldToUpdate.startsWith("height ")) {
+            int height = parseHeightIndex(fieldToUpdate.substring(LENGTH_OF_HEIGHT).trim());
+            user.setHeight(height);
+        } else if (fieldToUpdate.startsWith("weight ")) {
+            int weight = parseWeightIndex(fieldToUpdate.substring(LENGTH_OF_WEIGHT).trim());
+            user.setWeight(weight);
+        } else if (fieldToUpdate.startsWith("age ")) {
+            int age = parseAgeIndex(fieldToUpdate.substring(LENGTH_OF_AGE).trim());
+            user.setAge(age);
+        } else if (fieldToUpdate.startsWith("exercise levels ")) {
+            int level = parseExerciseLevels(fieldToUpdate.substring(LENGTH_OF_EXERCISE_LEVELS).trim());
+            user.setExerciseLevels(level);
+        } else if (fieldToUpdate.startsWith("goal ")){
+            int goal = parseGoalIndex(fieldToUpdate.substring(LENGTH_OF_GOAL).trim());
+            user.setGoal(goal);
+        } else if (fieldToUpdate.startsWith("sex ")) {
+            String sex = parseGenderIndex(fieldToUpdate.substring(LENGTH_OF_SEX).trim());
+            user.setSex(sex);
+        } else {
+            throw new InvalidInputException(getUnknownUpdateMesssage());
+        }
+    }
+
+    private static void checkEmptyUpdateInput(String input) throws InvalidInputException {
+        if (input.substring(LENGTH_OF_UPDATE_COMMAND).trim().isEmpty()) {
+            throw new InvalidInputException(getEmptyUserUpdateInputMessage());
+        }
+    }
+
 }

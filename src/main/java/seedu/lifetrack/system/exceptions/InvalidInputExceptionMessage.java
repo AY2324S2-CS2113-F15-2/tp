@@ -167,4 +167,29 @@ public class InvalidInputExceptionMessage {
     public static String getInvalidAgeNumberMessage(){
         return "\t Please enter your age as an integer!";
     }
+    public static String getEmptyUserUpdateInputMessage() {
+        return "\t Please enter your name!";
+    }
+    public static String getUnknownUpdateMesssage() {
+        return "\t Oops, I've not seen this command before!\n" + "Here are a list of possible update commands:\n" +
+                "1) user update name <NAME>\n"+
+                "2) user update height <HEIGHT>\n" +
+                "3) user update weight <WEIGHT>\n" +
+                "4) user update age <AGE>\n" +
+                "5) user update sex <SEX>\n" +
+                "6) user update exercise levels <EXERCISE LEVELS>\n" +
+                "7) user update goal <GOAL>";
+    }
+
+    public static String getEmptyGenderInputMessage() {
+        return "\t Please enter your gender!";
+    }
+
+    public static String getInvalidGenderInputMessage() {
+        return "\t Please enter either male or female as your gender!";
+    }
+
+    public static String getEmptyNameInputMessage() {
+        return "\t Please enter a non-empty name!";
+    }
 }

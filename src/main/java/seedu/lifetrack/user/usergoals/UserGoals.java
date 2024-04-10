@@ -1,3 +1,4 @@
+//@@author paturikarthik
 package seedu.lifetrack.user.usergoals;
 
 import seedu.lifetrack.user.User;
@@ -13,6 +14,7 @@ public class UserGoals {
     private static final int BMR_AGE_MULTIPLIER = 5;
     private static final int BMR_MALE_MODIFIER = 5;
     private static final int BMR_FEMALE_MODIFIER = -161;
+    private static final int PROGRESS_BAR_WIDTH = 50;
 
     public static void getHealthInfo(User user) {
         double rawBMR = BMR_WEIGHT_MULTIPLIER * user.getWeight() + BMR_HEIGHT_MULTIPLIER * user.getHeight()
@@ -56,8 +58,11 @@ public class UserGoals {
     public static void getCaloriesProgressBar(User user) {
         int caloriesRequired = user.getCaloriesRequired();
         int caloriesConsumed = calorieList.getCaloriesConsumed();
+        if (caloriesConsumed < 0){
+            caloriesConsumed = 0;
+        }
         double progress = (double) caloriesConsumed / caloriesRequired;
-        int width = 50;
+        int width = PROGRESS_BAR_WIDTH;
 
         int progressWidth = (int) (width * progress);
         StringBuilder progressBar = new StringBuilder("[");
@@ -78,7 +83,7 @@ public class UserGoals {
         int hydrationRequired = user.getHydrationRequired();
         int hydrationConsumed = hydrationList.getHydrationConsumed();
         double progress = (double) hydrationConsumed / hydrationRequired;
-        int width = 50;
+        int width = PROGRESS_BAR_WIDTH;
 
         int progressWidth = (int) (width * progress);
         StringBuilder progressBar = new StringBuilder("[");
