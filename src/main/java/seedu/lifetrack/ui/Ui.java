@@ -9,6 +9,7 @@ import seedu.lifetrack.user.User;
 import java.util.Scanner;
 
 import static seedu.lifetrack.ui.UserUi.printNoUserYetMessage;
+import static seedu.lifetrack.ui.UserUi.printUserDetails;
 
 /**
  * Reads user input from the console and processes it.
@@ -35,7 +36,7 @@ public class Ui {
     /**
      * Reads in the input from the user
      *
-     * @param calorieList list containing all entries pertinent to calories
+     * @param calorieList   list containing all entries pertinent to calories
      * @param hydrationList list containing all entries pertinent to liquids
      */
     public static void readUserInput(CalorieList calorieList, HydrationList hydrationList,
@@ -126,7 +127,17 @@ public class Ui {
         } else if (line.startsWith("user progress")) {
             handleUserProgress(user);
         } else if (line.startsWith("user update")) {
-            user.update(line);
+            if (user.getName() == null) {
+                printNoUserYetMessage();
+            } else {
+                user.update(line);
+            }
+        } else if (line.startsWith("user details")) {
+            if (user.getName() == null) {
+                printNoUserYetMessage();
+            } else {
+                printUserDetails(user);
+            }
         } else {
             handleUnknownInput();
         }
