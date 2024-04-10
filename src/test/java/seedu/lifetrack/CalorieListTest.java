@@ -14,8 +14,12 @@ import seedu.lifetrack.calories.calorielist.OutputEntry;
 
 public class CalorieListTest {
 
-    private final String addedEntryHeader = "\t The following entry has been added to your caloric list!";
-    private final String deleteEntryHeader = "\t The following calorie record has been successfully deleted!";
+    private final String ADDED_ENTRY_HEADER = "\t The following entry has been added to your caloric list!";
+    private final String DELETE_ENTRY_HEADER = "\t The following calorie record has been successfully deleted!";
+
+    private final String DELETE_ENTRY_INVALID_INPUT = "\t Please enter a valid positive integer " +
+            "for the entryID you wish to delete.\n" +
+            "\t Example input: calories delete ENTRY_ID";
 
     @Test
     public void addEntry_validInput_entryAdded() {
@@ -94,7 +98,7 @@ public class CalorieListTest {
         calorieList.addEntry("calories in burger king c/200 d/2024-03-14");
         calorieList.printCalorieList();
         System.setOut(System.out);
-        String expectedOutput = addedEntryHeader + lineSeparator +
+        String expectedOutput = ADDED_ENTRY_HEADER + lineSeparator +
                 "\t " + calorieList.getEntry(0).toString() + lineSeparator +
                 "\t Your Caloric List:" + lineSeparator + lineSeparator +
                 "\t Your Caloric Inflow List:" + lineSeparator +
@@ -118,7 +122,7 @@ public class CalorieListTest {
         System.setOut(System.out);
         StringBuilder expectedOutput = new StringBuilder();
         for (int i = 0; i < 5; i++) {
-            expectedOutput.append(addedEntryHeader)
+            expectedOutput.append(ADDED_ENTRY_HEADER)
                     .append(lineSeparator).append("\t ").append(calorieList.getEntry(i).toString())
                     .append(lineSeparator);
         }
@@ -164,7 +168,7 @@ public class CalorieListTest {
 
         // expected output string for adding entries
         for (int i = 1; i < 7; i++) {
-            expectedOutput.append(addedEntryHeader)
+            expectedOutput.append(ADDED_ENTRY_HEADER)
                     .append(lineSeparator).append("\t ")
                     .append(calorieList.getEntry(calorieList.getIndexFromEntryID(i)).toString())
                     .append(lineSeparator);
@@ -210,13 +214,13 @@ public class CalorieListTest {
         StringBuilder expectedOutput = new StringBuilder();
         // expected output string for adding entries
         for (int i = 1; i < 4; i++) {
-            expectedOutput.append(addedEntryHeader)
+            expectedOutput.append(ADDED_ENTRY_HEADER)
                     .append(lineSeparator).append("\t ")
                     .append(calorieList.getEntry(calorieList.getIndexFromEntryID(i)).toString())
                     .append(lineSeparator);
         }
         // expected output string for deleting entry
-        expectedOutput.append(deleteEntryHeader)
+        expectedOutput.append(DELETE_ENTRY_HEADER)
                         .append(lineSeparator).append("\t ")
                         .append(calorieList.getEntry(calorieList.getIndexFromEntryID(3)).toString())
                         .append(lineSeparator);
@@ -256,14 +260,14 @@ public class CalorieListTest {
         StringBuilder expectedOutput = new StringBuilder();
         // expected output string for first 3 added entries
         for (int i = 1; i < 4; i++) {
-            expectedOutput.append(addedEntryHeader)
+            expectedOutput.append(ADDED_ENTRY_HEADER)
                     .append(lineSeparator).append("\t ")
                     .append(calorieList.getEntry(calorieList.getIndexFromEntryID(i)).toString())
                     .append(lineSeparator);
         }
 
         // expected output string for first deleted entry
-        expectedOutput.append(deleteEntryHeader)
+        expectedOutput.append(DELETE_ENTRY_HEADER)
                 .append(lineSeparator).append("\t ")
                 .append(calorieList.getEntry(calorieList.getIndexFromEntryID(3)).toString())
                 .append(lineSeparator);
@@ -272,7 +276,7 @@ public class CalorieListTest {
         calorieList.addEntry("calories in yong tau foo c/688 d/2022-02-22 m/10,10,10");
 
         // expected output string for fourth added entry
-        expectedOutput.append(addedEntryHeader)
+        expectedOutput.append(ADDED_ENTRY_HEADER)
                 .append(lineSeparator).append("\t ")
                 .append(calorieList.getEntry(calorieList.getIndexFromEntryID(4)).toString())
                 .append(lineSeparator);
@@ -295,6 +299,44 @@ public class CalorieListTest {
                 .append(lineSeparator)
                 .append("\t 1. \t EntryID: 2, Date: 2022-02-22, Description: Walk, Calories: 150")
                 .append(lineSeparator);
+        assertEquals(expectedOutput.toString(), outputStream.toString());
+        assertEquals(3, calorieList.getSize());
+    }
+
+
+    @Test
+    public void testDeleteEntry_invalidInputs_exceptionThrown() {
+        String lineSeparator = System.lineSeparator();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        CalorieList calorieList = new CalorieList();
+        calorieList.addEntry("calories in burger king c/200 d/2022-02-22");
+        calorieList.addEntry("calories out Walk c/150 d/2022-02-22");
+        calorieList.addEntry("calories in acai c/500 d/2022-02-22");
+
+        System.setOut(System.out);
+        StringBuilder expectedOutput = new StringBuilder();
+        // expected output string for adding entries
+        for (int i = 1; i < 4; i++) {
+            expectedOutput.append(ADDED_ENTRY_HEADER)
+                    .append(lineSeparator).append("\t ")
+                    .append(calorieList.getEntry(calorieList.getIndexFromEntryID(i)).toString())
+                    .append(lineSeparator);
+        }
+
+        // Invalid Inputs for calories delete
+        calorieList.deleteEntry("calories delete     ");
+        calorieList.deleteEntry("calories delete");
+        calorieList.deleteEntry("calories delete a b");
+        calorieList.deleteEntry("calories delete 1 2");
+        calorieList.deleteEntry("calories delete $12");
+
+        // expected output string for invalid entry inputs
+        for (int i = 0; i < 5; i++) {
+            expectedOutput.append(DELETE_ENTRY_INVALID_INPUT).append(lineSeparator);
+        }
+
         assertEquals(expectedOutput.toString(), outputStream.toString());
         assertEquals(3, calorieList.getSize());
     }
