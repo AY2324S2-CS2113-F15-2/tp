@@ -1,6 +1,8 @@
 //@@author owx0130
 package seedu.lifetrack.system.exceptions;
 
+import java.time.LocalDate;
+
 /**
  * Utility class for managing error messages related to invalid input exceptions.
  */
@@ -19,6 +21,11 @@ public class InvalidInputExceptionMessage {
     //general error messages
     public static String getInvalidDateMessage() {
         String message = "\t Invalid date! Please enter a valid date in format YYYY-MM-DD.";
+        return message;
+    }
+
+    public static String getDateLaterThanPresentDateMessage() {
+        String message = "\t Invalid date! Please enter a date that is not later than today's date: " + LocalDate.now();
         return message;
     }
 

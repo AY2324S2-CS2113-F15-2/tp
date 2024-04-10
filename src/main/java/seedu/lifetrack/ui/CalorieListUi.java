@@ -13,7 +13,11 @@ public class CalorieListUi {
     }
     public static void unsuccessfulDeletedMessage(int entryID) {
         System.out.println("\t The following calorie record corresponding to entry ID " + entryID + " could " +
-                "not be found");
+                "not be found\n" + "\t Refer to calories list to see valid entry IDs.");
+    }
+
+    public static void emptyCalorieList() {
+        System.out.println("\t There is nothing to delete as the calorie list is empty!");
     }
 
     public static void emptyListMessage() {

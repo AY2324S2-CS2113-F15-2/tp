@@ -16,6 +16,7 @@ import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.get
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getCaloriesMissingKeywordsMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getEmptyMacrosMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getWhitespaceInMacrosInputMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getDateLaterThanPresentDateMessage;
 
 import seedu.lifetrack.Entry;
 
@@ -101,6 +102,10 @@ public class ParserCalories {
         LocalDate date = null;
         try {
             date = getLocalDateFromInput(strDate);
+
+            if (date.isAfter(LocalDate.now())) {
+                throw new InvalidInputException(getDateLaterThanPresentDateMessage());
+            }
         } catch (DateTimeParseException e) {
             throw new InvalidInputException(getInvalidDateMessage());
         }

@@ -79,7 +79,9 @@ public class CalorieList {
         try {
             int entryID = Integer.parseInt(line.substring(SIZE_OF_DELETE).trim());
             int index = getIndexFromEntryID(entryID);
-            if (index == NO_INDEX_FOUND) {
+            if (calorieArrayList.isEmpty()) {
+                CalorieListUi.emptyCalorieList();;
+            } else if (index == NO_INDEX_FOUND) {
                 CalorieListUi.unsuccessfulDeletedMessage(entryID);
             } else {
                 Entry toDelete = calorieArrayList.get(index);

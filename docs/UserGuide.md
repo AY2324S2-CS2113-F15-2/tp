@@ -67,9 +67,9 @@ Macronutrients such as Carbohydrates, Proteins and Fats can be included if neede
 `calories in DESCRIPTION c/CALORIES d/DATE [m/CARBOHYDRATES,PROTEIN,FATS]`
 
 * The `DESCRIPTION` refers to the food that the person consumed.
-* The `CALORIES` must be a positive integer 1, 2, 3, …, measured in kcal. 
+* The `CALORIES` must be a positive **integer** 1, 2, 3, …, measured in kcal. 
 * The `DATE` provided should be of the form YYYY-MM-DD, such as 2024-03-04.
-* Macronutrients field including `CARBOHYDRATES`, `PROTEINS` and `FATS` is optional. The macronutrients must be a positive integer 1, 2, 3, measured in grams.
+* Macronutrients field including `CARBOHYDRATES`, `PROTEINS` and `FATS` is optional. The macronutrients must be a positive **integer** 1, 2, 3, measured in grams.
 
 **Examples:** 
 * `calories in chicken rice c/678 d/2022-02-24`
@@ -85,7 +85,7 @@ Adds a calorie burning activity into the calories tracker.
 `calories out DESCRIPTION c/CALORIES d/DATE`
 
 * The `DESCRIPTION` refers to any activity that resulted in loss of calories.
-* The `CALORIES` must be a positive integer 1, 2, 3, …, measured in kcal. 
+* The `CALORIES` must be a positive **integer** 1, 2, 3, …, measured in kcal. 
 * The `DATE` provided should be of the form YYYY-MM-DD such as 2024-04-03.
 
 **Examples:**
@@ -95,7 +95,8 @@ Adds a calorie burning activity into the calories tracker.
 * `calories out go gym c/300 d/2024-04-03`
 
 ### Listing calorie items: `calories list`
-Shows a list of all activities in the calories tracker. Includes both calories in and out.
+Shows a list of all activities in the calories tacker. Calories inflow and outflow are displayed separately.
+All entries are sorted by date, in ascending order, from earlier dates to present dates.
 
 **Format:**
 `calories list`
@@ -103,25 +104,27 @@ Shows a list of all activities in the calories tracker. Includes both calories i
 #### Expected output
          -----------------------------------------------------------------------------
 	 Your Caloric List:
-	 1. 	 Date: 2024-06-15, Description: chicken, Calories: 1000
-	 2. 	 Date: 2024-06-15, Description: chicken, Calories: 1000
-	 3. 	 Date: 2024-05-15, Description: chicken, Calories: 1000
-	 4. 	 Date: 2023-03-01, Description: taco, Calories: 1
-	 5. 	 Date: 2024-04-03, Description: burger, Calories: 100
-	 6. 	 Date: 2024-04-03, Description: cai png, Calories: 1000
-	 7. 	 Date: 2024-04-03, Description: cai png, Calories: 500
-	 8. 	 Date: 2024-04-13, Description: liho milk tea, Calories: 200
+
+	 Your Caloric Inflow List:
+	 1. 	 EntryID: 2, Date: 2024-02-02, Description: commhall dinner, Calories: 6969 (C: 69, P: 69, F: 69)
+	 2. 	 EntryID: 1, Date: 2024-04-09, Description: wingstop, Calories: 1000 (C: 100, P: 100, F: 100)
+
+	 Your Caloric Outflow List:
+	 1. 	 EntryID: 3, Date: 2024-01-01, Description: gym, Calories: 2000
+	 2. 	 EntryID: 4, Date: 2024-04-09, Description: sprint, Calories: 400
          -----------------------------------------------------------------------------
 
+
 ### Deleting a calorie item: `calories delete`
-Deletes the specified activity from the calories tracker.
+Deletes the specified entry from the calories tracker according to the `ENTRYID`.
 
 **Format:**
-`calories delete INDEX`
+`calories delete ENTRYID`
+* The `ENTRYID` must be a positive **integer** 1, 2, 3 and so on.
 
 **Examples:**
 
-* `calories list` followed by `calories delete 2` deletes the 2nd activity in the calories tracker.
+* `calories list` followed by `calories delete 2` deletes the entry with `ENTRYID` 2 in the calories tracker.
 
 ## Hydration Tracker
 
@@ -155,15 +158,14 @@ Show the list of all hydration records in the hydration tracker.
          -----------------------------------------------------------------------------
 
 ### Deleting a hydration item: `hydration delete`
-Deletes the hydration record according to the index.
+Deletes the specified hydration entry according to the `ENTRYID`.
 
 **Format:**
-`hydration delete INDEX`
-
-Delete the drinking water record at the specific index. The index refers to the index number shown in the displayed Hydration list. The index must be a positive integer 1, 2, 3, …​
+`hydration delete ENTRYID`
+* The `ENTRYID` must be a positive **integer** 1, 2, 3 and so on.
 
 **Examples:**
-* `hydration list` followed by `hydration delete 2` deletes the 2nd hydration record from the hydration tracker.
+* `hydration list` followed by `hydration delete 2` deletes the entry with `ENTRYID` 2 in the hydration tracker.
 
 ## Sleep Tracker
 
@@ -188,16 +190,16 @@ Show the list of all sleep records in the sleep tracker.
 `sleep list`
 
 ### Deleting a sleep record: `sleep delete`
-Deletes the sleep record according to the sleep id.
+Deletes the specified sleep entry according to the `SLEEPID`.
 
 **Format:**
 `sleep delete SLEEPID`
-* Delete the sleep record with specific id.
-* The id refers to the id number shown in the displayed sleeping records list.
-* The id must be a positive integer 1, 2, 3, …​
+* Delete the sleep record with specified `SLEEPID`.
+* The `SLEEPID` refers to the id number shown in the displayed sleeping records list.
+* The `SLEEPID` must be a positive integer 1, 2, 3, …​
 
 **Examples:**
-* `list` followed by `sleep delete 2` deletes the sleep record with id 2 from the sleep tracker.
+* `list` followed by `sleep delete 2` deletes the sleep record with `SLEEPID` 2 from the sleep tracker.
 
 ## User Profile
 
@@ -294,13 +296,13 @@ The user should be able to quickly edit their details without having to run the 
 | Add calories intake    | `calories in DESCRIPTION c/CALORIES d/DATE [m/CARBOHYDRATES,PROTEIN,FATS]`       |
 | Add calories outflow   | `calories out DESCRIPTION c/CALORIES d/DATE`                                     |
 | List calories          | `calories list`                                                                  |
-| Delete calories entry  | `calories delete INDEX`                                                          |
+| Delete calories entry  | `calories delete ENTRYID`                                                        |
 | Add hydration intake   | `hydration in DESCRIPTION v/VOLUME d/DATE`                                       |
 | List hydration         | `hydration list`                                                                 |
-| Delete hydration entry | `hydration delete INDEX`                                                         |
+| Delete hydration entry | `hydration delete ENTRYID`                                                       |
 | Add sleep              | `sleep add DURATION d/DATE`                                                      |
 | List sleep             | `sleep list`                                                                     |
-| Delete sleep entry     | `sleep delete INDEX`                                                             |
+| Delete sleep entry     | `sleep delete SLEEPID`                                                           |
 | Set Up User Profile    | `user setup NAME h/HEIGHT w/WEIGHT a/AGE s/GENDER e/EXERCISE LEVELS g/BODY GOAL` |
 | Check User Progress    | `user progress`                                                                  |
 
