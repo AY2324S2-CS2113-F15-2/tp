@@ -38,6 +38,9 @@ public class ParserSleep {
 
         duration = parseDuration(strDuration);
         date = parseDate(strDate);
+        if (date.isAfter(LocalDate.now())) {
+            throw new InvalidInputException("The date cannot be in the future. Please enter a valid date.");
+        }
 
         SleepEntry newSleep = new SleepEntry(duration, date);
 
@@ -69,6 +72,7 @@ public class ParserSleep {
         } catch (DateTimeParseException e) {
             throw new InvalidInputException(getInvalidDateMessage());
         }
+
     }
 
     private static void checkKeywordsExist(int dateIndex) throws InvalidInputException {
