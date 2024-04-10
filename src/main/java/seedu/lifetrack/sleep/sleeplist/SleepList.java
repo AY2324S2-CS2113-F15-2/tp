@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class SleepList {
 
+    private static int DELETE_IDX = 2;
     private ArrayList<Entry> sleepList;
     private FileHandler fileHandler;
     private int lastSleepEntryID;
@@ -58,12 +59,18 @@ public class SleepList {
     
     public void deleteSleep(String line) {
         try {
-            int index = Integer.parseInt(line.split(" ")[2]) ; //User input format: sleep delete INDEX, here get index
-            Entry toDelete = sleepList.get(index-1);
-            sleepList.remove(index - 1);
-            updateFile();
-            SleepListUi.successfulDeletedMessage(toDelete);
-        } catch (IndexOutOfBoundsException e) {
+            int index = Integer.parseInt(line.split(" ")[DELETE_IDX]) ; //User input format: sleep delete ID, here get index
+            for(int i=0; i<sleepList.size(); i++)
+            {
+                SleepEntry cur_sleep = (SleepEntry) sleepList.get(i);
+                if(cur_sleep.getSleepEntryID()==index)
+                {
+                    sleepList.remove(i);
+                    updateFile();
+                    SleepListUi.successfulDeletedMessage(cur_sleep);
+                    return;
+                }
+            }
             System.out.println(SleepListUi.deleteLogIndexMessage());
         } catch (NumberFormatException e) {
             System.out.println(SleepListUi.deleteLogNumberMessage());
