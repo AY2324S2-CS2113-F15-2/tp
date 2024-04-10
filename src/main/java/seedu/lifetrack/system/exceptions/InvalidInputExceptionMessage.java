@@ -17,6 +17,13 @@ public class InvalidInputExceptionMessage {
     private static final String SLEEP_IN_INPUT = "\t Example input: sleep add 7.5 d/2024-03-11" ;
     private static final String HYDRATION_IN_INPUT = "\t Example input: hydration in Milo v/1000 d/2024-04-19" ;
     private static final String USER_SETUP_INPUT = "\t Example input: user setup Tom h/170 w/80 a/25 s/male e/4 g/3";
+    private static final String USER_UPDATE_FIELDS = "\t 1) user update name <NAME>\n"+
+            "\t 2) user update height <HEIGHT>\n" +
+            "\t 3) user update weight <WEIGHT>\n" +
+            "\t 4) user update age <AGE>\n" +
+            "\t 5) user update sex <SEX>\n" +
+            "\t 6) user update exercise levels <EXERCISE LEVELS>\n" +
+            "\t 7) user update goal <GOAL>";
 
     //general error messages
     public static String getInvalidDateMessage() {
@@ -170,15 +177,9 @@ public class InvalidInputExceptionMessage {
     public static String getEmptyUserUpdateInputMessage() {
         return "\t Please enter your name!";
     }
-    public static String getUnknownUpdateMesssage() {
-        return "\t Oops, I've not seen this command before!\n" + "Here are a list of possible update commands:\n" +
-                "1) user update name <NAME>\n"+
-                "2) user update height <HEIGHT>\n" +
-                "3) user update weight <WEIGHT>\n" +
-                "4) user update age <AGE>\n" +
-                "5) user update sex <SEX>\n" +
-                "6) user update exercise levels <EXERCISE LEVELS>\n" +
-                "7) user update goal <GOAL>";
+    public static String getUnknownUpdateMessage() {
+        return "\t Oops, I've not seen this command before!\n" +
+                "\t Here are a list of possible update commands:\n" + USER_UPDATE_FIELDS;
     }
 
     public static String getEmptyGenderInputMessage() {
@@ -191,5 +192,9 @@ public class InvalidInputExceptionMessage {
 
     public static String getEmptyNameInputMessage() {
         return "\t Please enter a non-empty name!";
+    }
+
+    public static String getEmptyUserUpdateFieldMessage(){
+        return "\t Please include the value you would like to update the field to as such:\n" + USER_UPDATE_FIELDS;
     }
 }

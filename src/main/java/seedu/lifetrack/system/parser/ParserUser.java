@@ -3,9 +3,12 @@ package seedu.lifetrack.system.parser;
 import seedu.lifetrack.system.exceptions.InvalidInputException;
 import seedu.lifetrack.user.User;
 
+import java.util.Objects;
+
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getAgeOutOfRangeMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getEmptyGenderInputMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getEmptyNameInputMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getEmptyUserUpdateFieldMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHeightOutOfRangeMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidAgeNumberMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidExerciseLevelsNumberMessage;
@@ -15,12 +18,21 @@ import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.get
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidNumberOfSetUpInputs;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidWeightNumberMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getUnderAgeMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getUnknownUpdateMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getWeightOutOfRangeMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getEmptyUserSetupInputMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getEmptyUserUpdateInputMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getOutOfExerciseLevelsRangeMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getOutOfGoalRangeMessage;
-import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getUnknownUpdateMesssage;
+
+import static seedu.lifetrack.ui.UserUi.printNewUserAge;
+import static seedu.lifetrack.ui.UserUi.printNewUserExerciseLevels;
+import static seedu.lifetrack.ui.UserUi.printNewUserGoal;
+import static seedu.lifetrack.ui.UserUi.printNewUserHeight;
+import static seedu.lifetrack.ui.UserUi.printNewUserName;
+import static seedu.lifetrack.ui.UserUi.printNewUserSex;
+import static seedu.lifetrack.ui.UserUi.printNewUserWeight;
+import static seedu.lifetrack.ui.UserUi.printUserCaloriesRequired;
 import static seedu.lifetrack.ui.UserUi.printUserSetUpComplete;
 
 /**
@@ -88,8 +100,7 @@ public class ParserUser {
         user.setExerciseLevels(exerciseLevels);
         user.setGoal(goal);
         user.getHealthInfo();
-        int caloriesRequired = user.getCaloriesRequired();
-        printUserSetUpComplete(user.getName(), caloriesRequired);
+        printUserSetUpComplete(user);
     }
 
     private static String parseName(String input) throws InvalidInputException {
@@ -258,38 +269,90 @@ public class ParserUser {
         }
     }
 
+    /**
+     * Parses "user update" command to update the relevant field of the user. Recalculates the user's calorific goal as
+     *     well.
+     *
+     * @param input input from the user
+     * @param user current User
+     * @throws InvalidInputException if the command is empty, the update field is empty, if the field given to update
+     *     is unknown or if the value to update is not correct.
+     */
     public static void parseUpdate(String input, User user) throws InvalidInputException {
         checkEmptyUpdateInput(input);
         String fieldToUpdate = input.substring(LENGTH_OF_UPDATE_COMMAND).trim();
+        checkEmptyUpdateField(fieldToUpdate);
         if (fieldToUpdate.startsWith("name ")) {
             String name = parseName(fieldToUpdate.substring(LENGTH_OF_NAME).trim());
             user.setName(name);
+            assert Objects.equals(user.getName(), name);
+            printNewUserName(name);
         } else if (fieldToUpdate.startsWith("height ")) {
             int height = parseHeightIndex(fieldToUpdate.substring(LENGTH_OF_HEIGHT).trim());
             user.setHeight(height);
+            assert Objects.equals(user.getHeight(),height);
+            printNewUserHeight(height);
+            user.getHealthInfo();
+            printUserCaloriesRequired(user.getCaloriesRequired());
         } else if (fieldToUpdate.startsWith("weight ")) {
             int weight = parseWeightIndex(fieldToUpdate.substring(LENGTH_OF_WEIGHT).trim());
             user.setWeight(weight);
+            assert Objects.equals(user.getWeight(), weight);
+            printNewUserWeight(weight);
+            user.getHealthInfo();
+            printUserCaloriesRequired(user.getCaloriesRequired());
         } else if (fieldToUpdate.startsWith("age ")) {
             int age = parseAgeIndex(fieldToUpdate.substring(LENGTH_OF_AGE).trim());
             user.setAge(age);
+            assert Objects.equals(user.getAge(),age);
+            printNewUserAge(age);
+            user.getHealthInfo();
+            printUserCaloriesRequired(user.getCaloriesRequired());
         } else if (fieldToUpdate.startsWith("exercise levels ")) {
             int level = parseExerciseLevels(fieldToUpdate.substring(LENGTH_OF_EXERCISE_LEVELS).trim());
             user.setExerciseLevels(level);
+            assert Objects.equals(user.getExerciseLevels(),level);
+            printNewUserExerciseLevels(user , level);
+            user.getHealthInfo();
+            printUserCaloriesRequired(user.getCaloriesRequired());
         } else if (fieldToUpdate.startsWith("goal ")){
             int goal = parseGoalIndex(fieldToUpdate.substring(LENGTH_OF_GOAL).trim());
             user.setGoal(goal);
+            assert Objects.equals(user.getGoal(),goal);
+            printNewUserGoal(user, goal);
+            user.getHealthInfo();
+            printUserCaloriesRequired(user.getCaloriesRequired());
         } else if (fieldToUpdate.startsWith("sex ")) {
             String sex = parseGenderIndex(fieldToUpdate.substring(LENGTH_OF_SEX).trim());
             user.setSex(sex);
+            assert Objects.equals(user.getSex(),sex);
+            printNewUserSex(sex);
+            user.getHealthInfo();
+            printUserCaloriesRequired(user.getCaloriesRequired());
         } else {
-            throw new InvalidInputException(getUnknownUpdateMesssage());
+            throw new InvalidInputException(getUnknownUpdateMessage());
         }
     }
 
+    /**
+     * Checks if the "user update" command is empty
+     * @param input input from the user
+     * @throws InvalidInputException if the command is empty
+     */
     private static void checkEmptyUpdateInput(String input) throws InvalidInputException {
         if (input.substring(LENGTH_OF_UPDATE_COMMAND).trim().isEmpty()) {
             throw new InvalidInputException(getEmptyUserUpdateInputMessage());
+        }
+    }
+
+    /**
+     * Checks if the field to update is empty
+     * @param input input from the user
+     * @throws InvalidInputException if the field is empty
+     */
+    private static void checkEmptyUpdateField(String input) throws InvalidInputException {
+        if (input.trim().isEmpty()) {
+            throw new InvalidInputException(getEmptyUserUpdateFieldMessage());
         }
     }
 

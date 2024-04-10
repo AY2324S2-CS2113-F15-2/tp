@@ -107,6 +107,7 @@ public class User {
     public String getName() {
         return name;
     }
+
     public int getHeight() {
         return height;
     }
@@ -158,5 +159,33 @@ public class User {
 
     public void getHydrationProgressBar() {
         UserGoals.getHydrationProgressBar(this);
+    }
+
+    public String getExerciseLevelAsString() {
+        if (exerciseLevels == 1) {
+            return "Sedentary";
+        } else if (exerciseLevels == 2) {
+            return "Lightly Active";
+        } else if (exerciseLevels == 5) {
+            return "Extremely Active";
+        } else if (exerciseLevels == 4) {
+            return "Very Active";
+        } else {
+            return "Moderately Active";
+        }
+    }
+
+    public String getGoalAsString() {
+        if (goal == 1) {
+            return "Quick Weight Loss";
+        } else if (goal == 2) {
+            return "Moderate Weight Loss";
+        } else if (goal == 5) {
+            return "Quick Weight Gain";
+        } else if (goal == 4) {
+            return "Moderate Weight Gain";
+        } else {
+            return "Maintain Weight";
+        }
     }
 }
