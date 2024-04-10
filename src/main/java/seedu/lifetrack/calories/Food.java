@@ -1,3 +1,4 @@
+//@@author owx0130
 package seedu.lifetrack.calories;
 
 public class Food {

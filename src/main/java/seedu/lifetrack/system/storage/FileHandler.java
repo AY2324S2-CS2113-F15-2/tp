@@ -1,3 +1,4 @@
+//@@author owx0130
 package seedu.lifetrack.system.storage;
 
 import java.io.File;
@@ -14,7 +15,6 @@ import seedu.lifetrack.calories.calorielist.InputEntry;
 import seedu.lifetrack.calories.calorielist.OutputEntry;
 import seedu.lifetrack.hydration.hydrationlist.HydrationEntry;
 import seedu.lifetrack.sleep.sleeplist.SleepEntry;
-import seedu.lifetrack.system.exceptions.ErrorMessages;
 import seedu.lifetrack.user.User;
 
 public class FileHandler {
@@ -22,6 +22,7 @@ public class FileHandler {
     //public member for lastEntryID calories
     public static int maxCaloriesID = 0;
     public static int maxHydrationID = 0;
+
     //general list constants
     private static final int ENTRYID_INDEX = 0;
     private static final int DATE_INDEX = 1;
@@ -50,6 +51,9 @@ public class FileHandler {
     private static final int GOAL_INDEX = 6;
     private static final int REQ_CAL_INDEX = 7;
 
+    //error message for IO exception
+    private static final String message = "\t Unable to write to file!";
+
     private String filePath;
 
     public FileHandler(String filePath) {
@@ -74,7 +78,7 @@ public class FileHandler {
         try {
             writeToFile(user.toFileFriendlyString());
         } catch (IOException e) {
-            System.out.println(ErrorMessages.getIOExceptionMessage());
+            System.out.println(message);
         }
     }
 
@@ -86,7 +90,7 @@ public class FileHandler {
             }
             writeToFile(newData);
         } catch (IOException e) {
-            System.out.println(ErrorMessages.getIOExceptionMessage());
+            System.out.println(message);
         }
     }
 

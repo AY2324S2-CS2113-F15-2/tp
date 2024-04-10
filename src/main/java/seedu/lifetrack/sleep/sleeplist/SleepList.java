@@ -2,7 +2,6 @@
 package seedu.lifetrack.sleep.sleeplist;
 
 import seedu.lifetrack.Entry;
-import seedu.lifetrack.system.exceptions.ErrorMessages;
 import seedu.lifetrack.system.exceptions.InvalidInputException;
 import seedu.lifetrack.system.parser.ParserSleep;
 import seedu.lifetrack.system.storage.FileHandler;
@@ -31,7 +30,6 @@ public class SleepList {
             this.lastSleepEntryID = loadLastEntryID();
         } catch (FileNotFoundException e) {
             sleepList = new ArrayList<>();
-            System.out.println(ErrorMessages.getFileNotFoundMessage());
         }
     }
 

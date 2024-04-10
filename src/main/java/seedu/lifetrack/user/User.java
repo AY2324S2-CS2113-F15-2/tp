@@ -1,6 +1,5 @@
 package seedu.lifetrack.user;
 
-import seedu.lifetrack.system.exceptions.ErrorMessages;
 import seedu.lifetrack.system.exceptions.InvalidInputException;
 import seedu.lifetrack.system.storage.FileHandler;
 import seedu.lifetrack.user.usergoals.UserGoals;
@@ -53,7 +52,7 @@ public class User {
             goal = Integer.parseInt(data.get(GOAL_INDEX));
             caloriesRequired = Integer.parseInt(data.get(REQ_CAL_INDEX));
         } catch (FileNotFoundException e) {
-            System.out.println(ErrorMessages.getFileNotFoundMessage());
+            return;
         }
     }
 

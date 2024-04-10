@@ -2,7 +2,6 @@
 package seedu.lifetrack.calories.calorielist;
 
 import seedu.lifetrack.Entry;
-import seedu.lifetrack.system.exceptions.ErrorMessages;
 import seedu.lifetrack.system.exceptions.InvalidInputException;
 import seedu.lifetrack.system.parser.ParserCalories;
 import seedu.lifetrack.system.storage.FileHandler;
@@ -44,7 +43,6 @@ public class CalorieList {
             this.lastEntryID = loadLastEntryID();
         } catch (FileNotFoundException e) {
             calorieArrayList = new ArrayList<>();
-            System.out.println(ErrorMessages.getFileNotFoundMessage());
         }
     }
 
