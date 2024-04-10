@@ -16,6 +16,10 @@ public class CalorieListUi {
                 "not be found");
     }
 
+    public static void emptyCalorieList() {
+        System.out.println("\t There is nothing to delete as the calorie list is empty!");
+    }
+
     public static void emptyListMessage() {
         System.out.println("\t Your caloric list is empty. Add new entries to populate your list :)");
     }
