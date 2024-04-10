@@ -1,6 +1,10 @@
 //@@author owx0130
 package seedu.lifetrack;
 
+import seedu.lifetrack.calories.calorielist.InputEntry;
+import seedu.lifetrack.calories.calorielist.OutputEntry;
+import seedu.lifetrack.hydration.hydrationlist.HydrationEntry;
+
 import java.time.LocalDate;
 
 public abstract class Entry {
@@ -29,7 +33,13 @@ public abstract class Entry {
     }
 
     public String toString() {
-        return String.format("\t EntryID: " + lastEntryID + ", Date: " + date + ", Description: " + description);
+        if(this instanceof InputEntry) {
+            return String.format("\t Calories ID: " + lastEntryID + ", Date: " + date + ", Description: " + description);
+        } else if (this instanceof OutputEntry) {
+            return String.format("\t Calories ID: " + lastEntryID + ", Date: " + date + ", Description: " + description);
+        } else {
+            return String.format("\t Hydration ID: " + lastEntryID + ", Date: " + date + ", Description: " + description);
+        }
     }
 
     public String toFileFriendlyString() {
