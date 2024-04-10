@@ -4,6 +4,8 @@ package seedu.lifetrack.ui;
 import seedu.lifetrack.Entry;
 
 public class CalorieListUi {
+    private static final String CALORIES_DELETE_SAMPLE_INPUT = "\t Example input: calories delete ENTRY_ID";
+
 
     public static void successfulDeletedMessage(Entry toDelete) {
         System.out.println("\t The following calorie record has been successfully deleted!");
@@ -23,7 +25,8 @@ public class CalorieListUi {
     }
     
     public static String deleteLogNumberMessage() {
-        return "\t Please enter a valid index!";
+        return "\t Please enter a valid positive integer for the entryID you wish to delete.\n" +
+                CALORIES_DELETE_SAMPLE_INPUT;
     }
 
     public static void calorieListHeader() {

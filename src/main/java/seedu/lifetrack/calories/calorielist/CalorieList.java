@@ -89,7 +89,7 @@ public class CalorieList {
                 updateFile();
             }
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(CalorieListUi.deleteLogIndexMessage());
+            System.out.println(CalorieListUi.deleteLogNumberMessage());
         } catch (NumberFormatException e) {
             System.out.println(CalorieListUi.deleteLogNumberMessage());
         }
