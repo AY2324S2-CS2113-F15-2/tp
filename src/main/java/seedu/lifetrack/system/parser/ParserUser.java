@@ -269,6 +269,15 @@ public class ParserUser {
         }
     }
 
+    /**
+     * Parses "user update" command to update the relevant field of the user. Recalculates the user's calorific goal as
+     *     well.
+     *
+     * @param input input from the user
+     * @param user current User
+     * @throws InvalidInputException if the command is empty, the update field is empty, if the field given to update
+     *     is unknown or if the value to update is not correct.
+     */
     public static void parseUpdate(String input, User user) throws InvalidInputException {
         checkEmptyUpdateInput(input);
         String fieldToUpdate = input.substring(LENGTH_OF_UPDATE_COMMAND).trim();
@@ -325,11 +334,22 @@ public class ParserUser {
         }
     }
 
+    /**
+     * Checks if the "user update" command is empty
+     * @param input input from the user
+     * @throws InvalidInputException if the command is empty
+     */
     private static void checkEmptyUpdateInput(String input) throws InvalidInputException {
         if (input.substring(LENGTH_OF_UPDATE_COMMAND).trim().isEmpty()) {
             throw new InvalidInputException(getEmptyUserUpdateInputMessage());
         }
     }
+
+    /**
+     * Checks if the field to update is empty
+     * @param input input from the user
+     * @throws InvalidInputException if the field is empty
+     */
     private static void checkEmptyUpdateField(String input) throws InvalidInputException {
         if (input.trim().isEmpty()) {
             throw new InvalidInputException(getEmptyUserUpdateFieldMessage());

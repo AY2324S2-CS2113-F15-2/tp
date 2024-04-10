@@ -206,7 +206,9 @@ public class Ui {
                 "g/<body_goal>:\n" + "\t Create a new user, or edit an existing one.");
         System.out.println("\t - user progress: Display calories and hydration progress towards the daily " +
                 "requirement.");
-        System.out.println("\t - user update name/height/weight/age/sex/exercise levels/goal <UPDATED VALUE>");
+        System.out.println("\t - user update name/height/weight/age/sex/exercise levels/goal <UPDATED VALUE>: "
+                + "updates the corresponding field of the user.");
+        System.out.println("\t - user details: prints the details of the user.");
     }
 }
 //@@author
