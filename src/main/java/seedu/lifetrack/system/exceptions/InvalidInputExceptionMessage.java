@@ -1,3 +1,4 @@
+//@@author owx0130
 package seedu.lifetrack.system.exceptions;
 
 /**
@@ -29,6 +30,11 @@ public class InvalidInputExceptionMessage {
     public static String getWhitespaceInInputMessage() {
         String message = "\t Please ensure that there is no whitespace in your input!\n";
         return HEADER + message + CALORIES_IN_INPUT;
+    }
+
+    public static String getEmptyMacrosMessage() {
+        String message = "\t Your macronutrients field is empty!\n";
+        return HEADER + message + MACROS_INPUT;
     }
 
     public static String getIncompleteMacrosMessage() {
