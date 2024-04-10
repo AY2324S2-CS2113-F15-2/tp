@@ -59,12 +59,10 @@ public class SleepList {
     
     public void deleteSleep(String line) {
         try {
-            int index = Integer.parseInt(line.split(" ")[DELETE_IDX]) ; //User input format: sleep delete ID, here get index
-            for(int i=0; i<sleepList.size(); i++)
-            {
+            int index = Integer.parseInt(line.split(" ")[DELETE_IDX]) ; //User input format: sleep delete ID
+            for(int i=0; i<sleepList.size(); i++) {
                 SleepEntry cur_sleep = (SleepEntry) sleepList.get(i);
-                if(cur_sleep.getSleepEntryID()==index)
-                {
+                if(cur_sleep.getSleepEntryID()==index) {
                     sleepList.remove(i);
                     updateFile();
                     SleepListUi.successfulDeletedMessage(cur_sleep);
