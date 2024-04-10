@@ -33,13 +33,13 @@ public abstract class Entry {
 
     public String toString() {
         if(this instanceof InputEntry) {
-            return String.format("\t Calories ID: " + lastEntryID + ", Date: " + date +
+            return String.format("\t caloriesID: " + lastEntryID + ", Date: " + date +
                     ", Description: " + description);
         } else if (this instanceof OutputEntry) {
-            return String.format("\t Calories ID: " + lastEntryID + ", Date: " + date + ", " +
+            return String.format("\t caloriesID: " + lastEntryID + ", Date: " + date + ", " +
                     "Description: " + description);
         } else {
-            return String.format("\t Hydration ID: " + lastEntryID + ", Date: " + date + ", " +
+            return String.format("\t hydrationID: " + lastEntryID + ", Date: " + date + ", " +
                     "Description: " + description);
         }
     }
