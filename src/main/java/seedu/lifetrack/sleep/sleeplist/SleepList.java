@@ -58,6 +58,11 @@ public class SleepList {
     public void deleteSleep(String line) {
         try {
             int index = Integer.parseInt(line.split(" ")[DELETE_IDX]) ; //User input format: sleep delete ID
+            if(sleepList.isEmpty()){
+                System.out.println("Sorry, there is no sleep record in the sleep list. " +
+                        "You cannot delete sleep entry.");
+                return;
+            }
             for(int i=0; i<sleepList.size(); i++) {
                 SleepEntry cur_sleep = (SleepEntry) sleepList.get(i);
                 if(cur_sleep.getSleepEntryID()==index) {
