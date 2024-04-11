@@ -1,0 +1,38 @@
+@startuml
+
+
+actor bob
+rectangle {
+    rectangle Ui
+    rectangle Main
+    rectangle calories
+    rectangle system.parser
+    rectangle hydration.hydrationlist
+    rectangle sleep.sleeplist
+    rectangle system.storage
+    rectangle Entry
+}
+
+bob --[dotted]> Ui
+Main -[dotted]> Ui
+Main ---> sleep.sleeplist
+Main ---> hydration.hydrationlist
+Main ---> calories
+
+calories -[dotted]---> system.parser
+calories ----> Entry
+calories --[dotted]> system.storage
+
+hydration.hydrationlist ---[dotted]-> system.parser
+hydration.hydrationlist -> Entry
+hydration.hydrationlist --[dotted]> system.storage
+
+sleep.sleeplist --[dotted]--> system.parser
+sleep.sleeplist -> Entry
+sleep.sleeplist --[dotted]> system.storage
+
+system.storage -[dotted]-> Entry
+
+hide circle
+
+@enduml
