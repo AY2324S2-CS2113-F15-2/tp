@@ -3,7 +3,6 @@ package seedu.lifetrack.system.parser;
 
 import seedu.lifetrack.calories.calorielist.InputEntry;
 import seedu.lifetrack.calories.calorielist.OutputEntry;
-import seedu.lifetrack.calories.Activity;
 import seedu.lifetrack.calories.Food;
 import seedu.lifetrack.system.exceptions.InvalidInputException;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncorrectCaloriesInputMessage;
@@ -268,9 +267,7 @@ public class ParserCalories {
      * @return a new OutputEntry object
      */
     private static Entry makeNewOutputEntry(int lastEntryID, String description, int calories, LocalDate date) {
-        Activity newActivity = new Activity();
-
-        return new OutputEntry(lastEntryID, description, calories, date, newActivity);
+        return new OutputEntry(lastEntryID, description, calories, date);
     }
 
     /**
