@@ -1,3 +1,4 @@
+//@@author shawnpong
 package seedu.lifetrack.ui;
 
 import seedu.lifetrack.Entry;
