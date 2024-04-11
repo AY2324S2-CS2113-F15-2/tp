@@ -4,21 +4,31 @@ actor Bob
 Bob -> UI: Input "calories list" command
 activate UI
 
-UI -> UI: handleUserInput(input, calorieList, .....)
+UI -> UI: handleUserInput(String input, CalorieList calorieList, .....)
 activate UI
 
-UI -> UI: handleCaloriesInput(input, calorieList, .....)
+UI -> UI: handleCaloriesInput(String input, CalorieList calorieList, .....)
 activate UI
 
 UI -> CalorieList: printCalorieList()
 activate CalorieList
 
-loop calorieArrayList.size()
-CalorieList -> CalorieList : calorieArrayList.get(i)
+CalorieList -> CalorieList: printCalorieInflow()
 activate CalorieList
-end
 
+loop calorieArrayList.size()
+CalorieList -> CalorieList : print Calorie Inflow entries
+end
 return
+
+CalorieList -> CalorieList: printCalorieOutflow()
+activate CalorieList
+
+loop calorieArrayList.size()
+CalorieList -> CalorieList : print Calorie Outflow entries
+end
+return
+
 return
 return
 return

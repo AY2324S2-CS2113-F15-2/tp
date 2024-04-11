@@ -1,13 +1,22 @@
 @startuml
 
+skinparam classAttributeIconSize 0
+
 class LifeTrack {
-    + main(args: String[]): void
+    +main(args: String[]): void
 }
 
 package ui {
     class Ui {
-        + readUserInput(calorieList: calories.CalorieList, hydrationList: hydration.HydrationList, user: user.User, sleepList: sleep.SleepList): void
+        + readUserInput(calorieList: calories.CalorieList, ...... ) : void
+        + handleUserInput(line: String, calorieLIst: CalorieList, ......): void
         + handleCaloriesInput(line: String, calorieList: calories.CalorieList): void
+    }
+    class CalorieListUi {
+            + calorieListHeader(): void
+            + emptyListMessage(): void
+            + inputCalorieListHeader(): void
+            + outputCalorieListHeader(): void
     }
 }
 
@@ -16,17 +25,14 @@ package calories {
         class CalorieList {
             - ArrayList<Entry> calorieArrayList
             + printCalorieList(): void
+            + printCalorieInflow(): void
+            + printCalorieOutflow(): void
         }
 
-        class CalorieListUi {
-            + calorieListHeader(): void
-            + emptyListMessage(): void
-        }
     }
 }
 
-
-
+hide circle
 LifeTrack --> calories.calorielist.CalorieList
 LifeTrack -[dotted]-> ui.Ui
 ui.Ui -[dotted]-> calories.calorielist.CalorieList
