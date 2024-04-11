@@ -74,14 +74,51 @@ The Sequence Diagram for the above-mentioned process is as follows:
 
 ### Calories list feature
 
-The `calories list` feature lists out the record of all the Calories data that the user has keyed in. The Calories data are all stored into a `ArrayList<Entry> calorieArrayList` attribute of the `CalorieList` Class. Calories data are printed when the `printCalorieList()` function is called. 
+#### Implementation
 
-The `printCalorieList()` function iterates through the `calorieArrayList` and prints out the Entries according to its order in the Array List.
+This functionality is facilitated by `UI` and `CalorieList` Classes. It implements the following
+operation, namely:
+- `UI#handleUserInput(String, CalorieList)`
+- `UI#handleCaloriesInput(String, CalorieList)`
+- `CalorieList#printCalorieList()`
+- `CalorieList#printCalorieInflow()`
+- `CalorieList#printCalorieOutflow()`
 
-The Class diagram and sequence diagram for Calories list feature is shown below. Unrelated attributes and Classes were excluded.
+This feature is activated when the user inputs `calories list` command in the terminal.
 
-![CaloriesListClassDiagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rexyyong/tp/DevGuideRex/docs/CaloriesListClassDiagram.puml)
-![CaloriesListSequenceDiagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rexyyong/tp/RexDG/docs/CaloriesListSequenceDiagram.puml)
+Given below is an example usage scenario and how this mechanism behaves at every step:
+
+- Step 1: When the user inputs the command `calories list` in the terminal,
+  the string is sent to `UI#handleUserInput(String, CalorieList)` and 
+`UI#handleCaloriesInput(String, CalorieList)`, which calls `CalorieList#printCalorieList()`.
+
+- Step 2: Inside `CalorieList#printCalorieList()`, the function `CalorieList#printCalorieInflow()` 
+is then called. Entries that are classified under `InputEntry` will be printed out.
+
+- Step 3: Inside `CalorieList#printCalorieList()`, the function `CalorieList#printCalorieInflow()`
+  is then called. Entries that are classified under `OuputEntry` will be printed out.
+
+- Step 4: After printing out both the Input Entries and Output Entries, the program returns and awaits
+the next command typed in by user. 
+
+The class and sequence diagram for this feature is shown below:
+Unrelated attributes and Classes were excluded.
+
+![CaloriesListClassDiagram.png](diagrams%2FCaloriesListClassDiagram.png)
+![CaloriesListSequenceDiagram.png](diagrams%2FCaloriesListSequenceDiagram.png)
+
+#### Design considerations
+- **Alternative 1 (current choice):** Use one arrayList and use instanceof to print out 
+the Input Entries and Output Entries. 
+  - Pros: Only 1 arrayList is required.
+  - Cons: Need to loop the same arrayList twice, which is less efficient. Furthermore, 
+  when deleting entries from arrayList, we need to use a unique entryID instead of using the 
+  index of entry in the arrayList.
+
+- **Alternative 2 :** Use 2 arraylists. One for Input Entries and one for Output Entries. 
+  - Pros: More efficient, as each arrayList only needs to be looped through one time.
+  Furthermore, we can directly delete entries based on index, and no unique entryID field will be required.
+  - Cons: Troublesome to implement. Requires a lot of changes to current Class structure and code structure.
 
 ### Calories delete feature
 
