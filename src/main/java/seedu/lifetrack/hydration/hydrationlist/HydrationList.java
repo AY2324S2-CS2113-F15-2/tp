@@ -1,3 +1,4 @@
+//@@author shawnpong
 package seedu.lifetrack.hydration.hydrationlist;
 
 import seedu.lifetrack.Entry;
