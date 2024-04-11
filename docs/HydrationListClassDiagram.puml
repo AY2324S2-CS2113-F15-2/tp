@@ -2,6 +2,8 @@
 
 skinparam classAttributeIconSize 0
 
+hide circle
+
 class LifeTrack {
     + main(args: String[]): void
 }
@@ -27,7 +29,6 @@ package hydration {
     }
 }
 
-hide circle
 LifeTrack --> hydration.hydrationlist.HydrationList
 LifeTrack -[dotted]-> ui.Ui
 ui.Ui -[dotted]-> hydration.hydrationlist.HydrationList
