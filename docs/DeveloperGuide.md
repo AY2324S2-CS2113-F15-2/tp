@@ -1,5 +1,29 @@
 # Developer Guide
 
+## Quick links
+* [Acknowledgements](#acknowledgements)
+* [Design](#design)
+  * [Architecture](#architecture)
+* [Implementation](#implementation)
+  * [Adding calorie entries feature](#adding-calorie-entries-feature)
+  * [Calculating calorie requirements based on user's goals](#calculating-calorie-requirements-based-on-a-users-goals)
+  * [Calories list feature](#calories-list-feature)
+  * [Calories delete feature](#calories-delete-feature)
+  * [Parsing user input for hydration entries](#parsing-user-input-for-hydration-entries)
+  * [Calculating hydration requirements for each user](#calculating-hydration-requirements-for-each-user)
+  * [Hydration list feature](#hydration-list-feature)
+  * [Hydration delete feature](#hydration-delete-feature)
+  * [Adding sleep entries feature](#adding-sleep-entries-feature)
+  * [Parsing user input for sleep entries](#parsing-user-input-for-sleep-entries)
+  * [Sleep list feature](#sleep-list-feature)
+  * [Sleep delete feature](#sleep-delete-feature)
+  * [Calculating sleep requirements for each user (Planning)](#calculating-sleep-requirements-for-each-user-planning)
+* [Product scope](#product-scope)
+* [User Stories](#user-stories)
+* [Non-Functional Requirements](#non-functional-requirements)
+* [Glossary](#glossary)
+* [Instructions for manual testing](#instructions-for-manual-testing)
+
 ## Acknowledgements
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
