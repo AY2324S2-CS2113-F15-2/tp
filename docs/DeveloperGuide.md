@@ -107,6 +107,19 @@ Unrelated attributes and Classes were excluded.
 ![CaloriesListClassDiagram.png](diagrams%2FCaloriesListClassDiagram.png)
 ![CaloriesListSequenceDiagram.png](diagrams%2FCaloriesListSequenceDiagram.png)
 
+#### Design considerations
+- **Alternative 1 (current choice):** Use one arrayList and use instanceof to print out 
+the Input Entries and Output Entries. 
+  - Pros: Only 1 arrayList is required.
+  - Cons: Need to loop the same arrayList twice, which is less efficient. Furthermore, 
+  when deleting entries from arrayList, we need to use a unique entryID instead of using the 
+  index of entry in the arrayList.
+
+- **Alternative 2 :** Use 2 arraylists. One for Input Entries and one for Output Entries. 
+  - Pros: More efficient, as each arrayList only needs to be looped through one time.
+  Furthermore, we can directly delete entries based on index, and no unique entryID field will be required.
+  - Cons: Troublesome to implement. Requires a lot of changes to current Class structure and code structure.
+
 ### Calories delete feature
 
 The `calories delete` feature can delete the calories record at specific index of calorie list. This functionality is facilitated by `CaloriesList`. It implements one operation, namely:
