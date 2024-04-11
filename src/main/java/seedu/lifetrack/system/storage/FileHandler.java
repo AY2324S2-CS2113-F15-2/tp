@@ -120,6 +120,7 @@ public class FileHandler {
                 entries.add(new OutputEntry(entryID, description, calories, date));
             }
         }
+        s.close();
         return entries;
     }
 
@@ -150,6 +151,7 @@ public class FileHandler {
             int volume = Integer.parseInt(words[VOLUME_INDEX]);
             entries.add(new HydrationEntry(lastHydrationEntryID, description, volume, date));
         }
+        s.close();
         return entries;
     }
 
@@ -166,6 +168,7 @@ public class FileHandler {
             double duration = Double.parseDouble(words[DURATION_INDEX]);
             entries.add(new SleepEntry(lastSleepEntryID, duration, date));
         }
+        s.close();
         return entries;
     }
     
@@ -183,6 +186,7 @@ public class FileHandler {
         data.add(words[EXERCISE_INDEX]);
         data.add(words[GOAL_INDEX]);
         data.add(words[REQ_CAL_INDEX]);
+        s.close();
         return data;
     }
 }
