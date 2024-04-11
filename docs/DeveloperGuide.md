@@ -27,8 +27,30 @@
 ## Acknowledgements
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+## Design
 
-## Design & implementation
+### Architecture
+![ArchitectureDiagram.png](diagrams%2FArchitectureDiagram.png)
+
+The **Architecture Diagram** given above explains the high-level design of the LifeTrack app.
+
+Given below is a quick overview of main components and how they interact with each other.
+
+**Main components of the architecture**
+
+`Main` (consisting of class `Lifetrack`) is in charge of the app launch and shut down.
+* At app launch,v it initializes the other components in the correct sequence, and connects them up with each other.
+
+The bulk of the Lifetrack's work is done by the following four components:
+* `Ui`: The UI of Lifetrack app.
+* `calories`: The component in charge of the caloric entries of the Lifetrack app.
+* `hydration.hydrationlist`: The component in charge of the hydration entries of the Lifetrack app.
+* `sleep.sleeplist`: The component in charge of the sleep entries of the Lifetrack app.
+* `system.storage`: The component in charge of reding data from, and writes date to the hard disk.
+* `Entry`: The class in charge of all the data entries.
+* `system.parser`: The component in charge of parsing all commands keyed in by user.
+
+## Implementation
 ### Adding calorie entries feature
 
 #### Implementation
