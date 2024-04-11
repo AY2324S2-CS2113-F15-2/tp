@@ -1,30 +1,33 @@
 @startuml
 
+skinparam classAttributeIconSize 0
+
 class LifeTrack {
     + main(args: String[]): void
 }
 
 package ui {
     class Ui {
-        + readUserInput(calorieList: calories.CalorieList, hydrationList: hydration.HydrationList, user: user.User, sleepList: sleep.SleepList): void
+        + readUserInput(hydrationList: hydration.HydrationList, ...... ) : void
+        + handleUserInput(line: String, hydrationList: HydrationList, ......): void
         + handleHydrationInput(line: String, hydrationList: hydration.HydrationList): void
+    }
+    class HydrationListUi {
+            + hydrationListHeader(): void
+            + emptyListMessage(): void
+            + inputHydrationListHeader(): void
     }
 }
 
 package hydration {
     package hydrationlist {
         class HydrationList {
-            - ArrayList<Entry> hydrationArrayList
-            + printHydrationList(): void
-        }
-
-        class HydrationListUi {
-            + hydrationListHeader(): void
-            + emptyListMessage(): void
-        }
+           - ArrayList<Entry> hydrationArrayList
+           + printHydrationList(): void
     }
 }
 
+hide circle
 LifeTrack --> hydration.hydrationlist.HydrationList
 LifeTrack -[dotted]-> ui.Ui
 ui.Ui -[dotted]-> hydration.hydrationlist.HydrationList
