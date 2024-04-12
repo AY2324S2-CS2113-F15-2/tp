@@ -3,13 +3,19 @@ package seedu.lifetrack.hydration.hydrationlist;
 
 import seedu.lifetrack.Entry;
 import seedu.lifetrack.calories.calorielist.CalorieList;
+import seedu.lifetrack.calories.calorielist.InputEntry;
+import seedu.lifetrack.calories.calorielist.OutputEntry;
 import seedu.lifetrack.system.exceptions.InvalidInputException;
 import seedu.lifetrack.system.parser.ParserHydration;
 import seedu.lifetrack.system.storage.FileHandler;
+import seedu.lifetrack.ui.CalorieListUi;
 import seedu.lifetrack.ui.HydrationListUI;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -70,10 +76,13 @@ public class HydrationList {
      * @param line the string containing the index of the liquid record to delete
      */
     public void deleteEntry(String line) {
+        assert (line.startsWith("hydration delete") ) : "ensures that input is correct";
         try {
             int entryID = Integer.parseInt(line.substring(SIZE_OF_DELETE).trim());
             int index = getIndexFromEntryID(entryID);
-            if (index == NO_INDEX_FOUND) {
+            if (hydrationArrayList.isEmpty()) {
+                HydrationListUI.emptyHydrationList();
+            } else if (index == NO_INDEX_FOUND) {
                 HydrationListUI.unsuccessfulDeletedMessage(entryID);
             } else {
                 Entry toDelete = hydrationArrayList.get(index);
@@ -110,9 +119,23 @@ public class HydrationList {
             updateFile();
             HydrationListUI.printNewHydrationEntry(newEntry);
             lastHydrationEntryID ++;
+            if (hydrationArrayList.size() > 1 &&
+                    hydrationArrayList.get(hydrationArrayList.size() - 2).getDate().compareTo(newEntry.getDate()) > 0 ) {
+                sortEntriesByDate();
+            }
         } catch (InvalidInputException e) {
             logr.log(Level.WARNING, e.getMessage(), e);
+            System.out.println(e.getMessage());
         }
+    }
+
+    public void sortEntriesByDate() {
+        Collections.sort(hydrationArrayList, new Comparator<Entry>() {
+            @Override
+            public int compare(Entry entry1, Entry entry2) {
+                return entry1.getDate().compareTo(entry2.getDate());
+            }
+        });
     }
 
     /**
@@ -124,9 +147,17 @@ public class HydrationList {
             HydrationListUI.emptyListMessage();
         } else {
             HydrationListUI.hydrationListHeader();
-            for (int i = 0; i < hydrationArrayList.size(); i++) {
-                Entry entry = hydrationArrayList.get(i);
-                System.out.println("\t " + (i + 1) + ". " + entry);
+            printHydrationInflow();
+        }
+    }
+
+    public void printHydrationInflow() {
+        int serialNumber = 1;
+        for (Entry value : hydrationArrayList) {
+            if (value instanceof HydrationEntry) {
+                Entry entry = value;
+                System.out.println("\t " + serialNumber + ". " + entry);
+                serialNumber++;
             }
         }
     }
@@ -144,6 +175,18 @@ public class HydrationList {
         }
         return totalHydration;
     }
+
+    public int getHydrationConsumedCurrentDay() {
+        int totalHydration = 0;
+        for (Entry entry : hydrationArrayList) {
+            if (entry.getDate().isEqual(LocalDate.now())) {
+                HydrationEntry tempEntry = (HydrationEntry) entry;
+                totalHydration += tempEntry.getHydration();
+            }
+        }
+        return totalHydration;
+    }
+
 
     /**
      * Retrieves the size of the liquid list.
