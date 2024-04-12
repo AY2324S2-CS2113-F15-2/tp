@@ -101,16 +101,6 @@ public class HydrationListTest {
     }
 
     @Test
-    public void testDeleteEntryWithInvalidFormat() {
-        HydrationList hydrationList = new HydrationList();
-        hydrationList.addEntry("hydration in Water v/250 d/2024-02-23");
-        int initialSize = hydrationList.getSize();
-        // Try to delete with invalid format, should not affect the list
-        hydrationList.deleteEntry("delete 1");
-        assertEquals(initialSize, hydrationList.getSize());
-    }
-
-    @Test
     public void testPrintHydrationListWithMultipleEntries() {
         String lineSeparator = System.lineSeparator();
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

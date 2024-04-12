@@ -8,11 +8,12 @@ import seedu.lifetrack.system.exceptions.InvalidInputException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncorrectVolumeInputMessage;
-import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHydrationEmptyDescriptionMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHydrationIncorrectOrderMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHydrationMissingKeywordMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getDateLaterThanPresentDateMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncorrectVolumeInputMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHydrationNegativeIntegerVolumeMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHydrationEmptyDescriptionMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidDateMessage;
 
 public class ParserHydration {
@@ -64,6 +65,9 @@ public class ParserHydration {
         LocalDate date = null;
         try {
             date = getLocalDateFromInput(strDate);
+            if (date.isAfter(LocalDate.now())) {
+                throw new InvalidInputException(getDateLaterThanPresentDateMessage());
+            }
         } catch (DateTimeParseException e) {
             throw new InvalidInputException(getInvalidDateMessage());
         }

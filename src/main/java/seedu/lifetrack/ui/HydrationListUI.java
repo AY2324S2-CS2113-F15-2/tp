@@ -34,4 +34,8 @@ public class HydrationListUI {
         System.out.println("\t The following entry has been added to your hydration list!");
         System.out.println("\t " + newEntry.toString());
     }
+
+    public static void emptyHydrationList() {
+        System.out.println("\t There is nothing to delete as the hydration list is empty!");
+    }
 }

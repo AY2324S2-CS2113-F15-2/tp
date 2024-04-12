@@ -57,7 +57,7 @@ public class UserGoals {
 
     public static void getCaloriesProgressBar(User user) {
         int caloriesRequired = user.getCaloriesRequired();
-        int caloriesConsumed = calorieList.getCaloriesConsumed();
+        int caloriesConsumed = calorieList.getCaloriesConsumedCurrentDay();
         if (caloriesConsumed < 0){
             caloriesConsumed = 0;
         }
@@ -81,7 +81,7 @@ public class UserGoals {
 
     public static void getHydrationProgressBar(User user) {
         int hydrationRequired = user.getHydrationRequired();
-        int hydrationConsumed = hydrationList.getHydrationConsumed();
+        int hydrationConsumed = hydrationList.getHydrationConsumedCurrentDay();
         double progress = (double) hydrationConsumed / hydrationRequired;
         int width = PROGRESS_BAR_WIDTH;
 

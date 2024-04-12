@@ -7,6 +7,7 @@ import seedu.lifetrack.system.parser.ParserCalories;
 import seedu.lifetrack.system.storage.FileHandler;
 import seedu.lifetrack.ui.CalorieListUi;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.logging.Level;
@@ -221,6 +222,23 @@ public class CalorieList {
         }
         return totalCalories;
     }
+
+    public int getCaloriesConsumedCurrentDay() {
+        int totalCalories = 0;
+        for (Entry entry : calorieArrayList) {
+            if (entry.getDate().isEqual(LocalDate.now())) {
+                if (entry instanceof InputEntry) {
+                    InputEntry tempEntry = (InputEntry) entry;
+                    totalCalories += tempEntry.getCalories();
+                } else if (entry instanceof OutputEntry) {
+                    OutputEntry tempEntry = (OutputEntry) entry;
+                    totalCalories -= tempEntry.getCalories();
+                }
+            }
+        }
+        return totalCalories;
+    }
+
 
     /**
      * Loads the last entry ID from a text file.
