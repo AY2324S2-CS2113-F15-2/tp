@@ -43,7 +43,7 @@ The program was created using Java. Version control was done using Git.
 * Added robust exception handling for calories Parser, in order to ensure that program does not crash
     when users type the wrong command to add, delete or list calories entries. [PR #43](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/43)
 * Added robust exception handling for hydration features, in order to ensure that program does not crash
-    when suers type the wrong command to add, delete or list hydration entries. [PR #50](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/50)
+    when users type the wrong command to add, delete or list hydration entries. [PR #50](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/50)
 
 ### Contributions to documentation
 * **Developer guide**
