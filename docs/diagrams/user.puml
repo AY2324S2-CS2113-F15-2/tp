@@ -1,0 +1,24 @@
+@startuml
+
+rectangle User
+
+rectangle FileHandler
+
+rectangle ParserUser
+
+rectangle UserGoals
+
+rectangle HydrationList
+rectangle CaloriesList
+rectangle SleepList
+
+User ---> "1" FileHandler
+User --[dotted]> ParserUser
+
+User <-[dotted]> UserGoals
+
+UserGoals --[dotted]> HydrationList
+UserGoals --[dotted]> CaloriesList
+UserGoals --[dotted]> SleepList
+
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+
+rectangle SleepList
+rectangle SleepEntry
+
+rectangle Entry
+rectangle FileHandler
+rectangle Ui
+rectangle ParserSleep
+
+SleepList --> "*" Entry
+SleepList ---> "1" FileHandler
+SleepList --[dotted]> ParserSleep
+
+Ui -[dotted]> SleepList
+
+SleepEntry --|> Entry
+
+ParserSleep -[dotted]-> SleepEntry
+
+@enduml

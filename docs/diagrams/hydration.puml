@@ -1,0 +1,21 @@
+@startuml
+
+rectangle HydrationList
+rectangle HydrationEntry
+
+rectangle Entry
+rectangle FileHandler
+rectangle Ui
+rectangle ParserHydration
+
+HydrationList --> "*" Entry
+HydrationList ---> "1" FileHandler
+HydrationList --[dotted]> ParserHydration
+
+Ui -[dotted]> HydrationList
+
+HydrationEntry --|> Entry
+
+ParserHydration -[dotted]-> HydrationEntry
+
+@enduml
