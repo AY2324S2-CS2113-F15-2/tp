@@ -8,7 +8,13 @@ import seedu.lifetrack.system.exceptions.InvalidInputException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.*;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHydrationIncorrectOrderMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHydrationMissingKeywordMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getDateLaterThanPresentDateMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncorrectVolumeInputMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHydrationNegativeIntegerVolumeMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHydrationEmptyDescriptionMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidDateMessage;
 
 public class ParserHydration {
     private static final int VOLUME_IDX = 1;
