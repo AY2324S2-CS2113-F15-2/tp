@@ -1,0 +1,26 @@
+@startuml
+
+rectangle CalorieList
+rectangle InputEntry
+rectangle OutputEntry
+rectangle Food
+
+rectangle Entry
+rectangle FileHandler
+rectangle Ui
+rectangle ParserCalories
+
+CalorieList -> "*" Entry
+CalorieList --> "1" FileHandler
+CalorieList --[dotted]> ParserCalories
+
+Ui -[dotted]> CalorieList
+
+InputEntry --|> Entry
+OutputEntry --|> Entry
+InputEntry --> "0..1" Food
+
+ParserCalories -[dotted]-> InputEntry
+ParserCalories -[dotted]-> OutputEntry
+
+@enduml
