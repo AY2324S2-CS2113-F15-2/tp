@@ -40,6 +40,14 @@ The sequence diagram bellow illustrates the interactions within the `calories` c
 How the `calories` component works:
 1. When the user keys in the `calories in` command, 
 
+### hydration component
+![hydration.png](assets%2Fhydration.png)
+
+### sleep component
+![sleep.png](assets%2Fsleep.png)
+
+### user component
+![user.png](assets%2Fuser.png)
 
 ## Implementation
 ### Adding calorie entries feature
