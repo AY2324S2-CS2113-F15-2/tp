@@ -29,26 +29,17 @@
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 ## Design
 
-### Architecture
-![ArchitectureDiagram.png](diagrams%2FArchitectureDiagram.png)
+### calories component
+Here's a (partial) class diagram o the `calories` component.
 
-The **Architecture Diagram** given above explains the high-level design of the LifeTrack app.
+![calories.png](assets%2Fcalories.png)
 
-Given below is a quick overview of main components and how they interact with each other.
+The sequence diagram bellow illustrates the interactions within the `calories` component, taking
+`calories in donut c/1000 d/2024-04-10` call as an example. 
 
-**Main components of the architecture**
+How the `calories` component works:
+1. When the user keys in the `calories in` command, 
 
-`Main` (consisting of class `Lifetrack`) is in charge of the app launch and shut down.
-* At app launch,v it initializes the other components in the correct sequence, and connects them up with each other.
-
-The bulk of the Lifetrack's work is done by the following four components:
-* `Ui`: The UI of Lifetrack app.
-* `calories`: The component in charge of the caloric entries of the Lifetrack app.
-* `hydration.hydrationlist`: The component in charge of the hydration entries of the Lifetrack app.
-* `sleep.sleeplist`: The component in charge of the sleep entries of the Lifetrack app.
-* `system.storage`: The component in charge of reding data from, and writes date to the hard disk.
-* `Entry`: The class in charge of all the data entries.
-* `system.parser`: The component in charge of parsing all commands keyed in by user.
 
 ## Implementation
 ### Adding calorie entries feature
@@ -105,7 +96,7 @@ Given below is an example usage scenario and how this mechanism behaves at every
 - Step 6: This value is set to `User.caloriesRequired` by `User#setCaloriesRequired(int)`.
 
 The Sequence Diagram for the above-mentioned process is as follows:
-![Sequence Diagram](UserCalculateCaloriesSeqDiagram.png)
+![Sequence Diagram](assets/UserCalculateCaloriesSeqDiagram.png)
 
 
 #### Design considerations
@@ -150,8 +141,8 @@ the next command typed in by user.
 The class and sequence diagram for this feature is shown below:
 Unrelated attributes and Classes were excluded.
 
-![CaloriesListClassDiagram.png](diagrams%2FCaloriesListClassDiagram.png)
-![CaloriesListSequenceDiagram.png](diagrams%2FCaloriesListSequenceDiagram.png)
+![CaloriesListClassDiagram.png](assets%2FCaloriesListClassDiagram.png)
+![CaloriesListSequenceDiagram.png](assets%2FCaloriesListSequenceDiagram.png)
 
 #### Design considerations
 - **Alternative 1 (current choice):** Use one arrayList and use instanceof to print out 
@@ -184,7 +175,7 @@ Given below is an example usage scenario and how this mechanism behaves at every
 
 The Class diagram for Calories delete feature is shown below:
 
-![CaloriesDeleteClassDiagram](https://github.com/a-wild-chocolate/tp/blob/master/docs/caloriesDeleteUML.jpg)
+![CaloriesDeleteClassDiagram](assets%2FcaloriesDeleteUML.jpg)
 
 ### Parsing user input for hydration entries
 
@@ -217,7 +208,7 @@ The `printHydrationList()` function iterates through the `hydrationArrayList` an
 
 The Class diagram for Hydration list feature is shown below. Unrelated attributes and Classes were excluded.
 
-![HydrationListClassDiagram.png](HydrationListClassDiagram.png)
+![HydrationListClassDiagram.png](assets/HydrationListClassDiagram.png)
 
 ### Hydration delete feature
 
@@ -236,7 +227,7 @@ Given below is an example usage scenario and how this mechanism behaves at every
 - Step 5: The latest hydration list will be updated to saving file by calling `HydrationList#updateFile()`.
 
 The Sequence diagram for Hydration delete feature is shown below:
-![HydrationDeleteDiagram.png](HydrationDeleteDiagram.png)
+![HydrationDeleteDiagram.png](assets/HydrationDeleteDiagram.png)
 
 ### Adding sleep entries feature
 
@@ -264,7 +255,7 @@ Given below is an example usage scenario and how this mechanism behaves at every
 - Step 5: `FileHandler#updateFile()` is then called to update the data file with the new entry in the `SleepList`.
 
 The sequence diagram for this feature is shown below:
-![SleepAddSeqDiagram](https://github.com/a-wild-chocolate/tp/blob/f9a94746e763ddf54a4309583b71e0fdbabdb141/docs/SleepAddSeqDiagram.jpg)
+![SleepAddSeqDiagram.jpg](assets%2FSleepAddSeqDiagram.jpg)
 
 ### Parsing user input for sleep entries
 
@@ -291,8 +282,7 @@ The `sleep list` feature lists out the record of all the sleep data that the use
 The `printSleepList()` function iterates through the `sleepList` and each entry will call `SleepEntry#toString()` to return its information string to be printed.
 
 The Sequence diagram for Sleep list feature is shown below. Unrelated attributes and Classes were excluded.
-![SleepListSeqDiagram](https://github.com/a-wild-chocolate/tp/blob/f9a94746e763ddf54a4309583b71e0fdbabdb141/docs/SleepListSeqDiagram.jpg)
-
+![SleepListSeqDiagram.jpg](assets%2FSleepListSeqDiagram.jpg)
 
 ### Sleep delete feature
 
@@ -311,7 +301,7 @@ Given below is an example usage scenario and how this mechanism behaves at every
 - Step 5: The latest sleep list will be updated to saving file by calling `SleepList#updateFile()`.
 
 The Sequence diagram for Sleep delete feature is shown below:
-![SleepDeleteDiagram.jpg](https://github.com/a-wild-chocolate/tp/blob/f9a94746e763ddf54a4309583b71e0fdbabdb141/docs/SleepDeleteSeqDiagram.jpg)
+![SleepDeleteSeqDiagram.jpg](assets%2FSleepDeleteSeqDiagram.jpg)
 
 ### Calculating sleep requirements for each user (Planning)
 
