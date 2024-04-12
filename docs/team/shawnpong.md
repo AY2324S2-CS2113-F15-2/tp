@@ -12,14 +12,37 @@ The program was created using Java. Version control was done using Git.
 
 ### New features added and enhancements to existing features
 
+1. **Added the ability to add entries for hydration intake.** [PR #71](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/71)
+   * What it does: Allows users to add records relating to their hydration intake, which includes `DESCRIPTION` of 
+   drink, `VOLUME` of drink, as well as `DATE`. 
+   * Testing: Added JUnit tests for the feature as well.
+
+2. **Added functionality for users to view their caloric and hydration goals** [PR #90](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/90)
+   * What it does: Allows users to view their progress with a progress bar with `user progress` function.
+   * Justification: This lets users easily view their progress with an easy to comprehend progress bar, so users can 
+   know how much more calories or hydration to consume.
+
+3. **Added feature for users to view caloric and hydration goals for current day** [PR #180](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/181)
+    * What it does: Users can now view their current daily caloric and hydration intake with `user progress` function,
+   instead of the cumulative intake.
+    * Justification: As this is a lifestyle tracker, the intent is for users to use it on a day-to-day basis, tracking
+   their current daily instake against their goals. They are still able to view their previous history of consumption 
+   with `calories list` and `hydration list`.
+
 ### Contributions to exception handling
+* Added robust exception handling for hydration class and lists, in order to ensure that program does not crash
+  when users type the wrong command to add, delete or list hydration entries. [PR #38](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/38)
+* Added robust exception handling for ParserHydration, in order to ensure that program does not crash
+  when users enter invalid commands [PR #71](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/71)
 
 ### Contributions to documentation
 * **Developer guide**
     * Added implementation details for `Hydration` class. [PR #93](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/93)
+    * Ensure consistent formatting throughout developer guide.
 * **User guide**
     * Converted User guide from word document to Markdown format for all existing features.
-    * Added documentation for features `hydration in`, `hydration delete`, `hydration list`. [PR #91](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/91)
+      * Added documentation for features `hydration in`, `hydration delete`, `hydration list`. [PR #91](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/91)
+      * Ensure consistent formatting throughout user guide.
 ### Contributions to project management
 
 
