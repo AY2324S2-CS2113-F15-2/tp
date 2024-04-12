@@ -15,9 +15,13 @@ rectangle {
 
 bob --[dotted]> Ui
 Main -[dotted]> Ui
-Main ---> sleep.sleeplist
-Main ---> hydration.hydrationlist
-Main ---> calories
+Main ----> sleep.sleeplist
+Main ----> hydration.hydrationlist
+Main ----> calories
+
+Ui -[dotted]> calories
+Ui -[dotted]> hydration.hydrationlist
+Ui -[dotted]> sleep.sleeplist
 
 calories -[dotted]---> system.parser
 calories ----> Entry
