@@ -1,0 +1,32 @@
+@startuml
+actor Bob
+Bob -> UI: Input "calories in" or "calories out" command
+activate UI
+
+UI -> UI: handleUserInput()
+activate UI
+
+UI -> UI: handleCaloriesInput()
+activate UI
+
+UI -> CalorieList: addEntry()
+activate CalorieList
+
+CalorieList -> ParserCalories: parseCaloriesInput()
+activate ParserCalories
+return entry
+
+CalorieList -> CalorieList: calorieArrayList.add(entry)
+activate CalorieList
+return
+
+CalorieList -> CalorieList: updateFile()
+activate CalorieList
+return
+
+return
+return
+return
+return
+
+@enduml
