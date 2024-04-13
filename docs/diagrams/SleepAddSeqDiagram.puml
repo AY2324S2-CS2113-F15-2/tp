@@ -1,0 +1,39 @@
+@startuml
+actor Bob
+Bob -> UI: Input "sleep add" command
+activate UI
+
+UI -> UI: handleUserInput()
+activate UI
+
+UI -> UI: handleSleepInput()
+activate UI
+
+UI -> SleepList: addSleep()
+activate SleepList
+
+SleepList -> ParserSleep: parseSleepInput()
+activate ParserSleep
+
+ParserSleep -> ParserSleep: parseDuration()
+activate ParserSleep
+return Double
+
+ParserSleep -> ParserSleep: parseDate()
+activate ParserSleep
+return LocalDate
+
+return SleepEntry
+
+SleepList -> SleepList: sleepList.add(SleepEntry)
+
+SleepList->SleepListUi: printNewSleepEntry(SleepEntry)
+activate SleepListUi
+return
+
+return
+return
+return
+UI-> Bob:Display successful message
+
+@enduml

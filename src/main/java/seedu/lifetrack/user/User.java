@@ -24,6 +24,7 @@ public class User {
 
     private int caloriesRequired;
     private int hydrationRequired = 2000;
+    private int sleepRequired = 7;
 
     //user data constants
     private final int NAME_INDEX = 0;
@@ -147,6 +148,9 @@ public class User {
     public int getHydrationRequired() {
         return hydrationRequired;
     }
+    public int getSleepRequired() {
+        return sleepRequired;
+    }
 
     public String toFileFriendlyString() {
         return String.format(name + ";" + height + ";" + weight + ";" + age + ";" + sex + ";" +
@@ -159,6 +163,9 @@ public class User {
 
     public void getHydrationProgressBar() {
         UserGoals.getHydrationProgressBar(this);
+    }
+    public void getSleepProgressBar() {
+        UserGoals.getSleepProgressBar(this);
     }
 
     public String getExerciseLevelAsString() {

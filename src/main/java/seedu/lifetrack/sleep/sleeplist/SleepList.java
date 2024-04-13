@@ -8,6 +8,7 @@ import seedu.lifetrack.system.storage.SleepFileHandler;
 import seedu.lifetrack.ui.SleepListUi;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class SleepList {
@@ -96,6 +97,17 @@ public class SleepList {
 
     private int loadLastEntryID() {
         return 0; // Default value if file doesn't exist or error occurs
+    }
+
+    public int getSleepConsumed(LocalDate date) {
+        double totalSleep = 0;
+        for (Entry entry : sleepList) {
+            if (entry.getDate().isEqual(date)) {
+                SleepEntry tempEntry = (SleepEntry) entry;
+                totalSleep += tempEntry.getDuration();
+            }
+        }
+        return (int) totalSleep;
     }
 }
 //@@author

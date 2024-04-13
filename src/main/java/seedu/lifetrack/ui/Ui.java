@@ -149,6 +149,7 @@ public class Ui {
         } else {
             user.getCaloriesProgressBar();
             user.getHydrationProgressBar();
+            user.getSleepProgressBar();
         }
     }
 
