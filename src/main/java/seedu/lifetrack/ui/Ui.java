@@ -154,6 +154,7 @@ public class Ui {
     }
 
     public static void sayHello() {
+        printLine();
         System.out.println(WHITESPACE + "Hello from\n\n" + logo);
         System.out.println(WHITESPACE + "How can I help you today?");
         printLine();

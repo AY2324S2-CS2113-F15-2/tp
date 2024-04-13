@@ -4,7 +4,7 @@ package seedu.lifetrack.calories.calorielist;
 import seedu.lifetrack.Entry;
 import seedu.lifetrack.system.exceptions.InvalidInputException;
 import seedu.lifetrack.system.parser.ParserCalories;
-import seedu.lifetrack.system.storage.FileHandler;
+import seedu.lifetrack.system.storage.CaloriesFileHandler;
 import seedu.lifetrack.ui.CalorieListUi;
 
 import java.time.LocalDate;
@@ -24,7 +24,7 @@ public class CalorieList {
     //constant for finding entry index from entryID
     private final int NO_INDEX_FOUND = -1;
     private ArrayList<Entry> calorieArrayList;
-    private FileHandler fileHandler;
+    private CaloriesFileHandler fileHandler;
     private int lastEntryID;
 
     /**
@@ -43,7 +43,7 @@ public class CalorieList {
      */
     public CalorieList(String filePath) {
         try {
-            fileHandler = new FileHandler(filePath);
+            fileHandler = new CaloriesFileHandler(filePath);
             calorieArrayList = fileHandler.getCalorieEntriesFromFile();
             // Initialize lastEntryID from stored data or default to 0 if not available
             this.lastEntryID = loadLastEntryID();
@@ -104,7 +104,7 @@ public class CalorieList {
      */
     public int getIndexFromEntryID(int entryID) {
         for (int i = 0; i < calorieArrayList.size(); i++) {
-            if (calorieArrayList.get(i).getLastEntryID() == entryID) {
+            if (calorieArrayList.get(i).getEntryID() == entryID) {
                 return i;
             }
         }
@@ -237,7 +237,6 @@ public class CalorieList {
         return totalCalories;
     }
 
-
     /**
      * Loads the last entry ID from a text file.
      * This method retrieves the last entry ID from the file using the FileHandler.getMaxCaloriesID method.
@@ -246,7 +245,7 @@ public class CalorieList {
      * @return the last entry ID loaded from the file, or a default value if the file doesn't exist or an error occurs
      */
     private int loadLastEntryID() {
-        return FileHandler.getMaxCaloriesID(); // Default value if file doesn't exist or error occurs
+        return CaloriesFileHandler.maxCaloriesID; // Default value if file doesn't exist or error occurs
     }
 
     /**

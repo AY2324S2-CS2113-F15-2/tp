@@ -4,12 +4,12 @@ rectangle HydrationList
 rectangle HydrationEntry
 
 rectangle Entry
-rectangle FileHandler
+rectangle HydrationFileHandler
 rectangle Ui
 rectangle ParserHydration
 
 HydrationList --> "*" Entry
-HydrationList ---> "1" FileHandler
+HydrationList ---> "1" HydrationFileHandler
 HydrationList --[dotted]> ParserHydration
 
 Ui -[dotted]> HydrationList

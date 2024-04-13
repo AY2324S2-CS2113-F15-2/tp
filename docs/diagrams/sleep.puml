@@ -4,12 +4,12 @@ rectangle SleepList
 rectangle SleepEntry
 
 rectangle Entry
-rectangle FileHandler
+rectangle SleepFileHandler
 rectangle Ui
 rectangle ParserSleep
 
 SleepList --> "*" Entry
-SleepList ---> "1" FileHandler
+SleepList ---> "1" SleepFileHandler
 SleepList --[dotted]> ParserSleep
 
 Ui -[dotted]> SleepList

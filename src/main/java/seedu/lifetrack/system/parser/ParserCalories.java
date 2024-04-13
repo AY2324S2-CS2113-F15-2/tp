@@ -279,7 +279,6 @@ public class ParserCalories {
      * @return a new InputEntry object
      */
     private static Entry makeNewInputEntry(int lastEntryID, String description, int calories, LocalDate date) {
-
         return new InputEntry(lastEntryID, description, calories, date);
     }
 
@@ -293,10 +292,8 @@ public class ParserCalories {
      * @return a new InputEntry object with food macros
      */
     private static Entry makeNewInputEntry(int lastEntryID, String description, int calories, LocalDate date,
-                                           int[] foodMacros) {
-
+            int[] foodMacros) {
         Food newFood = new Food(foodMacros[CARBS_IDX], foodMacros[PROTEINS_IDX], foodMacros[FATS_IDX]);
-
         return new InputEntry(lastEntryID, description, calories, date, newFood);
     }
 }
