@@ -74,8 +74,41 @@ function is called, which sorts the entries in ascending order.
 ### hydration component
 ![hydration.png](assets%2Fhydration.png)
 
+
 ### sleep component
+Here's a (partial) class diagram of the `calories` component.
 ![sleep.png](assets%2Fsleep.png)
+
+The sleep component consists of the following classes:
+1. `Ui`: Handles user and program interaction.
+2. `SleepList`: Handles the list of sleep records.
+3. `FileHandler`: Handles the saving and reading of data from the file.
+4. `ParserSleep`: Handles the parsing of user input to determine type of command.
+5. `Entry`: Handles all entries data.
+6. `SleepEntry`: Handles sleep entries data.
+
+The sequence diagram bellow illustrates the interactions within the `sleep` component, taking `sleep add 7 d/2024-04-13` 
+call as an example.
+![SleepAddSeqDiagram.png](assets%2FSleepAddSeqDiagram.png)
+
+How the `sleep` component works:
+1. When the user keys in the`sleep add 7 d/2024-04-13` command,
+   the input is sent to `Ui#handleSleepInput(String, SleepList)`, which calls
+   `SleepList#addSleep(String)`.
+
+2. Inside `SleepList#addSleep(String)`, the function `ParserSleep#parseSleepInput(String)`
+   is then called to extract information such as the duration and date by calling `parseDate(String)` and `parseDuration(String)`.
+
+3. With the extracted information,a new entry of `SleepEntry` that extends `Entry` will be created. The `SleepEntry` object is then returned
+   to the caller, `SleepList#addSleep(String)` which was called in step 2.
+
+4. The returned `SleepEntry` object is added into the `sleepList` member of type
+   `ArrayList<Entry>` in the `SleepList`, via the `ArrayList.add()` method.
+
+5. `SleepList#UpdateFile()` is then called, which calls `FileHandler#writeEntries(ArrayList<Entry>)`.
+   Within that function, `FileHandler#writeToFile(String)` function is called, which writes the new data
+   into the data file.
+
 
 ### user component
 ![user.png](assets%2Fuser.png)
@@ -294,7 +327,7 @@ Given below is an example usage scenario and how this mechanism behaves at every
 - Step 5: `FileHandler#updateFile()` is then called to update the data file with the new entry in the `SleepList`.
 
 The sequence diagram for this feature is shown below:
-![SleepAddSeqDiagram.jpg](assets%2FSleepAddSeqDiagram.jpg)
+![SleepAddSeqDiagram.jpg](assets%2FSleepAddSeqDiagram.png)
 
 ### Parsing user input for sleep entries
 
