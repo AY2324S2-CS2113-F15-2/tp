@@ -30,7 +30,7 @@
 ## Design
 
 ### calories component
-Here's a (partial) class diagram of the `calories` component.
+Here's a (partial) class diagram of the `sleep` component.
 
 ![calories.png](assets%2Fcalories.png)
 
