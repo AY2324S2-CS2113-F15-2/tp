@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,6 +18,11 @@ import seedu.lifetrack.hydration.hydrationlist.HydrationEntry;
 import seedu.lifetrack.sleep.sleeplist.SleepEntry;
 import seedu.lifetrack.system.exceptions.FileHandlerException;
 import seedu.lifetrack.user.User;
+
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileDateLaterThanCurrentMessage;
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidCaloriesMessage;
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidEntryIDMessage;
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidDateMessage;
 
 public class FileHandler {
 
@@ -52,6 +58,9 @@ public class FileHandler {
     private static final int GOAL_INDEX = 6;
     private static final int REQ_CAL_INDEX = 7;
 
+    //exception prefix strings
+    private static final String NF_EXCEPTION_PREFIX = "For input string: \"";
+
     //error message for IO exception
     private static final String message = "\t Unable to write to file!";
 
@@ -59,6 +68,12 @@ public class FileHandler {
 
     public FileHandler(String filePath) {
         this.filePath = filePath;
+    }
+
+    private void checkDateNotLaterThanCurrent(LocalDate date, int lineNumber) throws FileHandlerException {
+        if (date.isAfter(LocalDate.now())) {
+            throw new FileHandlerException(getFileDateLaterThanCurrentMessage(lineNumber, filePath));
+        }
     }
 
     private void writeToFile(String textToAdd) throws IOException {
@@ -92,14 +107,15 @@ public class FileHandler {
         Scanner s = new Scanner(f);
         ArrayList<Entry> entries = new ArrayList<>();
         String line = "";
+        int i = 1;
         while (s.hasNext()) {
+            line = s.nextLine();
+            String[] words = line.split(";");
             try {
-                line = s.nextLine();
-                String[] words = line.split(";");
-                System.out.println(words[0]);
                 int entryID = Integer.parseInt(words[ENTRYID_INDEX]);
                 calculateMaxCaloriesEntry(entryID);
                 LocalDate date = LocalDate.parse(words[DATE_INDEX]);
+                checkDateNotLaterThanCurrent(date, i);
                 String description = words[DESCRIPTION_INDEX];
                 int calories = Integer.parseInt(words[CALORIES_INDEX]);
                 String entryType = words[ENTRY_TYPE_INDEX];
@@ -114,8 +130,18 @@ public class FileHandler {
                 } else {
                     entries.add(new OutputEntry(entryID, description, calories, date));
                 }
-            } catch (NumberFormatException e){
-                System.out.println("wrong format");
+            } catch (NumberFormatException e) {
+                if (e.getMessage().equals(NF_EXCEPTION_PREFIX + words[ENTRYID_INDEX] + "\"")) {
+                    System.out.println(getFileInvalidEntryIDMessage(i, filePath));
+                } else if (e.getMessage().equals(NF_EXCEPTION_PREFIX + words[CALORIES_INDEX] + "\"")) {
+                    System.out.println(getFileInvalidCaloriesMessage(i, filePath));
+                }
+            } catch (DateTimeParseException e) {
+                System.out.println(getFileInvalidDateMessage(i, filePath));
+            } catch (FileHandlerException e) {
+                System.out.println(e.getMessage());
+            } finally {
+                i++;
             }
         }
         s.close();
