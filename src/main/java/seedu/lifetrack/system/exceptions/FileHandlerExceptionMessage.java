@@ -27,8 +27,19 @@ public class FileHandlerExceptionMessage {
     //hydration list error messages
     private static final String INVALID_VOLUME = "\t An invalid volume value was given in line ";
 
-    //hydration list error messages
+    //sleep list error messages
     private static final String INVALID_DURATION = "\t An invalid duration value was given in line ";
+
+    //user error messages
+    private static final String USER_NOT_ADDED = "\t User was not set up due to corrupt data!\n";
+    private static final String EMPTY_NAME = "\t An empty name was given in ";
+    private static final String INVALID_HEIGHT = "\t An invalid height was given in ";
+    private static final String INVALID_WEIGHT = "\t An invalid weight was given in ";
+    private static final String INVALID_AGE = "\t An invalid age was given in ";
+    private static final String INVALID_SEX = "\t An invalid sex was given in ";
+    private static final String INVALID_EX_LEVELS = "\t An invalid exercise level was given in ";
+    private static final String INVALID_GOAL = "\t An invalid goal was given in ";
+    private static final String INVALID_REQ_CAL = "\t An invalid required calories value was given in ";
 
     //messages to provide user guidance (general)
     private static final String DATE_FORMAT_GUIDANCE = "\t Please ensure that a date in format YYYY-MM-DD is given";
@@ -52,17 +63,27 @@ public class FileHandlerExceptionMessage {
 
     //messages to provide user guidance (sleep)
     private static final String SLEEP_FIELDS_GUIDANCE = "\t Please ensure that three fields are provided!";
-
+    
+    //messages to provide user guidance (user)
+    private static final String USER_FIELDS_GUIDANCE = "\t Please ensure that eight fields are provided!";
+    private static final String NAME_GUIDANCE = "\t Please ensure that the name field is not empty!";
+    private static final String HEIGHT_GUIDANCE = "\t Please ensure that an integer between 90 and 225 (cm) " +
+            "is provided!";
+    private static final String WEIGHT_GUIDANCE = "\t Please ensure that an integer between 30 and 200 (kg) " +
+            "is provided!";
+    private static final String AGE_GUIDANCE = "\t Please ensure that an integer between 13 and 30 (years) " +
+            "is provided!";
+    private static final String SEX_GUIDANCE = "\t Please ensure that the sex field is only either "+
+            "\"male\" or \"female\"!";
+    private static final String EX_LEVELS_GOALS_GUIDANCE = "\t Please ensure that an integer between 1 to 5 is provided!";
 
     private static String getLineNotAddedMessage(int lineNumber, String filePath) {
         if (filePath.equals("data/caloriesData.txt")) {
             return "\t Line " + lineNumber + " was not added into the calories list due to corrupt data!\n";
         } else if (filePath.equals("data/hydrationData.txt")) {
             return "\t Line " + lineNumber + " was not added into the hydration list due to corrupt data!\n";
-        } else if (filePath.equals("data/sleepData.txt")){
-            return "\t Line " + lineNumber + " was not added into the sleep list due to corrupt data!\n";
         } else {
-            return "\t The user was not set due to corrupt data!\n";
+            return "\t Line " + lineNumber + " was not added into the sleep list due to corrupt data!\n";
         }
     }
 
@@ -182,5 +203,56 @@ public class FileHandlerExceptionMessage {
         String suffix = getLineNotAddedMessage(lineNumber, filePath);
         printLine();
         return INVALID_DURATION + lineNumber + " of " + filePath + "!\n" + suffix + POS_FLOAT_GUIDANCE;
+    }
+
+    //user related messages
+    public static String getFileUserTooManyFieldsMessage(String filePath) {
+        printLine();
+        return TOO_MANY_FIELDS + " 1 of " + filePath + "!\n" + USER_NOT_ADDED + USER_FIELDS_GUIDANCE;
+    }
+
+    public static String getFileUserTooFewFieldsMessage(String filePath) {
+        printLine();
+        return TOO_FEW_FIELDS + " 1 of " + filePath + "!\n" + USER_NOT_ADDED + USER_FIELDS_GUIDANCE;
+    }
+
+    public static String getFileUserEmptyNameMessage(String filePath) {
+        printLine();
+        return EMPTY_NAME + filePath + "!\n" + USER_NOT_ADDED + NAME_GUIDANCE;
+    }
+
+    public static String getFileInvalidHeightMessage(String filePath) {
+        printLine();
+        return INVALID_HEIGHT + filePath + "!\n" + USER_NOT_ADDED + HEIGHT_GUIDANCE;
+    }
+
+    public static String getFileInvalidWeightMessage(String filePath) {
+        printLine();
+        return INVALID_WEIGHT + filePath + "!\n" + USER_NOT_ADDED + WEIGHT_GUIDANCE;
+    }
+
+    public static String getFileInvalidAgeMessage(String filePath) {
+        printLine();
+        return INVALID_AGE + filePath + "!\n" + USER_NOT_ADDED + AGE_GUIDANCE;
+    }
+
+    public static String getFileInvalidSexMessage(String filePath) {
+        printLine();
+        return INVALID_SEX + filePath + "!\n" + USER_NOT_ADDED + SEX_GUIDANCE;
+    }
+
+    public static String getFileInvalidExerciseLevelMessage(String filePath) {
+        printLine();
+        return INVALID_EX_LEVELS + filePath + "!\n" + USER_NOT_ADDED + EX_LEVELS_GOALS_GUIDANCE;
+    }
+
+    public static String getFileInvalidGoalMessage(String filePath) {
+        printLine();
+        return INVALID_GOAL + filePath + "!\n" + USER_NOT_ADDED + EX_LEVELS_GOALS_GUIDANCE;
+    }
+
+    public static String getFileInvalidReqCalMessage(String filePath) {
+        printLine();
+        return INVALID_REQ_CAL + filePath + "!\n" + USER_NOT_ADDED + POS_INT_GUIDANCE;
     }
 }
