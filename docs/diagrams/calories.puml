@@ -6,12 +6,12 @@ rectangle OutputEntry
 rectangle Food
 
 rectangle Entry
-rectangle FileHandler
+rectangle CaloriesFileHandler
 rectangle Ui
 rectangle ParserCalories
 
 CalorieList -> "*" Entry
-CalorieList --> "1" FileHandler
+CalorieList --> "1" CaloriesFileHandler
 CalorieList --[dotted]> ParserCalories
 
 Ui -[dotted]> CalorieList

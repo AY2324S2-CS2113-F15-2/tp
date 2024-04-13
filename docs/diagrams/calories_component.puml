@@ -25,10 +25,10 @@ return
 CalorieList -> CalorieList: updateFile()
 activate CalorieList
 
-CalorieList -> FileHandler : writeEntries(ArrayList<Entry>)
-activate FileHandler
-FileHandler -> FileHandler : writeToFile(String)
-activate FileHandler
+CalorieList -> CaloriesFileHandler : writeEntries(ArrayList<Entry>)
+activate CaloriesFileHandler
+CaloriesFileHandler -> CaloriesFileHandler : writeToFile(String)
+activate CaloriesFileHandler
 return
 return
 
