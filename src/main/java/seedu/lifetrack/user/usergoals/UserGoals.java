@@ -169,32 +169,32 @@ public class UserGoals {
 
     public static void getSleepProgressBar(User user) {
         int sleepRequired = user.getSleepRequired();
-        int sleepConsumedToday = sleepList.getSleepConsumed(LocalDate.now());
+        double sleepConsumedToday = sleepList.getSleepConsumed(LocalDate.now());
         if (sleepConsumedToday < 0) {
             sleepConsumedToday = 0;
         }
-        double progressToday = (double) sleepConsumedToday / sleepRequired;
-        int sleepConsumedYesterday = sleepList.getSleepConsumed
+        double progressToday = sleepConsumedToday / sleepRequired;
+        double sleepConsumedYesterday = sleepList.getSleepConsumed
                 (LocalDate.now().plusDays(NUMBER_OF_DAYS_TO_YESTERDAY));
         if (sleepConsumedYesterday < 0) {
             sleepConsumedYesterday = 0;
         }
-        double progressYesterday = (double) sleepConsumedYesterday / sleepRequired;
+        double progressYesterday = sleepConsumedYesterday / sleepRequired;
         int width = PROGRESS_BAR_WIDTH;
 
-        int sleepConsumedDayBefore = sleepList.getSleepConsumed
+        double sleepConsumedDayBefore = sleepList.getSleepConsumed
                 (LocalDate.now().plusDays(NUMBER_OF_DAYS_TO_DAY_BEFORE));
         if (sleepConsumedDayBefore < 0) {
             sleepConsumedDayBefore = 0;
         }
-        double progressDayBefore = (double) sleepConsumedDayBefore / sleepRequired;
+        double progressDayBefore = sleepConsumedDayBefore / sleepRequired;
 
         double[] progress = new double[NUMBER_OF_DAYS_TO_TRACK];
         progress[INDEX_OF_TODAY] = progressToday;
         progress[INDEX_OF_YESTERDAY] = progressYesterday;
         progress[INDEX_OF_DAY_BEFORE] = progressDayBefore;
 
-        int[] sleepConsumed = new int[NUMBER_OF_DAYS_TO_TRACK];
+        double[] sleepConsumed = new double[NUMBER_OF_DAYS_TO_TRACK];
         sleepConsumed[INDEX_OF_TODAY] = sleepConsumedToday;
         sleepConsumed[INDEX_OF_YESTERDAY] = sleepConsumedYesterday;
         sleepConsumed[INDEX_OF_DAY_BEFORE] = sleepConsumedDayBefore;

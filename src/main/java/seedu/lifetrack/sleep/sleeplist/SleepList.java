@@ -99,7 +99,7 @@ public class SleepList {
         return 0; // Default value if file doesn't exist or error occurs
     }
 
-    public int getSleepConsumed(LocalDate date) {
+    public double getSleepConsumed(LocalDate date) {
         double totalSleep = 0;
         for (Entry entry : sleepList) {
             if (entry.getDate().isEqual(date)) {
@@ -107,7 +107,7 @@ public class SleepList {
                 totalSleep += tempEntry.getDuration();
             }
         }
-        return (int) totalSleep;
+        return totalSleep;
     }
 }
 //@@author

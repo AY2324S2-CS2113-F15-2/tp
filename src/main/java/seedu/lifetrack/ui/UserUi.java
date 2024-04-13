@@ -47,8 +47,8 @@ public class UserUi {
         System.out.printf("\t %s %d%%\n\n", progressBar, percentage);
     }
 
-    public static void printUserSleepProgress(int sleepConsumed, int sleepRequired, String progressBar,
-                                                  int percentage, int date) {
+    public static void printUserSleepProgress(double sleepConsumed, int sleepRequired, String progressBar,
+                                              int percentage, int date) {
         String dateInString;
         if (date == INDEX_OF_TODAY) {
             System.out.print("\t Sleep:\n");
@@ -59,8 +59,8 @@ public class UserUi {
         } else {
             dateInString = "on the day before yesterday";
         }
-        System.out.printf("\t You have slept for " + sleepConsumed + "hrs out of your goal of "
-                + sleepRequired + "hrs " + dateInString + ".\n");
+        System.out.print("\t You have slept for " + sleepConsumed + " hrs out of your goal of "
+                + sleepRequired + " hrs " + dateInString + ".\n");
         System.out.printf("\t %s %d%%\n\n", progressBar, percentage);
     }
 
@@ -106,13 +106,14 @@ public class UserUi {
 
     public static void printUserDetails(User user) {
         System.out.println("\t User details:\n" +
-                "\t Name: " + user.getName() + "\n"
+                "\t Name: " + (user.getName().substring(0, 1).toUpperCase() + user.getName().substring(1))
+                + "\n"
                 + "\t Height: " + user.getHeight() + "\n"
                 + "\t Weight: " + user.getWeight() + "\n"
                 + "\t Age: " + user.getAge() + "\n"
                 + "\t Sex: " + user.getSex() + "\n"
                 + "\t Exercise Levels: " + user.getExerciseLevels() + " out of 5 ("
                 + user.getExerciseLevelAsString() + ")" + "\n"
-                + "\t Goal: " + user.getGoal() + " out of 5 (" + user.getGoalAsString() + ")" + "\n");
+                + "\t Goal: " + user.getGoal() + " out of 5 (" + user.getGoalAsString() + ")");
     }
 }
