@@ -1,26 +1,27 @@
 //@@author owx0130
 package seedu.lifetrack.system.parser;
 
+import seedu.lifetrack.Entry;
+import seedu.lifetrack.calories.Food;
+import seedu.lifetrack.calories.calorielist.CalorieList;
 import seedu.lifetrack.calories.calorielist.InputEntry;
 import seedu.lifetrack.calories.calorielist.OutputEntry;
-import seedu.lifetrack.calories.Food;
 import seedu.lifetrack.system.exceptions.InvalidInputException;
-import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncorrectCaloriesInputMessage;
-import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncorrectMacrosInputMessage;
-import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getWhitespaceInInputMessage;
-import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncompleteMacrosMessage;
-import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidDateMessage;
-import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getMacrosInCaloriesOutMessage;
-import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getCaloriesIncorrectOrderMessage;
-import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getCaloriesMissingKeywordsMessage;
-import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getEmptyMacrosMessage;
-import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getWhitespaceInMacrosInputMessage;
-import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getDateLaterThanPresentDateMessage;
-
-import seedu.lifetrack.Entry;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getCaloriesIncorrectOrderMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getCaloriesMissingKeywordsMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getDateLaterThanPresentDateMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getEmptyMacrosMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncompleteMacrosMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncorrectCaloriesInputMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncorrectMacrosInputMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidDateMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getMacrosInCaloriesOutMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getWhitespaceInInputMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getWhitespaceInMacrosInputMessage;
 
 public class ParserCalories {
 
@@ -28,10 +29,11 @@ public class ParserCalories {
     private static final int PROTEINS_IDX = 1;
     private static final int FATS_IDX = 2;
     private static final int CALORIES_OUT_PADDING = 12;
+    private static final int CALORIES_FIND_LENGTH = "calories find".length();
 
     /**
      * Parses a string input to create an Entry object representing calorie intake.
-     *
+     * <p>
      * This method expects the input string to follow a specific format, where the
      * description, calorie count, date and macronutrients are separated by the
      * delimiters 'desc/', 'c/', 'date/', and 'm/'. The method extracts these components
@@ -121,6 +123,7 @@ public class ParserCalories {
     }
 
     //@@author rexyyong
+
     /**
      * Parses a string representation of a date and returns a LocalDate object.
      *
@@ -153,8 +156,8 @@ public class ParserCalories {
     /**
      * Extracts the description from the input string based on the command and the index of calories.
      *
-     * @param inputString the input string containing the description
-     * @param command the command string indicating the type of entry ("calories in" or "calories out")
+     * @param inputString   the input string containing the description
+     * @param command       the command string indicating the type of entry ("calories in" or "calories out")
      * @param caloriesIndex the index of the "calories" keyword in the input string
      * @return the description extracted from the input string
      */
@@ -182,7 +185,7 @@ public class ParserCalories {
         try {
             String[] macroParts = macroString.split(",");
             int idx = 0;
-            for (String macro: macroParts) {
+            for (String macro : macroParts) {
                 //throw exception if user inputs whitespace in the macros field i.e. m/123, ,123
                 if (macro.trim().isEmpty()) {
                     throw new InvalidInputException(getWhitespaceInMacrosInputMessage());
@@ -217,7 +220,7 @@ public class ParserCalories {
      *
      * @param description the description of the entry
      * @param strCalories the string representation of calories
-     * @param date the date of the entry
+     * @param date        the date of the entry
      * @throws InvalidInputException if any of the inputs are empty strings
      */
     private static void checkInputsAreNonEmpty(String description, String strCalories, String date)
@@ -232,7 +235,7 @@ public class ParserCalories {
      * Checks if the keywords for calories and date exist in the input string.
      *
      * @param caloriesIndex the index of the "c/" keyword in the input
-     * @param dateIndex the index of the "date/" keyword in the input
+     * @param dateIndex     the index of the "date/" keyword in the input
      * @throws InvalidInputException if the keywords are missing
      */
     private static void checkKeywordsExist(int caloriesIndex, int dateIndex) throws InvalidInputException {
@@ -246,8 +249,8 @@ public class ParserCalories {
      * Checks if the keywords for calories and date are correctly ordered in the input string.
      *
      * @param caloriesIndex the index of the "c/" keyword in the input
-     * @param dateIndex the index of the "date/" keyword in the input
-     * @param macrosIndex the index of the "macros/" keyword in the input
+     * @param dateIndex     the index of the "date/" keyword in the input
+     * @param macrosIndex   the index of the "macros/" keyword in the input
      * @throws InvalidInputException if the keywords are not correctly ordered
      */
     private static void checkKeywordsCorrectlyOrdered(int caloriesIndex, int dateIndex, int macrosIndex)
@@ -262,8 +265,8 @@ public class ParserCalories {
      * Creates a new output entry with the given description, calories, and date.
      *
      * @param description the description of the entry
-     * @param calories the number of calories
-     * @param date the date of the entry
+     * @param calories    the number of calories
+     * @param date        the date of the entry
      * @return a new OutputEntry object
      */
     private static Entry makeNewOutputEntry(int lastEntryID, String description, int calories, LocalDate date) {
@@ -274,8 +277,8 @@ public class ParserCalories {
      * Creates a new input entry with the given description, calories, and date.
      *
      * @param description the description of the entry
-     * @param calories the number of calories
-     * @param date the date of the entry
+     * @param calories    the number of calories
+     * @param date        the date of the entry
      * @return a new InputEntry object
      */
     private static Entry makeNewInputEntry(int lastEntryID, String description, int calories, LocalDate date) {
@@ -287,9 +290,9 @@ public class ParserCalories {
      * Creates a new input entry with the given description, calories, date, and food macros.
      *
      * @param description the description of the entry
-     * @param calories the number of calories
-     * @param date the date of the entry
-     * @param foodMacros an array containing food macros (carbs, proteins, fats)
+     * @param calories    the number of calories
+     * @param date        the date of the entry
+     * @param foodMacros  an array containing food macros (carbs, proteins, fats)
      * @return a new InputEntry object with food macros
      */
     private static Entry makeNewInputEntry(int lastEntryID, String description, int calories, LocalDate date,
@@ -298,5 +301,22 @@ public class ParserCalories {
         Food newFood = new Food(foodMacros[CARBS_IDX], foodMacros[PROTEINS_IDX], foodMacros[FATS_IDX]);
 
         return new InputEntry(lastEntryID, description, calories, date, newFood);
+    }
+
+    //@@author paturikarthik
+    public static void findCalorieListEntries(String input, CalorieList originalList) {
+        String keyword = input.substring(CALORIES_FIND_LENGTH).trim();
+        CalorieList searchList = new CalorieList();
+        for (int i = 0; i < originalList.getSize(); i++) {
+            Entry entry = originalList.getEntry(i);
+            if (entry.getDescription().contains(keyword)) {
+                if (entry instanceof InputEntry) {
+                    Entry entryToAdd = makeNewInputEntry(entry.getLastEntryID(), entry.getDescription()
+                            , ((InputEntry) entry).getCalories(), entry.getDate());
+                    searchList.addCalorieEntry(entryToAdd);
+                }
+            }
+        }
+        searchList.printFoundCalorieList();
     }
 }

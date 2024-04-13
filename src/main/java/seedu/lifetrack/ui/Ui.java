@@ -62,21 +62,25 @@ public class Ui {
             calorieList.printCalorieList();
         } else if (line.startsWith("calories delete ")) {
             calorieList.deleteEntry(line);
+        } else if (line.startsWith("calories find ")) {
+            calorieList.findEntries(line);
         } else {
-            handleUnknownInput();
+            handleUnknownInput(line);
         }
     }
 
     public static void handleHydrationInput(String line, HydrationList hydrationList) {
         assert !line.startsWith("bye") : "exit the app";
-        if (line.startsWith("hydration in ")) {
+        if (line.startsWith("hydration in")) {
             hydrationList.addEntry(line);
         } else if (line.equals("hydration list")) {
             hydrationList.printHydrationList();
         } else if (line.startsWith("hydration delete ")) {
             hydrationList.deleteEntry(line);
+        } else if (line.startsWith("hydration find ")){
+            hydrationList.findEntries(line);
         } else {
-            handleUnknownInput();
+            handleUnknownInput(line);
         }
     }
     //@@author
@@ -91,7 +95,7 @@ public class Ui {
         } else if (line.startsWith("sleep delete ")) {
             sleepList.deleteSleep(line);
         } else {
-            handleUnknownInput();
+            handleUnknownInput(line);
         }
     }
     //@@author
@@ -115,7 +119,7 @@ public class Ui {
             } else if (line.startsWith("user")) {
                 handleUserCommands(line, user);
             } else {
-                handleUnknownInput();
+                handleUnknownInput(line);
             }
             printLine();
         }
@@ -139,7 +143,7 @@ public class Ui {
                 printUserDetails(user);
             }
         } else {
-            handleUnknownInput();
+            handleUnknownInput(line);
         }
     }
 
@@ -173,8 +177,20 @@ public class Ui {
                 "----------------------------------------");
     }
 
-    public static void handleUnknownInput() {
-        System.out.println("\t Oops! I've never seen this input before...");
+    /**
+     * Sorts unhandled inputs into incomplete inputs and unknown inputs
+     *
+     * @param line string input from user
+     */
+    public static void handleUnknownInput(String line) {
+        if (line.startsWith("calories in") || line.startsWith("calories out") || line.startsWith("calories delete") ||
+                line.startsWith("hydration in") || line.startsWith("hydration delete") || line.startsWith("sleep add")
+                || line.startsWith("sleep delete") || line.startsWith("user setup")
+                || line.startsWith("calories find") || line.startsWith("hydration find")) {
+            System.out.println("\t Oops! Incomplete command!");
+        } else {
+            System.out.println("\t Oops! I've never seen this input before...");
+        }
         System.out.println("\t If you are unsure of the commands, use the help command for a quick recap :)");
 
     }
@@ -190,12 +206,16 @@ public class Ui {
         System.out.println("\t - calories list: Displays all entries currently stored in the calorie list.");
         System.out.println("\t - calories delete <calorie ID>: Deletes the entry at the specified ID" +
                 " from the calorie list.");
+        System.out.println("\t - calories find <keyword>: finds and lists all calorie entries " +
+                "containing the keyword " + "in their description");
         printLine();
         System.out.println("\t - hydration in <beverage> v/<volume> d/<date, format:YYYY-MM-DD>:\n" +
                 "\t Adds a hydration entry into the hydration tracker.");
         System.out.println("\t - hydration list: Displays all entries currently stored in the hydration list.");
         System.out.println("\t - hydration delete <hydration ID>: Deletes the hydration entry at the specified ID " +
                 "from the hydration list.");
+        System.out.println("\t - hydration find <keyword>: finds and lists all hydration entries containing " +
+                "the keyword " + "in their description");
         printLine();
         System.out.println("\t - sleep add <duration> d/<date, format:YYYY-MM-DD>: " +
                 "Adds a sleep entry into the sleep tracker.");

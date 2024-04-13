@@ -23,6 +23,9 @@ public class CalorieListUi {
     public static void emptyListMessage() {
         System.out.println("\t Your caloric list is empty. Add new entries to populate your list :)");
     }
+    public static void emptyFoundListMessage() {
+        System.out.println("\t There were no matches to your search!");
+    }
     //@@author a-wild-chocolate
     public static String deleteLogIndexMessage() {
         return "\t Sorry, this index is invalid. Please enter a positive integer within the size of the list.";
@@ -37,6 +40,9 @@ public class CalorieListUi {
         System.out.println("\t Your Caloric List:");
     }
 
+    public static void calorieListFoundHeader() {
+        System.out.println("\t Caloric List based on your search:");
+    }
     public static void outputCalorieListHeader() {
         System.out.println("");
         System.out.println("\t Your Caloric Outflow List:");

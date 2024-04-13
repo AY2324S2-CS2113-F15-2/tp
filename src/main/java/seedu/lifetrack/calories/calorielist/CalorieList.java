@@ -263,4 +263,23 @@ public class CalorieList {
             }
         });
     }
+
+    //@@author paturikarthik
+    public void findEntries(String input){
+        ParserCalories.findCalorieListEntries(input,this);
+    }
+
+    public void addCalorieEntry(Entry entry){
+        this.calorieArrayList.add(entry);
+    }
+
+    public void printFoundCalorieList() {
+        if (calorieArrayList.isEmpty()) {
+            CalorieListUi.emptyFoundListMessage();
+        } else {
+            CalorieListUi.calorieListFoundHeader();
+            printCalorieInflow();
+            printCalorieOutflow();
+        }
+    }
 }

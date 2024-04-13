@@ -3,9 +3,13 @@ package seedu.lifetrack.hydration.hydrationlist;
 
 import seedu.lifetrack.Entry;
 import seedu.lifetrack.calories.calorielist.CalorieList;
+import seedu.lifetrack.calories.calorielist.InputEntry;
+import seedu.lifetrack.calories.calorielist.OutputEntry;
 import seedu.lifetrack.system.exceptions.InvalidInputException;
+import seedu.lifetrack.system.parser.ParserCalories;
 import seedu.lifetrack.system.parser.ParserHydration;
 import seedu.lifetrack.system.storage.FileHandler;
+import seedu.lifetrack.ui.CalorieListUi;
 import seedu.lifetrack.ui.HydrationListUI;
 
 import java.io.FileNotFoundException;
@@ -200,4 +204,23 @@ public class HydrationList {
     private int loadLastEntryID() {
         return FileHandler.getMaxHydrationID();
     }
+
+    //@@author paturikarthik
+    public void findEntries(String input){
+        ParserHydration.findHydrationListEntries(input,this);
+    }
+
+    public void addHydrationEntry(Entry entry){
+        this.hydrationArrayList.add(entry);
+    }
+
+    public void printFoundHydrationList() {
+        if (hydrationArrayList.isEmpty()) {
+            HydrationListUI.emptyFoundListMessage();
+        } else {
+            HydrationListUI.hydrationListFoundHeader();
+            printHydrationInflow();
+        }
+    }
+
 }

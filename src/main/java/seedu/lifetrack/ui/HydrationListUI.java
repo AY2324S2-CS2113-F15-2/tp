@@ -17,6 +17,12 @@ public class HydrationListUI {
     public static void emptyListMessage() {
         System.out.println("\t Your hydration list is empty. Add new entries to populate your list :)");
     }
+    public static void emptyFoundListMessage() {
+        System.out.println("\t There were no matches to your search!");
+    }
+    public static void hydrationListFoundHeader() {
+        System.out.println("\t Hydration List based on your search:");
+    }
 
     public static String deleteLogIndexMessage() {
         return "\t Sorry, this index is invalid. Please enter a positive integer within the size of the list.";
