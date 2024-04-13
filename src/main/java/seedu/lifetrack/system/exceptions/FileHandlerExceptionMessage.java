@@ -75,7 +75,8 @@ public class FileHandlerExceptionMessage {
             "is provided!";
     private static final String SEX_GUIDANCE = "\t Please ensure that the sex field is only either "+
             "\"male\" or \"female\"!";
-    private static final String EX_LEVELS_GOALS_GUIDANCE = "\t Please ensure that an integer between 1 to 5 is provided!";
+    private static final String EX_LEVELS_GOALS_GUIDANCE = "\t Please ensure that an integer between 1 to 5 " +
+            "is provided!";
 
     private static String getLineNotAddedMessage(int lineNumber, String filePath) {
         if (filePath.equals("data/caloriesData.txt")) {

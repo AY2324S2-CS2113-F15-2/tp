@@ -23,10 +23,11 @@ public class FileHandler {
     //NumberFormatException exception message prefix
     protected final String NF_EXCEPTION_PREFIX = "For input string: \"";
 
+    protected String filePath;
+
     //error message for IO exception
     private final String message = "\t Unable to write to file!";
 
-    protected String filePath;
 
     public FileHandler(String filePath) {
         this.filePath = filePath;
