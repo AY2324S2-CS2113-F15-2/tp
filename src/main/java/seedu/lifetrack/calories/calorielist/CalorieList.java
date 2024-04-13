@@ -90,9 +90,7 @@ public class CalorieList {
                 CalorieListUi.successfulDeletedMessage(toDelete);
                 updateFile();
             }
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println(CalorieListUi.deleteLogNumberMessage());
-        } catch (NumberFormatException e) {
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
             System.out.println(CalorieListUi.deleteLogNumberMessage());
         }
     }
@@ -209,13 +207,13 @@ public class CalorieList {
      *
      * @return the total number of calories consumed
      */
-    public int getCaloriesConsumed() {
+    public int getCaloriesConsumed(LocalDate date) {
         int totalCalories = 0;
         for (Entry entry : calorieArrayList) {
-            if (entry instanceof InputEntry) {
+            if (entry instanceof InputEntry && entry.getDate().isEqual(date)) {
                 InputEntry tempEntry = (InputEntry) entry;
                 totalCalories += tempEntry.getCalories();
-            } else if (entry instanceof OutputEntry) {
+            } else if (entry instanceof OutputEntry && entry.getDate().isEqual(date)) {
                 OutputEntry tempEntry = (OutputEntry) entry;
                 totalCalories -= tempEntry.getCalories();
             }

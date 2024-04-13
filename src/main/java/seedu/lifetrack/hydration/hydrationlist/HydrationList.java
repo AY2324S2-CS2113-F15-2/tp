@@ -73,7 +73,7 @@ public class HydrationList {
      * @param line the string containing the index of the liquid record to delete
      */
     public void deleteEntry(String line) {
-        assert (line.startsWith("hydration delete") ) : "ensures that input is correct";
+        assert (line.startsWith("hydration delete")) : "ensures that input is correct";
         try {
             int entryID = Integer.parseInt(line.substring(SIZE_OF_DELETE).trim());
             int index = getIndexFromEntryID(entryID);
@@ -93,6 +93,7 @@ public class HydrationList {
             System.out.println(HydrationListUI.deleteLogNumberMessage());
         }
     }
+
     public int getIndexFromEntryID(int lastEntryID) {
         for (int i = 0; i < hydrationArrayList.size(); i++) {
             if (hydrationArrayList.get(i).getLastEntryID() == lastEntryID) {
@@ -115,9 +116,9 @@ public class HydrationList {
             hydrationArrayList.add(newEntry);
             updateFile();
             HydrationListUI.printNewHydrationEntry(newEntry);
-            lastHydrationEntryID ++;
+            lastHydrationEntryID++;
             if (hydrationArrayList.size() > 1 &&
-                hydrationArrayList.get(hydrationArrayList.size() - 2).getDate().compareTo(newEntry.getDate()) > 0 ) {
+                    hydrationArrayList.get(hydrationArrayList.size() - 2).getDate().compareTo(newEntry.getDate()) > 0) {
                 sortEntriesByDate();
             }
         } catch (InvalidInputException e) {
@@ -164,11 +165,13 @@ public class HydrationList {
      *
      * @return the total amount of hydration consumed
      */
-    public int getHydrationConsumed() {
+    public int getHydrationConsumed(LocalDate date) {
         int totalHydration = 0;
-        for (int i = 0; i < hydrationArrayList.size(); i++) {
-            HydrationEntry tempEntry = (HydrationEntry) hydrationArrayList.get(i);
-            totalHydration += tempEntry.getHydration();
+        for (Entry entry : hydrationArrayList) {
+            if (entry.getDate().isEqual(date)) {
+                HydrationEntry tempEntry = (HydrationEntry) entry;
+                totalHydration += tempEntry.getHydration();
+            }
         }
         return totalHydration;
     }
