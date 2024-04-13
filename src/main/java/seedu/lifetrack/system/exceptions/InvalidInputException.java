@@ -1,10 +1,7 @@
 //@@author owx0130
 package seedu.lifetrack.system.exceptions;
 
-
 public class InvalidInputException extends Exception {
-
-    public final String heythere = "";
 
     /**
      * Constructs a new InvalidInputException with a default error message.

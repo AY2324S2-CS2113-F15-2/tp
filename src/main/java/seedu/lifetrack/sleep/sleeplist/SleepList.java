@@ -4,7 +4,7 @@ package seedu.lifetrack.sleep.sleeplist;
 import seedu.lifetrack.Entry;
 import seedu.lifetrack.system.exceptions.InvalidInputException;
 import seedu.lifetrack.system.parser.ParserSleep;
-import seedu.lifetrack.system.storage.FileHandler;
+import seedu.lifetrack.system.storage.SleepFileHandler;
 import seedu.lifetrack.ui.SleepListUi;
 
 import java.io.FileNotFoundException;
@@ -15,7 +15,7 @@ public class SleepList {
 
     private static int DELETE_IDX = 2;
     private ArrayList<Entry> sleepList;
-    private FileHandler fileHandler;
+    private SleepFileHandler fileHandler;
     private int lastSleepEntryID;
 
     //constructor for JUnit tests
@@ -26,7 +26,7 @@ public class SleepList {
     //constructor for usage in terminal
     public SleepList(String filePath) {
         try {
-            fileHandler = new FileHandler(filePath);
+            fileHandler = new SleepFileHandler(filePath);
             sleepList = fileHandler.getSleepEntriesFromFile();
             this.lastSleepEntryID = loadLastEntryID();
         } catch (FileNotFoundException e) {

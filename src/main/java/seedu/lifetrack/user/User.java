@@ -2,7 +2,7 @@
 package seedu.lifetrack.user;
 
 import seedu.lifetrack.system.exceptions.InvalidInputException;
-import seedu.lifetrack.system.storage.FileHandler;
+import seedu.lifetrack.system.storage.UserFileHandler;
 import seedu.lifetrack.user.usergoals.UserGoals;
 
 import java.io.FileNotFoundException;
@@ -13,7 +13,7 @@ import static seedu.lifetrack.system.parser.ParserUser.parseUpdate;
 
 public class User {
 
-    private FileHandler fileHandler;
+    private UserFileHandler fileHandler;
     private String name;
     private int height;
     private int weight;
@@ -44,16 +44,18 @@ public class User {
     //constructor for usage in terminal
     public User(String filePath) {
         try {
-            fileHandler = new FileHandler(filePath);
-            ArrayList<String> data = fileHandler.getUserDataFromFile();
-            name = data.get(NAME_INDEX);
-            height = Integer.parseInt(data.get(HEIGHT_INDEX));
-            weight = Integer.parseInt(data.get(WEIGHT_INDEX));
-            age = Integer.parseInt(data.get(AGE_INDEX));
-            sex = data.get(SEX_INDEX);
-            exerciseLevels = Integer.parseInt(data.get(EXERCISE_INDEX));
-            goal = Integer.parseInt(data.get(GOAL_INDEX));
-            caloriesRequired = Integer.parseInt(data.get(REQ_CAL_INDEX));
+            fileHandler = new UserFileHandler(filePath);
+            ArrayList<String> data = fileHandler.getUserDataFromFile(this);
+            if (data.size() == 8) {
+                name = data.get(NAME_INDEX);
+                height = Integer.parseInt(data.get(HEIGHT_INDEX));
+                weight = Integer.parseInt(data.get(WEIGHT_INDEX));
+                age = Integer.parseInt(data.get(AGE_INDEX));
+                sex = data.get(SEX_INDEX);
+                exerciseLevels = Integer.parseInt(data.get(EXERCISE_INDEX));
+                goal = Integer.parseInt(data.get(GOAL_INDEX));
+                caloriesRequired = Integer.parseInt(data.get(REQ_CAL_INDEX));
+            }
         } catch (FileNotFoundException e) {
             return;
         }

@@ -30,14 +30,14 @@
 ## Design
 
 ### calories component
-Here's a (partial) class diagram of the `sleep` component.
+Here's a (partial) class diagram of the `calories` component.
 
 ![calories.png](assets%2Fcalories.png)
 
 The calories component consists of the following Classes
 1. `Ui` : Handles user and program interaction.
 2. `CalorieList` : Handles the list of calories entries.
-3. `FileHandler` : Handles the saving and reading of data from file.
+3. `CaloriesFileHandler` : Handles the saving and reading of data from file.
 4. `ParserCalories` : Handles the parsing of user input to determine type of command.
 5. `Entry` : Handles calories entries data.
 6. `OutputEntry` : Handles calories output entries data.
@@ -46,7 +46,7 @@ The calories component consists of the following Classes
 
 The sequence diagram bellow illustrates the interactions within the `calories` component, taking
 `calories in donut c/1000 d/2024-04-10` call as an example. 
-![caloriesComponent.png](assets%2FcaloriesComponent.png)
+![calories_component.png](assets%2Fcalories_component.png)
 
 How the `calories` component works:
 1. When the user keys in the `calories in donut c/1000 d/2024-04-10` command, 
@@ -63,8 +63,8 @@ to the caller, `CalorieList#addEntry(String)` which was called in step 2.
 4. The returned `InputEntry` object is added into the `calorieArrayList` member of type
 `ArrayList<Entry>` in the `CalorieList`, via the `ArrayList.add()` method. 
 
-5. `CalorieList#UpdateFile()` is then called, which calls `FileHandler#writeEntries(ArrayList<Entry>)`.
-Within that function, `FileHandler#writeToFile(String)` function is called, which writes the new data
+5. `CalorieList#UpdateFile()` is then called, which calls `CaloriesFileHandler#writeEntries(ArrayList<Entry>)`.
+Within that function, `CaloriesFileHandler#writeToFile(String)` function is called, which writes the new data
 into the data file. 
 
 6. If the dates of entries are not sorted in ascending order, `CalorieList#sortEntriesByDate()`
@@ -76,13 +76,13 @@ function is called, which sorts the entries in ascending order.
 
 
 ### sleep component
-Here's a (partial) class diagram of the `calories` component.
+Here's a (partial) class diagram of the `sleep` component.
 ![sleep.png](assets%2Fsleep.png)
 
 The sleep component consists of the following classes:
 1. `Ui`: Handles user and program interaction.
 2. `SleepList`: Handles the list of sleep records.
-3. `FileHandler`: Handles the saving and reading of data from the file.
+3. `SleepFileHandler`: Handles the saving and reading of data from the file.
 4. `ParserSleep`: Handles the parsing of user input to determine type of command.
 5. `Entry`: Handles all entries data.
 6. `SleepEntry`: Handles sleep entries data.
@@ -105,8 +105,8 @@ How the `sleep` component works:
 4. The returned `SleepEntry` object is added into the `sleepList` member of type
    `ArrayList<Entry>` in the `SleepList`, via the `ArrayList.add()` method.
 
-5. `SleepList#UpdateFile()` is then called, which calls `FileHandler#writeEntries(ArrayList<Entry>)`.
-   Within that function, `FileHandler#writeToFile(String)` function is called, which writes the new data
+5. `SleepList#UpdateFile()` is then called, which calls `SleepFileHandler#writeEntries(ArrayList<Entry>)`.
+   Within that function, `SleepFileHandler#writeToFile(String)` function is called, which writes the new data
    into the data file.
 
 
@@ -118,11 +118,11 @@ How the `sleep` component works:
 
 #### Implementation
 
-This functionality is facilitated by `UI`, `CalorieList`, `FileHandler` and `ParserCalories`. It implements one operation, namely:
+This functionality is facilitated by `UI`, `CalorieList`, and `ParserCalories`. It implements one operation, namely:
 - `UI#handleCaloriesInput(String, CalorieList)`
 - `CalorieList#addEntry(String)`
+- `CalorieList#updateFile()`
 - `ParserCalories#parseCaloriesInput(String)`
-- `FileHandler#updateFile()`
 
 This feature is activated when the user inputs a `calories in` or `calories out` command in the terminal.
 
@@ -137,11 +137,11 @@ the string is sent to `UI#handleCaloriesInput(String, CalorieList)`, which calls
 
 - Step 4: The returned `Entry` object is added into the `calorieArrayList` member of type `ArrayList<Entry>` in the `CalorieList`, via the `ArrayList.add()` method.
 
-- Step 5: `FileHandler#updateFile()` is then called to update the data file with the new entry in the `CalorieList`.
+- Step 5: `CalorieList#updateFile()` is then called to update the data file with the new entry in the `CalorieList`.
 
 The sequence diagram for this feature is shown below:
 
-![CaloriesAddEntrySeqDiagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rexyyong/tp/RexDG/docs/CaloriesAddEntrySeqDiagram.puml)
+![CaloriesAddEntrySeqDiagram.png](assets%2FCaloriesAddEntrySeqDiagram.png)
 
 ### Calculating calorie requirements based on a user`s goals
 
@@ -386,11 +386,11 @@ The Sequence diagram for Sleep delete feature is shown below:
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+Our target user profile consists of Year 2 NUS Computer Engineering (CEG) students.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+It is no secret that Year 2 is the busiest/most difficult period that CEG students will experience in university. As such, it may be easy for students to neglect their health in the midst of the hustle and bustle. We hope that through this application, tracking one's health can be made easy and straightforward, so that students can get their health info quickly on the go, and thus know whether they need to eat/drink/sleep more/less.
 
 ## User Stories
 
