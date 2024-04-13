@@ -20,6 +20,7 @@ import seedu.lifetrack.system.exceptions.FileHandlerException;
 import seedu.lifetrack.user.User;
 
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileDateLaterThanCurrentMessage;
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileEmptyDescriptionMessage;
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidCaloriesMessage;
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidEntryIDMessage;
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidDateMessage;
@@ -62,9 +63,15 @@ public class FileHandler {
         this.filePath = filePath;
     }
 
-    protected void checkDateNotLaterThanCurrent(LocalDate date, int lineNumber) throws FileHandlerException {
+    protected void checkDateNotLaterThanCurrent(int lineNumber, LocalDate date) throws FileHandlerException {
         if (date.isAfter(LocalDate.now())) {
             throw new FileHandlerException(getFileDateLaterThanCurrentMessage(lineNumber, filePath));
+        }
+    }
+
+    protected void checkNonEmptyDescription(int lineNumber, String description) throws FileHandlerException {
+        if (description.equals("")) {
+            throw new FileHandlerException(getFileEmptyDescriptionMessage(lineNumber, filePath));
         }
     }
 

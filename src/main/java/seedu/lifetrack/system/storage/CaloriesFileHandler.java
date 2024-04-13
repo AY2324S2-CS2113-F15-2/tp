@@ -13,8 +13,16 @@ import seedu.lifetrack.calories.calorielist.InputEntry;
 import seedu.lifetrack.calories.calorielist.OutputEntry;
 import seedu.lifetrack.system.exceptions.FileHandlerException;
 
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileCaloriesTooFewArgumentsMessage;
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileTooFewMacrosMessage;
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileCaloriesTooManyArgumentsMessage;
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidCaloriesMessage;
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidCarbsMessage;
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidEntryIDMessage;
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidEntryTypeMessage;
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidFatsMessage;
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidProteinsMessage;
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileMacrosInOutputMessage;
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidDateMessage;
 
 public class CaloriesFileHandler extends FileHandler {
@@ -39,6 +47,43 @@ public class CaloriesFileHandler extends FileHandler {
         }
     }
 
+    private void checkCorrectNumberOfArguments(String[] words, int lineNumber) throws FileHandlerException {
+        if (words.length < 5) {
+            throw new FileHandlerException(getFileCaloriesTooFewArgumentsMessage(lineNumber, filePath));
+        } else if (words.length > 8) {
+            throw new FileHandlerException(getFileCaloriesTooManyArgumentsMessage(lineNumber, filePath));
+        }
+    }
+
+    private void checkCaloriesIsPositive(int lineNumber, int calories) throws FileHandlerException {
+        if (calories <= 0) {
+            throw new FileHandlerException(getFileInvalidCaloriesMessage(lineNumber, filePath));
+        }
+    }
+
+    private void checkMacrosArePositive(int lineNumber, int carbs, int proteins, int fats)
+            throws FileHandlerException {
+        if (carbs <= 0) {
+            throw new FileHandlerException(getFileInvalidCarbsMessage(lineNumber, filePath));
+        } else if (proteins <= 0) {
+            throw new FileHandlerException(getFileInvalidProteinsMessage(lineNumber, filePath));
+        } else if (fats <= 0) {
+            throw new FileHandlerException(getFileInvalidFatsMessage(lineNumber, filePath));
+        }
+    }
+
+    private void checkValidEntryType(int lineNumber, String entryType, int dataLength) throws FileHandlerException {
+        if (!(entryType.equals("C_IN") || entryType.equals("C_OUT"))) {
+            throw new FileHandlerException(getFileInvalidEntryTypeMessage(lineNumber, filePath));
+        }
+        
+        if (entryType.equals("C_IN") && dataLength != 8) {
+            throw new FileHandlerException(getFileTooFewMacrosMessage(lineNumber, filePath));
+        } else if (entryType.equals("C_OUT") && dataLength != 5) {
+            throw new FileHandlerException(getFileMacrosInOutputMessage(lineNumber, filePath));
+        }
+    }
+
     public ArrayList<Entry> getCalorieEntriesFromFile() throws FileNotFoundException {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
@@ -49,18 +94,23 @@ public class CaloriesFileHandler extends FileHandler {
             line = s.nextLine();
             String[] words = line.split(";");
             try {
-                int entryID = Integer.parseInt(words[ENTRYID_INDEX]);
+                checkCorrectNumberOfArguments(words, i);
+                int entryID = Integer.parseInt(words[ENTRYID_INDEX].trim());
                 calculateMaxCaloriesEntry(entryID);
-                LocalDate date = LocalDate.parse(words[DATE_INDEX]);
-                checkDateNotLaterThanCurrent(date, i);
-                String description = words[DESCRIPTION_INDEX];
-                int calories = Integer.parseInt(words[CALORIES_INDEX]);
-                String entryType = words[ENTRY_TYPE_INDEX];
+                LocalDate date = LocalDate.parse(words[DATE_INDEX].trim());
+                checkDateNotLaterThanCurrent(i, date);
+                String description = words[DESCRIPTION_INDEX].trim();
+                checkNonEmptyDescription(i, description);
+                int calories = Integer.parseInt(words[CALORIES_INDEX].trim());
+                checkCaloriesIsPositive(i, calories);
+                String entryType = words[ENTRY_TYPE_INDEX].trim();
+                checkValidEntryType(i, entryType, words.length);
                 if (entryType.equals("C_IN") && words.length == 8) {
-                    int carbohydrates = Integer.parseInt(words[CARBOHYDRATES_INDEX]);
-                    int proteins = Integer.parseInt(words[PROTEINS_INDEX]);
-                    int fats = Integer.parseInt(words[FATS_INDEX]);
+                    int carbohydrates = Integer.parseInt(words[CARBOHYDRATES_INDEX].trim());
+                    int proteins = Integer.parseInt(words[PROTEINS_INDEX].trim());
+                    int fats = Integer.parseInt(words[FATS_INDEX].trim());
                     Food food = new Food(carbohydrates, proteins, fats);
+                    checkMacrosArePositive(i, carbohydrates, proteins, fats);
                     entries.add(new InputEntry(entryID, description, calories, date, food));
                 } else if (entryType.equals("C_IN")) {
                     entries.add(new InputEntry(entryID, description, calories, date));
@@ -72,6 +122,12 @@ public class CaloriesFileHandler extends FileHandler {
                     System.out.println(getFileInvalidEntryIDMessage(i, filePath));
                 } else if (e.getMessage().equals(NF_EXCEPTION_PREFIX + words[CALORIES_INDEX] + "\"")) {
                     System.out.println(getFileInvalidCaloriesMessage(i, filePath));
+                } else if (e.getMessage().equals(NF_EXCEPTION_PREFIX + words[CARBOHYDRATES_INDEX] + "\"")) {
+                    System.out.println(getFileInvalidCarbsMessage(i, filePath));
+                } else if (e.getMessage().equals(NF_EXCEPTION_PREFIX + words[PROTEINS_INDEX] + "\"")) {
+                    System.out.println(getFileInvalidProteinsMessage(i, filePath));
+                } else if (e.getMessage().equals(NF_EXCEPTION_PREFIX + words[FATS_INDEX] + "\"")) {
+                    System.out.println(getFileInvalidFatsMessage(i, filePath));
                 }
             } catch (DateTimeParseException e) {
                 System.out.println(getFileInvalidDateMessage(i, filePath));
