@@ -78,7 +78,7 @@ public class CaloriesFileHandler extends FileHandler {
             throw new FileHandlerException(getFileInvalidEntryTypeMessage(lineNumber, filePath));
         }
         
-        if (entryType.equals("C_IN") && dataLength != 8) {
+        if (entryType.equals("C_IN") && dataLength != 8 && dataLength != 5) {
             throw new FileHandlerException(getFileTooFewMacrosMessage(lineNumber, filePath));
         } else if (entryType.equals("C_OUT") && dataLength != 5) {
             throw new FileHandlerException(getFileMacrosInOutputMessage(lineNumber, filePath));
