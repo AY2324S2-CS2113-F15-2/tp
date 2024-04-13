@@ -195,6 +195,6 @@ public class HydrationList {
     }
 
     private int loadLastEntryID() {
-        return FileHandler.getMaxHydrationID();
+        return FileHandler.maxHydrationID;
     }
 }

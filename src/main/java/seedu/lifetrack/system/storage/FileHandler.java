@@ -15,6 +15,7 @@ import seedu.lifetrack.calories.calorielist.InputEntry;
 import seedu.lifetrack.calories.calorielist.OutputEntry;
 import seedu.lifetrack.hydration.hydrationlist.HydrationEntry;
 import seedu.lifetrack.sleep.sleeplist.SleepEntry;
+import seedu.lifetrack.system.exceptions.FileHandlerException;
 import seedu.lifetrack.user.User;
 
 public class FileHandler {
@@ -60,14 +61,6 @@ public class FileHandler {
         this.filePath = filePath;
     }
 
-    public static int getMaxCaloriesID() {
-        return maxCaloriesID;
-    }
-
-    public static int getMaxHydrationID() {
-        return maxHydrationID;
-    }
-
     private void writeToFile(String textToAdd) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         fw.write(textToAdd);
@@ -100,24 +93,29 @@ public class FileHandler {
         ArrayList<Entry> entries = new ArrayList<>();
         String line = "";
         while (s.hasNext()) {
-            line = s.nextLine();
-            String[] words = line.split(";");
-            int entryID = Integer.parseInt(words[ENTRYID_INDEX]);
-            calculateMaxCaloriesEntry(entryID);
-            LocalDate date = LocalDate.parse(words[DATE_INDEX]);
-            String description = words[DESCRIPTION_INDEX];
-            int calories = Integer.parseInt(words[CALORIES_INDEX]);
-            String entryType = words[ENTRY_TYPE_INDEX];
-            if (entryType.equals("C_IN") && words.length == 8) {
-                int carbohydrates = Integer.parseInt(words[CARBOHYDRATES_INDEX]);
-                int proteins = Integer.parseInt(words[PROTEINS_INDEX]);
-                int fats = Integer.parseInt(words[FATS_INDEX]);
-                Food food = new Food(carbohydrates, proteins, fats);
-                entries.add(new InputEntry(entryID, description, calories, date, food));
-            } else if (entryType.equals("C_IN")) {
-                entries.add(new InputEntry(entryID, description, calories, date));
-            } else {
-                entries.add(new OutputEntry(entryID, description, calories, date));
+            try {
+                line = s.nextLine();
+                String[] words = line.split(";");
+                System.out.println(words[0]);
+                int entryID = Integer.parseInt(words[ENTRYID_INDEX]);
+                calculateMaxCaloriesEntry(entryID);
+                LocalDate date = LocalDate.parse(words[DATE_INDEX]);
+                String description = words[DESCRIPTION_INDEX];
+                int calories = Integer.parseInt(words[CALORIES_INDEX]);
+                String entryType = words[ENTRY_TYPE_INDEX];
+                if (entryType.equals("C_IN") && words.length == 8) {
+                    int carbohydrates = Integer.parseInt(words[CARBOHYDRATES_INDEX]);
+                    int proteins = Integer.parseInt(words[PROTEINS_INDEX]);
+                    int fats = Integer.parseInt(words[FATS_INDEX]);
+                    Food food = new Food(carbohydrates, proteins, fats);
+                    entries.add(new InputEntry(entryID, description, calories, date, food));
+                } else if (entryType.equals("C_IN")) {
+                    entries.add(new InputEntry(entryID, description, calories, date));
+                } else {
+                    entries.add(new OutputEntry(entryID, description, calories, date));
+                }
+            } catch (NumberFormatException e){
+                System.out.println("wrong format");
             }
         }
         s.close();

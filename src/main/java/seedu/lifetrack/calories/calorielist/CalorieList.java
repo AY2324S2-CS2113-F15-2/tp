@@ -248,7 +248,7 @@ public class CalorieList {
      * @return the last entry ID loaded from the file, or a default value if the file doesn't exist or an error occurs
      */
     private int loadLastEntryID() {
-        return FileHandler.getMaxCaloriesID(); // Default value if file doesn't exist or error occurs
+        return FileHandler.maxCaloriesID; // Default value if file doesn't exist or error occurs
     }
 
     /**
