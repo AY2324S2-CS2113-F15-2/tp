@@ -56,11 +56,6 @@ public class User {
                 goal = Integer.parseInt(data.get(GOAL_INDEX));
                 caloriesRequired = Integer.parseInt(data.get(REQ_CAL_INDEX));
             }
-            System.out.println(name);
-            System.out.println(height);
-            System.out.println(weight);
-            System.out.println(age);
-            System.out.println(sex);
         } catch (FileNotFoundException e) {
             return;
         }
