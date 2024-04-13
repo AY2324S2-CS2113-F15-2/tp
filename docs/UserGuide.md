@@ -268,31 +268,31 @@ If you have not set your user up beforehand, this command will prompt you to do 
 
 **A**: In the same directory as where the JAR file is located, the application will automatically create a `/data` directory which stores all the data files required for the application. Simply copy the entire directory and its contents to your new computer and ensure that it is in the same directory as your JAR file, then run the application as per normal.
 
+**Q**: How do I manually edit the data files in the correct format?
+
+**A**: For the calories data file, the format is as such: `ENTRY_ID;DATE;DESCRIPTION;ENTRY_TYPE;CALORIES;CARBOHYDRATES;PROTEINS;FATS`. Take note that `ENTRY_TYPE` must be `C_IN` for the application to accept additional macronutrient fields after the `CALORIES` field. For the hydration data file, the format is as such: `ENTRY_ID;DATE;DESCRIPTION;VOLUME`. For the sleep data file, the format is as such: `ENTRY_ID;DATE;DURATION`. The delimiter used in the data files must be a semicolon (;).
+
 **Q**: Why must I input integers for my calories when it is a continuous variable?
 
 **A**: Although calories is technically a continuous variable, we chose to only take in integer inputs in our application as the difference is just not that significant, i.e. users can just round up values that have decimal values of 0.5 and above, and round down any values below that. An average human will have calorie intake in the thousands daily, thus such a small inaccuracy is insignificant in comparison. An `int` is also much easier to work with than `float`, which is why we chose to only use the former.
 
 ## Coming soon
 
-### Calorie lists to show calorie intakes and outflow separately
+### Undo/Redo feature
 
-When the user inputs `calorie list` into the terminal, they should be able to see the calorie lists for their calorie intakes and outflow separately.
+An undo/redo feature will be a nice quality of life boost for the app, as it provides users with the freedom to navigate their actions with confidence. Mistakes are inevitable, whether it's unintentional deletions, accidental changes, or simply exploring different options. This feature will help to enhance user experience by instilling a sense of control and reducing anxiety about irreversible actions.
 
-This upcoming feature will be implemented by allowing the `CalorieList` class to have two `ArrayList` members that store the calorie inflows and outflows separately.
+### Automatic calculation of calories burnt
 
-### Calorie and hydration progress to be calculated based on date
+Calories burnt from any exercise can be calculated from online calculators depending on the user's body proportions. If such calculators were implemented within the application itself, the calories burnt can be made even more accurate, and also improve user experience as they do not have to manually calculate and key in the values now.
 
-The current implementation of the calorie and hydration progress calculates the calories/hydration consumed based on the total number of entries in the list, irregardless of the date.
+### Implement daily requirements for macronutrients intake
 
-We want to be able to provide accurate representations of users meeting their daily calorie and hydration needs, so this feature will be updated very soon to accommodate that.
+Daily requirements for macronutrients intake can also be implemented to enhance the user's diet further. These requirements also change depending on the user's exercise levels and body goals.
 
-### Reduce reliance on network features
+### Provide recommendations to meet daily requirements
 
-As of current, calorie requirements for users is calculated from an external API. However, to reduce the reliance on having a strong network connection for our application to work well, we are implementing a failsafe to calculate calorie requirements even if the network connection is not good.
-
-### Edit user details
-
-The user should be able to quickly edit their details without having to run the `user setup` command again, as they may only need to change a few details for their account.
+The `user progress` command displays the user's current progress towards the daily caloric and hydration requirements. This can be enhanced if the application was able to provide recommendations on how to meet these requirements. For example, healthy meals with carefully calculated macronutrients can be recommended to users to meet their daily caloric and macronutrient requirements.
 
 ## Command Summary
 

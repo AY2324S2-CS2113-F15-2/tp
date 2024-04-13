@@ -386,11 +386,11 @@ The Sequence diagram for Sleep delete feature is shown below:
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+Our target user profile consists of Year 2 NUS Computer Engineering (CEG) students.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+It is no secret that Year 2 is the busiest/most difficult period that CEG students will experience in university. As such, it may be easy for students to neglect their health in the midst of the hustle and bustle. We hope that through this application, tracking one's health can be made easy and straightforward, so that students can get their health info quickly on the go, and thus know whether they need to eat/drink/sleep more/less.
 
 ## User Stories
 
