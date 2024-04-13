@@ -22,7 +22,6 @@ import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.get
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getUnknownUpdateMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getWeightOutOfRangeMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getEmptyUserSetupInputMessage;
-import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getEmptyUserUpdateInputMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getOutOfExerciseLevelsRangeMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getOutOfGoalRangeMessage;
 
@@ -341,8 +340,8 @@ public class ParserUser {
      * @throws InvalidInputException if the command is empty
      */
     private static void checkEmptyUpdateInput(String input) throws InvalidInputException {
-        if (input.substring(LENGTH_OF_UPDATE_COMMAND).trim().isEmpty()) {
-            throw new InvalidInputException(getEmptyUserUpdateInputMessage());
+        if (input.substring(LENGTH_OF_UPDATE_COMMAND).trim().isBlank()) {
+            throw new InvalidInputException(getEmptyUserUpdateFieldMessage());
         }
     }
 

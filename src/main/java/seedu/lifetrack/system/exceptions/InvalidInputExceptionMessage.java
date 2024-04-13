@@ -121,12 +121,16 @@ public class InvalidInputExceptionMessage {
 
     //user related messages
     public static String getOutOfGoalRangeMessage() {
-        return "\t Please key in a number between 1 and 5! 1 being quick fat loss " +
+        return "\t Invalid Goal input!\n " +
+                "Please key in a number between 1 and 5!\n " +
+                "1 being quick fat loss " +
                 "and 5 being quick bulking";
     }
 
     public static String getOutOfExerciseLevelsRangeMessage() {
-        return "\t Please key in a number between 1 and 5! 1 being little exercise done per week and 5 being" +
+        return "\t Invalid Exercise Level input!\n" +
+                "\t Please key in a number between 1 and 5!\n" +
+                " 1 being little exercise done per week and 5 being" +
                 " very heavy levels of exercise done per week.";
     }
 
@@ -196,5 +200,9 @@ public class InvalidInputExceptionMessage {
 
     public static String getEmptyUserUpdateFieldMessage(){
         return "\t Please include the value you would like to update the field to as such:\n" + USER_UPDATE_FIELDS;
+    }
+
+    public static String getReachedMaximumSleepMessage(){
+        return "\t Invalid input! The total duration you have slept on this day exceeds 24 hours!";
     }
 }
