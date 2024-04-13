@@ -9,7 +9,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import static seedu.lifetrack.LifeTrack.sleepList;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncorrectSleepInputMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getReachedMaximumSleepMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getTooLongSleepDurationMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidDateMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getSleepMissingKeywordMessage;
@@ -20,6 +22,7 @@ public class ParserSleep {
     private static final int STRING_PARTS_LEN = 2;
     private static final String SLEEP_HEADER = "sleep add ";
     private static final String DATE_ICON = "d/";
+    private static final int MAX_SLEEP_PER_DAY = 24;
 
 
     public static SleepEntry parseSleepInput(String input) throws InvalidInputException {
@@ -39,7 +42,10 @@ public class ParserSleep {
         duration = parseDuration(strDuration);
         date = parseDate(strDate);
         if (date.isAfter(LocalDate.now())) {
-            throw new InvalidInputException("The date cannot be in the future. Please enter a valid date.");
+            throw new InvalidInputException("\t The date cannot be in the future. Please enter a valid date.");
+        }
+        if (sleepList.getSleepConsumed(date) + duration > MAX_SLEEP_PER_DAY){
+            throw new InvalidInputException(getReachedMaximumSleepMessage());
         }
 
         SleepEntry newSleep = new SleepEntry(duration, date);

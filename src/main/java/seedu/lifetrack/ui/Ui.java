@@ -56,11 +56,11 @@ public class Ui {
      */
     public static void handleCaloriesInput(String line, CalorieList calorieList) {
         assert !line.startsWith("bye") : "exit the app";
-        if (line.startsWith("calories in") || line.startsWith("calories out")) {
+        if (line.startsWith("calories in ") || line.startsWith("calories out ")) {
             calorieList.addEntry(line);
-        } else if (line.startsWith("calories list")) {
+        } else if (line.equals("calories list")) {
             calorieList.printCalorieList();
-        } else if (line.startsWith("calories delete")) {
+        } else if (line.startsWith("calories delete ")) {
             calorieList.deleteEntry(line);
         } else {
             handleUnknownInput();
@@ -69,11 +69,11 @@ public class Ui {
 
     public static void handleHydrationInput(String line, HydrationList hydrationList) {
         assert !line.startsWith("bye") : "exit the app";
-        if (line.startsWith("hydration in")) {
+        if (line.startsWith("hydration in ")) {
             hydrationList.addEntry(line);
-        } else if (line.startsWith("hydration list")) {
+        } else if (line.equals("hydration list")) {
             hydrationList.printHydrationList();
-        } else if (line.startsWith("hydration delete")) {
+        } else if (line.startsWith("hydration delete ")) {
             hydrationList.deleteEntry(line);
         } else {
             handleUnknownInput();
@@ -84,11 +84,11 @@ public class Ui {
     //@@author a-wild-chocolate
     public static void handleSleepInput(String line, SleepList sleepList) {
         assert !line.startsWith("bye") : "exit the app";
-        if (line.startsWith("sleep add")) {
+        if (line.startsWith("sleep add ")) {
             sleepList.addSleep(line);
-        } else if (line.startsWith("sleep list")) {
+        } else if (line.equals("sleep list")) {
             sleepList.printSleepList();
-        } else if (line.startsWith("sleep delete")) {
+        } else if (line.startsWith("sleep delete ")) {
             sleepList.deleteSleep(line);
         } else {
             handleUnknownInput();
@@ -122,9 +122,9 @@ public class Ui {
     }
 
     public static void handleUserCommands(String line, User user) {
-        if (line.startsWith("user setup")) {
+        if (line.startsWith("user setup ")) {
             user.setUp(line);
-        } else if (line.startsWith("user progress")) {
+        } else if (line.equals("user progress")) {
             handleUserProgress(user);
         } else if (line.startsWith("user update")) {
             if (user.getName() == null) {
@@ -132,7 +132,7 @@ public class Ui {
             } else {
                 user.update(line);
             }
-        } else if (line.startsWith("user details")) {
+        } else if (line.equals("user details")) {
             if (user.getName() == null) {
                 printNoUserYetMessage();
             } else {
@@ -189,28 +189,28 @@ public class Ui {
         System.out.println("\t - calories out <activity> c/<calories> d/<date, format:YYYY-MM-DD>:\n" +
                 "\t Adds a calorie burning entry into the calories tracker.");
         System.out.println("\t - calories list: Displays all entries currently stored in the calorie list.");
-        System.out.println("\t - calories delete <index>: Deletes the entry at the specified index" +
+        System.out.println("\t - calories delete <calorie ID>: Deletes the entry at the specified ID" +
                 " from the calorie list.");
         printLine();
         System.out.println("\t - hydration in <beverage> v/<volume> d/<date, format:YYYY-MM-DD>:\n" +
                 "\t Adds a hydration entry into the hydration tracker.");
         System.out.println("\t - hydration list: Displays all entries currently stored in the hydration list.");
-        System.out.println("\t - hydration delete <index>: Deletes the hydration entry at the specified index " +
+        System.out.println("\t - hydration delete <hydration ID>: Deletes the hydration entry at the specified ID " +
                 "from the hydration list.");
         printLine();
         System.out.println("\t - sleep add <duration> d/<date, format:YYYY-MM-DD>: " +
                 "Adds a sleep entry into the sleep tracker.");
         System.out.println("\t - sleep list: Displays all entries currently stored in the sleep list.");
-        System.out.println("\t - sleep delete <index>: Deletes the entry at the specified index " +
+        System.out.println("\t - sleep delete <sleep ID>: Deletes the entry at the specified index " +
                 "from the sleep list.");
         printLine();
         System.out.println("\t - user setup <name> h/<height> w/<weight> a/<age> s/<sex> e/<exercise_level> " +
                 "g/<body_goal>:\n" + "\t Create a new user, or edit an existing one.");
-        System.out.println("\t - user progress: Display calories and hydration progress towards the daily " +
-                "requirement.");
+        System.out.println("\t - user details: prints the details of the user.");
         System.out.println("\t - user update name/height/weight/age/sex/exercise levels/goal <UPDATED VALUE>: "
                 + "updates the corresponding field of the user.");
-        System.out.println("\t - user details: prints the details of the user.");
+        System.out.println("\t - user progress: Display calories and hydration progress towards the daily " +
+                "requirement.");
     }
 }
 //@@author
