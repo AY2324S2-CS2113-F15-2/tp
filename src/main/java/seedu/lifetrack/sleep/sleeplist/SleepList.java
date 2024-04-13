@@ -2,9 +2,6 @@
 package seedu.lifetrack.sleep.sleeplist;
 
 import seedu.lifetrack.Entry;
-import seedu.lifetrack.calories.calorielist.InputEntry;
-import seedu.lifetrack.calories.calorielist.OutputEntry;
-import seedu.lifetrack.hydration.hydrationlist.HydrationEntry;
 import seedu.lifetrack.system.exceptions.InvalidInputException;
 import seedu.lifetrack.system.parser.ParserSleep;
 import seedu.lifetrack.system.storage.FileHandler;
