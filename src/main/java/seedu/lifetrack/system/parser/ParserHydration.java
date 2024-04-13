@@ -3,6 +3,7 @@ package seedu.lifetrack.system.parser;
 
 import seedu.lifetrack.Entry;
 import seedu.lifetrack.hydration.hydrationlist.HydrationEntry;
+import seedu.lifetrack.hydration.hydrationlist.HydrationList;
 import seedu.lifetrack.system.exceptions.InvalidInputException;
 
 import java.time.LocalDate;
@@ -20,6 +21,7 @@ public class ParserHydration {
     private static final int VOLUME_IDX = 1;
     private static final int DATE_IDX = 2;
     private static final int HYDRATION_ADD_PADDING = 13;
+    private static final int HYDRATION_FIND_LENGTH = "hydration find".length();
 
     /**
      * Parses a string input to create a Liquid object representing liquid intake.
@@ -182,6 +184,19 @@ public class ParserHydration {
         if (dateIndex == -1 || volumeIndex == -1) {
             throw new InvalidInputException(getHydrationMissingKeywordMessage());
         }
+    }
+
+    //@@author paturikarthik
+    public static void findHydrationListEntries(String input, HydrationList originalList){
+        String keyword = input.substring(HYDRATION_FIND_LENGTH).trim();
+        HydrationList searchList = new HydrationList();
+        for (int i = 0 ; i <originalList.getSize();i++){
+            Entry entry = originalList.getEntry(i);
+            if (entry.getDescription().contains(keyword)){
+                searchList.addHydrationEntry(entry);
+            }
+        }
+        searchList.printFoundHydrationList();
     }
 
 }

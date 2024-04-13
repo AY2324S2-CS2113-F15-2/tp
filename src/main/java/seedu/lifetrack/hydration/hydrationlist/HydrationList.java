@@ -200,4 +200,23 @@ public class HydrationList {
     private int loadLastEntryID() {
         return HydrationFileHandler.maxHydrationID;
     }
+
+    //@@author paturikarthik
+    public void findEntries(String input){
+        ParserHydration.findHydrationListEntries(input,this);
+    }
+
+    public void addHydrationEntry(Entry entry){
+        this.hydrationArrayList.add(entry);
+    }
+
+    public void printFoundHydrationList() {
+        if (hydrationArrayList.isEmpty()) {
+            HydrationListUI.emptyFoundListMessage();
+        } else {
+            HydrationListUI.hydrationListFoundHeader();
+            printHydrationInflow();
+        }
+    }
+
 }
