@@ -295,7 +295,7 @@ public class ParserCalories {
      * @return a new InputEntry object with food macros
      */
     private static Entry makeNewInputEntry(int lastEntryID, String description, int calories, LocalDate date,
-            int[] foodMacros) {
+                                           int[] foodMacros) {
         Food newFood = new Food(foodMacros[CARBS_IDX], foodMacros[PROTEINS_IDX], foodMacros[FATS_IDX]);
         return new InputEntry(lastEntryID, description, calories, date, newFood);
     }
@@ -308,8 +308,12 @@ public class ParserCalories {
             Entry entry = originalList.getEntry(i);
             if (entry.getDescription().contains(keyword)) {
                 if (entry instanceof InputEntry) {
-                    Entry entryToAdd = makeNewInputEntry(entry.getLastEntryID(), entry.getDescription()
+                    Entry entryToAdd = makeNewInputEntry(entry.getEntryID(), entry.getDescription()
                             , ((InputEntry) entry).getCalories(), entry.getDate());
+                    searchList.addCalorieEntry(entryToAdd);
+                } else {
+                    Entry entryToAdd = makeNewOutputEntry(entry.getEntryID(), entry.getDescription(),
+                            ((OutputEntry) entry).getCalories(), entry.getDate());
                     searchList.addCalorieEntry(entryToAdd);
                 }
             }
