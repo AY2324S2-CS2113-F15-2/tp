@@ -12,6 +12,7 @@ public class FileHandlerExceptionMessage {
     private static final String INVALID_ENTRYID = "\t An invalid EntryID value was given in line ";
     private static final String INVALID_CALORIES = "\t An invalid calories value was given in line ";
     private static final String INVALID_DATE = "\t An invalid date was given in line ";
+    private static final String INVALID_CARBS = "\t An invalid carbohydrates value was given in line ";
 
     //messages to provide user guidance
     private static final String INTEGER_GUIDANCE = "\t Please ensure that an integer value is given";
@@ -45,9 +46,7 @@ public class FileHandlerExceptionMessage {
     public static String getFileInvalidCarbsMessage(int lineNumber, String filePath) {
         String suffix = getLineNotAddedMessage(lineNumber, filePath);
         printLine();
-        String message = "\t An invalid carbohydrates value was given in line " +
-                lineNumber + " of " + filePath + "!\n" + "Make sure that this value is an integer!\n" + suffix;
-        return message;
+        return INVALID_CARBS + lineNumber + " of " + filePath + "!\n" + suffix + INTEGER_GUIDANCE;
     }
 
     public static String getFileInvalidDateMessage(int lineNumber, String filePath) {

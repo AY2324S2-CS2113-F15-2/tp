@@ -27,50 +27,42 @@ import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getF
 public class FileHandler {
 
     //public member for lastEntryID calories
-    public static int maxCaloriesID = 0;
     public static int maxHydrationID = 0;
 
     //general list constants
-    private static final int ENTRYID_INDEX = 0;
-    private static final int DATE_INDEX = 1;
-    private static final int DESCRIPTION_INDEX = 2;
+    protected final int ENTRYID_INDEX = 0;
+    protected final int DATE_INDEX = 1;
+    protected final int DESCRIPTION_INDEX = 2;
 
-    //calorie list constants
-    private static final int ENTRY_TYPE_INDEX = 3;
-    private static final int CALORIES_INDEX = 4;
-    private static final int CARBOHYDRATES_INDEX = 5;
-    private static final int PROTEINS_INDEX = 6;
-    private static final int FATS_INDEX = 7;
-
-    //liquids list constants
-    private static final int VOLUME_INDEX = 3;
+    //hydration list constants
+    private final int VOLUME_INDEX = 3;
 
     //sleep list constants
-    private static final int DURATION_INDEX = 3;
+    private final int DURATION_INDEX = 3;
 
     //user data constants
-    private static final int NAME_INDEX = 0;
-    private static final int HEIGHT_INDEX = 1;
-    private static final int WEIGHT_INDEX = 2;
-    private static final int AGE_INDEX = 3;
-    private static final int SEX_INDEX = 4;
-    private static final int EXERCISE_INDEX = 5;
-    private static final int GOAL_INDEX = 6;
-    private static final int REQ_CAL_INDEX = 7;
+    private final int NAME_INDEX = 0;
+    private final int HEIGHT_INDEX = 1;
+    private final int WEIGHT_INDEX = 2;
+    private final int AGE_INDEX = 3;
+    private final int SEX_INDEX = 4;
+    private final int EXERCISE_INDEX = 5;
+    private final int GOAL_INDEX = 6;
+    private final int REQ_CAL_INDEX = 7;
 
     //exception prefix strings
-    private static final String NF_EXCEPTION_PREFIX = "For input string: \"";
+    protected final String NF_EXCEPTION_PREFIX = "For input string: \"";
 
     //error message for IO exception
-    private static final String message = "\t Unable to write to file!";
+    private final String message = "\t Unable to write to file!";
 
-    private String filePath;
+    protected String filePath;
 
     public FileHandler(String filePath) {
         this.filePath = filePath;
     }
 
-    private void checkDateNotLaterThanCurrent(LocalDate date, int lineNumber) throws FileHandlerException {
+    protected void checkDateNotLaterThanCurrent(LocalDate date, int lineNumber) throws FileHandlerException {
         if (date.isAfter(LocalDate.now())) {
             throw new FileHandlerException(getFileDateLaterThanCurrentMessage(lineNumber, filePath));
         }
@@ -99,59 +91,6 @@ public class FileHandler {
             writeToFile(newData);
         } catch (IOException e) {
             System.out.println(message);
-        }
-    }
-
-    public ArrayList<Entry> getCalorieEntriesFromFile() throws FileNotFoundException {
-        File f = new File(filePath);
-        Scanner s = new Scanner(f);
-        ArrayList<Entry> entries = new ArrayList<>();
-        String line = "";
-        int i = 1;
-        while (s.hasNext()) {
-            line = s.nextLine();
-            String[] words = line.split(";");
-            try {
-                int entryID = Integer.parseInt(words[ENTRYID_INDEX]);
-                calculateMaxCaloriesEntry(entryID);
-                LocalDate date = LocalDate.parse(words[DATE_INDEX]);
-                checkDateNotLaterThanCurrent(date, i);
-                String description = words[DESCRIPTION_INDEX];
-                int calories = Integer.parseInt(words[CALORIES_INDEX]);
-                String entryType = words[ENTRY_TYPE_INDEX];
-                if (entryType.equals("C_IN") && words.length == 8) {
-                    int carbohydrates = Integer.parseInt(words[CARBOHYDRATES_INDEX]);
-                    int proteins = Integer.parseInt(words[PROTEINS_INDEX]);
-                    int fats = Integer.parseInt(words[FATS_INDEX]);
-                    Food food = new Food(carbohydrates, proteins, fats);
-                    entries.add(new InputEntry(entryID, description, calories, date, food));
-                } else if (entryType.equals("C_IN")) {
-                    entries.add(new InputEntry(entryID, description, calories, date));
-                } else {
-                    entries.add(new OutputEntry(entryID, description, calories, date));
-                }
-            } catch (NumberFormatException e) {
-                if (e.getMessage().equals(NF_EXCEPTION_PREFIX + words[ENTRYID_INDEX] + "\"")) {
-                    System.out.println(getFileInvalidEntryIDMessage(i, filePath));
-                } else if (e.getMessage().equals(NF_EXCEPTION_PREFIX + words[CALORIES_INDEX] + "\"")) {
-                    System.out.println(getFileInvalidCaloriesMessage(i, filePath));
-                }
-            } catch (DateTimeParseException e) {
-                System.out.println(getFileInvalidDateMessage(i, filePath));
-            } catch (FileHandlerException e) {
-                System.out.println(e.getMessage());
-            } finally {
-                i++;
-            }
-        }
-        s.close();
-        return entries;
-    }
-
-    // Method calculates the max calories entry ID
-    public void calculateMaxCaloriesEntry(int entryID) {
-        if (entryID > maxCaloriesID) {
-            maxCaloriesID = entryID;
         }
     }
 
