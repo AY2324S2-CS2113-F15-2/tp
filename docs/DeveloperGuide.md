@@ -30,15 +30,46 @@
 ## Design
 
 ### calories component
-Here's a (partial) class diagram o the `calories` component.
+Here's a (partial) class diagram of the `calories` component.
 
 ![calories.png](assets%2Fcalories.png)
 
+The calories component consists of the following Classes
+1. `Ui` : Handles user and program interaction.
+2. `CalorieList` : Handles the list of calories entries.
+3. `FileHandler` : Handles the saving and reading of data from file.
+4. `ParserCalories` : Handles the parsing of user input to determine type of command.
+5. `Entry` : Handles calories entries data.
+6. `OutputEntry` : Handles calories output entries data.
+7. `InputEntry` : Handles calories input entries data.
+8. `Food` : Handles macronutrients data for calories input.
+
 The sequence diagram bellow illustrates the interactions within the `calories` component, taking
 `calories in donut c/1000 d/2024-04-10` call as an example. 
+![caloriesComponent.png](assets%2FcaloriesComponent.png)
 
 How the `calories` component works:
-1. When the user keys in the `calories in` command, 
+1. When the user keys in the `calories in donut c/1000 d/2024-04-10` command, 
+the input is sent to `Ui#handleCaloriesInput(String, CalorieList)`, which calls 
+`CalorieList#addEntry(String)`.
+
+2. Inside `CalorieList#addEntry(String)`, the function `ParserCalories#parseCaloriesInput(String, int)` 
+is then called to extract information such as the description, number of calories, and date of entry.
+
+3. With the extracted information, the function `ParserCalories#makeNewInputEntry(int, String, int, String)`
+is called, which creates a new entry of `InputEntry` that extends `Entry`. The `InputEntry` object is then returned
+to the caller, `CalorieList#addEntry(String)` which was called in step 2.
+
+4. The returned `InputEntry` object is added into the `calorieArrayList` member of type
+`ArrayList<Entry>` in the `CalorieList`, via the `ArrayList.add()` method. 
+
+5. `CalorieList#UpdateFile()` is then called, which calls `FileHandler#writeEntries(ArrayList<Entry>)`.
+Within that function, `FileHandler#writeToFile(String)` function is called, which writes the new data
+into the data file. 
+
+6. If the dates of entries are not sorted in ascending order, `CalorieList#sortEntriesByDate()`
+function is called, which sorts the entries in ascending order. 
+
 
 ### hydration component
 ![hydration.png](assets%2Fhydration.png)
