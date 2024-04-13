@@ -23,21 +23,21 @@ public class ParserUserTest {
     }
 
     @Test
-    public void parseUserSetUp_EmptyInput_throwsException() {
+    public void parseUserSetUp_emptyInput_throwsException() {
         String input = "user setup";
         User user = new User();
         Assertions.assertThrows(InvalidInputException.class, () -> ParserUser.parseSetUp(input, user));
     }
 
     @Test
-    public void parseUserSetUp_InCorrectOrder_throwsException() {
+    public void parseUserSetUp_inCorrectOrder_throwsException() {
         String input = "user setup karthik w/175 h/70 a/25 s/male e/3 g/2";
         User user = new User();
         Assertions.assertThrows(InvalidInputException.class, () -> ParserUser.parseSetUp(input, user));
     }
 
     @Test
-    public void parseUserSetUp_InvalidNumberOfInputs_throwException() {
+    public void parseUserSetUp_invalidNumberOfInputs_throwException() {
         String input = "user setup karthik h/175 w/70 a/25 s/male e/3 g/2 h/140";
         User user = new User();
         Assertions.assertThrows(InvalidInputException.class, () -> ParserUser.parseSetUp(input, user));
@@ -135,7 +135,7 @@ public class ParserUserTest {
     }
 
     @Test
-    public void parseUserUpdate_ValidNameSetUp() throws InvalidInputException {
+    public void parseUserUpdate_validNameSetUp() throws InvalidInputException {
         String input = "user setup karthik h/175 w/70 a/25 s/male e/3 g/2";
         User user = new User();
         ParserUser.parseSetUp(input, user);
@@ -163,30 +163,30 @@ public class ParserUserTest {
     }
 
     @Test
-    public void parseUserUpdate_EmptyCommand_throwsException() throws InvalidInputException {
+    public void parseUserUpdate_emptyCommand_throwsException() throws InvalidInputException {
         String input = "user setup karthik h/175 w/70 a/25 s/male e/3 g/2";
         User user = new User();
         ParserUser.parseSetUp(input, user);
         String test = "user update";
-        Assertions.assertThrows(InvalidInputException.class,()->ParserUser.parseUpdate(test, user));
+        Assertions.assertThrows(InvalidInputException.class, () -> ParserUser.parseUpdate(test, user));
     }
 
     @Test
-    public void parseUserUpdate_EmptyField_throwsException() throws InvalidInputException{
+    public void parseUserUpdate_emptyField_throwsException() throws InvalidInputException {
         String input = "user setup karthik h/175 w/70 a/25 s/male e/3 g/2";
         User user = new User();
         ParserUser.parseSetUp(input, user);
         String test = "user update name";
-        Assertions.assertThrows(InvalidInputException.class,()->ParserUser.parseUpdate(test, user));
+        Assertions.assertThrows(InvalidInputException.class, () -> ParserUser.parseUpdate(test, user));
     }
 
     @Test
-    public void parseUserUpdate_UnknownInput_throwsException() throws InvalidInputException{
+    public void parseUserUpdate_unknownInput_throwsException() throws InvalidInputException {
         String input = "user setup karthik h/175 w/70 a/25 s/male e/3 g/2";
         User user = new User();
         ParserUser.parseSetUp(input, user);
         String test = "user update abcd abcd";
-        Assertions.assertThrows(InvalidInputException.class,()->ParserUser.parseUpdate(test, user));
+        Assertions.assertThrows(InvalidInputException.class, () -> ParserUser.parseUpdate(test, user));
     }
 
 }
