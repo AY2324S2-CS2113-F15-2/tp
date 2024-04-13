@@ -10,11 +10,10 @@ public abstract class Entry {
 
     private String description;
     private LocalDate date;
-
-    private int lastEntryID;
+    private int entryID;
 
     public Entry(int lastEntryID, String description, LocalDate date){
-        this.lastEntryID = lastEntryID;
+        this.entryID = lastEntryID;
         this.description = description;
         this.date = date;
     }
@@ -27,24 +26,24 @@ public abstract class Entry {
         return date;
     }
 
-    public int getLastEntryID() {
-        return lastEntryID;
+    public int getEntryID() {
+        return entryID;
     }
 
     public String toString() {
         if(this instanceof InputEntry) {
-            return String.format("\t caloriesID: " + lastEntryID + ", Date: " + date +
+            return String.format("\t caloriesID: " + entryID + ", Date: " + date +
                     ", Description: " + description);
         } else if (this instanceof OutputEntry) {
-            return String.format("\t caloriesID: " + lastEntryID + ", Date: " + date + ", " +
+            return String.format("\t caloriesID: " + entryID + ", Date: " + date + ", " +
                     "Description: " + description);
         } else {
-            return String.format("\t hydrationID: " + lastEntryID + ", Date: " + date + ", " +
+            return String.format("\t hydrationID: " + entryID + ", Date: " + date + ", " +
                     "Description: " + description);
         }
     }
 
     public String toFileFriendlyString() {
-        return String.format(lastEntryID + ";" + date + ";" + description);
+        return String.format(entryID + ";" + date + ";" + description);
     }
 }

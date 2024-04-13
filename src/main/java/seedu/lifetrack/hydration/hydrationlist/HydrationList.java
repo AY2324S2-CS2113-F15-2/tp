@@ -95,7 +95,7 @@ public class HydrationList {
     }
     public int getIndexFromEntryID(int lastEntryID) {
         for (int i = 0; i < hydrationArrayList.size(); i++) {
-            if (hydrationArrayList.get(i).getLastEntryID() == lastEntryID) {
+            if (hydrationArrayList.get(i).getEntryID() == lastEntryID) {
                 return i;
             }
         }

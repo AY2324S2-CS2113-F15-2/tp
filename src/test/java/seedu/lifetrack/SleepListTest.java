@@ -16,7 +16,7 @@ public class SleepListTest {
         sleepList.addSleep("sleep add 8 d/2024-12-10");
         sleepList.printSleepList();
         int initialSize = sleepList.getSize();
-        sleepList.deleteSleep("sleep delete "+sleepList.getSleep(0).getLastEntryID());
+        sleepList.deleteSleep("sleep delete "+sleepList.getSleep(0).getEntryID());
         assertEquals(initialSize - 1, sleepList.getSize());
     }
     @Test

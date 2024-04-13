@@ -13,6 +13,8 @@ import seedu.lifetrack.system.exceptions.FileHandlerException;
 
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidEntryIDMessage;
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidVolumeMessage;
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileHydrationTooFewFieldsMessage;
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileHydrationTooManyFieldsMessage;
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidDateMessage;
 
 public class HydrationFileHandler extends FileHandler {
@@ -30,6 +32,14 @@ public class HydrationFileHandler extends FileHandler {
     private void calculateMaxHydrationEntry(int entryID) {
         if (entryID > maxHydrationID) {
             maxHydrationID = entryID;
+        }
+    }
+
+    private void checkCorrectNumberOfFields(int lineNumber, int dataLength) throws FileHandlerException {
+        if (dataLength < 4) {
+            throw new FileHandlerException(getFileHydrationTooFewFieldsMessage(lineNumber, filePath));
+        } else if (dataLength > 4) {
+            throw new FileHandlerException(getFileHydrationTooManyFieldsMessage(lineNumber, filePath));
         }
     }
 

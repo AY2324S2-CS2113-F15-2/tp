@@ -27,12 +27,15 @@ public class FileHandlerExceptionMessage {
     //hydration list error messages
     private static final String INVALID_VOLUME = "\t An invalid volume value was given in line ";
 
+    //hydration list error messages
+    private static final String INVALID_DURATION = "\t An invalid duration value was given in line ";
+
     //messages to provide user guidance (general)
-    private static final String FIELDS_GUIDANCE = "\t Please ensure that four fields are given!";
     private static final String DATE_FORMAT_GUIDANCE = "\t Please ensure that a date in format YYYY-MM-DD is given";
     private static final String DATE_PERIOD_GUIDANCE = "\t Please ensure that a date no later than today is given";
     private static final String DESC_GUIDANCE = "\t Please ensure that a non-empty description is given";
     private static final String POS_INT_GUIDANCE = "\t Please ensure that a positive integer value is given";
+    private static final String POS_FLOAT_GUIDANCE = "\t Please ensure that a positive float value is given";
     private static final String INTEGER_GUIDANCE = "\t Please ensure that an integer value is given";
 
     //messages to provide user guidance (calories)
@@ -43,6 +46,12 @@ public class FileHandlerExceptionMessage {
     private static final String MACROS_GUIDANCE = "\t Please ensure that three macronutrient fields are given!";
     private static final String OUTPUT_GUIDANCE = "\t Do not provide macronutrients for a calorie output " +
             "(C_OUT) entry!";
+
+    //messages to provide user guidance (hydration)
+    private static final String HYDRATION_FIELDS_GUIDANCE = "\t Please ensure that four fields are provided!";
+
+    //messages to provide user guidance (sleep)
+    private static final String SLEEP_FIELDS_GUIDANCE = "\t Please ensure that three fields are provided!";
 
 
     private static String getLineNotAddedMessage(int lineNumber, String filePath) {
@@ -58,18 +67,6 @@ public class FileHandlerExceptionMessage {
     }
 
     //general messages
-    public static String getFileTooManyFieldsMessage(int lineNumber, String filePath) {
-        String suffix = getLineNotAddedMessage(lineNumber, filePath);
-        printLine();
-        return TOO_MANY_FIELDS + lineNumber + " of " + filePath + "!\n" + suffix + FIELDS_GUIDANCE;
-    }
-
-    public static String getFileTooFewFieldsMessage(int lineNumber, String filePath) {
-        String suffix = getLineNotAddedMessage(lineNumber, filePath);
-        printLine();
-        return TOO_FEW_FIELDS + lineNumber + " of " + filePath + "!\n" + suffix + FIELDS_GUIDANCE;
-    }
-
     public static String getFileInvalidDateMessage(int lineNumber, String filePath) {
         String suffix = getLineNotAddedMessage(lineNumber, filePath);
         printLine();
@@ -150,9 +147,40 @@ public class FileHandlerExceptionMessage {
     }
 
     //hydration list related messages
+    public static String getFileHydrationTooManyFieldsMessage(int lineNumber, String filePath) {
+        String suffix = getLineNotAddedMessage(lineNumber, filePath);
+        printLine();
+        return TOO_MANY_FIELDS + lineNumber + " of " + filePath + "!\n" + suffix + HYDRATION_FIELDS_GUIDANCE;
+    }
+
+    public static String getFileHydrationTooFewFieldsMessage(int lineNumber, String filePath) {
+        String suffix = getLineNotAddedMessage(lineNumber, filePath);
+        printLine();
+        return TOO_FEW_FIELDS + lineNumber + " of " + filePath + "!\n" + suffix + HYDRATION_FIELDS_GUIDANCE;
+    }
+
     public static String getFileInvalidVolumeMessage(int lineNumber, String filePath) {
         String suffix = getLineNotAddedMessage(lineNumber, filePath);
         printLine();
         return INVALID_VOLUME + lineNumber + " of " + filePath + "!\n" + suffix + POS_INT_GUIDANCE;
+    }
+
+    //sleep list related messages
+    public static String getFileSleepTooManyFieldsMessage(int lineNumber, String filePath) {
+        String suffix = getLineNotAddedMessage(lineNumber, filePath);
+        printLine();
+        return TOO_MANY_FIELDS + lineNumber + " of " + filePath + "!\n" + suffix + SLEEP_FIELDS_GUIDANCE;
+    }
+
+    public static String getFileSleepTooFewFieldsMessage(int lineNumber, String filePath) {
+        String suffix = getLineNotAddedMessage(lineNumber, filePath);
+        printLine();
+        return TOO_FEW_FIELDS + lineNumber + " of " + filePath + "!\n" + suffix + SLEEP_FIELDS_GUIDANCE;
+    }
+
+    public static String getFileInvalidDurationMessage(int lineNumber, String filePath) {
+        String suffix = getLineNotAddedMessage(lineNumber, filePath);
+        printLine();
+        return INVALID_DURATION + lineNumber + " of " + filePath + "!\n" + suffix + POS_FLOAT_GUIDANCE;
     }
 }

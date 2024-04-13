@@ -106,7 +106,7 @@ public class CalorieList {
      */
     public int getIndexFromEntryID(int entryID) {
         for (int i = 0; i < calorieArrayList.size(); i++) {
-            if (calorieArrayList.get(i).getLastEntryID() == entryID) {
+            if (calorieArrayList.get(i).getEntryID() == entryID) {
                 return i;
             }
         }
