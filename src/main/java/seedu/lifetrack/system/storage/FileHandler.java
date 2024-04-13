@@ -19,24 +19,21 @@ import seedu.lifetrack.sleep.sleeplist.SleepEntry;
 import seedu.lifetrack.system.exceptions.FileHandlerException;
 import seedu.lifetrack.user.User;
 
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileCaloriesTooFewFieldsMessage;
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileDateLaterThanCurrentMessage;
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileEmptyDescriptionMessage;
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidCaloriesMessage;
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidEntryIDMessage;
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileTooFewFieldsMessage;
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileTooManyFieldsMessage;
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidDateMessage;
 
 public class FileHandler {
-
-    //public member for lastEntryID calories
-    public static int maxHydrationID = 0;
 
     //general list constants
     protected final int ENTRYID_INDEX = 0;
     protected final int DATE_INDEX = 1;
     protected final int DESCRIPTION_INDEX = 2;
-
-    //hydration list constants
-    private final int VOLUME_INDEX = 3;
 
     //sleep list constants
     private final int DURATION_INDEX = 3;
@@ -51,7 +48,7 @@ public class FileHandler {
     private final int GOAL_INDEX = 6;
     private final int REQ_CAL_INDEX = 7;
 
-    //exception prefix strings
+    //NumberFormatException exception message prefix
     protected final String NF_EXCEPTION_PREFIX = "For input string: \"";
 
     //error message for IO exception
@@ -61,6 +58,14 @@ public class FileHandler {
 
     public FileHandler(String filePath) {
         this.filePath = filePath;
+    }
+
+    protected void checkCorrectNumberOfFields(int lineNumber, int dataLength) throws FileHandlerException {
+        if (dataLength < 4) {
+            throw new FileHandlerException(getFileTooFewFieldsMessage(lineNumber, filePath));
+        } else if (dataLength > 4) {
+            throw new FileHandlerException(getFileTooManyFieldsMessage(lineNumber, filePath));
+        }
     }
 
     protected void checkDateNotLaterThanCurrent(int lineNumber, LocalDate date) throws FileHandlerException {
@@ -99,30 +104,6 @@ public class FileHandler {
         } catch (IOException e) {
             System.out.println(message);
         }
-    }
-
-    public void calculateMaxHydrationEntry(int entryID) {
-        if (entryID > maxHydrationID) {
-            maxHydrationID = entryID;
-        }
-    }
-
-    public ArrayList<Entry> getHydrationEntriesFromFile() throws FileNotFoundException {
-        File f = new File(filePath);
-        Scanner s = new Scanner(f);
-        ArrayList<Entry> entries = new ArrayList<>();
-        String line = "";
-        while (s.hasNext()) {
-            line = s.nextLine();
-            String[] words = line.split(";");
-            int lastHydrationEntryID = Integer.parseInt(words[ENTRYID_INDEX]);
-            LocalDate date = LocalDate.parse(words[DATE_INDEX]);
-            String description = words[DESCRIPTION_INDEX];
-            int volume = Integer.parseInt(words[VOLUME_INDEX]);
-            entries.add(new HydrationEntry(lastHydrationEntryID, description, volume, date));
-        }
-        s.close();
-        return entries;
     }
 
     public ArrayList<Entry> getSleepEntriesFromFile() throws FileNotFoundException {

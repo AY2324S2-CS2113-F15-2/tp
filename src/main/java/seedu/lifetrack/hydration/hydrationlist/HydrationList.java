@@ -5,7 +5,7 @@ import seedu.lifetrack.Entry;
 import seedu.lifetrack.calories.calorielist.CalorieList;
 import seedu.lifetrack.system.exceptions.InvalidInputException;
 import seedu.lifetrack.system.parser.ParserHydration;
-import seedu.lifetrack.system.storage.FileHandler;
+import seedu.lifetrack.system.storage.HydrationFileHandler;
 import seedu.lifetrack.ui.HydrationListUI;
 
 import java.io.FileNotFoundException;
@@ -28,7 +28,7 @@ public class HydrationList {
 
     private final int NO_INDEX_FOUND = -1;
     private ArrayList<Entry> hydrationArrayList;
-    private FileHandler fileHandler;
+    private HydrationFileHandler fileHandler;
     private int lastHydrationEntryID;
 
     //constructor for JUnit tests
@@ -39,7 +39,7 @@ public class HydrationList {
     //constructor for usage in terminal
     public HydrationList(String filePath) {
         try {
-            fileHandler = new FileHandler(filePath);
+            fileHandler = new HydrationFileHandler(filePath);
             hydrationArrayList = fileHandler.getHydrationEntriesFromFile();
             this.lastHydrationEntryID = loadLastEntryID();
         } catch (FileNotFoundException e) {
@@ -195,6 +195,6 @@ public class HydrationList {
     }
 
     private int loadLastEntryID() {
-        return FileHandler.maxHydrationID;
+        return HydrationFileHandler.maxHydrationID;
     }
 }

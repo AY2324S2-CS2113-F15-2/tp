@@ -13,9 +13,9 @@ import seedu.lifetrack.calories.calorielist.InputEntry;
 import seedu.lifetrack.calories.calorielist.OutputEntry;
 import seedu.lifetrack.system.exceptions.FileHandlerException;
 
-import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileCaloriesTooFewArgumentsMessage;
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileCaloriesTooFewFieldsMessage;
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileTooFewMacrosMessage;
-import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileCaloriesTooManyArgumentsMessage;
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileCaloriesTooManyFieldsMessage;
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidCaloriesMessage;
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidCarbsMessage;
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidEntryIDMessage;
@@ -41,17 +41,17 @@ public class CaloriesFileHandler extends FileHandler {
         super(filePath);
     }
 
-    private void calculateMaxCaloriesEntry(int entryID) {
-        if (entryID > maxCaloriesID) {
-            maxCaloriesID = entryID;
+    protected void checkCorrectNumberOfFields(int lineNumber, int dataLength) throws FileHandlerException {
+        if (dataLength < 5) {
+            throw new FileHandlerException(getFileCaloriesTooFewFieldsMessage(lineNumber, filePath));
+        } else if (dataLength > 8) {
+            throw new FileHandlerException(getFileCaloriesTooManyFieldsMessage(lineNumber, filePath));
         }
     }
 
-    private void checkCorrectNumberOfArguments(String[] words, int lineNumber) throws FileHandlerException {
-        if (words.length < 5) {
-            throw new FileHandlerException(getFileCaloriesTooFewArgumentsMessage(lineNumber, filePath));
-        } else if (words.length > 8) {
-            throw new FileHandlerException(getFileCaloriesTooManyArgumentsMessage(lineNumber, filePath));
+    private void calculateMaxCaloriesEntry(int entryID) {
+        if (entryID > maxCaloriesID) {
+            maxCaloriesID = entryID;
         }
     }
 
@@ -94,7 +94,7 @@ public class CaloriesFileHandler extends FileHandler {
             line = s.nextLine();
             String[] words = line.split(";");
             try {
-                checkCorrectNumberOfArguments(words, i);
+                checkCorrectNumberOfFields(i, words.length);
                 int entryID = Integer.parseInt(words[ENTRYID_INDEX].trim());
                 calculateMaxCaloriesEntry(entryID);
                 LocalDate date = LocalDate.parse(words[DATE_INDEX].trim());
