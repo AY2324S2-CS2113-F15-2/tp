@@ -93,9 +93,15 @@ public class ParserCalories {
             }
         }
 
+        int calories;
         //convert calories from string to integer
-        int calories = getIntegerCaloriesFromInput(strCalories);
-        checkCaloriesIsPositiveInteger(calories);
+        try {
+            calories = getIntegerCaloriesFromInput(strCalories);
+            checkCaloriesIsPositiveInteger(calories);
+        } catch (InvalidInputException e) {
+            throw new InvalidInputException(getIncorrectCaloriesInputMessage());
+        }
+
         assert calories > 0 : "Calories value must be a positive integer!";
 
         //@@author rexyyong
@@ -143,12 +149,12 @@ public class ParserCalories {
      * @param strCalories the string representation of calories
      * @return the integer value of calories parsed from the input string
      */
-    private static int getIntegerCaloriesFromInput(String strCalories) {
+    private static int getIntegerCaloriesFromInput(String strCalories) throws InvalidInputException {
         int calories = 0;
         try {
             calories = Integer.parseInt(strCalories);
         } catch (NumberFormatException e) {
-            System.out.println(getIncorrectCaloriesInputMessage());
+            throw new InvalidInputException();
         }
         return calories;
     }
@@ -215,7 +221,7 @@ public class ParserCalories {
      */
     private static void checkCaloriesIsPositiveInteger(int calories) throws InvalidInputException {
         if (calories <= 0) {
-            throw new InvalidInputException(getIncorrectCaloriesInputMessage());
+            throw new InvalidInputException();
         }
     }
 
