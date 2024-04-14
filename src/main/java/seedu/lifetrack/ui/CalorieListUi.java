@@ -4,7 +4,7 @@ package seedu.lifetrack.ui;
 import seedu.lifetrack.Entry;
 
 public class CalorieListUi {
-    private static final String CALORIES_DELETE_SAMPLE_INPUT = "\t Example input: calories delete ENTRY_ID";
+    private static final String CALORIES_DELETE_SAMPLE_INPUT = "\t Example input: calories delete CALORIES_ID";
 
 
     public static void successfulDeletedMessage(Entry toDelete) {
@@ -12,8 +12,8 @@ public class CalorieListUi {
         System.out.println("\t " + toDelete.toString());
     }
     public static void unsuccessfulDeletedMessage(int entryID) {
-        System.out.println("\t The following calorie record corresponding to entry ID " + entryID + " could " +
-                "not be found\n" + "\t Refer to calories list to see valid entry IDs.");
+        System.out.println("\t The following calorie record corresponding to caloriesID " + entryID + " could " +
+                "not be found\n" + "\t Refer to calories list to see valid caloriesIDs.");
     }
 
     public static void emptyCalorieList() {
@@ -32,7 +32,7 @@ public class CalorieListUi {
     }
     
     public static String deleteLogNumberMessage() {
-        return "\t Please enter a valid positive integer for the entryID you wish to delete.\n" +
+        return "\t Please enter a valid positive integer for the caloriesID you wish to delete.\n" +
                 CALORIES_DELETE_SAMPLE_INPUT;
     }
     //@@author
