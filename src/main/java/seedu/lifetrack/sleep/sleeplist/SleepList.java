@@ -11,7 +11,10 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.*;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncorrectSleepDeleteMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getSleepDurationSumTooLongMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getEmptySleepListMessage;
+
 
 public class SleepList {
 
