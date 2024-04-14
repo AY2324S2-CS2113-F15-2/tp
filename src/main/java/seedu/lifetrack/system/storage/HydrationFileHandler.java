@@ -50,6 +50,20 @@ public class HydrationFileHandler extends FileHandler {
         }
     }
 
+    private void getSingleHydrationEntry(ArrayList<Entry> entries, String[] words, int lineNumber)
+            throws FileHandlerException {
+        checkCorrectNumberOfFields(lineNumber, words.length);
+        int entryID = Integer.parseInt(words[ENTRYID_INDEX]);
+        calculateMaxHydrationEntry(entryID);
+        LocalDate date = LocalDate.parse(words[DATE_INDEX]);
+        checkDateNotLaterThanCurrent(lineNumber, date);
+        String description = words[DESCRIPTION_INDEX];
+        checkNonEmptyDescription(lineNumber, description);
+        int volume = Integer.parseInt(words[VOLUME_INDEX]);
+        checkVolumeIsPositive(lineNumber, volume);
+        entries.add(new HydrationEntry(entryID, description, volume, date));
+    }
+
     public ArrayList<Entry> getHydrationEntriesFromFile() throws FileNotFoundException {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
@@ -60,16 +74,7 @@ public class HydrationFileHandler extends FileHandler {
             line = s.nextLine();
             String[] words = line.split(";");
             try {
-                checkCorrectNumberOfFields(i, words.length);
-                int entryID = Integer.parseInt(words[ENTRYID_INDEX]);
-                calculateMaxHydrationEntry(entryID);
-                LocalDate date = LocalDate.parse(words[DATE_INDEX]);
-                checkDateNotLaterThanCurrent(i, date);
-                String description = words[DESCRIPTION_INDEX];
-                checkNonEmptyDescription(i, description);
-                int volume = Integer.parseInt(words[VOLUME_INDEX]);
-                checkVolumeIsPositive(i, volume);
-                entries.add(new HydrationEntry(entryID, description, volume, date));
+                getSingleHydrationEntry(entries, words, i);
             } catch (NumberFormatException e) {
                 if (e.getMessage().equals(NF_EXCEPTION_PREFIX + words[ENTRYID_INDEX] + "\"")) {
                     System.out.println(getFileInvalidEntryIDMessage(i, filePath));

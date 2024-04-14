@@ -92,6 +92,34 @@ public class UserFileHandler extends FileHandler {
         }
     }
 
+    private void extractUserData(ArrayList<String> data, String[] words) throws FileHandlerException {
+        checkCorrectNumberOfFields(words.length);
+        String name = words[NAME_INDEX];
+        checkNonEmptyName(name);
+        int height = Integer.parseInt(words[HEIGHT_INDEX]);
+        checkValidHeight(height);
+        int weight = Integer.parseInt(words[WEIGHT_INDEX]);
+        checkValidWeight(weight);
+        int age = Integer.parseInt(words[AGE_INDEX]);
+        checkValidAge(age);
+        String sex = words[SEX_INDEX];
+        checkValidSex(sex);
+        int exerciseLevel = Integer.parseInt(words[EXERCISE_LEVEL_INDEX]);
+        checkValidExerciseLevel(exerciseLevel);
+        int goal = Integer.parseInt(words[GOAL_INDEX]);
+        checkValidGoal(goal);
+        int requiredCals = Integer.parseInt(words[REQ_CAL_INDEX]);
+        checkReqCalIsPositive(requiredCals);
+        data.add(words[NAME_INDEX]);
+        data.add(words[HEIGHT_INDEX]);
+        data.add(words[WEIGHT_INDEX]);
+        data.add(words[AGE_INDEX]);
+        data.add(words[SEX_INDEX]);
+        data.add(words[EXERCISE_LEVEL_INDEX]);
+        data.add(words[GOAL_INDEX]);
+        data.add(words[REQ_CAL_INDEX]);
+    }
+
     public ArrayList<String> getUserDataFromFile(User user) throws FileNotFoundException {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
@@ -99,31 +127,7 @@ public class UserFileHandler extends FileHandler {
         String line = s.nextLine();
         String[] words = line.split(";");
         try {
-            checkCorrectNumberOfFields(words.length);
-            String name = words[NAME_INDEX];
-            checkNonEmptyName(name);
-            int height = Integer.parseInt(words[HEIGHT_INDEX]);
-            checkValidHeight(height);
-            int weight = Integer.parseInt(words[WEIGHT_INDEX]);
-            checkValidWeight(weight);
-            int age = Integer.parseInt(words[AGE_INDEX]);
-            checkValidAge(age);
-            String sex = words[SEX_INDEX];
-            checkValidSex(sex);
-            int exerciseLevel = Integer.parseInt(words[EXERCISE_LEVEL_INDEX]);
-            checkValidExerciseLevel(exerciseLevel);
-            int goal = Integer.parseInt(words[GOAL_INDEX]);
-            checkValidGoal(goal);
-            int requiredCals = Integer.parseInt(words[REQ_CAL_INDEX]);
-            checkReqCalIsPositive(requiredCals);
-            data.add(words[NAME_INDEX]);
-            data.add(words[HEIGHT_INDEX]);
-            data.add(words[WEIGHT_INDEX]);
-            data.add(words[AGE_INDEX]);
-            data.add(words[SEX_INDEX]);
-            data.add(words[EXERCISE_LEVEL_INDEX]);
-            data.add(words[GOAL_INDEX]);
-            data.add(words[REQ_CAL_INDEX]);
+            extractUserData(data, words);
         } catch (NumberFormatException e) {
             if (e.getMessage().equals(NF_EXCEPTION_PREFIX + words[HEIGHT_INDEX] + "\"")) {
                 System.out.println(getFileInvalidHeightMessage(filePath));

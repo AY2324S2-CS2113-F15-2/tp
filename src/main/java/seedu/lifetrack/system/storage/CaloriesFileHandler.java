@@ -85,6 +85,33 @@ public class CaloriesFileHandler extends FileHandler {
         }
     }
 
+    private void getSingleCalorieEntry(ArrayList<Entry> entries, String[] words, int lineNumber) 
+            throws FileHandlerException {
+        checkCorrectNumberOfFields(lineNumber, words.length);
+        int entryID = Integer.parseInt(words[ENTRYID_INDEX].trim());
+        calculateMaxCaloriesEntry(entryID);
+        LocalDate date = LocalDate.parse(words[DATE_INDEX].trim());
+        checkDateNotLaterThanCurrent(lineNumber, date);
+        String description = words[DESCRIPTION_INDEX].trim();
+        checkNonEmptyDescription(lineNumber, description);
+        int calories = Integer.parseInt(words[CALORIES_INDEX].trim());
+        checkCaloriesIsPositive(lineNumber, calories);
+        String entryType = words[ENTRY_TYPE_INDEX].trim();
+        checkValidEntryType(lineNumber, entryType, words.length);
+        if (entryType.equals("C_IN") && words.length == 8) {
+            int carbohydrates = Integer.parseInt(words[CARBOHYDRATES_INDEX].trim());
+            int proteins = Integer.parseInt(words[PROTEINS_INDEX].trim());
+            int fats = Integer.parseInt(words[FATS_INDEX].trim());
+            Food food = new Food(carbohydrates, proteins, fats);
+            checkMacrosArePositive(lineNumber, carbohydrates, proteins, fats);
+            entries.add(new InputEntry(entryID, description, calories, date, food));
+        } else if (entryType.equals("C_IN")) {
+            entries.add(new InputEntry(entryID, description, calories, date));
+        } else {
+            entries.add(new OutputEntry(entryID, description, calories, date));
+        }
+    }
+
     public ArrayList<Entry> getCalorieEntriesFromFile() throws FileNotFoundException {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
@@ -95,29 +122,7 @@ public class CaloriesFileHandler extends FileHandler {
             line = s.nextLine();
             String[] words = line.split(";");
             try {
-                checkCorrectNumberOfFields(i, words.length);
-                int entryID = Integer.parseInt(words[ENTRYID_INDEX].trim());
-                calculateMaxCaloriesEntry(entryID);
-                LocalDate date = LocalDate.parse(words[DATE_INDEX].trim());
-                checkDateNotLaterThanCurrent(i, date);
-                String description = words[DESCRIPTION_INDEX].trim();
-                checkNonEmptyDescription(i, description);
-                int calories = Integer.parseInt(words[CALORIES_INDEX].trim());
-                checkCaloriesIsPositive(i, calories);
-                String entryType = words[ENTRY_TYPE_INDEX].trim();
-                checkValidEntryType(i, entryType, words.length);
-                if (entryType.equals("C_IN") && words.length == 8) {
-                    int carbohydrates = Integer.parseInt(words[CARBOHYDRATES_INDEX].trim());
-                    int proteins = Integer.parseInt(words[PROTEINS_INDEX].trim());
-                    int fats = Integer.parseInt(words[FATS_INDEX].trim());
-                    Food food = new Food(carbohydrates, proteins, fats);
-                    checkMacrosArePositive(i, carbohydrates, proteins, fats);
-                    entries.add(new InputEntry(entryID, description, calories, date, food));
-                } else if (entryType.equals("C_IN")) {
-                    entries.add(new InputEntry(entryID, description, calories, date));
-                } else {
-                    entries.add(new OutputEntry(entryID, description, calories, date));
-                }
+                getSingleCalorieEntry(entries, words, i);
             } catch (NumberFormatException e) {
                 if (e.getMessage().equals(NF_EXCEPTION_PREFIX + words[ENTRYID_INDEX] + "\"")) {
                     System.out.println(getFileInvalidEntryIDMessage(i, filePath));
