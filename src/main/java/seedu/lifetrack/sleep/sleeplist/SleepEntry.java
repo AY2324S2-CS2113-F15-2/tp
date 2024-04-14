@@ -49,7 +49,7 @@ public class SleepEntry extends Entry {
 
     public String toString() {
         return "\t Sleep ID: " +this.sleepEntryID+", Date: " + date +
-                ", Duration: " + String.format("%.1f", duration) + " hours";
+                ", Duration: " + String.format("%.2f", duration) + " hours";
     }
 
     public String toFileFriendlyString() {

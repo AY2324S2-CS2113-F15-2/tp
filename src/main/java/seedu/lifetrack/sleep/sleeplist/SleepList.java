@@ -10,6 +10,8 @@ import seedu.lifetrack.ui.SleepListUi;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncorrectSleepDeleteMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getSleepDurationSumTooLongMessage;
@@ -66,9 +68,23 @@ public class SleepList {
             sleepList.add(newSleep);
             updateFile();
             SleepListUi.printNewSleepEntry(newSleep);
+            //only sort if newly added date is earlier than date in final entry before adding entry
+            if (sleepList.size() > 1 &&
+                    sleepList.get(sleepList.size() - 2).getDate().compareTo(newSleep.getDate()) > 0 ) {
+                sortEntriesByDate();
+            }
         } catch (InvalidInputException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public void sortEntriesByDate() {
+        Collections.sort(sleepList, new Comparator<Entry>() {
+            @Override
+            public int compare(Entry entry1, Entry entry2) {
+                return entry1.getDate().compareTo(entry2.getDate());
+            }
+        });
     }
     
     public void deleteSleep(String line) {
