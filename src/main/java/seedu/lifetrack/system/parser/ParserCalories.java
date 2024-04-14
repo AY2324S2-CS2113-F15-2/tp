@@ -190,7 +190,11 @@ public class ParserCalories {
                 if (macro.trim().isEmpty()) {
                     throw new InvalidInputException(getWhitespaceInMacrosInputMessage());
                 }
-                macros[idx] = Integer.parseInt(macro.trim());
+                int macrosInt = Integer.parseInt(macro.trim());
+                if (macrosInt <= 0) {
+                    throw new InvalidInputException(getIncorrectMacrosInputMessage());
+                }
+                macros[idx] = macrosInt;
                 idx++;
             }
             //throw exception if there are missing values in the macros field
