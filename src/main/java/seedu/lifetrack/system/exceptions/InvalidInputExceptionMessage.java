@@ -111,6 +111,7 @@ public class InvalidInputExceptionMessage {
     }
 
     //sleep list related messages
+    //@@author a-wild-chocolate
     public static String getSleepMissingKeywordMessage() {
         String message = "\t Please ensure that you have entered all keywords!\n";
         return HEADER + message + SLEEP_IN_INPUT;
@@ -120,9 +121,24 @@ public class InvalidInputExceptionMessage {
         return "\t Please input one positive real number into the sleep duration field!";
     }
 
+    public static String getIncorrectSleepDeleteMessage() {
+        return "\t Please input delete command in correct format: sleep delete SLEEPID ";
+    }
+
+    public static String getEmptySleepListMessage() {
+        return "\t Sorry, there is no sleep record in the sleep list." +
+                                        "You cannot delete sleep entry.";
+    }
+
     public static String getTooLongSleepDurationMessage() {
         return "\t Please enter a sleep duration less than 24 hours.";
     }
+
+    public static String getSleepDurationSumTooLongMessage() {
+        return "\t Sorry, your sum of sleep duration exceeds 24 hours in this day. This record failed to add " +
+                "into the list. Please ensure your sum of duration of a day do not exceed 24 hours.";
+    }
+    //@@author
 
     //user related messages
     public static String getOutOfGoalRangeMessage() {
