@@ -37,7 +37,7 @@ LifeTrack is a desktop app for students to track their health data, optimized fo
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of `LifeTrack` from [here](https://github.com/AY2324S2-CS2113-F15-2/tp/releases). You may move the JAR file to anywhere in your computer if you wish.
 3. Open a terminal window and change directories to where the JAR file is located.
-4. Run the command `java -jar tp.jar` and the application will start running.
+4. Run the command `java -jar LifeTrack.jar` and the application will start running.
 
 [//]: # (## Features )
 
@@ -109,16 +109,16 @@ All entries are sorted by date, in ascending order, from earlier dates to presen
 
 #### Expected output
          -----------------------------------------------------------------------------
-	 Your Caloric List:
-
-	 Your Caloric Inflow List:
-	 1. 	 caloriesID: 1, Date: 2024-04-09, Description: wingstop, Calories: 1000 (C: 100, P: 100, F: 100)
-	 2. 	 caloriesID: 2, Date: 2024-04-09, Description: wingstop, Calories: 1000 (C: 100, P: 100, F: 100)
-	 3. 	 caloriesID: 3, Date: 2024-04-09, Description: wingstop, Calories: 1000 (C: 100, P: 100, F: 100)
-
-	 Your Caloric Outflow List:
-	 1. 	 caloriesID: 7, Date: 2024-04-10, Description: basketball, Calories: 1000
-	 2. 	 caloriesID: 9, Date: 2024-04-10, Description: run, Calories: 200
+         Your Caloric List:
+    
+         Your Caloric Inflow List:
+         1. 	 caloriesID: 1, Date: 2024-04-09, Description: wingstop, Calories: 1000 (C: 100, P: 100, F: 100)
+         2. 	 caloriesID: 2, Date: 2024-04-09, Description: wingstop, Calories: 1000 (C: 100, P: 100, F: 100)
+         3. 	 caloriesID: 3, Date: 2024-04-09, Description: wingstop, Calories: 1000 (C: 100, P: 100, F: 100)
+    
+         Your Caloric Outflow List:
+         1. 	 caloriesID: 7, Date: 2024-04-10, Description: basketball, Calories: 1000
+         2. 	 caloriesID: 9, Date: 2024-04-10, Description: run, Calories: 200
          -----------------------------------------------------------------------------
 
 
@@ -170,9 +170,9 @@ Show the list of all hydration records in the hydration tracker.
 `hydration list`
 #### Expected output
          -----------------------------------------------------------------------------
-	 Your Hydration List:
-	 1. 	 hydrationID: 1, Date: 2024-04-10, Description: milo, Volume: 100
-	 2. 	 hydrationID: 2, Date: 2024-04-10, Description: coke, Volume: 1000
+         Your Hydration List:
+         1. 	 hydrationID: 1, Date: 2024-04-10, Description: milo, Volume: 100
+         2. 	 hydrationID: 2, Date: 2024-04-10, Description: coke, Volume: 1000
          -----------------------------------------------------------------------------
 
 
@@ -240,7 +240,7 @@ Creates/edits an existing user profile.
 * The height provided must be an integer between 90 and 225 cms.
 * The weight provided must be an integer between 30 and 200 kgs.
 * The age provided must be an integer between 13 and 30 years old.
-* The gender provided must be either `male` or `female`.
+* The gender provided must be either `male`/`m` or `female`/`f`. It is not case-sensitive.
 * The exercise levels provided must be an integer between 1 and 5.
 * The body goal provided must be an integer between 1 and 5.
 
@@ -278,15 +278,15 @@ If you have not set your user up beforehand, this command will prompt you to do 
 
 #### Expected output
 
-        -----------------------------------------------------------------------------
-	 User details:
-	 Name: John
-	 Height: 170
-	 Weight: 80
-	 Age: 23
-	 Sex: male
-	 Exercise Levels: 2 out of 5 (Lightly Active)
-	 Goal: 4 out of 5 (Moderate Weight Gain)
+         -----------------------------------------------------------------------------
+         User details:
+         Name: John
+         Height: 170
+         Weight: 80
+         Age: 23
+         Sex: male
+         Exercise Levels: 2 out of 5 (Lightly Active)
+         Goal: 4 out of 5 (Moderate Weight Gain)
          -----------------------------------------------------------------------------
 ### Update your user's details: `user update`
 Updates the details of the user depending on their input.
@@ -320,38 +320,38 @@ If you have not set your user up beforehand, this command will prompt you to do 
 #### Expected output
 
          -----------------------------------------------------------------------------
-	 Calories:
-	 ----------
-	 You have consumed 200 calories out of your goal of 2650 calories today.
-	 [===                                               ]  7%
-
-	 You have consumed 300 calories out of your goal of 2650 calories yesterday.
-	 [=====                                             ]  11%
-
-	 You have consumed 400 calories out of your goal of 2650 calories on the day before yesterday.
-	 [======                                            ]  15%
-
-	 Hydration:
-	 ----------
-	 You have consumed 300ml out of your goal of 2000ml today.
-	 [=======                                           ]  15%
-
-	 You have consumed 600ml out of your goal of 2000ml yesterday.
-	 [==============                                    ]  30%
-
-	 You have consumed 1200ml out of your goal of 2000ml on the day before yesterday.
-	 [============================                      ]  60%
-
-	 Sleep:
-	 ----------
-	 You have slept for 4.2 hrs out of your goal of 7 hrs today.
-	 [==============================                    ]  60%
-
-	 You have slept for 4.7 hrs out of your goal of 7 hrs yesterday.
-	 [=================================                 ]  67%
-
-	 You have slept for 8.0 hrs out of your goal of 7 hrs on the day before yesterday.
-	 [==================================================]  114%
+         Calories:
+         ----------
+         You have consumed 200 calories out of your goal of 2650 calories today.
+         [===                                               ]  7%
+    
+         You have consumed 300 calories out of your goal of 2650 calories yesterday.
+         [=====                                             ]  11%
+    
+         You have consumed 400 calories out of your goal of 2650 calories on the day before yesterday.
+         [======                                            ]  15%
+    
+         Hydration:
+         ----------
+         You have consumed 300ml out of your goal of 2000ml today.
+         [=======                                           ]  15%
+    
+         You have consumed 600ml out of your goal of 2000ml yesterday.
+         [==============                                    ]  30%
+    
+         You have consumed 1200ml out of your goal of 2000ml on the day before yesterday.
+         [============================                      ]  60%
+    
+         Sleep:
+         ----------
+         You have slept for 4.2 hrs out of your goal of 7 hrs today.
+         [==============================                    ]  60%
+    
+         You have slept for 4.7 hrs out of your goal of 7 hrs yesterday.
+         [=================================                 ]  67%
+    
+         You have slept for 8.0 hrs out of your goal of 7 hrs on the day before yesterday.
+         [==================================================]  114%
 
          -----------------------------------------------------------------------------
 

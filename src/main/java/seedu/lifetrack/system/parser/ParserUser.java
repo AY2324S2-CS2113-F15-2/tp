@@ -71,7 +71,7 @@ public class ParserUser {
         String name = null;
         if (heightIndex != -1) {
             name = parseName(input.substring(LENGTH_OF_SETUP_COMMAND, heightIndex).trim());
-            input = input.substring(heightIndex);
+            input = input.substring(heightIndex).toLowerCase();
         }
         int weightIndex = input.indexOf("w/");
         int ageIndex = input.indexOf("a/");
@@ -291,21 +291,21 @@ public class ParserUser {
             assert Objects.equals(user.getName(), name);
             printNewUserName(name);
         } else if (fieldToUpdate.startsWith("height ")) {
-            int height = parseHeightIndex(fieldToUpdate.substring(LENGTH_OF_HEIGHT).trim());
+            int height = parseHeightIndex(fieldToUpdate.toLowerCase().substring(LENGTH_OF_HEIGHT).trim());
             user.setHeight(height);
             assert Objects.equals(user.getHeight(), height);
             printNewUserHeight(height);
             user.getHealthInfo();
             printUserCaloriesRequired(user.getCaloriesRequired());
         } else if (fieldToUpdate.startsWith("weight ")) {
-            int weight = parseWeightIndex(fieldToUpdate.substring(LENGTH_OF_WEIGHT).trim());
+            int weight = parseWeightIndex(fieldToUpdate.toLowerCase().substring(LENGTH_OF_WEIGHT).trim());
             user.setWeight(weight);
             assert Objects.equals(user.getWeight(), weight);
             printNewUserWeight(weight);
             user.getHealthInfo();
             printUserCaloriesRequired(user.getCaloriesRequired());
         } else if (fieldToUpdate.startsWith("age ")) {
-            int age = parseAgeIndex(fieldToUpdate.substring(LENGTH_OF_AGE).trim());
+            int age = parseAgeIndex(fieldToUpdate.toLowerCase().substring(LENGTH_OF_AGE).trim());
             user.setAge(age);
             assert Objects.equals(user.getAge(), age);
             printNewUserAge(age);
@@ -319,14 +319,14 @@ public class ParserUser {
             user.getHealthInfo();
             printUserCaloriesRequired(user.getCaloriesRequired());
         } else if (fieldToUpdate.startsWith("goal ")) {
-            int goal = parseGoalIndex(fieldToUpdate.substring(LENGTH_OF_GOAL).trim());
+            int goal = parseGoalIndex(fieldToUpdate.toLowerCase().substring(LENGTH_OF_GOAL).trim());
             user.setGoal(goal);
             assert Objects.equals(user.getGoal(), goal);
             printNewUserGoal(user, goal);
             user.getHealthInfo();
             printUserCaloriesRequired(user.getCaloriesRequired());
         } else if (fieldToUpdate.startsWith("sex ")) {
-            String sex = parseGenderIndex(fieldToUpdate.substring(LENGTH_OF_SEX).trim());
+            String sex = parseGenderIndex(fieldToUpdate.toLowerCase().substring(LENGTH_OF_SEX).trim());
             user.setSex(sex);
             assert Objects.equals(user.getSex(), sex);
             printNewUserSex(sex);
