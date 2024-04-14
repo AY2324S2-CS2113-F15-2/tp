@@ -89,7 +89,6 @@ public class ParserUser {
         if (parts.length != 7) {
             throw new InvalidInputException(getInvalidNumberOfSetUpInputs());
         }
-//        String name = parseName(parts[USER_INPUT_NAME_INDEX].substring(LENGTH_OF_SETUP_COMMAND).trim());
         int height = parseHeightIndex(parts[USER_INPUT_HEIGHT_INDEX].trim());
         int weight = parseWeightIndex(parts[USER_INPUT_WEIGHT_INDEX].trim());
         int age = parseAgeIndex(parts[USER_INPUT_AGE_INDEX].trim());
