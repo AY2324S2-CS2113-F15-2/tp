@@ -60,6 +60,11 @@ public class InvalidInputExceptionMessage {
         return HEADER + message + CALORIES_IN_INPUT;
     }
 
+    public static String getHydrationWhitespaceInInputMessage() {
+        String message = "\t Please ensure that there is no whitespace in your input!\n";
+        return HEADER + message + HYDRATION_IN_INPUT;
+    }
+
     public static String getEmptyMacrosMessage() {
         String message = "\t Your macronutrients field is empty!\n";
         return HEADER + message + MACROS_INPUT;
