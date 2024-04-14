@@ -9,7 +9,6 @@ import seedu.lifetrack.user.User;
 import java.util.Scanner;
 
 import static seedu.lifetrack.ui.UserUi.printNoUserYetMessage;
-import static seedu.lifetrack.ui.UserUi.printUserDetails;
 
 /**
  * Reads user input from the console and processes it.
@@ -140,7 +139,7 @@ public class Ui {
             if (user.getName() == null) {
                 printNoUserYetMessage();
             } else {
-                printUserDetails(user);
+                user.getUserDetails();
             }
         } else {
             handleUnknownInput(line);

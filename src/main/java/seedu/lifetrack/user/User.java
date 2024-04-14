@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import static seedu.lifetrack.system.parser.ParserUser.parseSetUp;
 import static seedu.lifetrack.system.parser.ParserUser.parseUpdate;
+import static seedu.lifetrack.ui.UserUi.printUserDetails;
 
 public class User {
 
@@ -196,5 +197,9 @@ public class User {
         } else {
             return "Maintain Weight";
         }
+    }
+
+    public void getUserDetails(){
+        printUserDetails(this);
     }
 }
