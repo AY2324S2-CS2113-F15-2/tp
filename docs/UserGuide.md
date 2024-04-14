@@ -14,17 +14,21 @@ LifeTrack is a desktop app for students to track their health data, optimized fo
   - [Input calorie loss](#input-calorie-loss-calories-out)
   - [Listing calorie items](#listing-calorie-items-calories-list)
   - [Deleting a calorie item](#deleting-a-calorie-item-calories-delete)
+  - [Finding a calorie item from caloric list](#searching-for-a-calorie-item-calories-find)
 - [Hydration Tracker](#hydration-tracker)
   - [Input hydration intake](#input-hydration-intake-hydration-in)
   - [Listing hydration items](#listing-hydration-items-hydration-list)
   - [Deleting a hydration item](#deleting-a-hydration-item-hydration-delete)
+  - [Finding a hydration item from hydration list](#searching-for-a-hydration-item-hydration-find)
 - [Sleep Tracker](#sleep-tracker)
   - [Input sleeping hours](#input-sleeping-hours-sleep-add)
   - [Listing sleep records](#listing-sleep-records-sleep-list)
   - [Deleting a sleep record](#deleting-a-sleep-record-sleep-delete)
 - [User Profile](#user-profile)
   - [Set Up User Profile](#set-up-user-profile-user-setup)
-  - [Check User's daily calories and hydration consumption](#check-your-daily-calories-and-hydration-consumption-user-progress)
+  - [Check User Details](#check-your-users-details-user-details)
+  - [Update User Details](#update-your-users-details-user-update)
+  - [Check User's daily calories and hydration consumption](#check-your-daily-calories-and-hydration-consumption-and-your-sleep-statistics-user-progress)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -130,6 +134,17 @@ Deletes the specified calories ID entry from the calories tracker according to t
 
 * `calories list` followed by `calories delete 2` deletes the entry with `CALORIESID` 2 in the calories tracker.
 
+### Searching for a calorie item: `calories find`
+Finds and retrieves all calories entries from the caloric list containing the keyword to search for.
+
+**Format:**
+`calories find KEYWORD`
+
+**Examples:**
+
+* `calories find cookies` retrieves all the calories entries with `cookies` in their description.
+
+
 ## Hydration Tracker
 
 ### Input hydration intake: `hydration in`
@@ -168,6 +183,16 @@ Deletes the specified hydration entry according to the `HYDRATIONID`.
 
 **Examples:**
 * `hydration list` followed by `hydration delete 2` deletes the entry with `HYDRATIONID` 2 in the hydration tracker.
+
+### Searching for a hydration item: `hydration find`
+Finds and retrieves all hydration entries from the hydration list containing the keyword to search for.
+
+**Format:**
+`hydration find KEYWORD`
+
+**Examples:**
+
+* `hydration find water` retrieves all the hydration entries with `water` in their description.
 
 ## Sleep Tracker
 
@@ -240,8 +265,49 @@ Creates/edits an existing user profile.
 * `user setup Tom h/180 w/80 a/25 s/male e/3 g/2`
 * `user setup Jane h/163 w/54 a/23 s/female e/2 g/3`
 
-### Check your daily calories and hydration consumption: `user progress`
-Displays a progress bar to show the percentage of calories and hydration you have consumed.
+### Check your user's details: `user details`
+Displays the details of the user who is using _LifeTrack_.
+
+**Format:**
+`user details`
+
+**Notes about the command:**
+If you have not set your user up beforehand, this command will prompt you to do so instead.
+
+#### Expected output
+
+        -----------------------------------------------------------------------------
+	 User details:
+	 Name: John
+	 Height: 170
+	 Weight: 80
+	 Age: 23
+	 Sex: male
+	 Exercise Levels: 2 out of 5 (Lightly Active)
+	 Goal: 4 out of 5 (Moderate Weight Gain)
+         -----------------------------------------------------------------------------
+### Update your user's details: `user update`
+Updates the details of the user depending on their input.
+
+**Format:**
+`user update <FIELD_TO_UPDATE> <NEWVALUE>`
+
+**List of possible fields to update:**
+1. name
+2. height
+3. weight
+4. age
+5. sex
+6. exercise levels
+7. goal
+
+#### Examples:
+- `user update weight 70`
+- `user update height 170`
+- `user update exercise levels 2`
+
+### Check your daily calories and hydration consumption and your sleep statistics: `user progress`
+Displays progress bars to show the percentage of calories and hydration you have consumed as well as sleep you have gotten over the past 3 days.
 
 **Format:**
 `user progress`
@@ -251,14 +317,40 @@ If you have not set your user up beforehand, this command will prompt you to do 
 
 #### Expected output
 
-        -----------------------------------------------------------------------------
+         -----------------------------------------------------------------------------
 	 Calories:
-	 You have consumed 350 calories out of your goal of 2140 calories so far.
-	 [========                                          ]  16%
+	 ----------
+	 You have consumed 200 calories out of your goal of 2650 calories today.
+	 [===                                               ]  7%
+
+	 You have consumed 300 calories out of your goal of 2650 calories yesterday.
+	 [=====                                             ]  11%
+
+	 You have consumed 400 calories out of your goal of 2650 calories on the day before yesterday.
+	 [======                                            ]  15%
 
 	 Hydration:
-	 You have consumed 200ml out of your goal of 2000ml so far.
-	 [=====                                             ]  10%
+	 ----------
+	 You have consumed 300ml out of your goal of 2000ml today.
+	 [=======                                           ]  15%
+
+	 You have consumed 600ml out of your goal of 2000ml yesterday.
+	 [==============                                    ]  30%
+
+	 You have consumed 1200ml out of your goal of 2000ml on the day before yesterday.
+	 [============================                      ]  60%
+
+	 Sleep:
+	 ----------
+	 You have slept for 4.2 hrs out of your goal of 7 hrs today.
+	 [==============================                    ]  60%
+
+	 You have slept for 4.7 hrs out of your goal of 7 hrs yesterday.
+	 [=================================                 ]  67%
+
+	 You have slept for 8.0 hrs out of your goal of 7 hrs on the day before yesterday.
+	 [==================================================]  114%
+
          -----------------------------------------------------------------------------
 
 
@@ -310,5 +402,7 @@ The `user progress` command displays the user's current progress towards the dai
 | List sleep             | `sleep list`                                                                     |
 | Delete sleep entry     | `sleep delete SLEEPID`                                                           |
 | Set Up User Profile    | `user setup NAME h/HEIGHT w/WEIGHT a/AGE s/GENDER e/EXERCISE LEVELS g/BODY GOAL` |
+| Check User Profile     | `user details`                                                                   |
+| Update User Details    | `user update <FIELD_TO_UPDATE> <NEWVALUE>`                                       |
 | Check User Progress    | `user progress`                                                                  |
 
