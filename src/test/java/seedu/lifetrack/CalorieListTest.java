@@ -18,8 +18,8 @@ public class CalorieListTest {
     private final String DELETE_ENTRY_HEADER = "\t The following calorie record has been successfully deleted!";
 
     private final String DELETE_ENTRY_INVALID_INPUT = "\t Please enter a valid positive integer " +
-            "for the entryID you wish to delete.\n" +
-            "\t Example input: calories delete ENTRY_ID";
+            "for the caloriesID you wish to delete.\n" +
+            "\t Example input: calories delete CALORIES_ID";
 
     @Test
     public void addEntry_validInput_entryAdded() {
