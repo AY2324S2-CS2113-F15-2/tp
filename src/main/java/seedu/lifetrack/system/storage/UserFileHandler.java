@@ -121,7 +121,7 @@ public class UserFileHandler extends FileHandler {
         data.add(words[REQ_CAL_INDEX]);
     }
 
-    public ArrayList<String> getUserDataFromFile(User user) throws FileNotFoundException {
+    public ArrayList<String> getUserDataFromFile() throws FileNotFoundException {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
         ArrayList<String> data = new ArrayList<>();

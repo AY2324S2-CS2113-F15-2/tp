@@ -83,8 +83,10 @@ public class FileHandlerExceptionMessage {
             return "\t Line " + lineNumber + " was not added into the calories list due to corrupt data!\n";
         } else if (filePath.equals("data/hydrationData.txt")) {
             return "\t Line " + lineNumber + " was not added into the hydration list due to corrupt data!\n";
-        } else {
+        } else if (filePath.equals("data/sleepData.txt")) {
             return "\t Line " + lineNumber + " was not added into the sleep list due to corrupt data!\n";
+        } else {
+            return "\t Line " + lineNumber + " was not added into the test data due to corrupt data!\n";
         }
     }
 

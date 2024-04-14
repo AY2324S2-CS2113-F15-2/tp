@@ -45,7 +45,7 @@ public class User {
     public User(String filePath) {
         try {
             fileHandler = new UserFileHandler(filePath);
-            ArrayList<String> data = fileHandler.getUserDataFromFile(this);
+            ArrayList<String> data = fileHandler.getUserDataFromFile();
             if (data.size() == 8) {
                 name = data.get(NAME_INDEX);
                 height = Integer.parseInt(data.get(HEIGHT_INDEX));
