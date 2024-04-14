@@ -66,7 +66,13 @@ public class ParserUser {
      */
     public static void parseSetUp(String input, User user) throws InvalidInputException, NumberFormatException {
         checkEmptyInput(input);
+
         int heightIndex = input.indexOf("h/");
+        String name = null;
+        if (heightIndex != -1) {
+            name = parseName(input.substring(LENGTH_OF_SETUP_COMMAND, heightIndex).trim());
+            input = input.substring(heightIndex);
+        }
         int weightIndex = input.indexOf("w/");
         int ageIndex = input.indexOf("a/");
         int sexIndex = input.indexOf("s/");
@@ -77,13 +83,13 @@ public class ParserUser {
                 || exerciseLevelsIndex == -1 || goalIndex == -1) {
             throw new InvalidInputException(getInvalidNumberOfSetUpInputs());
         }
-        checkSetUpInputsCorrectOrder(heightIndex, weightIndex, ageIndex, sexIndex, exerciseLevelsIndex, goalIndex);
+        checkSetUpInputsCorrectOrder(weightIndex, ageIndex, sexIndex, exerciseLevelsIndex, goalIndex);
 
         String[] parts = input.split("h/|w/|a/|s/|e/|g/");
         if (parts.length != 7) {
             throw new InvalidInputException(getInvalidNumberOfSetUpInputs());
         }
-        String name = parseName(parts[USER_INPUT_NAME_INDEX].substring(LENGTH_OF_SETUP_COMMAND).trim());
+//        String name = parseName(parts[USER_INPUT_NAME_INDEX].substring(LENGTH_OF_SETUP_COMMAND).trim());
         int height = parseHeightIndex(parts[USER_INPUT_HEIGHT_INDEX].trim());
         int weight = parseWeightIndex(parts[USER_INPUT_WEIGHT_INDEX].trim());
         int age = parseAgeIndex(parts[USER_INPUT_AGE_INDEX].trim());
@@ -238,7 +244,6 @@ public class ParserUser {
     /**
      * Ensures that the input given by the user is in the correct order
      *
-     * @param heightIndex         Index of the input where user's height is specified
      * @param weightIndex         Index of the input where user's weight is specified
      * @param ageIndex            Index of the input where user's age is specified
      * @param sexIndex            Index of the input where user's gender is specified
@@ -247,10 +252,10 @@ public class ParserUser {
      * @throws InvalidInputException if the order of the inputs is not correct. The input should be in this order:
      *                               height, weight, age, gender, exercise levels and goal.
      */
-    private static void checkSetUpInputsCorrectOrder(int heightIndex, int weightIndex, int ageIndex, int sexIndex,
+    private static void checkSetUpInputsCorrectOrder(int weightIndex, int ageIndex, int sexIndex,
                                                      int exerciseLevelsIndex,
                                                      int goalIndex) throws InvalidInputException {
-        if (!(heightIndex < weightIndex && weightIndex < ageIndex && sexIndex < exerciseLevelsIndex
+        if (!(weightIndex < ageIndex && sexIndex < exerciseLevelsIndex
                 && exerciseLevelsIndex < goalIndex)) {
             throw new InvalidInputException(getInvalidNumberOfSetUpInputs());
         }
