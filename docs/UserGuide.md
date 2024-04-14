@@ -14,12 +14,12 @@ LifeTrack is a desktop app for students to track their health data, optimized fo
   - [Input calorie loss](#input-calorie-loss-calories-out)
   - [Listing calorie items](#listing-calorie-items-calories-list)
   - [Deleting a calorie item](#deleting-a-calorie-item-calories-delete)
-  - [Finding a calorie item from caloric list](#searching-for-a-calorie-item-calories-find)
+  - [Searching for a calorie item from caloric list](#searching-for-a-calorie-item-calories-find)
 - [Hydration Tracker](#hydration-tracker)
   - [Input hydration intake](#input-hydration-intake-hydration-in)
   - [Listing hydration items](#listing-hydration-items-hydration-list)
   - [Deleting a hydration item](#deleting-a-hydration-item-hydration-delete)
-  - [Finding a hydration item from hydration list](#searching-for-a-hydration-item-hydration-find)
+  - [Searching for a hydration item from hydration list](#searching-for-a-hydration-item-hydration-find)
 - [Sleep Tracker](#sleep-tracker)
   - [Input sleeping hours](#input-sleeping-hours-sleep-add)
   - [Listing sleep records](#listing-sleep-records-sleep-list)
@@ -28,7 +28,7 @@ LifeTrack is a desktop app for students to track their health data, optimized fo
   - [Set Up User Profile](#set-up-user-profile-user-setup)
   - [Check User Details](#check-your-users-details-user-details)
   - [Update User Details](#update-your-users-details-user-update)
-  - [Check User's daily calories and hydration consumption](#check-your-daily-calories-and-hydration-consumption-and-your-sleep-statistics-user-progress)
+  - [Check User's daily calories and hydration consumption and your sleep statistics](#check-your-daily-calories-and-hydration-consumption-and-your-sleep-statistics-user-progress)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -369,6 +369,11 @@ If you have not set your user up beforehand, this command will prompt you to do 
 **Q**: Why must I input integers for my calories when it is a continuous variable?
 
 **A**: Although calories is technically a continuous variable, we chose to only take in integer inputs in our application as the difference is just not that significant, i.e. users can just round up values that have decimal values of 0.5 and above, and round down any values below that. An average human will have calorie intake in the thousands daily, thus such a small inaccuracy is insignificant in comparison. An `int` is also much easier to work with than `float`, which is why we chose to only use the former.
+
+**Q**: Why is the limit for `CALORIES` 5000?
+
+**A**: Our team decided that a rational amount of calories per entry/meal would be 5000 calories. We decided on 5000 calories
+because it is not too big, nor is it too small an amount. Thus, it would account for extreme cases of high calorie intake.
 
 ## Coming soon
 
