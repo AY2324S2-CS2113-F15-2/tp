@@ -396,10 +396,10 @@ The `user progress` command displays the user's current progress towards the dai
 | Add calories intake    | `calories in DESCRIPTION c/CALORIES d/DATE [m/CARBOHYDRATES,PROTEIN,FATS]`       |
 | Add calories outflow   | `calories out DESCRIPTION c/CALORIES d/DATE`                                     |
 | List calories          | `calories list`                                                                  |
-| Delete calories entry  | `calories delete ENTRYID`                                                        |
+| Delete calories entry  | `calories delete CALORIESID`                                                     |
 | Add hydration intake   | `hydration in DESCRIPTION v/VOLUME d/DATE`                                       |
 | List hydration         | `hydration list`                                                                 |
-| Delete hydration entry | `hydration delete ENTRYID`                                                       |
+| Delete hydration entry | `hydration delete HYDRATIONID`                                                   |
 | Add sleep              | `sleep add DURATION d/DATE`                                                      |
 | List sleep             | `sleep list`                                                                     |
 | Delete sleep entry     | `sleep delete SLEEPID`                                                           |
