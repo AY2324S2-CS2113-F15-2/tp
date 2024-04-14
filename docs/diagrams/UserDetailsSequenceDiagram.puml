@@ -1,0 +1,32 @@
+'https://plantuml.com/sequence-diagram
+
+@startuml
+actor Tom
+Tom -> UI: Input "user details" command
+activate UI
+
+UI -> UI: handleUserInput()
+activate UI
+
+UI -> UI: handleUserCommands()
+activate UI
+
+UI -> User : getUserDetails()
+activate User
+
+User -> UserUI: printUserDetails()
+activate UserUI
+
+UserUI -> User: getName(), getHeight(), getWeight(), getAge(), getSex()
+UserUI -> User: getExerciseLevels(), getExerciseLevelsAsString(), getGoal(), getGoalAsString()
+activate User
+return name, height, sex, age, exerciseLevels, exerciseLevelsAsString, goal, goalAsString
+
+
+return
+return
+return
+return
+return
+
+@enduml

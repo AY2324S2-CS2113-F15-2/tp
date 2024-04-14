@@ -1,0 +1,56 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class LifeTrack {
+    +main(args: String[]): void
+}
+
+package ui {
+    class Ui {
+        + readUserInput(user: user.User, ...... ) : void
+        + handleUserInput(line: String, user: User, ......): void
+        + handleUserCommands(line: String, user: user.User): void
+    }
+    class UserUi {
+      + printUserCaloriesRequired(caloriesRequired: int): void
+      + printUserCalorieProgress(caloriesConsumed: int, caloriesRequired: int,......): void
+      + printUserHydrationProgress(hydrationConsumed: int, hydrationRequired: int,......): void
+      + printUserSleepProgress(sleepConsumed: double, sleepRequired: int, ......): void
+      + printUserSetUpComplete(user: user.User): void
+      + printNoUserYetMessage(): void
+      + printNewUserName(name: String): void
+      + printNewUserAge(age: int): void
+      + printNewUserHeight(height: int): void
+      + printNewUserWeight(weight: int): void
+      + printNewUserSex(sex: String): void
+      + printNewUserExerciseLevels(user: user.User, level: int): void
+      + printNewUserGoal(user: user.User, goal: int): void
+      + printUserDetails(user: user.User): void
+    }
+}
+
+package user {
+    class User {
+          - name: String
+          - height: int
+          - weight: int
+          - age: int
+          - sex: String
+          - exerciseLevels: int
+          - goal: int
+          - caloriesRequired: int
+          + setUp(line: String): void
+          + update(line: String): void
+          + getUserDetails(): void
+    }
+}
+
+hide circle
+LifeTrack --> user.User
+LifeTrack -[dotted]-> ui.Ui
+ui.Ui -[dotted]-> user.User
+User -[dotted]-> UserUi
+
+@enduml
+

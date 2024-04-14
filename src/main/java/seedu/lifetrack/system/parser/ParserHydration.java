@@ -15,12 +15,14 @@ import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.get
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getIncorrectVolumeInputMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHydrationNegativeIntegerVolumeMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHydrationEmptyDescriptionMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHydrationOverVolumeLimitMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getInvalidDateMessage;
 
 public class ParserHydration {
     private static final int VOLUME_IDX = 1;
     private static final int DATE_IDX = 2;
     private static final int HYDRATION_ADD_PADDING = 13;
+    private static final int VOLUME_MAX = 10000;
     private static final int HYDRATION_FIND_LENGTH = "hydration find".length();
 
     /**
@@ -60,6 +62,7 @@ public class ParserHydration {
 
         int volume = getIntegerVolumeFromInput(strVolume);
         checkVolumeIsPositiveInteger(volume);
+        checkVolumeMaxAllowable(volume);
         assert volume > 0 : "Volume value must be a positive integer!";
 
         //@@author rexyyong
@@ -76,6 +79,12 @@ public class ParserHydration {
         //@@author
         lastHydrationEntryID++;
         return makeNewInputEntry(lastHydrationEntryID, description, volume, date);
+    }
+
+    private static void checkVolumeMaxAllowable(int volume) throws InvalidInputException {
+        if (volume > VOLUME_MAX) {
+            throw new InvalidInputException(getHydrationOverVolumeLimitMessage());
+        }
     }
 
     /**

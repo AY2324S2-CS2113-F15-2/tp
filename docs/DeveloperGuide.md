@@ -14,6 +14,7 @@
   * [Hydration list feature](#hydration-list-feature)
   * [Hydration delete feature](#hydration-delete-feature)
   * [Adding sleep entries feature](#adding-sleep-entries-feature)
+  * [User details feature](#user-details-feature)
   * [Parsing user input for sleep entries](#parsing-user-input-for-sleep-entries)
   * [Sleep list feature](#sleep-list-feature)
   * [Sleep delete feature](#sleep-delete-feature)
@@ -143,6 +144,37 @@ The sequence diagram for this feature is shown below:
 
 ![CaloriesAddEntrySeqDiagram.png](assets%2FCaloriesAddEntrySeqDiagram.png)
 
+### User Details Feature
+
+#### Implementation
+
+This functionality is facilitated by `UI`, `User` and `UserUI` Classes. It implements the following
+operation, namely:
+- `UI#handleUserInput(String, User)`
+- `UI#handleUserCommands(String, User)`
+- `User#getUserDetails()`
+- `UserUI#printUserDetails(User)`
+
+This feature is activated when the user inputs `user details` command in the terminal.
+
+Given below is an example usage scenario and how this mechanism behaves at every step:
+
+- Step 1: When the user inputs the command `user details` in the terminal,
+  the string is sent to `UI#handleUserInput(String, User)` and
+  `UI#handleUserCommands(String, User)`, which calls `User#getUserDetails()`.
+
+- Step 2: Inside `User#getUserDetails()`, the function `UserUI#printUserDetails(User)`
+  is then called. The user's details are printed out.
+
+- Step 3: After printing out the details, the program returns and awaits
+  the next command typed in by user.
+
+The class and sequence diagram for this feature is shown below:
+Unrelated attributes and Classes were excluded.
+
+![UserClassDiagram.png](assets/UserClassDiagram.png)
+![UserDetailsSequenceDiagram.png](assets/UserDetailsSequenceDiagram.png)
+
 ### Calculating calorie requirements based on a user`s goals
 
 #### Implementation
@@ -168,6 +200,7 @@ Given below is an example usage scenario and how this mechanism behaves at every
 - Step 6: This value is set to `User.caloriesRequired` by `User#setCaloriesRequired(int)`.
 
 The Sequence Diagram for the above-mentioned process is as follows:
+
 ![Sequence Diagram](assets/UserCalculateCaloriesSeqDiagram.png)
 
 
@@ -373,7 +406,7 @@ Given below is an example usage scenario and how this mechanism behaves at every
 - Step 5: The latest sleep list will be updated to saving file by calling `SleepList#updateFile()`.
 
 The Sequence diagram for Sleep delete feature is shown below:
-![SleepDeleteSeqDiagram.jpg](assets%2FSleepDeleteSeqDiagram.jpg)
+![sleepDeleteSeqDiagram.png](assets%2FSsleepDeleteSeqDiagram.png)
 
 ### Calculating sleep requirements for each user (Planning)
 
