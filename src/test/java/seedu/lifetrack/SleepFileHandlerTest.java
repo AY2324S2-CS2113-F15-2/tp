@@ -2,8 +2,7 @@ package seedu.lifetrack;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.FileNotFoundException;
-import java.time.LocalDate;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
@@ -20,13 +19,10 @@ public class SleepFileHandlerTest {
     @Test
     public void getSleepEntriesFromFile_correctSleepAddInput_entryArrayListReturned() {
         try {
-            SleepEntry expectedEntry_1 = new SleepEntry(1, 20.3, LocalDate.parse("2024-02-02"));
-            SleepEntry expectedEntry_2 = new SleepEntry(2, 19.2, LocalDate.parse("2024-02-01"));
-            SleepEntry expectedEntry_3 = new SleepEntry(3, 18.1, LocalDate.parse("2024-02-03"));
-            expectedEntries.add(expectedEntry_1);
-            expectedEntries.add(expectedEntry_2);
-            expectedEntries.add(expectedEntry_3);
-            fileHandler.writeEntries(expectedEntries);
+            String expectedEntry_1 = "1;2024-02-02;20.3\n";
+            String expectedEntry_2 = "2;2024-02-01;19.2\n";
+            String expectedEntry_3 = "3;2024-02-03;18.1\n";
+            fileHandler.writeToFile(expectedEntry_1 + expectedEntry_2 + expectedEntry_3);
             ArrayList<Entry> actualEntries = fileHandler.getSleepEntriesFromFile();
             for (int i = 0; i < expectedEntries.size(); i++) {
                 SleepEntry expectedEntryOut = (SleepEntry)expectedEntries.get(i);
@@ -37,7 +33,7 @@ public class SleepFileHandlerTest {
                 assertEquals(expectedEntryOut.getDuration(), actualEntryOut.getDuration());
             }
             expectedEntries.clear();
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             return;
         }
     }
