@@ -14,6 +14,7 @@ import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getF
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -147,5 +148,13 @@ public class UserFileHandler extends FileHandler {
         }
         s.close();
         return data;
+    }
+
+    public void writeUserData(User user) {
+        try {
+            writeToFile(user.toFileFriendlyString());
+        } catch (IOException e) {
+            System.out.println(message);
+        }
     }
 }

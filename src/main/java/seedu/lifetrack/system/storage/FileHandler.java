@@ -23,11 +23,10 @@ public class FileHandler {
     //NumberFormatException exception message prefix
     protected final String NF_EXCEPTION_PREFIX = "For input string: \"";
 
-    protected String filePath;
-
     //error message for IO exception
-    private final String message = "\t Unable to write to file!";
+    protected final String message = "\t Unable to write to file!";
 
+    protected String filePath;
 
     public FileHandler(String filePath) {
         this.filePath = filePath;
@@ -45,18 +44,10 @@ public class FileHandler {
         }
     }
 
-    private void writeToFile(String textToAdd) throws IOException {
+    protected void writeToFile(String textToAdd) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         fw.write(textToAdd);
         fw.close();
-    }
-
-    public void writeUserData(User user) {
-        try {
-            writeToFile(user.toFileFriendlyString());
-        } catch (IOException e) {
-            System.out.println(message);
-        }
     }
 
     public void writeEntries(ArrayList<Entry> entries) {
