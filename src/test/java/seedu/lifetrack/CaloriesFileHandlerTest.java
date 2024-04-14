@@ -1,12 +1,8 @@
 package seedu.lifetrack;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidEntryIDMessage;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 

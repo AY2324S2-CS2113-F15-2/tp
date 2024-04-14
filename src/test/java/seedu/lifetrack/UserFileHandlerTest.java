@@ -3,12 +3,10 @@ package seedu.lifetrack;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.FileNotFoundException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.lifetrack.sleep.sleeplist.SleepEntry;
 import seedu.lifetrack.system.storage.UserFileHandler;
 import seedu.lifetrack.user.User;
 
