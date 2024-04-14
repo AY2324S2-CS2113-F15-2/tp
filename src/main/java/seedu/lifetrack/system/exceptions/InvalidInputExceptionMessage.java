@@ -46,6 +46,10 @@ public class InvalidInputExceptionMessage {
         return "\t Please input only positive integers into the calories field!";
     }
 
+    public static String getCaloriesOverLimitMessage() {
+        return "\t Please ensure that calories is within the limit of 5000 calories per entry!";
+    }
+
     public static String getCaloriesMissingKeywordsMessage() {
         String message = "\t Please ensure that you have entered all keywords!\n";
         return HEADER + message + CALORIES_IN_INPUT;

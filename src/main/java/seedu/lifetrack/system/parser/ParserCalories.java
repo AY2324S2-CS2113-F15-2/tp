@@ -22,6 +22,7 @@ import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.get
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getMacrosInCaloriesOutMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getWhitespaceInInputMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getWhitespaceInMacrosInputMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getCaloriesOverLimitMessage;
 
 public class ParserCalories {
 
@@ -30,6 +31,7 @@ public class ParserCalories {
     private static final int FATS_IDX = 2;
     private static final int CALORIES_OUT_PADDING = 12;
     private static final int CALORIES_FIND_LENGTH = "calories find".length();
+    private static final int CALORIES_LIMIT_5000 = 5000;
 
     /**
      * Parses a string input to create an Entry object representing calorie intake.
@@ -93,9 +95,19 @@ public class ParserCalories {
             }
         }
 
+        int calories;
         //convert calories from string to integer
-        int calories = getIntegerCaloriesFromInput(strCalories);
-        checkCaloriesIsPositiveInteger(calories);
+        try {
+            calories = getIntegerCaloriesFromInput(strCalories);
+            checkCaloriesIsPositiveInteger(calories);
+        } catch (InvalidInputException e) {
+            throw new InvalidInputException(getIncorrectCaloriesInputMessage());
+        }
+
+        if (calories > CALORIES_LIMIT_5000) {
+            throw new InvalidInputException(getCaloriesOverLimitMessage());
+        }
+
         assert calories > 0 : "Calories value must be a positive integer!";
 
         //@@author rexyyong
@@ -143,12 +155,12 @@ public class ParserCalories {
      * @param strCalories the string representation of calories
      * @return the integer value of calories parsed from the input string
      */
-    private static int getIntegerCaloriesFromInput(String strCalories) {
+    private static int getIntegerCaloriesFromInput(String strCalories) throws InvalidInputException {
         int calories = 0;
         try {
             calories = Integer.parseInt(strCalories);
         } catch (NumberFormatException e) {
-            System.out.println(getIncorrectCaloriesInputMessage());
+            throw new InvalidInputException();
         }
         return calories;
     }
@@ -215,7 +227,7 @@ public class ParserCalories {
      */
     private static void checkCaloriesIsPositiveInteger(int calories) throws InvalidInputException {
         if (calories <= 0) {
-            throw new InvalidInputException(getIncorrectCaloriesInputMessage());
+            throw new InvalidInputException();
         }
     }
 
