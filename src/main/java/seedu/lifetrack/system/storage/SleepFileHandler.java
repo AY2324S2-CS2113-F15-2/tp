@@ -44,11 +44,12 @@ public class SleepFileHandler extends FileHandler {
     private void getSingleSleepEntry(ArrayList<Entry> entries, String[] words, int lineNumber)
             throws FileHandlerException {
         checkCorrectNumberOfFields(lineNumber, words.length);
+        int entryID = Integer.parseInt(words[ENTRYID_INDEX]);
         LocalDate date = LocalDate.parse(words[DATE_INDEX]);
         checkDateNotLaterThanCurrent(lineNumber, date);
         double duration = Double.parseDouble(words[DURATION_INDEX]);
         checkDurationIsPositive(lineNumber, duration);
-        entries.add(new SleepEntry(duration, date));
+        entries.add(new SleepEntry(entryID, duration, date));
     }
 
     public ArrayList<Entry> getSleepEntriesFromFile() throws FileNotFoundException {
