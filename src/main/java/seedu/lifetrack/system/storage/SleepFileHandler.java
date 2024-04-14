@@ -41,6 +41,17 @@ public class SleepFileHandler extends FileHandler {
         }
     }
 
+    private void getSingleSleepEntry(ArrayList<Entry> entries, String[] words, int lineNumber)
+            throws FileHandlerException {
+        checkCorrectNumberOfFields(lineNumber, words.length);
+        int entryID = Integer.parseInt(words[ENTRYID_INDEX]);
+        LocalDate date = LocalDate.parse(words[DATE_INDEX]);
+        checkDateNotLaterThanCurrent(lineNumber, date);
+        double duration = Double.parseDouble(words[DURATION_INDEX]);
+        checkDurationIsPositive(lineNumber, duration);
+        entries.add(new SleepEntry(entryID, duration, date));
+    }
+
     public ArrayList<Entry> getSleepEntriesFromFile() throws FileNotFoundException {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
@@ -51,13 +62,7 @@ public class SleepFileHandler extends FileHandler {
             line = s.nextLine();
             String[] words = line.split(";");
             try {
-                checkCorrectNumberOfFields(i, words.length);
-                int lastSleepEntryID = Integer.parseInt(words[ENTRYID_INDEX]);
-                LocalDate date = LocalDate.parse(words[DATE_INDEX]);
-                checkDateNotLaterThanCurrent(i, date);
-                double duration = Double.parseDouble(words[DURATION_INDEX]);
-                checkDurationIsPositive(i, duration);
-                entries.add(new SleepEntry(lastSleepEntryID, duration, date));
+                getSingleSleepEntry(entries, words, i);
             } catch (NumberFormatException e) {
                 if (e.getMessage().equals(NF_EXCEPTION_PREFIX + words[ENTRYID_INDEX] + "\"")) {
                     System.out.println(getFileInvalidEntryIDMessage(i, filePath));
