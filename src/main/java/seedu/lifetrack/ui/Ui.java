@@ -70,7 +70,7 @@ public class Ui {
 
     public static void handleHydrationInput(String line, HydrationList hydrationList) {
         assert !line.startsWith("bye") : "exit the app";
-        if (line.startsWith("hydration in")) {
+        if (line.startsWith("hydration in ")) {
             hydrationList.addEntry(line);
         } else if (line.equals("hydration list")) {
             hydrationList.printHydrationList();
@@ -104,17 +104,17 @@ public class Ui {
                                        User user, SleepList sleepList) {
         if (!line.trim().equalsIgnoreCase("bye")) {
             printLine();
-            line = line.trim().toLowerCase();
+            line = line.trim();
             if (line.isEmpty()) {
                 printEmptyInputMessage();
             } else if (line.startsWith("calories")) {
-                handleCaloriesInput(line, calorieList);
-            } else if (line.startsWith("help")) {
+                handleCaloriesInput(line.toLowerCase(), calorieList);
+            } else if (line.equalsIgnoreCase("help")) {
                 showHelp();
             } else if (line.startsWith("hydration")) {
-                handleHydrationInput(line, hydrationList);
+                handleHydrationInput(line.toLowerCase(), hydrationList);
             } else if (line.startsWith("sleep")) {
-                handleSleepInput(line, sleepList);
+                handleSleepInput(line.toLowerCase(), sleepList);
             } else if (line.startsWith("user")) {
                 handleUserCommands(line, user);
             } else {

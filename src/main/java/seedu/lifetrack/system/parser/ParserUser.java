@@ -71,7 +71,7 @@ public class ParserUser {
         String name = null;
         if (heightIndex != -1) {
             name = parseName(input.substring(LENGTH_OF_SETUP_COMMAND, heightIndex).trim());
-            input = input.substring(heightIndex);
+            input = input.substring(heightIndex).toLowerCase();
         }
         int weightIndex = input.indexOf("w/");
         int ageIndex = input.indexOf("a/");
@@ -283,6 +283,7 @@ public class ParserUser {
      */
     public static void parseUpdate(String input, User user) throws InvalidInputException {
         checkEmptyUpdateInput(input);
+        input = input.toLowerCase();
         String fieldToUpdate = input.substring(LENGTH_OF_UPDATE_COMMAND).trim();
         checkEmptyUpdateField(fieldToUpdate);
         if (fieldToUpdate.startsWith("name ")) {
