@@ -46,8 +46,9 @@ public class ParserHydration {
         String[] parts = input.split("v/|d/");
         String description = getDescriptionFromInput(input, volumeIndex);
         String strVolume = parts[VOLUME_IDX].trim();
-//        String strDate = parts[DATE_IDX].trim();
 
+        // Try catch here is needed because if user inputs "hydration in milo v/1000 d/  "",
+        // code fails because index out of bounds occurs due to parts[DATE_IDX].trim()
         String strDate = null;
         try {
             strDate = parts[DATE_IDX].trim();
