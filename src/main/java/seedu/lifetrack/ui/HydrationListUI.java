@@ -10,7 +10,7 @@ public class HydrationListUI {
         System.out.println("\t " + toDelete.toString());
     }
     public static void unsuccessfulDeletedMessage(int entryID) {
-        System.out.println("\t The following hydration record corresponding to entry ID " + entryID + " could " +
+        System.out.println("\t The following hydration record corresponding to hydrationID " + entryID + " could " +
                 "not be found");
     }
 
@@ -29,7 +29,7 @@ public class HydrationListUI {
     }
 
     public static String deleteLogNumberMessage() {
-        return "\t Please enter a valid index!";
+        return "\t Please enter a valid hydrationID!";
     }
 
     public static void hydrationListHeader() {

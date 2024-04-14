@@ -101,6 +101,11 @@ public class InvalidInputExceptionMessage {
         return HEADER + message + HYDRATION_IN_INPUT;
     }
 
+    public static String getHydrationOverVolumeLimitMessage() {
+        String message = "\t Please ensure that volume is not more than 10000!\n";
+        return HEADER + message + HYDRATION_IN_INPUT;
+    }
+
     public static String getIncorrectVolumeInputMessage() {
         return "\t Please input only positive integers into the volume field!";
     }
