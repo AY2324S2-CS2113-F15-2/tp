@@ -14,6 +14,7 @@
   * [Hydration list feature](#hydration-list-feature)
   * [Hydration delete feature](#hydration-delete-feature)
   * [Adding sleep entries feature](#adding-sleep-entries-feature)
+  * [User details feature](#user-details-feature)
   * [Parsing user input for sleep entries](#parsing-user-input-for-sleep-entries)
   * [Sleep list feature](#sleep-list-feature)
   * [Sleep delete feature](#sleep-delete-feature)

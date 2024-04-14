@@ -51,9 +51,9 @@ public class SleepListTest {
         sleepList.printSleepList();
         System.setOut(System.out);
         String expectedOutput = "\t The following entry has been added to your sleep list!" + lineSeparator +
-                "\t \t Sleep ID: 0, Date: 2024-03-11, Duration: 7.50 hours" + lineSeparator +
+                "\t \t Sleep ID: 1, Date: 2024-03-11, Duration: 7.50 hours" + lineSeparator +
                 "\t Your Sleep List:" + lineSeparator +
-                "\t 1. \t Sleep ID: 0, Date: 2024-03-11, Duration: 7.50 hours" + lineSeparator;
+                "\t 1. \t Sleep ID: 1, Date: 2024-03-11, Duration: 7.50 hours" + lineSeparator;
         assertEquals(expectedOutput, outputStream.toString());
     }
 
@@ -69,15 +69,15 @@ public class SleepListTest {
         sleepList.printSleepList();
         System.setOut(System.out);
         String expectedOutput = "\t The following entry has been added to your sleep list!" + lineSeparator +
-                "\t \t Sleep ID: 1, Date: 2024-03-11, Duration: 7.50 hours" + lineSeparator +
+                "\t \t Sleep ID: 2, Date: 2024-03-11, Duration: 7.50 hours" + lineSeparator +
                 "\t The following entry has been added to your sleep list!" + lineSeparator +
-                "\t \t Sleep ID: 2, Date: 2024-04-09, Duration: 8.00 hours" + lineSeparator +
+                "\t \t Sleep ID: 3, Date: 2024-04-09, Duration: 8.00 hours" + lineSeparator +
                 "\t The following entry has been added to your sleep list!" + lineSeparator +
-                "\t \t Sleep ID: 3, Date: 2024-02-21, Duration: 4.20 hours" + lineSeparator +
+                "\t \t Sleep ID: 4, Date: 2024-02-21, Duration: 4.20 hours" + lineSeparator +
                 "\t Your Sleep List:" + lineSeparator +
-                "\t 1. \t Sleep ID: 3, Date: 2024-02-21, Duration: 4.20 hours" + lineSeparator +
-                "\t 2. \t Sleep ID: 1, Date: 2024-03-11, Duration: 7.50 hours" + lineSeparator +
-                "\t 3. \t Sleep ID: 2, Date: 2024-04-09, Duration: 8.00 hours" + lineSeparator;
+                "\t 1. \t Sleep ID: 4, Date: 2024-02-21, Duration: 4.20 hours" + lineSeparator +
+                "\t 2. \t Sleep ID: 2, Date: 2024-03-11, Duration: 7.50 hours" + lineSeparator +
+                "\t 3. \t Sleep ID: 3, Date: 2024-04-09, Duration: 8.00 hours" + lineSeparator;
         assertEquals(expectedOutput, outputStream.toString());
         assertEquals(3, sleepList.getSize());
     }
