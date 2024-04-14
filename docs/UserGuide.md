@@ -71,7 +71,8 @@ Macronutrients such as Carbohydrates, Proteins and Fats can be included if neede
 `calories in DESCRIPTION c/CALORIES d/DATE [m/CARBOHYDRATES,PROTEIN,FATS]`
 
 * The `DESCRIPTION` refers to the food that the person consumed.
-* The `CALORIES` must be a positive **integer** 1, 2, 3, …, measured in kcal. 
+* The `CALORIES` must be a positive **integer** 1, 2, 3, …, measured in kcal. The limit for `CALORIES` for each entry 
+ is 5000 (inclusive).
 * The `DATE` provided should be of the form YYYY-MM-DD, such as 2024-03-04.
 * Macronutrients field including `CARBOHYDRATES`, `PROTEINS` and `FATS` is optional. The macronutrients must be a positive **integer** 1, 2, 3, measured in grams.
 
@@ -89,7 +90,8 @@ Adds a calorie burning activity into the calories tracker.
 `calories out DESCRIPTION c/CALORIES d/DATE`
 
 * The `DESCRIPTION` refers to any activity that resulted in loss of calories.
-* The `CALORIES` must be a positive **integer** 1, 2, 3, …, measured in kcal. 
+* The `CALORIES` must be a positive **integer** 1, 2, 3, …, measured in kcal. The limit for `CALORIES` for each entry
+  is 5000 (inclusive).
 * The `DATE` provided should be of the form YYYY-MM-DD such as 2024-04-03.
 
 **Examples:**
