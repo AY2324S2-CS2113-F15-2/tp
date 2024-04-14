@@ -190,7 +190,11 @@ public class ParserCalories {
                 if (macro.trim().isEmpty()) {
                     throw new InvalidInputException(getWhitespaceInMacrosInputMessage());
                 }
-                macros[idx] = Integer.parseInt(macro.trim());
+                int macrosInt = Integer.parseInt(macro.trim());
+                if (macrosInt <= 0) {
+                    throw new InvalidInputException(getIncorrectMacrosInputMessage());
+                }
+                macros[idx] = macrosInt;
                 idx++;
             }
             //throw exception if there are missing values in the macros field
@@ -295,7 +299,7 @@ public class ParserCalories {
      * @return a new InputEntry object with food macros
      */
     private static Entry makeNewInputEntry(int lastEntryID, String description, int calories, LocalDate date,
-                                           int[] foodMacros) {
+            int[] foodMacros) {
         Food newFood = new Food(foodMacros[CARBS_IDX], foodMacros[PROTEINS_IDX], foodMacros[FATS_IDX]);
         return new InputEntry(lastEntryID, description, calories, date, newFood);
     }
