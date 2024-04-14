@@ -1,0 +1,29 @@
+@startuml
+actor User
+participant "Ui#handleUserInput()" as UI
+participant "Ui#handleSleepInput()" as SleepInput
+participant "SleepList#deleteEntry(String line)" as DeleteEntry
+participant "SleepList#updateFile()" as UpdateFile
+participant "SleepFileHandler#writeEntries(ArrayList<Entry> entries)" as WriteEntries
+
+User -> UI : Enters command
+activate UI
+UI -> SleepInput : Sends command for sleep input handling
+activate SleepInput
+SleepInput -> DeleteEntry : Calls delete entry method
+activate DeleteEntry
+DeleteEntry -> UpdateFile : Deletes entry
+activate UpdateFile
+UpdateFile -> WriteEntries : Updates file with new entries
+activate WriteEntries
+WriteEntries --> UpdateFile : Updates file
+deactivate WriteEntries
+UpdateFile --> DeleteEntry : File updated
+deactivate UpdateFile
+DeleteEntry --> SleepInput : Entry deleted
+deactivate DeleteEntry
+SleepInput --> UI : Sends success message
+deactivate SleepInput
+UI -> User : Displays success message
+deactivate UI
+@enduml

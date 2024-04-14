@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public class SleepEntry extends Entry {
 
-    private static int sleepEntryNum=0;
+    private static int sleepEntryNum=1;
     private LocalDate date;
     private double duration;
     private int sleepEntryID;
