@@ -159,16 +159,16 @@ All entries are sorted by date, in ascending order, from earlier dates to presen
          Your Caloric List:
     
          Your Caloric Inflow List:
-         1. 	 caloriesID: 16, Date: 2024-01-01, Description: mcd ice cream, Calories: 100
-         2. 	 caloriesID: 15, Date: 2024-03-03, Description: chicken rice, Calories: 1000
-         3. 	 caloriesID: 3, Date: 2024-04-09, Description: wingstop, Calories: 1000 (C: 100, P: 100, F: 100)
-         4. 	 caloriesID: 11, Date: 2024-04-11, Description: breakfast, Calories: 100
+         1.      caloriesID: 16, Date: 2024-01-01, Description: mcd ice cream, Calories: 100
+         2.      caloriesID: 15, Date: 2024-03-03, Description: chicken rice, Calories: 1000
+         3.      caloriesID: 3, Date: 2024-04-09, Description: wingstop, Calories: 1000 (C: 100, P: 100, F: 100)
+         4.      caloriesID: 11, Date: 2024-04-11, Description: breakfast, Calories: 100
     
          Your Caloric Outflow List:
-         1. 	 caloriesID: 20, Date: 2024-01-01, Description: walk to comm hall, Calories: 20
-         2. 	 caloriesID: 17, Date: 2024-02-02, Description: badminton, Calories: 250
-         3. 	 caloriesID: 19, Date: 2024-02-02, Description: swim, Calories: 400
-         4. 	 caloriesID: 18, Date: 2024-04-15, Description: run, Calories: 300
+         1.      caloriesID: 20, Date: 2024-01-01, Description: walk to comm hall, Calories: 20
+         2.      caloriesID: 17, Date: 2024-02-02, Description: badminton, Calories: 250
+         3.      caloriesID: 19, Date: 2024-02-02, Description: swim, Calories: 400
+         4.      caloriesID: 18, Date: 2024-04-15, Description: run, Calories: 300
          -----------------------------------------------------------------------------
 
 
@@ -239,8 +239,8 @@ Show the list of all hydration records in the hydration tracker.
 
          -----------------------------------------------------------------------------
          Your Hydration List:
-         1. 	 hydrationID: 1, Date: 2024-04-10, Description: milo, Volume: 100
-         2. 	 hydrationID: 2, Date: 2024-04-10, Description: coke, Volume: 1000
+         1.      hydrationID: 1, Date: 2024-04-10, Description: milo, Volume: 100
+         2.      hydrationID: 2, Date: 2024-04-10, Description: coke, Volume: 1000
          -----------------------------------------------------------------------------
 
 
