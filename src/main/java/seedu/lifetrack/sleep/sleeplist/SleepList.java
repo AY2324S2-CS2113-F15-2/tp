@@ -59,20 +59,22 @@ public class SleepList {
             double sleepRecord = newSleep.getDuration();
             for(int i=0;i<this.sleepList.size();i++) {
                 SleepEntry curSleep = (SleepEntry) this.sleepList.get(i);
-                sleepRecord += curSleep.getDuration();
+                if(curSleep.getDate().isEqual(newSleep.getDate())) {
+                    sleepRecord += curSleep.getDuration();
+                }
             }
             if(sleepRecord>24){
                 System.out.println(getSleepDurationSumTooLongMessage());
                 return;
             }
             sleepList.add(newSleep);
-            updateFile();
             SleepListUi.printNewSleepEntry(newSleep);
             //only sort if newly added date is earlier than date in final entry before adding entry
             if (sleepList.size() > 1 &&
                     sleepList.get(sleepList.size() - 2).getDate().compareTo(newSleep.getDate()) > 0 ) {
                 sortEntriesByDate();
             }
+            updateFile();
         } catch (InvalidInputException e) {
             System.out.println(e.getMessage());
         }
