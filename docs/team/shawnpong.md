@@ -47,8 +47,6 @@ The program was created using Java. Version control was done using Git.
     * Converted User guide from word document to Markdown format for all existing features.
       * Added documentation for features `hydration in`, `hydration delete`, `hydration list`. [PR #91](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/91)
       * Ensure consistent formatting throughout user guide.
-### Contributions to project management
-
 
 ### Code contributed
 * [Reposense Link](https://nus-cs2113-ay2324s2.github.io/tp-dashboard/?search=shawnpong&sort=groupTitle&sortWithin=totalCommits%20dsc&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2024-02-23&tabOpen=false)
