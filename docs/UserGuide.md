@@ -78,6 +78,7 @@ would be 11.
  is 5000 (inclusive).
 * The `DATE` provided should be of the form YYYY-MM-DD, such as 2024-03-04.
 * Macronutrients field including `CARBOHYDRATES`, `PROTEINS` and `FATS` is optional. The macronutrients must be a positive **integer** 1, 2, 3, measured in grams.
+The limit for each macronutrient per entry is 800g (inclusive).
 
 **Examples:** 
 * `calories in chicken rice c/678 d/2022-02-24`

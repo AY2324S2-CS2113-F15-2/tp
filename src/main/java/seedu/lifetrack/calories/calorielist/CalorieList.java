@@ -130,7 +130,6 @@ public class CalorieList {
         try {
             Entry newEntry = ParserCalories.parseCaloriesInput(input, lastEntryID);
             calorieArrayList.add(newEntry);
-            updateFile();
             CalorieListUi.printNewCalorieEntry(newEntry);
             lastEntryID ++;
             //only sort if newly added date is earlier than date in final entry before adding entry
@@ -138,6 +137,7 @@ public class CalorieList {
                     calorieArrayList.get(calorieArrayList.size() - 2).getDate().compareTo(newEntry.getDate()) > 0 ) {
                 sortEntriesByDate();
             }
+            updateFile();
         } catch (InvalidInputException e) {
             logr.log(Level.WARNING, e.getMessage(), e);
             System.out.println(e.getMessage());
