@@ -74,6 +74,10 @@ public class InvalidInputExceptionMessage {
         return "\t Please input only positive integers into the macronutrients field!";
     }
 
+    public static String getMacrosOverLimitMessage() {
+        return "\t Please ensure that all macros entered are within the limit of 800g per macro per entry!";
+    }
+
     public static String getIncompleteMacrosMessage() {
         String message = "\t Please ensure that all macronutrients fields are filled up!\n";
         return HEADER + message + MACROS_INPUT;
