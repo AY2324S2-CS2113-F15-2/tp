@@ -29,6 +29,10 @@ The program was created using Java. Version control was done using Git.
    their current daily instake against their goals. They are still able to view their previous history of consumption 
    with `calories list` and `hydration list`.
 
+4. **Added feature to sort hydration entries by DATE.** [PR #181](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/181)
+    * What it does: Ensures that dates of hydration entries are sorted in ascending order. 
+    * Justification: So that user can see the breakdown of hydration entries grouped by DATE.
+
 ### Contributions to exception handling
 * Added robust exception handling for hydration class and lists, in order to ensure that program does not crash
   when users type the wrong command to add, delete or list hydration entries. [PR #38](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/38)

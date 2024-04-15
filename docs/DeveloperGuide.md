@@ -19,11 +19,11 @@
   * [Sleep list feature](#sleep-list-feature)
   * [Sleep delete feature](#sleep-delete-feature)
   * [Calculating sleep requirements for each user (Planning)](#calculating-sleep-requirements-for-each-user-planning)
-* [Product scope](#product-scope)
-* [User Stories](#user-stories)
-* [Non-Functional Requirements](#non-functional-requirements)
-* [Glossary](#glossary)
-* [Instructions for manual testing](#instructions-for-manual-testing)
+* [Appendix A: Product scope](#appendix-a-product-scope)
+* [Appendix B: User Stories](#appendix-b-user-stories)
+* [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
+* [Appendix D: Glossary](#appendix-d-glossary)
+* [Appendix E: Instructions for manual testing](#appendix-e-instructions-for-manual-testing)
 
 ## Acknowledgements
 
@@ -332,7 +332,7 @@ Given below is an example usage scenario and how this mechanism behaves at every
 - Step 5: The latest hydration list will be updated to saving file by calling `HydrationList#updateFile()`.
 
 The Sequence diagram for Hydration delete feature is shown below:
-![HydrationDeleteDiagram.png](assets/HydrationDeleteDiagram.png)
+![HydrationDeleteEntrySeqDiagram.png](assets%2FHydrationDeleteEntrySeqDiagram.png)
 
 ### Adding sleep entries feature
 
@@ -416,30 +416,177 @@ The Sequence diagram for Sleep delete feature is shown below:
 
 **Ease of Implementation:** Setting a standard sleep requirement simplifies the tracking process for users. It provides a clear goal to strive for, making it easier for individuals to monitor and maintain their sleep time levels consistently.
 
-## Product scope
+## Appendix A: Product scope
 ### Target user profile
+* Year 2 NUS Computer Engineering (CEG students)
+* can type fast
+* is reasonably comfortable using CLI apps
 
-Our target user profile consists of Year 2 NUS Computer Engineering (CEG) students.
 
 ### Value proposition
 
-It is no secret that Year 2 is the busiest/most difficult period that CEG students will experience in university. As such, it may be easy for students to neglect their health in the midst of the hustle and bustle. We hope that through this application, tracking one's health can be made easy and straightforward, so that students can get their health info quickly on the go, and thus know whether they need to eat/drink/sleep more/less.
+It is no secret that Year 2 is the busiest/most difficult period that CEG students will experience in university. 
+As such, it may be easy for students to neglect their health in the midst of the hustle and bustle. We hope that through
+this application, tracking one's health can be made easy and straightforward, so that students can get their health info
+quickly on the go, and thus know whether they need to eat/drink/sleep more/less.
 
-## User Stories
+## Appendix B: User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+| Version | As a ...     | I want to ...                                                                                                                                                              | So that I can ...                                                      |
+|---------|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| v1.1    | busy student | register my calorie gained by inputting the food consumed, amount of calories and date                                                                                     | track my calorie gained history                                        |
+| v1.1    | busy student | register my calories burnt by simply inputting the name of the activity, calories burnt and date                                                                           | track my burned outflow status                                         |
+| v1.1    | busy student | add my macronutrient details into my calorie entries, such as protein, carbohydrates and fats                                                                              | better track my nutrition                                              |
+| v1.1    | busy student | see my daily calories burned and consumed at a glance                                                                                                                      | get a summary of my calorie status                                     |
+| v1.1    | busy student | delete my calories burned data                                                                                                                                             | remove data that was keyed in wrongly                                  |
+| v1.1    | busy student | delete my calories gained data                                                                                                                                             | remove data that was keyed in wrongly                                  |
+| v1.1    | busy student | add my daily hydration intake                                                                                                                                              | track how hydrated I am daily                                          |
+| v1.1    | busy student | delete my daily hydration intake data                                                                                                                                      | remove wrong hydration data                                            |
+| v1.1    | busy student | see my hydration record at a glance                                                                                                                                        | have an idea of how much water I have been drinking so far             |
+| v2.0    | busy student | add my daily sleep hours                                                                                                                                                   | track my daily sleeping hours                                          |
+| v2.0    | busy student | delete my daily sleep hours                                                                                                                                                | remove wrong sleeping data                                             |
+| v2.0    | busy student | see my sleep hours data at a glance.                                                                                                                                       | track my sleep status                                                  |
+| v2.0    | busy student | see my calorie input and output sorted according to days                                                                                                                   | see what my calorie intake and outflow for each day is                 |
+| v2.0    | busy student | delete my calories entries based on the entry id                                                                                                                           | delete entries based on entry id, instead of based on array list index |
+| v2.0    | busy student | see my daily calorie goals on a progress bar                                                                                                                               | better visualise my daily progress                                     |
+| v2.0    | busy student | see my daily sleep goals on a progress bar                                                                                                                                 | better visualise my daily progress                                     |
+| v2.0    | busy student | see my daily hydration goals on a progress bar                                                                                                                             | better visualise my daily progress                                     |
+| v2.0    | busy student | store my personal details such has height, weight, age, gender, exercise levels and body goals for the program calculator to calculate my recommended daily caloric intake | hit my body goals and be healthier                                     |
 
-## Non-Functional Requirements
+## Appendix C: Non-Functional Requirements
+1. Should work on mainstream OS as long as it has Java `11` installed.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able
+to accomplish most of the tasks fast and efficiently.
+3. Calories, sleep and hydration data should be accurately recorded and stored without loss if users follow instructions on app usage. 
+4. Data retrieval and display operations such as listing calories, sleep or hydration entries should be completed within 5 seconds.
+5. Error messages should be descriptive and provide actionable or intuitive guidance to users on how to resolve issues.
+6. The app codebase should be well-organised and documented to facilitate future updates and maintenance by development teams.
 
-{Give non-functional requirements}
+## Appendix D: Glossary
+* Mainstream OS: Windows, Linux, Unix, MacOS
 
-## Glossary
+## Appendix E: Instructions for manual testing
 
-* *glossary item* - Definition
+### Adding calories intake entries
+1. Test case: `calories in burger c/100 d/2024-04-15`
 
-## Instructions for manual testing
+   Expected: Calories entry is added to the calories list.
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+2. Test case: `calories in burger c/100 d/2024-04-15 m/19,10,10`
+
+   Expected: Calories entry with macronutrients is added to the calories list.
+
+3. Test case: `calories in burger c/-1 d/2024-04-15`
+
+   Expected: Calories entry is not added into calories list. Error details shown in message.
+
+4. Test case: `calories in burger c/100 c/100 d/2024-04-15`
+
+   Expected: Calories entry is not added into calories list. Error details shown in message.
+
+5. Test case: `calories in burger d/2024-04-15`
+
+   Expected: Calories entry is not added into calories list. Error details shown in message.
+
+### Adding calories outflow entries
+
+1. Test case: `calories out run c/100 d/2024-04-15`
+
+   Expected: Calories entry is added to the calories list.
+
+2. Test case: `calories out go gym c/-1 d/2024-04-15`
+
+   Expected: Calories entry is not added into calories list. Error details shown in message.
+
+3. Test case: `calories out run c/100 c/100 d/2024-04-15`
+
+   Expected: Calories entry is not added into calories list. Error details shown in message.
+
+4. Test case: `calories out play softball d/2024-04-15`
+
+   Expected: Calories entry is not added into calories list. Error details shown in message.
+
+### Listing calories entries
+1. Prerequisites: Calories data has already been added into calories list.
+2. Test case: `calories list`
+
+   Expected: List of calories data is displayed.
+
+### Deleting calories entries
+1. Prerequisites: Calories data has already been added into the Calories list.
+2. Test case: `calories list`, followed by `calories delete 1`
+   Expected: Calories entry with `SLEEPID` 1 is deleted from list.
+3. Test case: `sleep list`, followed by `sleep delete -1`
+   Expected: No sleep entry deleted. Error details shown in message.
+   
+### Adding hydration entries
+1. Test case: hydration in water v/500 d/2024-04-15
+
+Expected: Hydration entry is added to the hydration list.
+
+2. Test case: hydration in water v/500 d/24-04-15
+
+Expected: No hydration entry is added to the hydration list. Error details shown in message.
+
+3. Test case: hydration in water d/2024-04-15 v/500
+
+Expected: No hydration entry is added to the hydration list. Error details shown in message.
+
+### Listing hydration entries
+1. Prerequisites: Hydration data has already been added into hydration list.
+2. Test case: hydration list
+
+   Expected: List of hydration data is displayed.
+
+### Deleting a hydration entry
+1. Prerequisites: hydration data has already been added into hydration list.
+2. Test case: hydration list, followed by hydration delete 1
+   Expected: Hydration entry with HYDRATIONID 1 is deleted from list.
+3. Test case: hydration list, followed by hydration delete -1
+   Expected: No hydration entry deleted. Error details shown in message.
+
+### Adding sleep entries
+1. Test case: `sleep add 7 d/2024-04-15`
+  
+    Expected: Sleep entry is added to the sleep list.
+
+2. Test case: `sleep add 7 d/20-04-15`
+
+   Expected: No sleep entry is added to the sleep list. Error details shown in message.
+
+3. Test case: `sleep add 25 d/20-04-15`
+
+   Expected: No sleep entry is added to the sleep list. Error details shown in message.
+
+### Listing sleep entries
+1. Prerequisites: Sleep data has already been added into sleep list.
+2. Test case: `sleep list`
+
+    Expected: List of sleep data is displayed.
+
+### Deleting a sleep entry
+1. Prerequisites: Sleep data has already been added into sleep list.
+2. Test case: `sleep list`, followed by `sleep delete 1`
+    Expected: Sleep entry with `SLEEPID` 1 is deleted from list.
+3. Test case: `sleep list`, followed by `sleep delete -1`
+    Expected: No sleep entry deleted. Error details shown in message. 
+
+### Listing user details
+1. Prerequisites: User details already populated with User Setup.
+2. Test case: user details
+
+   Expected: List of user details is displayed.
+
+### Updating user details
+1. Prerequisites: User details already populated with User Setup.
+2. Test case: user update height 170
+
+   Expected: User details height updated.
+
+### Viewing user progress
+1. Prerequisites: User details already populated with User Setup. Calories and hydration and sleep lists have been
+populated with some entries.
+2. Test case: user progress
+
+   Expected: User progress is shown for calories, hydration and sleep.
+
