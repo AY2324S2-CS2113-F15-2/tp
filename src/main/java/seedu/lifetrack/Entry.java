@@ -32,18 +32,18 @@ public abstract class Entry {
 
     public String toString() {
         if(this instanceof InputEntry) {
-            return String.format("\t caloriesID: " + entryID + ", Date: " + date +
+            return ("\t caloriesID: " + entryID + ", Date: " + date +
                     ", Description: " + description);
         } else if (this instanceof OutputEntry) {
-            return String.format("\t caloriesID: " + entryID + ", Date: " + date + ", " +
+            return ("\t caloriesID: " + entryID + ", Date: " + date + ", " +
                     "Description: " + description);
         } else {
-            return String.format("\t hydrationID: " + entryID + ", Date: " + date + ", " +
+            return ("\t hydrationID: " + entryID + ", Date: " + date + ", " +
                     "Description: " + description);
         }
     }
 
     public String toFileFriendlyString() {
-        return String.format(entryID + ";" + date + ";" + description);
+        return (entryID + ";" + date + ";" + description);
     }
 }
