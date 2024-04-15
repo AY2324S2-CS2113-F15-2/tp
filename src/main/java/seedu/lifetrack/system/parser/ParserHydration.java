@@ -18,6 +18,7 @@ import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.get
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHydrationEmptyDescriptionMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHydrationMissingKeywordMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHydrationIncorrectOrderMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getHydrationDuplicateInputsMessage;
 
 
 
@@ -27,7 +28,7 @@ public class ParserHydration {
     private static final int VOLUME_IDX = 1;
     private static final int DATE_IDX = 2;
     private static final int HYDRATION_ADD_PADDING = 13;
-    private static final int VOLUME_MAX = 10000;
+    private static final int HYDRATION_LIMIT_10000 = 10000;
     private static final int HYDRATION_FIND_LENGTH = "hydration find".length();
 
     /**
@@ -54,6 +55,13 @@ public class ParserHydration {
 
         checkKeywordsCorrectlyOrdered(dateIndex, volumeIndex);
         assert volumeIndex < dateIndex : "The v/ keyword must appear before date/ in the input!";
+
+        int volumeCount = input.split("v/").length - 1;
+        int dateCount = input.split("d/").length - 1;
+
+        checkNoDuplicateKeywords(volumeCount, dateCount);
+        assert volumeCount == 1 : "The v/ keyword must appear before date/ in the input!";
+        assert dateCount == 1 : "The v/ keyword must appear before date/ in the input!";
 
         String[] parts = input.split("v/|d/");
         String description = getDescriptionFromInput(input, volumeIndex);
@@ -94,8 +102,14 @@ public class ParserHydration {
         return makeNewInputEntry(lastHydrationEntryID, description, volume, date);
     }
 
+    private static void checkNoDuplicateKeywords(int volumeCount, int dateCount) throws InvalidInputException{
+        if (volumeCount != 1 || dateCount != 1) {
+            throw new InvalidInputException(getHydrationDuplicateInputsMessage());
+        }
+    }
+
     private static void checkVolumeMaxAllowable(int volume) throws InvalidInputException {
-        if (volume > VOLUME_MAX) {
+        if (volume > HYDRATION_LIMIT_10000) {
             throw new InvalidInputException(getHydrationOverVolumeLimitMessage());
         }
     }
