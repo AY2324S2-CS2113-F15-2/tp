@@ -228,7 +228,7 @@ Deletes the specified sleep entry according to the `SLEEPID`.
 * The `SLEEPID` must be a positive integer 1, 2, 3, …​
 
 **Examples:**
-* `list` followed by `sleep delete 2` deletes the sleep record with `SLEEPID` 2 from the sleep tracker.
+* `sleep list` followed by `sleep delete 2` deletes the sleep record with `SLEEPID` 2 from the sleep tracker.
 
 ## User Profile
 
