@@ -457,12 +457,13 @@ quickly on the go, and thus know whether they need to eat/drink/sleep more/less.
 1. Should work on mainstream OS as long as it has Java `11` installed.
 2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able
 to accomplish most of the tasks fast and efficiently.
-3. 
+3. Calories, sleep and hydration data should be accurately recorded and stored without loss if users follow instructions on app usage. 
+4. Data retrieval and display operations such as listing calories, sleep or hydration entries should be completed within 5 seconds.
+5. Error messages should be descriptive and provide actionable or intuitive guidance to users on how to resolve issues.
+6. The app codebase should be well-organised and documented to facilitate future updates and maintenance by development teams.
 
 ## Glossary
 * Mainstream OS: Windows, Linux, Unix, MacOS
-
-* *glossary item* - Definition
 
 ## Instructions for manual testing
 
