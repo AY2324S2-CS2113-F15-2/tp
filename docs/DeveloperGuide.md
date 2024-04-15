@@ -467,12 +467,63 @@ to accomplish most of the tasks fast and efficiently.
 
 ## Appendix E: Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+### Adding calories intake entries
+1. Test case: `calories in burger c/100 d/2024-04-15`
+
+   Expected: Calories entry is added to the calories list.
+
+2. Test case: `calories in burger c/100 d/2024-04-15 m/19,10,10`
+
+   Expected: Calories entry with macronutrients is added to the calories list.
+
+3. Test case: `calories in burger c/-1 d/2024-04-15`
+
+   Expected: Calories entry is not added into calories list. Error details shown in message.
+
+4. Test case: `calories in burger c/100 c/100 d/2024-04-15`
+
+   Expected: Calories entry is not added into calories list. Error details shown in message.
+
+5. Test case: `calories in burger d/2024-04-15`
+
+   Expected: Calories entry is not added into calories list. Error details shown in message.
+
+### Adding calories outflow entries
+
+1. Test case: `calories out run c/100 d/2024-04-15`
+
+   Expected: Calories entry is added to the calories list.
+
+2. Test case: `calories out go gym c/-1 d/2024-04-15`
+
+   Expected: Calories entry is not added into calories list. Error details shown in message.
+
+3. Test case: `calories out run c/100 c/100 d/2024-04-15`
+
+   Expected: Calories entry is not added into calories list. Error details shown in message.
+
+4. Test case: `calories out play softball d/2024-04-15`
+
+   Expected: Calories entry is not added into calories list. Error details shown in message.
+
+### Listing calories entries
+1. Prerequisites: Calories data has already been added into calories list.
+2. Test case: `calories list`
+
+   Expected: List of calories data is displayed.
+
+### Deleting calories entries
+1. Prerequisites: Calories data has already been added into the Calories list.
+2. Test case: `calories list`, followed by `calories delete 1`
+   Expected: Calories entry with `SLEEPID` 1 is deleted from list.
+3. Test case: `sleep list`, followed by `sleep delete -1`
+   Expected: No sleep entry deleted. Error details shown in message.
+
 
 ### Adding sleep entries
 1. Test case: `sleep add 7 d/2024-04-15`
   
-    Expected: sleep entry is added to the sleep list.
+    Expected: Sleep entry is added to the sleep list.
 
 2. Test case: `sleep add 7 d/20-04-15`
 
@@ -490,8 +541,8 @@ to accomplish most of the tasks fast and efficiently.
 
 ### Deleting a sleep entry
 1. Prerequisites: Sleep data has already been added into sleep list.
-2. Test case: `sleep list`, followed by `delete 1`
+2. Test case: `sleep list`, followed by `sleep delete 1`
     Expected: Sleep entry with `SLEEPID` 1 is deleted from list.
-3. Test case: `sleep list`, followed by `delete -1`
+3. Test case: `sleep list`, followed by `sleep delete -1`
     Expected: No sleep entry deleted. Error details shown in message. 
 
