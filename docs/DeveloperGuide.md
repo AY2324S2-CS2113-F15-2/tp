@@ -442,4 +442,85 @@ It is no secret that Year 2 is the busiest/most difficult period that CEG studen
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+**Testing Calorie Entry Feature:**
+
+Input a new `calorie in` entry using the command format `calories in [DESCRIPTION] c/[CALORIES] d/[DATE]`
+
+For example: `calories in burger c/500 d/2024-04-15`
+
+Input a new `calorie out` entry using the command format `calories out [DESCRIPTION] c/[CALORIES] d/[DATE]`
+
+For example: `calories out exercise c/600 d/2024-04-15`
+
+Use `calories list` command to check that the new entries are listed under `Your Caloric Inflow List` and 
+`Your Caloric Outflow List` respectively.
+Repeat the process with different entries to ensure consistency.
+
+Use `calories delete` command using the command format `calories delete [CALORIESID]`.
+
+Use `hydration list` command to check that the entry with the corresponding `[HYDRATIONID]` has been deleted under
+`Your Hydration List`.
+
+**Testing Hydration Entry Feature:**
+
+Input a new `hydration in` entry using the command format `hydration in [DESCRIPTION] v/[VOLUME] d/[DATE]`
+
+For example: `hydration in milo v/500 d/2024-04-15`
+
+Use `hydration list` command to check that the new entry are listed under `Your Hydration List`.
+Repeat the process with different entries to ensure consistency.
+
+Use `hydration delete` command using the command format `hydration delete [HYDRATIONID]`.
+
+Use `hydration list` command to check that the entry with the corresponding `[HYDRATIONID]` has been deleted under
+`Your Hydration List`.
+
+**Testing Sleep Entry Feature:**
+
+**Testing User Setup Feature:**
+
+Input `user setup` command using the command format `user setup NAME h/HEIGHT w/WEIGHT a/AGE s/GENDER e/EXERCISE LEVELS
+g/BODY GOAL`
+
+For example: `user setup Jane h/163 w/54 a/23 s/female e/2 g/3`
+
+Use the command `user details` to display the current details about the user, it should correspond to your input.
+
+Input `user update` command to update a field using the command format `user update <FIELD_TO_UPDATE> <NEWVALUE>`
+
+For example: `user update height 170`
+
+Use the command `user details` to verify that the update command has worked.
+
+
+
+Navigate to the sleep entry section of the application.
+Input a new sleep entry using the command format sleep add [duration] d/[date], for example: sleep add 7.5 d/2024-04-15.
+Verify that the new entry appears in the list of sleep entries.
+Repeat the process with different entries to ensure consistency.
+**Testing Calorie Deletion Feature:**
+
+Navigate to the calorie entry section of the application.
+Input the command calories list to display the list of calorie entries.
+Note down the index of the entry you want to delete.
+Input the command calories delete [index] to delete the entry, for example: calories delete 1.
+Verify that the entry is removed from the list of calorie entries.
+**Testing Hydration Deletion Feature:**
+
+Navigate to the hydration entry section of the application.
+Input the command hydration list to display the list of hydration entries.
+Note down the index of the entry you want to delete.
+Input the command hydration delete [index] to delete the entry, for example: hydration delete 1.
+Verify that the entry is removed from the list of hydration entries.
+**Testing Sleep Deletion Feature:**
+
+Navigate to the sleep entry section of the application.
+Input the command sleep list to display the list of sleep entries.
+Note down the index of the entry you want to delete.
+Input the command sleep delete [index] to delete the entry, for example: sleep delete 1.
+Verify that the entry is removed from the list of sleep entries.
+**Testing Sleep Calculation Feature:**
+
+Navigate to the user details section of the application.
+Input the command user details to display the user's details.
+Verify that the recommended sleep duration is calculated based on the user's age, gender, and activity level.
