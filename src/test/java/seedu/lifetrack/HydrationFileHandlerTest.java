@@ -18,7 +18,7 @@ public class HydrationFileHandlerTest {
     private ArrayList<Entry> expectedEntries = new ArrayList<>();
 
     @Test
-    public void getHydrationEntriesFromFile_correctHydrationInInput_entryArrayListReturned() {
+    public void getHydrationEntriesFromFile_correctHydrationInInput_allEntriesRetrievedFromFile() {
         try {
             HydrationEntry expectedEntry_1 = new HydrationEntry(1, "milo", 200, LocalDate.parse("2024-02-02"));
             HydrationEntry expectedEntry_2 = new HydrationEntry(2, "coffee", 190, LocalDate.parse("2024-02-01"));

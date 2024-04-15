@@ -47,7 +47,6 @@ public class FileHandlerExceptionMessage {
     private static final String DESC_GUIDANCE = "\t Please ensure that a non-empty description is given";
     private static final String POS_INT_GUIDANCE = "\t Please ensure that a positive integer value is given";
     private static final String POS_FLOAT_GUIDANCE = "\t Please ensure that a positive float value is given";
-    private static final String INTEGER_GUIDANCE = "\t Please ensure that an integer value is given";
 
     //messages to provide user guidance (calories)
     private static final String CALORIES_FIELDS_GUIDANCE = "\t Please ensure that only either five or eight " +
@@ -112,7 +111,7 @@ public class FileHandlerExceptionMessage {
     public static String getFileInvalidEntryIDMessage(int lineNumber, String filePath) {
         String suffix = getLineNotAddedMessage(lineNumber, filePath);
         printLine();
-        return INVALID_ENTRYID + lineNumber + " of " + filePath + "!\n" + suffix + INTEGER_GUIDANCE;
+        return INVALID_ENTRYID + lineNumber + " of " + filePath + "!\n" + suffix + POS_INT_GUIDANCE;
     }
 
     //calories list related messages

@@ -30,10 +30,10 @@ public class OutputEntry extends Entry {
     }
 
     public String toString() {
-        return String.format(super.toString() + ", Calories: " + calories);
+        return (super.toString() + ", Calories: " + calories);
     }
 
     public String toFileFriendlyString() {
-        return String.format(super.toFileFriendlyString() + ";C_OUT;" + calories);
+        return (super.toFileFriendlyString() + ";C_OUT;" + calories);
     }
 }

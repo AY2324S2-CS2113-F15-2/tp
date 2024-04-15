@@ -11,6 +11,7 @@ import seedu.lifetrack.system.exceptions.FileHandlerException;
 
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileDateLaterThanCurrentMessage;
 import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileEmptyDescriptionMessage;
+import static seedu.lifetrack.system.exceptions.FileHandlerExceptionMessage.getFileInvalidEntryIDMessage;
 
 public class FileHandler {
 
@@ -40,6 +41,12 @@ public class FileHandler {
     protected void checkNonEmptyDescription(int lineNumber, String description) throws FileHandlerException {
         if (description.equals("")) {
             throw new FileHandlerException(getFileEmptyDescriptionMessage(lineNumber, filePath));
+        }
+    }
+
+    protected void checkPositiveEntryID(int lineNumber, int entryID) throws FileHandlerException {
+        if (entryID <= 0) {
+            throw new FileHandlerException(getFileInvalidEntryIDMessage(lineNumber, filePath));
         }
     }
 

@@ -89,6 +89,7 @@ public class CaloriesFileHandler extends FileHandler {
             throws FileHandlerException {
         checkCorrectNumberOfFields(lineNumber, words.length);
         int entryID = Integer.parseInt(words[ENTRYID_INDEX].trim());
+        checkPositiveEntryID(lineNumber, entryID);
         calculateMaxCaloriesEntry(entryID);
         LocalDate date = LocalDate.parse(words[DATE_INDEX].trim());
         checkDateNotLaterThanCurrent(lineNumber, date);
