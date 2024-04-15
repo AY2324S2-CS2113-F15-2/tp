@@ -463,67 +463,77 @@ Use `calories list` command to check that the entry with the corresponding `[CAL
 Repeat the process with different entries to ensure consistency.
 
 
-**Testing Hydration Entry Feature:**
+### Adding hydration entries
+1. Test case: hydration in water v/500 d/2024-04-15
 
-Input a new `hydration in` entry using the command format `hydration in [DESCRIPTION] v/[VOLUME] d/[DATE]`
+Expected: Hydration entry is added to the hydration list.
 
-For example: `hydration in milo v/500 d/2024-04-15`
+2. Test case: hydration in water v/500 d/24-04-15
 
-Use `hydration list` command to check that the new entry are listed under `Your Hydration List`.
-Repeat the process with different entries to ensure consistency.
+Expected: No hydration entry is added to the hydration list. Error details shown in message.
 
-Use `hydration delete` command using the command format `hydration delete [HYDRATIONID]`.
+3. Test case: hydration in water d/2024-04-15 v/500
 
-Use `hydration list` command to check that the entry with the corresponding `[HYDRATIONID]` has been deleted under
-`Your Hydration List`.
-Repeat the process with different entries to ensure consistency.
+Expected: No hydration entry is added to the hydration list. Error details shown in message.
 
-**Testing Sleep Entry Feature:**
+### Listing hydration entries
+1. Prerequisites: Hydration data has already been added into hydration list.
+2. Test case: hydration list
 
-**Testing User Setup Feature:**
+   Expected: List of hydration data is displayed.
 
-Input `user setup` command using the command format `user setup NAME h/HEIGHT w/WEIGHT a/AGE s/GENDER e/EXERCISE LEVELS
-g/BODY GOAL`
-
-For example: `user setup Jane h/163 w/54 a/23 s/female e/2 g/3`
-
-Use the command `user details` to display the current details about the user, it should correspond to your input.
-
-Input `user update` command to update a field using the command format `user update <FIELD_TO_UPDATE> <NEWVALUE>`
-
-For example: `user update height 170`
-
-Use the command `user details` to verify that the update command has worked.
+### Deleting a hydration entry
+1. Prerequisites: hydration data has already been added into hydration list.
+2. Test case: hydration list, followed by hydration delete 1
+   Expected: Hydration entry with HYDRATIONID 1 is deleted from list.
+3. Test case: hydration list, followed by hydration delete -1
+   Expected: No hydration entry deleted. Error details shown in message.
 
 
+### Adding sleep entries
+1. Test case: sleep add 7 d/2024-04-15
 
-Navigate to the sleep entry section of the application.
-Input a new sleep entry using the command format sleep add [duration] d/[date], for example: sleep add 7.5 d/2024-04-15.
-Verify that the new entry appears in the list of sleep entries.
-Repeat the process with different entries to ensure consistency.
-**Testing Calorie Deletion Feature:**
+   Expected: Sleep entry is added to the sleep list.
 
-Navigate to the calorie entry section of the application.
-Input the command calories list to display the list of calorie entries.
-Note down the index of the entry you want to delete.
-Input the command calories delete [index] to delete the entry, for example: calories delete 1.
-Verify that the entry is removed from the list of calorie entries.
-**Testing Hydration Deletion Feature:**
+2. Test case: sleep add 7 d/20-04-15
 
-Navigate to the hydration entry section of the application.
-Input the command hydration list to display the list of hydration entries.
-Note down the index of the entry you want to delete.
-Input the command hydration delete [index] to delete the entry, for example: hydration delete 1.
-Verify that the entry is removed from the list of hydration entries.
-**Testing Sleep Deletion Feature:**
+   Expected: No sleep entry is added to the sleep list. Error details shown in message.
 
-Navigate to the sleep entry section of the application.
-Input the command sleep list to display the list of sleep entries.
-Note down the index of the entry you want to delete.
-Input the command sleep delete [index] to delete the entry, for example: sleep delete 1.
-Verify that the entry is removed from the list of sleep entries.
-**Testing Sleep Calculation Feature:**
+3. Test case: sleep add 25 d/20-04-15
 
-Navigate to the user details section of the application.
-Input the command user details to display the user's details.
-Verify that the recommended sleep duration is calculated based on the user's age, gender, and activity level.
+   Expected: No sleep entry is added to the sleep list. Error details shown in message.
+
+### Listing sleep entries
+1. Prerequisites: Sleep data has already been added into sleep list.
+2. Test case: sleep list
+
+   Expected: List of sleep data is displayed.
+
+### Deleting a sleep entry
+1. Prerequisites: Sleep data has already been added into sleep list.
+2. Test case: sleep list, followed by sleep delete 1
+   Expected: Sleep entry with SLEEPID 1 is deleted from list.
+3. Test case: sleep list, followed by sleep delete -1
+   Expected: No sleep entry deleted. Error details shown in message.
+
+### Setting Up User Details 
+1. Test case: user setup Jane h/163 w/54 a/23 s/female e/2 g/3
+
+   Expected: User setup for Jane is complete.
+
+2. Test case: user setup Jane h/163 w/54 a/23 s/female e/2
+
+   Expected: User setup not complete. Error details shown in message.
+
+### Listing User Details
+1. Prerequisites: User details already populated with User Setup.
+2. Test case: user details
+
+   Expected: List of user details is displayed.
+
+### Updating User Details
+1. Prerequisites: User details already populated with User Setup.
+2. Test case: user update height 170
+
+   Expected: User details height updated.
+
