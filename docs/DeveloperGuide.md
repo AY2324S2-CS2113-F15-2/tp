@@ -418,19 +418,40 @@ The Sequence diagram for Sleep delete feature is shown below:
 
 ## Product scope
 ### Target user profile
+* Year 2 NUS Computer Engineering (CEG students)
+* can type fast
+* is reasonably comfortable using CLI apps
 
-Our target user profile consists of Year 2 NUS Computer Engineering (CEG) students.
 
 ### Value proposition
 
-It is no secret that Year 2 is the busiest/most difficult period that CEG students will experience in university. As such, it may be easy for students to neglect their health in the midst of the hustle and bustle. We hope that through this application, tracking one's health can be made easy and straightforward, so that students can get their health info quickly on the go, and thus know whether they need to eat/drink/sleep more/less.
+It is no secret that Year 2 is the busiest/most difficult period that CEG students will experience in university. 
+As such, it may be easy for students to neglect their health in the midst of the hustle and bustle. We hope that through
+this application, tracking one's health can be made easy and straightforward, so that students can get their health info
+quickly on the go, and thus know whether they need to eat/drink/sleep more/less.
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+| Version | As a ...     | I want to ...                                                                                                                                                              | So that I can ...                                                      |
+|---------|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| v1.1    | busy student | register my calorie gained by inputting the food consumed, amount of calories and date                                                                                     | track my calorie gained history                                        |
+| v1.1    | busy student | register my calories burnt by simply inputting the name of the activity, calories burnt and date                                                                           | track my burned outflow status                                         |
+| v1.1    | busy student | add my macronutrient details into my calorie entries, such as protein, carbohydrates and fats                                                                              | better track my nutrition                                              |
+| v1.1    | busy student | see my daily calories burned and consumed at a glance                                                                                                                      | get a summary of my calorie status                                     |
+| v1.1    | busy student | delete my calories burned data                                                                                                                                             | remove data that was keyed in wrongly                                  |
+| v1.1    | busy student | delete my calories gained data                                                                                                                                             | remove data that was keyed in wrongly                                  |
+| v1.1    | busy student | add my daily hydration intake                                                                                                                                              | track how hydrated I am daily                                          |
+| v1.1    | busy student | delete my daily hydration intake data                                                                                                                                      | remove wrong hydration data                                            |
+| v1.1    | busy student | see my hydration record at a glance                                                                                                                                        | have an idea of how much water I have been drinking so far             |
+| v2.0    | busy student | add my daily sleep hours                                                                                                                                                   | track my daily sleeping hours                                          |
+| v2.0    | busy student | delete my daily sleep hours                                                                                                                                                | remove wrong sleeping data                                             |
+| v2.0    | busy student | see my sleep hours data at a glance.                                                                                                                                       | track my sleep status                                                  |
+| v2.0    | busy student | see my calorie input and output sorted according to days                                                                                                                   | see what my calorie intake and outflow for each day is                 |
+| v2.0    | busy student | delete my calories entries based on the entry id                                                                                                                           | delete entries based on entry id, instead of based on array list index |
+| v2.0    | busy student | see my daily calorie goals on a progress bar                                                                                                                               | better visualise my daily progress                                     |
+| v2.0    | busy student | see my daily sleep goals on a progress bar                                                                                                                                 | better visualise my daily progress                                     |
+| v2.0    | busy student | see my daily hydration goals on a progress bar                                                                                                                             | better visualise my daily progress                                     |
+| v2.0    | busy student | store my personal details such has height, weight, age, gender, exercise levels and body goals for the program calculator to calculate my recommended daily caloric intake | hit my body goals and be healthier                                     |
 
 ## Non-Functional Requirements
 
