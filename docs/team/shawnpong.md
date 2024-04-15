@@ -41,7 +41,8 @@ The program was created using Java. Version control was done using Git.
 
 ### Contributions to documentation
 * **Developer guide**
-    * Added implementation details for `Hydration` class. [PR #93](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/93)
+    * Added implementation details for `Hydration` class. [PR #275](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/275)
+    * Added implementation details for `HydrationList` class. [PR #93](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/93)
     * Ensure consistent formatting throughout developer guide.
 * **User guide**
     * Converted User guide from word document to Markdown format for all existing features.
