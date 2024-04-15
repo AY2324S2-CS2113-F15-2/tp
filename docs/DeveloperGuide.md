@@ -442,25 +442,57 @@ It is no secret that Year 2 is the busiest/most difficult period that CEG studen
 
 ## Instructions for manual testing
 
-**Testing Calorie Entry Feature:**
+### Adding calories intake entries
+1. Test case: `calories in burger c/100 d/2024-04-15`
 
-Input a new `calorie in` entry using the command format `calories in [DESCRIPTION] c/[CALORIES] d/[DATE]`
+   Expected: Calories entry is added to the calories list.
 
-For example: `calories in burger c/500 d/2024-04-15`
+2. Test case: `calories in burger c/100 d/2024-04-15 m/19,10,10`
 
-Input a new `calorie out` entry using the command format `calories out [DESCRIPTION] c/[CALORIES] d/[DATE]`
+   Expected: Calories entry with macronutrients is added to the calories list.
 
-For example: `calories out exercise c/600 d/2024-04-15`
+3. Test case: `calories in burger c/-1 d/2024-04-15`
 
-Use `calories list` command to check that the new entries are listed under `Your Caloric Inflow List` and 
-`Your Caloric Outflow List` respectively.
-Repeat the process with different entries to ensure consistency.
+   Expected: Calories entry is not added into calories list. Error details shown in message.
 
-Use `calories delete` command using the command format `calories delete [CALORIESID]`.
+4. Test case: `calories in burger c/100 c/100 d/2024-04-15`
 
-Use `calories list` command to check that the entry with the corresponding `[CALORIESID]` has been deleted under 
-`Your Caloric Inflow List` or `Your Caloric Outflow List`.
-Repeat the process with different entries to ensure consistency.
+   Expected: Calories entry is not added into calories list. Error details shown in message.
+
+5. Test case: `calories in burger d/2024-04-15`
+
+   Expected: Calories entry is not added into calories list. Error details shown in message.
+
+### Adding calories outflow entries
+
+1. Test case: `calories out run c/100 d/2024-04-15`
+
+   Expected: Calories entry is added to the calories list.
+
+2. Test case: `calories out go gym c/-1 d/2024-04-15`
+
+   Expected: Calories entry is not added into calories list. Error details shown in message.
+
+3. Test case: `calories out run c/100 c/100 d/2024-04-15`
+
+   Expected: Calories entry is not added into calories list. Error details shown in message.
+
+4. Test case: `calories out play softball d/2024-04-15`
+
+   Expected: Calories entry is not added into calories list. Error details shown in message.
+
+### Listing calories entries
+1. Prerequisites: Calories data has already been added into calories list.
+2. Test case: `calories list`
+
+   Expected: List of calories data is displayed.
+
+### Deleting calories entries
+1. Prerequisites: Calories data has already been added into the Calories list.
+2. Test case: `calories list`, followed by `calories delete 1`
+   Expected: Calories entry with `SLEEPID` 1 is deleted from list.
+3. Test case: `sleep list`, followed by `sleep delete -1`
+   Expected: No sleep entry deleted. Error details shown in message.
 
 
 ### Adding hydration entries
@@ -516,7 +548,7 @@ Expected: No hydration entry is added to the hydration list. Error details shown
 3. Test case: sleep list, followed by sleep delete -1
    Expected: No sleep entry deleted. Error details shown in message.
 
-### Setting Up User Details 
+### Setting up user details
 1. Test case: user setup Jane h/163 w/54 a/23 s/female e/2 g/3
 
    Expected: User setup for Jane is complete.
@@ -525,15 +557,21 @@ Expected: No hydration entry is added to the hydration list. Error details shown
 
    Expected: User setup not complete. Error details shown in message.
 
-### Listing User Details
+### Listing user details
 1. Prerequisites: User details already populated with User Setup.
 2. Test case: user details
 
    Expected: List of user details is displayed.
 
-### Updating User Details
+### Updating user details
 1. Prerequisites: User details already populated with User Setup.
 2. Test case: user update height 170
 
    Expected: User details height updated.
 
+### Viewing user progress
+1. Prerequisites: User details already populated with User Setup. Calories and hydration and sleep lists have been
+populated with some entries.
+2. Test case: user progress
+
+   Expected: User progress is shown for calories, hydration and sleep.
