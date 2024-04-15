@@ -468,3 +468,30 @@ to accomplish most of the tasks fast and efficiently.
 ## Appendix E: Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+### Adding sleep entries
+1. Test case: `sleep add 7 d/2024-04-15`
+  
+    Expected: sleep entry is added to the sleep list.
+
+2. Test case: `sleep add 7 d/20-04-15`
+
+   Expected: No sleep entry is added to the sleep list. Error details shown in message.
+
+3. Test case: `sleep add 25 d/20-04-15`
+
+   Expected: No sleep entry is added to the sleep list. Error details shown in message.
+
+### Listing sleep entries
+1. Prerequisites: Sleep data has already been added into sleep list.
+2. Test case: `sleep list`
+
+    Expected: List of sleep data is displayed.
+
+### Deleting a sleep entry
+1. Prerequisites: Sleep data has already been added into sleep list.
+2. Test case: `sleep list`, followed by `delete 1`
+    Expected: Sleep entry with `SLEEPID` 1 is deleted from list.
+3. Test case: `sleep list`, followed by `delete -1`
+    Expected: No sleep entry deleted. Error details shown in message. 
+
