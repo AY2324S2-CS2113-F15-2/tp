@@ -74,6 +74,8 @@ function is called, which sorts the entries in ascending order.
 
 
 ### Hydration Component
+
+Here's a (partial) class diagram of the `hydration` component.
 ![hydration.png](assets%2Fhydration.png)
 
 
