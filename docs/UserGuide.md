@@ -300,21 +300,21 @@ Creates/edits an existing user profile.
 
 **Notes about the command format:**
 
-| Exercise Level Input | Corresponding Exercise Levels |
-|:--------------------:|:-----------------------------:|
-|          1           |           Sedentary           |
-|          2           |        Lightly Active         |
-|          3           |       Moderately Active       |
-|          4           |          Very Active          |
-|          5           |       Extremely Active        |
+| Exercise Level Input |            Corresponding Exercise Levels            |
+|:--------------------:|:---------------------------------------------------:|
+|          1           |          Sedentary (little or no exercise)          |
+|          2           |    Lightly Active (exercise 1 to 3 days a week)     |
+|          3           |  Moderately Active  (exercise 3 to 5 days a week)   |
+|          4           |      Very Active (exercise 6 to 7 days a week)      |
+|          5           | Extremely Active (hard exercise 6 to 7 days a week) |
 
-| Body Goal Input |  Corresponding Goal  |
-|:---------------:|:--------------------:|
-|        1        |  Quick Weight Loss   |
-|        2        | Moderate Weight Loss |
-|        3        |   Maintain Weight    |
-|        4        | Moderate Weight Gain |
-|        5        |  Quick Weight Gain   |
+| Body Goal Input |             Corresponding Goal             |
+|:---------------:|:------------------------------------------:|
+|        1        |  Quick Weight Loss (20% calorie deficit)   |
+|        2        | Moderate Weight Loss (10% calorie deficit) |
+|        3        |              Maintain Weight               |
+|        4        | Moderate Weight Gain (10% calorie surplus) |
+|        5        |  Quick Weight Gain (20% calorie surplus)   |
 
 
 **Examples:**
