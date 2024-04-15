@@ -19,11 +19,11 @@
   * [Sleep list feature](#sleep-list-feature)
   * [Sleep delete feature](#sleep-delete-feature)
   * [Calculating sleep requirements for each user (Planning)](#calculating-sleep-requirements-for-each-user-planning)
-* [Product scope](#product-scope)
-* [User Stories](#user-stories)
-* [Non-Functional Requirements](#non-functional-requirements)
-* [Glossary](#glossary)
-* [Instructions for manual testing](#instructions-for-manual-testing)
+* [Appendix A: Product scope](#appendix-a-product-scope)
+* [Appendix B: User Stories](#appendix-b-user-stories)
+* [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
+* [Appendix D: Glossary](#appendix-d-glossary)
+* [Appendix E: Instructions for manual testing](#appendix-e-instructions-for-manual-testing)
 
 ## Acknowledgements
 
@@ -416,7 +416,7 @@ The Sequence diagram for Sleep delete feature is shown below:
 
 **Ease of Implementation:** Setting a standard sleep requirement simplifies the tracking process for users. It provides a clear goal to strive for, making it easier for individuals to monitor and maintain their sleep time levels consistently.
 
-## Product scope
+## Appendix A: Product scope
 ### Target user profile
 * Year 2 NUS Computer Engineering (CEG students)
 * can type fast
@@ -430,7 +430,7 @@ As such, it may be easy for students to neglect their health in the midst of the
 this application, tracking one's health can be made easy and straightforward, so that students can get their health info
 quickly on the go, and thus know whether they need to eat/drink/sleep more/less.
 
-## User Stories
+## Appendix B: User Stories
 
 | Version | As a ...     | I want to ...                                                                                                                                                              | So that I can ...                                                      |
 |---------|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
@@ -453,7 +453,7 @@ quickly on the go, and thus know whether they need to eat/drink/sleep more/less.
 | v2.0    | busy student | see my daily hydration goals on a progress bar                                                                                                                             | better visualise my daily progress                                     |
 | v2.0    | busy student | store my personal details such has height, weight, age, gender, exercise levels and body goals for the program calculator to calculate my recommended daily caloric intake | hit my body goals and be healthier                                     |
 
-## Non-Functional Requirements
+## Appendix C: Non-Functional Requirements
 1. Should work on mainstream OS as long as it has Java `11` installed.
 2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able
 to accomplish most of the tasks fast and efficiently.
@@ -462,9 +462,9 @@ to accomplish most of the tasks fast and efficiently.
 5. Error messages should be descriptive and provide actionable or intuitive guidance to users on how to resolve issues.
 6. The app codebase should be well-organised and documented to facilitate future updates and maintenance by development teams.
 
-## Glossary
+## Appendix D: Glossary
 * Mainstream OS: Windows, Linux, Unix, MacOS
 
-## Instructions for manual testing
+## Appendix E: Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
