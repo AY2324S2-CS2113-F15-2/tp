@@ -75,7 +75,8 @@ Shows a help message listing the commands available in the application.
 	       - user setup <name> h/<height> w/<weight> a/<age> s/<sex> e/<exercise_level> g/<body_goal>:
 	       Create a new user, or edit an existing one.
 	       - user details: prints the details of the user.
-	       - user update name/height/weight/age/sex/exercise levels/goal <UPDATED VALUE>: updates the corresponding field of the user.
+	       - user update name/height/weight/age/sex/exercise levels/goal <UPDATED VALUE>: 
+             updates the corresponding field of the user.
 	       - user progress: Display calories and hydration progress towards the daily requirement.
          -----------------------------------------------------------------------------
 
@@ -116,6 +117,7 @@ The limit for each macronutrient per entry is 800g (inclusive).
 * `calories in drink liho milk tea c/200 d/2024-04-14 m/50, 20, 10`
 
 #### Expected output for `calories in drink liho milk tea c/200 d/2024-04-14 m/50, 20, 10`
+
          -----------------------------------------------------------------------------
          The following entry has been added to your caloric list!
                  caloriesID: 22, Date: 2024-04-14, Description: drink liho milk tea, Calories: 200 (C: 50, P: 20, F: 10)
@@ -142,6 +144,7 @@ Adds a calorie burning activity into the calories tracker.
 	       The following entry has been added to your caloric list!
 	 	             caloriesID: 21, Date: 2024-04-03, Description: go gym, Calories: 300
          -----------------------------------------------------------------------------
+
 ### Listing calorie items: `calories list`
 Shows a list of all activities in the calories tacker. Calories inflow and outflow are displayed separately.
 All entries are sorted by date, in ascending order, from earlier dates to present dates.
@@ -150,6 +153,7 @@ All entries are sorted by date, in ascending order, from earlier dates to presen
 `calories list`
 
 #### Expected output
+
          -----------------------------------------------------------------------------
 	       Your Caloric List:
 
@@ -179,6 +183,7 @@ Deletes the specified calories ID entry from the calories tracker according to t
 * `calories list` followed by `calories delete 2` deletes the entry with `CALORIESID` 2 in the calories tracker.
 
 #### Expected output for `calories delete 3` based on calories list shown in example above.
+
          -----------------------------------------------------------------------------
          The following calorie record has been successfully deleted!
 	 	             caloriesID: 3, Date: 2024-04-09, Description: wingstop, Calories: 1000 (C: 100, P: 100, F: 100)
@@ -193,7 +198,8 @@ Finds and retrieves all calories entries from the caloric list containing the ke
 **Examples:**
 
 * `calories find cream` retrieves all the calories entries with `cream` in their description.
-#### Expected output of `calories find cream` based on calories list shown in example above.
+#### Expected output of `calories find cream` 
+
          -----------------------------------------------------------------------------
          Caloric List based on your search:
 
@@ -403,6 +409,7 @@ If you have not set your user up beforehand, this command will prompt you to do 
          Exercise Levels: 2 out of 5 (Lightly Active)
          Goal: 4 out of 5 (Moderate Weight Gain)
          -----------------------------------------------------------------------------
+
 ### Update your user's details: `user update`
 Updates the details of the user depending on their input.
 
