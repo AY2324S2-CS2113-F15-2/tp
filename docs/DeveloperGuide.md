@@ -75,6 +75,37 @@ function is called, which sorts the entries in ascending order.
 ### hydration component
 ![hydration.png](assets%2Fhydration.png)
 
+The hydration component consists of the following Classes
+1. `Ui` : Handles user and program interaction.
+2. `HydrationList` : Handles the list of hydration entries.
+3. `HydrationFileHandler` : Handles the saving and reading of data from file.
+4. `ParserHydration` : Handles the parsing of user input to determine type of command.
+6. `HydrationEntry` : Handles hydration entries data.
+
+The sequence diagram bellow illustrates the interactions within the `hydration` component, taking
+`hydration in milo v/100 d/2024-04-10` call as an example.
+![hydration_component.png](assets%2Fhydration_component.png)
+
+1. When the user inputs the hydration in `water v/500 d/2024-04-15` command, the input is sent to 
+`Ui#handleHydrationInput(String, HydrationList)`, which then calls `HydrationList#addEntry(String)`.
+
+2. Inside `HydrationList#addEntry(String)`, the function `ParserHydration#parseHydrationInput(String, int)` is called to 
+extract information such as the description, volume, and date of entry.
+
+3. With the extracted information, the function `ParserHydration#makeNewInputEntry(int, String, int, String)` is called,
+which creates a new entry of `HydrationEntry` that extends `Entry`. The `HydrationEntry` object is then returned to the 
+caller, `HydrationList#addEntry(String)` which was called in step 2.
+
+4. The returned `HydrationEntry` object is added into the `hydrationArrayList` member of type `ArrayList<Entry>` in the 
+HydrationList, via the ArrayList.add() method.
+
+5. `HydrationList#UpdateFile()` is then called, which calls `HydrationFileHandler#writeEntries(ArrayList<Entry>)`. 
+Within that function, `HydrationFileHandler#writeToFile(String)` function is called, which writes the new data into the 
+data file.
+
+6. If the dates of entries are not sorted in ascending order, `HydrationList#sortEntriesByDate()` function is called,
+which sorts the entries in ascending order.
+
 
 ### sleep component
 Here's a (partial) class diagram of the `sleep` component.
