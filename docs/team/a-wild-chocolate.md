@@ -23,11 +23,15 @@ The program was created using Java. Version control was done using Git.
     * What it does: Allows users to add records relating to their sleep, which includes `Duration` and `Date`
     * Testing: Added JUnit tests for the feature as well.
 
-4. **Added the ability to delete entries for sleep intake.** [PR #60](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/60)
+4. **Added the ability to delete entries for sleep added.** [PR #60](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/60)
     * What it does: Allows users to delete sleep records by id.
     * Testing: Added JUnit tests for the feature as well.
 
-5. **Added the sleep id for sleep.** [PR #157](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/157)
+5.**Added the ability to list entries in the sleep list.** [PR #60](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/60)
+    * What it does: Allows users to see sleep records by date in the sleep list.
+    * Testing: Added JUnit tests for the feature as well.
+
+6.**Added the sleep id for sleep.** [PR #157](https://github.com/AY2324S2-CS2113-F15-2/tp/pull/157)
     * What it does: Give sleep records unique sleep id and can save it into file
     * Testing: Added JUnit tests for the feature as well.
 
