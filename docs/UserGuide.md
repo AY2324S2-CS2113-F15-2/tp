@@ -321,6 +321,22 @@ Creates/edits an existing user profile.
 * `user setup Tom h/180 w/80 a/25 s/male e/3 g/2`
 * `user setup Jane h/163 w/54 a/23 s/female e/2 g/3`
 
+#### Expected Output:
+When the command `user setup Jane h/163 w/54 a/23 s/female e/2 g/3` is entered in the terminal, the following output is expected:
+
+         -----------------------------------------------------------------------------
+         Hello, Jane! Thank you for completing the setup :)
+         You need to consume 1763 calories per day to hit your goals!
+         User details:
+         Name: Jane
+         Height: 163
+         Weight: 54
+         Age: 23
+         Sex: female
+         Exercise Levels: 2 out of 5 (Lightly Active)
+         Goal: 3 out of 5 (Maintain Weight)
+         -----------------------------------------------------------------------------
+
 ### Check your user's details: `user details`
 Displays the details of the user who is using _LifeTrack_.
 
@@ -362,6 +378,14 @@ Updates the details of the user depending on their input.
 - `user update height 170`
 - `user update exercise levels 2`
 
+#### Expected Output:
+When the command `user update name Karthik` is entered, the following output is expected:
+
+         -----------------------------------------------------------------------------
+         The following change has been made:
+         Name: Karthik
+         -----------------------------------------------------------------------------
+
 ### Check your daily calories and hydration consumption and your sleep statistics: `user progress`
 Displays progress bars to show the percentage of calories and hydration you have consumed as well as sleep you have gotten over the past 3 days.
 
@@ -371,7 +395,7 @@ Displays progress bars to show the percentage of calories and hydration you have
 **Notes about the command:**
 If you have not set your user up beforehand, this command will prompt you to do so instead.
 
-#### Expected output
+#### Expected Output:
 
          -----------------------------------------------------------------------------
          Calories:
