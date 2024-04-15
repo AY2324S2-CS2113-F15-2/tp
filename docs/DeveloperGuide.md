@@ -3,7 +3,10 @@
 ## Quick links
 * [Acknowledgements](#acknowledgements)
 * [Design](#design)
-  * [Architecture](#architecture)
+  * [Calories Component](#calories-component)
+  * [Hydration Component](#hydration-component)
+  * [Sleep Component](#sleep-component)
+  * [User Component](#user-component)
 * [Implementation](#implementation)
   * [Adding calorie entries feature](#adding-calorie-entries-feature)
   * [Calculating calorie requirements based on user's goals](#calculating-calorie-requirements-based-on-a-users-goals)
@@ -74,8 +77,8 @@ function is called, which sorts the entries in ascending order.
 
 
 ### Hydration Component
-
 Here's a (partial) class diagram of the `hydration` component.
+
 ![hydration.png](assets%2Fhydration.png)
 
 The hydration component consists of the following Classes
@@ -109,9 +112,9 @@ data file.
 6. If the dates of entries are not sorted in ascending order, `HydrationList#sortEntriesByDate()` function is called,
 which sorts the entries in ascending order.
 
-
 ### Sleep Component
 Here's a (partial) class diagram of the `sleep` component.
+
 ![sleep.png](assets%2Fsleep.png)
 
 The sleep component consists of the following classes:
@@ -148,6 +151,11 @@ How the `sleep` component works:
 ### User Component
 Here's a (partial) class diagram of the `user` component.
 ![user.png](assets/user.png)
+
+How does `user` component work using `user setup` command as an example:
+1. When the user keys in the `user setup` command, the input is sent to `Ui#handleUserCommands(String, User)`, which calls `User#setUp(String)`.
+2. Inside `User#setUp(String)`, the function `ParserUser#parseSetUp(String, User)` is then called to extract information such as name, height, weight, age, sex, exerciseLevels, goals. The information is then stored int he `User` class.
+3. The function `#UserFileHandler#writeUserData(User)` is then called, which calls `#UserFileHandler#writeToFile(String)` which updates user data to the file.
 
 ## Implementation
 ### Adding calorie entries feature

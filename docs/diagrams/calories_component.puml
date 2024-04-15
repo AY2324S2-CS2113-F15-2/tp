@@ -22,6 +22,14 @@ CalorieList -> CalorieList: calorieArrayList.add(InputEntry)
 activate CalorieList
 return
 
+
+
+alt calorieArrayList not sorted by date in ascending order
+    CalorieList -> CalorieList : sortEntriesByDate()
+    activate CalorieList
+    return
+end
+
 CalorieList -> CalorieList: updateFile()
 activate CalorieList
 
@@ -31,13 +39,6 @@ CaloriesFileHandler -> CaloriesFileHandler : writeToFile(String)
 activate CaloriesFileHandler
 return
 return
-
-alt calorieArrayList not sorted by date in ascending order
-    CalorieList -> CalorieList : sortEntriesByDate()
-    activate CalorieList
-    return
-end
-
 
 return
 return
