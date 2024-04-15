@@ -26,7 +26,7 @@ public class UserFileHandlerTest {
     private UserFileHandler fileHandler = new UserFileHandler(filePath);
 
     @Test
-    public void getUserDataFromFile_correctUserInput_stringArrayListReturned() {
+    public void getUserDataFromFile_correctUserInput_allUserDataRetrievedFromFile() {
         try {
             User expectedUser = new User();
             expectedUser.setName("john");

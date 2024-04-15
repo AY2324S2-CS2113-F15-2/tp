@@ -54,7 +54,7 @@ public class SleepEntry extends Entry {
     }
 
     public String toFileFriendlyString() {
-        return String.format(sleepEntryID + ";" + date + ";" + duration);
+        return (sleepEntryID + ";" + date + ";" + duration);
     }
 }
 //@@author

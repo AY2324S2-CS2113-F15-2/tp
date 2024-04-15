@@ -54,6 +54,7 @@ public class HydrationFileHandler extends FileHandler {
             throws FileHandlerException {
         checkCorrectNumberOfFields(lineNumber, words.length);
         int entryID = Integer.parseInt(words[ENTRYID_INDEX]);
+        checkPositiveEntryID(lineNumber, entryID);
         calculateMaxHydrationEntry(entryID);
         LocalDate date = LocalDate.parse(words[DATE_INDEX]);
         checkDateNotLaterThanCurrent(lineNumber, date);
