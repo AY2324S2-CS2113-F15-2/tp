@@ -198,7 +198,9 @@ Finds and retrieves all calories entries from the caloric list containing the ke
 **Examples:**
 
 * `calories find cream` retrieves all the calories entries with `cream` in their description.
+* 
 #### Expected output of `calories find gym` based on calories list shown in example above.
+
 
          -----------------------------------------------------------------------------
          Caloric List based on your search:
@@ -402,6 +404,7 @@ If you have not set your user up beforehand, this command will prompt you to do 
          Exercise Levels: 2 out of 5 (Lightly Active)
          Goal: 4 out of 5 (Moderate Weight Gain)
          -----------------------------------------------------------------------------
+
 ### Update your user's details: `user update`
 Updates the details of the user depending on their input.
 
