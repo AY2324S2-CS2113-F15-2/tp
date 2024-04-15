@@ -115,6 +115,11 @@ public class InvalidInputExceptionMessage {
         return HEADER + message + HYDRATION_IN_INPUT;
     }
 
+    public static String getHydrationDuplicateInputsMessage() {
+        String message = "\t Please ensure that there are no duplicate v/ or d/ inputs!\n";
+        return HEADER + message + HYDRATION_IN_INPUT;
+    }
+
     public static String getIncorrectVolumeInputMessage() {
         return "\t Please input only positive integers into the volume field!";
     }
