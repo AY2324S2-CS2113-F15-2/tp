@@ -42,6 +42,11 @@ public class InvalidInputExceptionMessage {
         return HEADER + message + CALORIES_IN_INPUT;
     }
 
+    public static String getCaloriesDuplicateKeywordMessage() {
+        String message = "\t Please ensure there are no duplicate c/ or d/ or m/ keywords!\n";
+        return HEADER + message + CALORIES_IN_INPUT;
+    }
+
     public static String getIncorrectCaloriesInputMessage() {
         return "\t Please input only positive integers into the calories field!";
     }

@@ -7,6 +7,7 @@ import seedu.lifetrack.calories.calorielist.CalorieList;
 import seedu.lifetrack.calories.calorielist.InputEntry;
 import seedu.lifetrack.calories.calorielist.OutputEntry;
 import seedu.lifetrack.system.exceptions.InvalidInputException;
+import seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -24,6 +25,7 @@ import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.get
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getWhitespaceInMacrosInputMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getCaloriesOverLimitMessage;
 import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getMacrosOverLimitMessage;
+import static seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage.getCaloriesDuplicateKeywordMessage;
 
 public class ParserCalories {
 
@@ -67,6 +69,19 @@ public class ParserCalories {
         String description = getDescriptionFromInput(input, command, caloriesIndex);
         String strCalories = parts[1].trim();
 
+        // Used to detect whether there are duplicate parameters entered
+        int caloriesCount = input.split("c/").length - 1;
+        int dateCount = input.split("d/").length - 1;
+        int macrosCount = input.split("m/").length - 1;
+
+        // catch duplicate input for c/ and d/
+        try {
+            checkNoDuplicateKeywords(caloriesCount);
+            checkNoDuplicateKeywords(dateCount);
+        } catch (InvalidInputException e) {
+            throw new InvalidInputException(getCaloriesDuplicateKeywordMessage());
+        }
+
         // Try catch here is needed because if user inputs "calories in chicken c/1000 d/  "",
         // code fails because index out of bounds occurs due to parts[2].trim()
         String strDate = null;
@@ -94,6 +109,12 @@ public class ParserCalories {
                 throw new InvalidInputException(e.getMessage());
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new InvalidInputException(getEmptyMacrosMessage());
+            }
+            // try catch for duplicate macros
+            try {
+                checkNoDuplicateKeywords(macrosCount);
+            } catch (InvalidInputException e) {
+                throw new InvalidInputException(getCaloriesDuplicateKeywordMessage());
             }
         }
 
@@ -137,6 +158,11 @@ public class ParserCalories {
     }
 
     //@@author rexyyong
+    public static void checkNoDuplicateKeywords(int keywordCount) throws InvalidInputException {
+        if (keywordCount != 1) {
+            throw new InvalidInputException();
+        }
+    }
 
     /**
      * Parses a string representation of a date and returns a LocalDate object.
