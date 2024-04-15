@@ -160,7 +160,8 @@ Adds a hydration record into the hydration tracker.
 `hydration in DESCRIPTION v/VOLUME d/DATE`
 
 * The `DESCRIPTION` refers to the food that the person consumed.
-* The `VOLUME` must be a positive integer 1, 2, 3, …, measured in milliliters, volume cannot not be more than 10000.
+* The `VOLUME` must be a positive integer 1, 2, 3, …, measured in milliliters. The limit for `volume` for each entry is 
+10000(inclusive).
 * The `DATE` provided should be of the form YYYY-MM-DD, such as 2024-03-04.
 
 **Examples:**
