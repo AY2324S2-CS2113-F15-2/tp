@@ -26,11 +26,12 @@
 * [Appendix E: Instructions for manual testing](#appendix-e-instructions-for-manual-testing)
 
 ## Acknowledgements
-
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+To calculate the number of calories needed for a user to hit their goal, we used the following references:
+1. [BMR Formula based on gender](https://www.inchcalculator.com/bmr-calculator/)
+2. [BMR Formula based on exercise levels and goal](https://www.musclehacking.com/calorie-calculator/)
 ## Design
 
-### calories component
+### Calories Component
 Here's a (partial) class diagram of the `calories` component.
 
 ![calories.png](assets%2Fcalories.png)
@@ -72,11 +73,13 @@ into the data file.
 function is called, which sorts the entries in ascending order. 
 
 
-### hydration component
+### Hydration Component
+
+Here's a (partial) class diagram of the `hydration` component.
 ![hydration.png](assets%2Fhydration.png)
 
 
-### sleep component
+### Sleep Component
 Here's a (partial) class diagram of the `sleep` component.
 ![sleep.png](assets%2Fsleep.png)
 
@@ -111,8 +114,9 @@ How the `sleep` component works:
    into the data file.
 
 
-### user component
-![user.png](assets%2Fuser.png)
+### User Component
+Here's a (partial) class diagram of the `user` component.
+![user.png](assets/user.png)
 
 ## Implementation
 ### Adding calorie entries feature

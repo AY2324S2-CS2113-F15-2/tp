@@ -50,34 +50,34 @@ Shows a help message listing the commands available in the application.
 `help`
 
 #### Expected output
+
          -----------------------------------------------------------------------------
-	       LifeTrack Command List:
-	       - help: Displays a list of available commands and their descriptions.
+         LifeTrack Command List:
+         - help: Displays a list of available commands and their descriptions.
          -----------------------------------------------------------------------------
-	       - calories in <food> c/<calories> d/<date, format:YYYY-MM-DD> m/[carbohydrates, proteins, fats]:
-	       Adds a calorie gaining entry into the calories tracker.
-	       - calories out <activity> c/<calories> d/<date, format:YYYY-MM-DD>:
-	       Adds a calorie burning entry into the calories tracker.
-	       - calories list: Displays all entries currently stored in the calorie list.
-	       - calories delete <calorie ID>: Deletes the entry at the specified ID from the calorie list.
-	       - calories find <keyword>: finds and lists all calorie entries containing the keyword in their description
+         - calories in <food> c/<calories> d/<date, format:YYYY-MM-DD> m/[carbohydrates, proteins, fats]:
+         Adds a calorie gaining entry into the calories tracker.
+         - calories out <activity> c/<calories> d/<date, format:YYYY-MM-DD>:
+         Adds a calorie burning entry into the calories tracker.
+         - calories list: Displays all entries currently stored in the calorie list.
+         - calories delete <calorie ID>: Deletes the entry at the specified ID from the calorie list.
+         - calories find <keyword>: finds and lists all calorie entries containing the keyword in their description
          -----------------------------------------------------------------------------
-	       - hydration in <beverage> v/<volume> d/<date, format:YYYY-MM-DD>:
-	       Adds a hydration entry into the hydration tracker.
-	       - hydration list: Displays all entries currently stored in the hydration list.
-	       - hydration delete <hydration ID>: Deletes the hydration entry at the specified ID from the hydration list.
-	       - hydration find <keyword>: finds and lists all hydration entries containing the keyword in their description
+         - hydration in <beverage> v/<volume> d/<date, format:YYYY-MM-DD>:
+         Adds a hydration entry into the hydration tracker.
+         - hydration list: Displays all entries currently stored in the hydration list.
+         - hydration delete <hydration ID>: Deletes the hydration entry at the specified ID from the hydration list.
+         - hydration find <keyword>: finds and lists all hydration entries containing the keyword in their description
          -----------------------------------------------------------------------------
-	       - sleep add <duration> d/<date, format:YYYY-MM-DD>: Adds a sleep entry into the sleep tracker.
-	       - sleep list: Displays all entries currently stored in the sleep list.
-	       - sleep delete <sleep ID>: Deletes the entry at the specified index from the sleep list.
+         - sleep add <duration> d/<date, format:YYYY-MM-DD>: Adds a sleep entry into the sleep tracker.
+         - sleep list: Displays all entries currently stored in the sleep list.
+         - sleep delete <sleep ID>: Deletes the entry at the specified index from the sleep list.
          -----------------------------------------------------------------------------
-	       - user setup <name> h/<height> w/<weight> a/<age> s/<sex> e/<exercise_level> g/<body_goal>:
-	       Create a new user, or edit an existing one.
-	       - user details: prints the details of the user.
-	       - user update name/height/weight/age/sex/exercise levels/goal <UPDATED VALUE>: 
-             updates the corresponding field of the user.
-	       - user progress: Display calories and hydration progress towards the daily requirement.
+         - user setup <name> h/<height> w/<weight> a/<age> s/<sex> e/<exercise_level> g/<body_goal>:
+         Create a new user, or edit an existing one.
+         - user details: prints the details of the user.
+         - user update name/height/weight/age/sex/exercise levels/goal <UPDATED VALUE>: updates the corresponding field of the user.
+         - user progress: Display calories and hydration progress towards the daily requirement.
          -----------------------------------------------------------------------------
 
 ### Exiting the program: `bye`
@@ -120,7 +120,7 @@ The limit for each macronutrient per entry is 800g (inclusive).
 
          -----------------------------------------------------------------------------
          The following entry has been added to your caloric list!
-                 caloriesID: 22, Date: 2024-04-14, Description: drink liho milk tea, Calories: 200 (C: 50, P: 20, F: 10)
+                 caloriesID: 3, Date: 2024-04-14, Description: drink liho milk tea, Calories: 200 (C: 50, P: 20, F: 10)
          -----------------------------------------------------------------------------
 
 ### Input calorie loss: `calories out`
@@ -140,9 +140,10 @@ Adds a calorie burning activity into the calories tracker.
 * `calories out go gym c/300 d/2024-04-03`
 
 #### Expected output for `calories out go gym c/300 d/2024-04-03`
+
          -----------------------------------------------------------------------------
-	       The following entry has been added to your caloric list!
-	 	             caloriesID: 21, Date: 2024-04-03, Description: go gym, Calories: 300
+         The following entry has been added to your caloric list!
+                 caloriesID: 4, Date: 2024-04-03, Description: go gym, Calories: 300
          -----------------------------------------------------------------------------
 
 ### Listing calorie items: `calories list`
@@ -155,14 +156,14 @@ All entries are sorted by date, in ascending order, from earlier dates to presen
 #### Expected output
 
          -----------------------------------------------------------------------------
-	       Your Caloric List:
-
+         Your Caloric List:
+    
          Your Caloric Inflow List:
          1. 	 caloriesID: 16, Date: 2024-01-01, Description: mcd ice cream, Calories: 100
          2. 	 caloriesID: 15, Date: 2024-03-03, Description: chicken rice, Calories: 1000
          3. 	 caloriesID: 3, Date: 2024-04-09, Description: wingstop, Calories: 1000 (C: 100, P: 100, F: 100)
          4. 	 caloriesID: 11, Date: 2024-04-11, Description: breakfast, Calories: 100
-
+    
          Your Caloric Outflow List:
          1. 	 caloriesID: 20, Date: 2024-01-01, Description: walk to comm hall, Calories: 20
          2. 	 caloriesID: 17, Date: 2024-02-02, Description: badminton, Calories: 250
@@ -186,9 +187,8 @@ Deletes the specified calories ID entry from the calories tracker according to t
 
          -----------------------------------------------------------------------------
          The following calorie record has been successfully deleted!
-	 	             caloriesID: 3, Date: 2024-04-09, Description: wingstop, Calories: 1000 (C: 100, P: 100, F: 100)
+                 caloriesID: 3, Date: 2024-04-14, Description: drink liho milk tea, Calories: 200 (C: 50, P: 20, F: 10)
          -----------------------------------------------------------------------------
-
 ### Searching for a calorie item: `calories find`
 Finds and retrieves all calories entries from the caloric list containing the keyword to search for.
 
@@ -198,15 +198,17 @@ Finds and retrieves all calories entries from the caloric list containing the ke
 **Examples:**
 
 * `calories find cream` retrieves all the calories entries with `cream` in their description.
-#### Expected output of `calories find cream` 
+* 
+#### Expected output of `calories find gym` based on calories list shown in example above.
+
 
          -----------------------------------------------------------------------------
          Caloric List based on your search:
 
          Your Caloric Inflow List:
-         1. 	 caloriesID: 16, Date: 2024-01-01, Description: mcd ice cream, Calories: 100
 
          Your Caloric Outflow List:
+         1.      caloriesID: 4, Date: 2024-04-03, Description: go gym, Calories: 300
          -----------------------------------------------------------------------------
 
 ## Hydration Tracker
@@ -225,13 +227,6 @@ Adds a hydration record into the hydration tracker.
 **Examples:**
 * `hydration in Milo v/1000 d/2022-03-25`
 * `hydration in Tea v/200 d/2022-02-05`
-
-#### Expected output
-
-         -----------------------------------------------------------------------------
-         The following entry has been added to your hydration list!
-                 hydrationID: 1, Date: 2024-04-15, Description: milo, Volume: 200
-         -----------------------------------------------------------------------------
 
 ### Listing hydration items: `hydration list`
 Show the list of all hydration records in the hydration tracker.
@@ -257,11 +252,11 @@ Deletes the specified hydration entry according to the `HYDRATIONID`.
 **Examples:**
 * `hydration list` followed by `hydration delete 2` deletes the entry with `HYDRATIONID` 2 in the hydration tracker.
 
-#### Expected output
+#### Expected output for `hydration delete 1`
 
          -----------------------------------------------------------------------------
          The following hydration record has been successfully deleted!
-                 hydrationID: 1, Date: 2024-04-15, Description: milo, Volume: 200
+                 hydrationID: 1, Date: 2024-04-15, Description: water, Volume: 1000
          -----------------------------------------------------------------------------
 
 ### Searching for a hydration item: `hydration find`
@@ -274,11 +269,11 @@ Finds and retrieves all hydration entries from the hydration list containing the
 
 * `hydration find water` retrieves all the hydration entries with `water` in their description.
 
-#### Expected output
+#### Expected output for `hydration find water`
 
          -----------------------------------------------------------------------------
          Hydration List based on your search:
-         1.      hydrationID: 2, Date: 2024-04-15, Description: milo, Volume: 200
+         1.      hydrationID: 1, Date: 2024-04-15, Description: water, Volume: 1000
          -----------------------------------------------------------------------------
 
 ## Sleep Tracker
@@ -292,14 +287,15 @@ Adds a sleep record into the sleep tracker.
 * The duration should not exceed 24 hours.
 * The date provided should be of the form YYYY-MM-DD.
 
+
 **Examples:**
 * `sleep add 7.5 d/2024-03-11`
 
-#### Expected output
+#### Expected output for `sleep add 7.5 d/2024-03-11`:
 
          -----------------------------------------------------------------------------
          The following entry has been added to your sleep list!
-                 Sleep ID: 1, Date: 2024-04-15, Duration: 7.50 hours
+                 Sleep ID: 5, Date: 2024-03-11, Duration: 7.50 hours
          -----------------------------------------------------------------------------
 
 ### Listing sleep records: `sleep list`
@@ -308,12 +304,11 @@ Show the list of all sleep records in the sleep tracker.
 **Format:**
 `sleep list`
 
-#### Expected output
+#### Expected output:
 
          -----------------------------------------------------------------------------
          Your Sleep List:
-         1.      Sleep ID: 2, Date: 2024-04-14, Duration: 8.00 hours
-         2.      Sleep ID: 1, Date: 2024-04-15, Duration: 7.50 hours
+         1.      Sleep ID: 5, Date: 2024-03-11, Duration: 7.50 hours
          -----------------------------------------------------------------------------
 
 ### Deleting a sleep record: `sleep delete`
@@ -328,11 +323,11 @@ Deletes the specified sleep entry according to the `SLEEPID`.
 **Examples:**
 * `sleep list` followed by `sleep delete 2` deletes the sleep record with `SLEEPID` 2 from the sleep tracker.
 
-#### Expected output
+#### Expected output for `sleep delete 5`:
 
          -----------------------------------------------------------------------------
          The following sleep record has been successfully deleted!
-                 Sleep ID: 1, Date: 2024-04-15, Duration: 7.50 hours
+                 Sleep ID: 5, Date: 2024-03-11, Duration: 7.50 hours
          -----------------------------------------------------------------------------
 
 ## User Profile
@@ -341,7 +336,7 @@ Deletes the specified sleep entry according to the `SLEEPID`.
 Creates/edits an existing user profile.
 
 **Format:**
-`user setup NAME h/HEIGHT w/WEIGHT a/AGE s/GENDER e/EXERCISE_LEVELS g/BODY_GOAL`
+`user setup NAME h/HEIGHT w/WEIGHT a/AGE s/GENDER e/EXERCISE LEVELS g/BODY GOAL`
 * The height provided must be an integer between 90 and 225 cms.
 * The weight provided must be an integer between 30 and 200 kgs.
 * The age provided must be an integer between 13 and 30 years old.
@@ -485,27 +480,6 @@ If you have not set your user up beforehand, this command will prompt you to do 
 
          -----------------------------------------------------------------------------
 
-## Saving the data
-
-Any data input by the user while the application is running will be stored in the `[JAR file location]/data` directory, which is automatically created by the application. Existing data found in the `/data` directory is automatically retrieved from this directory when the application is relaunched. There is no need to save manually.
-
-## Editing the data
-
-All data is saved as `.txt` files in the `[JAR file location]/data` directory. The data files that users should be aware of are:
-- Calories List data: `/data/caloriesData.txt`
-- Hydration List data: `/data/hydrationData.txt`
-- Sleep List data: `/data/sleepData.txt`
-- User data: `/data/userData.txt`
-
-Advanced users are welcome to update data directly by editing the data files. However, do take note of the following:
-
-> **Caution**: LifeTrack reads the data files line-by-line upon launching. If any line is found to be of invalid format, it will automatically be ignored, and the application will continue reading from subsequent lines (if any). Do take note that performing the below functions will update the data file, which means that any corrupt data existing prior will be wiped.
-> - Calories List: `calories in`, `calories out`, `calories delete`
-> - Hydration List: `hydration in`, `hydration delete`
-> - Sleep List: `sleep add`, `sleep delete`
-> - User: `user setup`, `user update`
-
-As such, do exercise sufficient caution while manually editing the data files. Refer to the relevant FAQ below where the correct format for all data files is described.
 
 ## FAQ
 
@@ -515,11 +489,7 @@ As such, do exercise sufficient caution while manually editing the data files. R
 
 **Q**: How do I manually edit the data files in the correct format?
 
-**A**:
-- For the calories data file, the format is as such: `ENTRY_ID;DATE;DESCRIPTION;ENTRY_TYPE;CALORIES;CARBOHYDRATES;PROTEINS;FATS`. `ENTRY_ID` and `ENTRY_TYPE` is not mentioned in [Calories Tracker](#calories-tracker), as they are automatically input by the application. `ENTRY_ID` should be a unique positive integer, while `ENTRY_TYPE` must be either `C_IN` or `C_OUT`. There is no exception thrown for inputting the same `ENTRY_ID` for different entries, but the application may behave undesirably, such as when performing `calories delete`. In this case, the first entry to be added will be deleted. Take note that `ENTRY_TYPE` must be `C_IN` for the application to accept additional macronutrient fields after the `CALORIES` field.
-- For the hydration data file, the format is as such: `ENTRY_ID;DATE;DESCRIPTION;VOLUME`. See above for notes on `ENTRY_ID`.
-- For the sleep data file, the format is as such: `ENTRY_ID;DATE;DURATION`. See above for notes on `ENTRY_ID`.
-- For the user data file, the format is as such: `NAME;HEIGHT;WEIGHT;AGE;SEX;EXERCISE_LEVELS;BODY_GOAL;REQUIRED_CALORIES`. The `REQUIRED_CALORIES` field is not mentioned in the [User Profile](#user-profile) section as it is automatically calculated by the application. The delimiter used in the data files must be a semicolon (;).
+**A**: For the calories data file, the format is as such: `ENTRY_ID;DATE;DESCRIPTION;ENTRY_TYPE;CALORIES;CARBOHYDRATES;PROTEINS;FATS`. Take note that `ENTRY_TYPE` must be `C_IN` for the application to accept additional macronutrient fields after the `CALORIES` field. For the hydration data file, the format is as such: `ENTRY_ID;DATE;DESCRIPTION;VOLUME`. For the sleep data file, the format is as such: `ENTRY_ID;DATE;DURATION`. The delimiter used in the data files must be a semicolon (;).
 
 **Q**: Why must I input integers for my calories when it is a continuous variable?
 
