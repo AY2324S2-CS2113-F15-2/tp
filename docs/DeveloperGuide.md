@@ -3,7 +3,10 @@
 ## Quick links
 * [Acknowledgements](#acknowledgements)
 * [Design](#design)
-  * [Architecture](#architecture)
+  * [Calories component](#calories-component)
+  * [Hydration component](#hydration-component)
+  * [Sleep component](#sleep-component)
+  * [User component](#user-component)
 * [Implementation](#implementation)
   * [Adding calorie entries feature](#adding-calorie-entries-feature)
   * [Calculating calorie requirements based on user's goals](#calculating-calorie-requirements-based-on-a-users-goals)
@@ -30,7 +33,7 @@
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 ## Design
 
-### calories component
+### Calories component
 Here's a (partial) class diagram of the `calories` component.
 
 ![calories.png](assets%2Fcalories.png)
@@ -72,12 +75,13 @@ into the data file.
 function is called, which sorts the entries in ascending order. 
 
 
-### hydration component
+### Hydration component
 ![hydration.png](assets%2Fhydration.png)
 
 
-### sleep component
+### Sleep component
 Here's a (partial) class diagram of the `sleep` component.
+
 ![sleep.png](assets%2Fsleep.png)
 
 The sleep component consists of the following classes:
@@ -111,8 +115,13 @@ How the `sleep` component works:
    into the data file.
 
 
-### user component
+### User component
 ![user.png](assets%2Fuser.png)
+
+How does `user` component work using `user setup` command as an example:
+1. When the user keys in the `user setup` command, the input is sent to `Ui#handleUserCommands(String, User)`, which calls `User#setUp(String)`.
+2. Inside `User#setUp(String)`, the function `ParserUser#parseSetUp(String, User)` is then called to extract information such as name, height, weight, age, sex, exerciseLevels, goals. The information is then stored int he `User` class.
+3. The function `#UserFileHandler#writeUserData(User)` is then called, which calls `#UserFileHandler#writeToFile(String)` which updates user data to the file.
 
 ## Implementation
 ### Adding calorie entries feature
