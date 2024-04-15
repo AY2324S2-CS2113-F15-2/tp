@@ -332,7 +332,7 @@ Given below is an example usage scenario and how this mechanism behaves at every
 - Step 5: The latest hydration list will be updated to saving file by calling `HydrationList#updateFile()`.
 
 The Sequence diagram for Hydration delete feature is shown below:
-![HydrationDeleteDiagram.png](assets/HydrationDeleteDiagram.png)
+![HydrationDeleteEntrySeqDiagram.png](assets%2FHydrationDeleteEntrySeqDiagram.png)
 
 ### Adding sleep entries feature
 

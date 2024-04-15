@@ -1,0 +1,32 @@
+@startuml
+actor Bob
+Bob -> UI: Input "hydration delete" command
+activate UI
+
+UI -> UI: handleUserInput()
+activate UI
+
+UI -> UI: handleHydrationInput()
+activate UI
+
+UI -> HydrationList: deleteEntry()
+activate HydrationList
+
+HydrationList -> HydrationList: getIndexFromEntryID()
+activate HydrationList
+return
+
+HydrationList -> HydrationList: hydrationArrayList.remove(entry)
+activate HydrationList
+return
+
+HydrationList -> HydrationList: updateFile()
+activate HydrationList
+return
+
+return
+return
+return
+return
+
+@enduml
