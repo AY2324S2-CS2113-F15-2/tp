@@ -51,37 +51,6 @@ Shows a help message listing the commands available in the application.
 **Format:**
 `help`
 
-#### Expected output
-
-         -----------------------------------------------------------------------------
-         LifeTrack Command List:
-         - help: Displays a list of available commands and their descriptions.
-         -----------------------------------------------------------------------------
-         - calories in <food> c/<calories> d/<date, format:YYYY-MM-DD> m/[carbohydrates, proteins, fats]:
-         Adds a calorie gaining entry into the calories tracker.
-         - calories out <activity> c/<calories> d/<date, format:YYYY-MM-DD>:
-         Adds a calorie burning entry into the calories tracker.
-         - calories list: Displays all entries currently stored in the calorie list.
-         - calories delete <calorie ID>: Deletes the entry at the specified ID from the calorie list.
-         - calories find <keyword>: finds and lists all calorie entries containing the keyword in their description
-         -----------------------------------------------------------------------------
-         - hydration in <beverage> v/<volume> d/<date, format:YYYY-MM-DD>:
-         Adds a hydration entry into the hydration tracker.
-         - hydration list: Displays all entries currently stored in the hydration list.
-         - hydration delete <hydration ID>: Deletes the hydration entry at the specified ID from the hydration list.
-         - hydration find <keyword>: finds and lists all hydration entries containing the keyword in their description
-         -----------------------------------------------------------------------------
-         - sleep add <duration> d/<date, format:YYYY-MM-DD>: Adds a sleep entry into the sleep tracker.
-         - sleep list: Displays all entries currently stored in the sleep list.
-         - sleep delete <sleep ID>: Deletes the entry at the specified index from the sleep list.
-         -----------------------------------------------------------------------------
-         - user setup <name> h/<height> w/<weight> a/<age> s/<sex> e/<exercise_level> g/<body_goal>:
-         Create a new user, or edit an existing one.
-         - user details: prints the details of the user.
-         - user update name/height/weight/age/sex/exercise levels/goal <UPDATED VALUE>: updates the corresponding field of the user.
-         - user progress: Display calories and hydration progress towards the daily requirement.
-         -----------------------------------------------------------------------------
-
 ### Exiting the program: `bye`
 
 Exits the program.
@@ -118,13 +87,6 @@ The limit for each macronutrient per entry is 800g (inclusive).
 * `calories in cai png c/543 d/2024-04-13 m/200, 150, 100`
 * `calories in drink liho milk tea c/200 d/2024-04-14 m/50, 20, 10`
 
-#### Expected output for `calories in drink liho milk tea c/200 d/2024-04-14 m/50, 20, 10`
-
-         -----------------------------------------------------------------------------
-         The following entry has been added to your caloric list!
-                 caloriesID: 3, Date: 2024-04-14, Description: drink liho milk tea, Calories: 200 (C: 50, P: 20, F: 10)
-         -----------------------------------------------------------------------------
-
 ### Input calorie loss: `calories out`
 Adds a calorie burning activity into the calories tracker.
 
@@ -155,25 +117,6 @@ All entries are sorted by date, in ascending order, from earlier dates to presen
 **Format:**
 `calories list`
 
-#### Expected output
-
-         -----------------------------------------------------------------------------
-         Your Caloric List:
-    
-         Your Caloric Inflow List:
-         1.      caloriesID: 16, Date: 2024-01-01, Description: mcd ice cream, Calories: 100
-         2.      caloriesID: 15, Date: 2024-03-03, Description: chicken rice, Calories: 1000
-         3.      caloriesID: 3, Date: 2024-04-09, Description: wingstop, Calories: 1000 (C: 100, P: 100, F: 100)
-         4.      caloriesID: 11, Date: 2024-04-11, Description: breakfast, Calories: 100
-    
-         Your Caloric Outflow List:
-         1.      caloriesID: 20, Date: 2024-01-01, Description: walk to comm hall, Calories: 20
-         2.      caloriesID: 17, Date: 2024-02-02, Description: badminton, Calories: 250
-         3.      caloriesID: 19, Date: 2024-02-02, Description: swim, Calories: 400
-         4.      caloriesID: 18, Date: 2024-04-15, Description: run, Calories: 300
-         -----------------------------------------------------------------------------
-
-
 ### Deleting a calorie item: `calories delete`
 Deletes the specified calories ID entry from the calories tracker according to the `CALORIESID`.
 
@@ -186,12 +129,6 @@ Deletes the specified calories ID entry from the calories tracker according to t
 * `calories list` followed by `calories delete 2` deletes the entry with `CALORIESID` 2 in the calories tracker.
 
 #### Expected output for `calories delete 3` based on calories list shown in example above.
-
-         -----------------------------------------------------------------------------
-         The following calorie record has been successfully deleted!
-                 caloriesID: 3, Date: 2024-04-14, Description: drink liho milk tea, Calories: 200 (C: 50, P: 20, F: 10)
-         -----------------------------------------------------------------------------
-
 
 ### Searching for a calorie item: `calories find`
 Finds and retrieves all calories entries from the caloric list containing the keyword to search for.
@@ -445,44 +382,6 @@ Displays progress bars to show the percentage of calories and hydration you have
 
 **Notes about the command:**
 If you have not set your user up beforehand, this command will prompt you to do so instead.
-
-#### Expected Output:
-
-         -----------------------------------------------------------------------------
-         Calories:
-         ----------
-         You have consumed 200 calories out of your goal of 2650 calories today.
-         [===                                               ]  7%
-    
-         You have consumed 300 calories out of your goal of 2650 calories yesterday.
-         [=====                                             ]  11%
-    
-         You have consumed 400 calories out of your goal of 2650 calories on the day before yesterday.
-         [======                                            ]  15%
-    
-         Hydration:
-         ----------
-         You have consumed 300ml out of your goal of 2000ml today.
-         [=======                                           ]  15%
-    
-         You have consumed 600ml out of your goal of 2000ml yesterday.
-         [==============                                    ]  30%
-    
-         You have consumed 1200ml out of your goal of 2000ml on the day before yesterday.
-         [============================                      ]  60%
-    
-         Sleep:
-         ----------
-         You have slept for 4.2 hrs out of your goal of 7 hrs today.
-         [==============================                    ]  60%
-    
-         You have slept for 4.7 hrs out of your goal of 7 hrs yesterday.
-         [=================================                 ]  67%
-    
-         You have slept for 8.0 hrs out of your goal of 7 hrs on the day before yesterday.
-         [==================================================]  114%
-
-         -----------------------------------------------------------------------------
 
 ## Saving the data
 
