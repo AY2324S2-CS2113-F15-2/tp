@@ -503,6 +503,7 @@ Advanced users are welcome to update data directly by editing the data files. Ho
 > - Hydration List: `hydration in`, `hydration delete`
 > - Sleep List: `sleep add`, `sleep delete`
 > - User: `user setup`, `user update`
+
 As such, do exercise sufficient caution while manually editing the data files. Refer to the relevant FAQ below where the correct format for all data files is described.
 
 ## FAQ
