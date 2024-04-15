@@ -7,7 +7,6 @@ import seedu.lifetrack.calories.calorielist.CalorieList;
 import seedu.lifetrack.calories.calorielist.InputEntry;
 import seedu.lifetrack.calories.calorielist.OutputEntry;
 import seedu.lifetrack.system.exceptions.InvalidInputException;
-import seedu.lifetrack.system.exceptions.InvalidInputExceptionMessage;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
