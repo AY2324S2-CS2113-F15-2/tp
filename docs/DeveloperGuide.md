@@ -458,8 +458,10 @@ Repeat the process with different entries to ensure consistency.
 
 Use `calories delete` command using the command format `calories delete [CALORIESID]`.
 
-Use `hydration list` command to check that the entry with the corresponding `[HYDRATIONID]` has been deleted under
-`Your Hydration List`.
+Use `calories list` command to check that the entry with the corresponding `[CALORIESID]` has been deleted under 
+`Your Caloric Inflow List` or `Your Caloric Outflow List`.
+Repeat the process with different entries to ensure consistency.
+
 
 **Testing Hydration Entry Feature:**
 
@@ -474,6 +476,7 @@ Use `hydration delete` command using the command format `hydration delete [HYDRA
 
 Use `hydration list` command to check that the entry with the corresponding `[HYDRATIONID]` has been deleted under
 `Your Hydration List`.
+Repeat the process with different entries to ensure consistency.
 
 **Testing Sleep Entry Feature:**
 
