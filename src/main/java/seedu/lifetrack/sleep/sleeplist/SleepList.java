@@ -59,7 +59,9 @@ public class SleepList {
             double sleepRecord = newSleep.getDuration();
             for(int i=0;i<this.sleepList.size();i++) {
                 SleepEntry curSleep = (SleepEntry) this.sleepList.get(i);
-                sleepRecord += curSleep.getDuration();
+                if(curSleep.getDate().isEqual(newSleep.getDate())) {
+                    sleepRecord += curSleep.getDuration();
+                }
             }
             if(sleepRecord>24){
                 System.out.println(getSleepDurationSumTooLongMessage());
