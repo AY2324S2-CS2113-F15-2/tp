@@ -156,7 +156,7 @@ public class User {
     }
 
     public String toFileFriendlyString() {
-        return String.format(name + ";" + height + ";" + weight + ";" + age + ";" + sex + ";" +
+        return (name + ";" + height + ";" + weight + ";" + age + ";" + sex + ";" +
                 exerciseLevels + ";" + goal + ";" + caloriesRequired);
     }
 

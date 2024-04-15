@@ -20,7 +20,7 @@ public class CaloriesFileHandlerTest {
     private ArrayList<Entry> expectedEntries = new ArrayList<>();
 
     @Test
-    public void getCalorieEntriesFromFile_correctCaloriesInInput_entryArrayListReturned() {
+    public void getCalorieEntriesFromFile_correctCaloriesInInput_allEntriesRetrievedFromFile() {
         try {
             InputEntry expectedEntry_1 = new InputEntry(1, "burger", 200, LocalDate.parse("2024-02-02"));
             InputEntry expectedEntry_2 = new InputEntry(2, "rice", 190, LocalDate.parse("2024-02-01"));
@@ -45,7 +45,7 @@ public class CaloriesFileHandlerTest {
     }
 
     @Test
-    public void getCalorieEntriesFromFile_correctCaloriesInInputWithMacros_entryArrayListReturned() {
+    public void getCalorieEntriesFromFile_correctCaloriesInInputWithMacros_allEntriesRetrievedFromFile() {
         try {
             Food food_1 = new Food(100, 200, 300);
             InputEntry expectedEntry_1 = new InputEntry(1, "burger", 200, LocalDate.parse("2024-02-02"), food_1);
@@ -78,7 +78,7 @@ public class CaloriesFileHandlerTest {
     }
 
     @Test
-    public void getCalorieEntriesFromFile_correctCaloriesOutInput_entryArrayListReturned() {
+    public void getCalorieEntriesFromFile_correctCaloriesOutInput_allEntriesRetrievedFromFile() {
         try {
             OutputEntry expectedEntry_1 = new OutputEntry(1, "run", 200, LocalDate.parse("2024-02-02"));
             OutputEntry expectedEntry_2 = new OutputEntry(2, "swim", 190, LocalDate.parse("2024-02-01"));

@@ -53,7 +53,7 @@ public class InputEntry extends Entry {
     }
 
     public String toString() {
-        return String.format(super.toString() + ", Calories: " + calories + (doesFoodExist ?
+        return (super.toString() + ", Calories: " + calories + (doesFoodExist ?
                 " (C: " + food.getCarbohydrates() +
                 ", P: " + food.getProteins() +
                 ", F: " + food.getFats() + ")"
@@ -61,7 +61,7 @@ public class InputEntry extends Entry {
     }
 
     public String toFileFriendlyString() {
-        return String.format(super.toFileFriendlyString() + ";C_IN;" + calories +
+        return (super.toFileFriendlyString() + ";C_IN;" + calories +
                 (doesFoodExist ? ";" + food.getCarbohydrates() + ";" + food.getProteins() + ";" + food.getFats()
                 : ""));
     }
