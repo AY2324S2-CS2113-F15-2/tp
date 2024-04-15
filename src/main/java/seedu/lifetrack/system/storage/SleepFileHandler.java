@@ -45,6 +45,7 @@ public class SleepFileHandler extends FileHandler {
             throws FileHandlerException {
         checkCorrectNumberOfFields(lineNumber, words.length);
         int entryID = Integer.parseInt(words[ENTRYID_INDEX]);
+        checkPositiveEntryID(lineNumber, entryID);
         LocalDate date = LocalDate.parse(words[DATE_INDEX]);
         checkDateNotLaterThanCurrent(lineNumber, date);
         double duration = Double.parseDouble(words[DURATION_INDEX]);

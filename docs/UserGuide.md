@@ -240,7 +240,7 @@ Deletes the specified sleep entry according to the `SLEEPID`.
 Creates/edits an existing user profile.
 
 **Format:**
-`user setup NAME h/HEIGHT w/WEIGHT a/AGE s/GENDER e/EXERCISE LEVELS g/BODY GOAL`
+`user setup NAME h/HEIGHT w/WEIGHT a/AGE s/GENDER e/EXERCISE_LEVELS g/BODY_GOAL`
 * The height provided must be an integer between 90 and 225 cms.
 * The weight provided must be an integer between 30 and 200 kgs.
 * The age provided must be an integer between 13 and 30 years old.
@@ -359,6 +359,27 @@ If you have not set your user up beforehand, this command will prompt you to do 
 
          -----------------------------------------------------------------------------
 
+## Saving the data
+
+Any data input by the user while the application is running will be stored in the `[JAR file location]/data` directory, which is automatically created by the application. Existing data found in the `/data` directory is automatically retrieved from this directory when the application is relaunched. There is no need to save manually.
+
+## Editing the data
+
+All data is saved as `.txt` files in the `[JAR file location]/data` directory. The data files that users should be aware of are:
+- Calories List data: `/data/caloriesData.txt`
+- Hydration List data: `/data/hydrationData.txt`
+- Sleep List data: `/data/sleepData.txt`
+- User data: `/data/userData.txt`
+
+Advanced users are welcome to update data directly by editing the data files. However, do take note of the following:
+
+> **Caution**: LifeTrack reads the data files line-by-line upon launching. If any line is found to be of invalid format, it will automatically be ignored, and the application will continue reading from subsequent lines (if any). Do take note that performing the below functions will update the data file, which means that any corrupt data existing prior will be wiped.
+> - Calories List: `calories in`, `calories out`, `calories delete`
+> - Hydration List: `hydration in`, `hydration delete`
+> - Sleep List: `sleep add`, `sleep delete`
+> - User: `user setup`, `user update`
+
+As such, do exercise sufficient caution while manually editing the data files. Refer to the relevant FAQ below where the correct format for all data files is described.
 
 ## FAQ
 
@@ -368,7 +389,11 @@ If you have not set your user up beforehand, this command will prompt you to do 
 
 **Q**: How do I manually edit the data files in the correct format?
 
-**A**: For the calories data file, the format is as such: `ENTRY_ID;DATE;DESCRIPTION;ENTRY_TYPE;CALORIES;CARBOHYDRATES;PROTEINS;FATS`. Take note that `ENTRY_TYPE` must be `C_IN` for the application to accept additional macronutrient fields after the `CALORIES` field. For the hydration data file, the format is as such: `ENTRY_ID;DATE;DESCRIPTION;VOLUME`. For the sleep data file, the format is as such: `ENTRY_ID;DATE;DURATION`. The delimiter used in the data files must be a semicolon (;).
+**A**:
+- For the calories data file, the format is as such: `ENTRY_ID;DATE;DESCRIPTION;ENTRY_TYPE;CALORIES;CARBOHYDRATES;PROTEINS;FATS`. `ENTRY_ID` and `ENTRY_TYPE` is not mentioned in [Calories Tracker](#calories-tracker), as they are automatically input by the application. `ENTRY_ID` should be a unique positive integer, while `ENTRY_TYPE` must be either `C_IN` or `C_OUT`. There is no exception thrown for inputting the same `ENTRY_ID` for different entries, but the application may behave undesirably, such as when performing `calories delete`. In this case, the first entry to be added will be deleted. Take note that `ENTRY_TYPE` must be `C_IN` for the application to accept additional macronutrient fields after the `CALORIES` field.
+- For the hydration data file, the format is as such: `ENTRY_ID;DATE;DESCRIPTION;VOLUME`. See above for notes on `ENTRY_ID`.
+- For the sleep data file, the format is as such: `ENTRY_ID;DATE;DURATION`. See above for notes on `ENTRY_ID`.
+- For the user data file, the format is as such: `NAME;HEIGHT;WEIGHT;AGE;SEX;EXERCISE_LEVELS;BODY_GOAL;REQUIRED_CALORIES`. The `REQUIRED_CALORIES` field is not mentioned in the [User Profile](#user-profile) section as it is automatically calculated by the application. The delimiter used in the data files must be a semicolon (;).
 
 **Q**: Why must I input integers for my calories when it is a continuous variable?
 
