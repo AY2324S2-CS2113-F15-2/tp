@@ -1,0 +1,47 @@
+@startuml
+actor Bob
+Bob -> UI: Input "hydration in" command
+activate UI
+
+UI -> UI: handleHydrationInput(String, HydrationList)
+activate UI
+
+UI -> HydrationList: addEntry(String)
+activate HydrationList
+
+HydrationList -> ParserHydration: parseHydrationInput(String, int)
+activate ParserHydration
+
+ParserHydration -> ParserHydration : makeNewHydrationEntry(int, String, int, String)
+activate ParserHydration
+
+return HydrationEntry
+return HydrationEntry
+
+HydrationList -> HydrationList: hydrationArrayList.add(HydrationEntry)
+activate HydrationList
+return
+
+HydrationList -> HydrationList: updateFile()
+activate HydrationList
+
+HydrationList -> HydrationFileHandler : writeEntries(ArrayList<Entry>)
+activate HydrationFileHandler
+HydrationFileHandler -> HydrationFileHandler : writeToFile(String)
+activate HydrationFileHandler
+return
+return
+
+alt hydrationArrayList not sorted by date in ascending order
+    HydrationList -> HydrationList : sortEntriesByDate()
+    activate HydrationList
+    return
+end
+
+
+return
+return
+return
+return New HydrationEntry added
+
+@enduml
