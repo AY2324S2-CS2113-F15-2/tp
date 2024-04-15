@@ -18,7 +18,7 @@ public class SleepFileHandlerTest {
     private ArrayList<Entry> expectedEntries = new ArrayList<>();
 
     @Test
-    public void getSleepEntriesFromFile_correctSleepAddInput_entryArrayListReturned() {
+    public void getSleepEntriesFromFile_correctSleepAddInput_allEntriesRetrievedFromFile() {
         try {
             SleepEntry expectedEntry_1 = new SleepEntry(0, 20.3, LocalDate.parse("2024-02-02"));
             SleepEntry expectedEntry_2 = new SleepEntry(0, 19.2, LocalDate.parse("2024-02-01"));
