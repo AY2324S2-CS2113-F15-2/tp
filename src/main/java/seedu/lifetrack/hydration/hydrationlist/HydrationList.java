@@ -114,13 +114,13 @@ public class HydrationList {
         try {
             Entry newEntry = ParserHydration.parseHydrationInput(input, lastHydrationEntryID);
             hydrationArrayList.add(newEntry);
-            updateFile();
             HydrationListUI.printNewHydrationEntry(newEntry);
             lastHydrationEntryID++;
             if (hydrationArrayList.size() > 1 &&
                     hydrationArrayList.get(hydrationArrayList.size() - 2).getDate().compareTo(newEntry.getDate()) > 0) {
                 sortEntriesByDate();
             }
+            updateFile();
         } catch (InvalidInputException e) {
             logr.log(Level.WARNING, e.getMessage(), e);
             System.out.println(e.getMessage());
