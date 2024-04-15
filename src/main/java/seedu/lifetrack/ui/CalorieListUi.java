@@ -32,7 +32,8 @@ public class CalorieListUi {
     }
     
     public static String deleteLogNumberMessage() {
-        return "\t Please enter a valid positive integer for the caloriesID you wish to delete.\n" +
+        return "\t Please enter a valid positive integer within the range of all caloriesID " +
+                "shown in the calories list.\n" +
                 CALORIES_DELETE_SAMPLE_INPUT;
     }
     //@@author
