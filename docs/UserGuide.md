@@ -66,6 +66,9 @@ Exits the program.
 ### Input calorie intake: `calories in`
 Adds a calorie gaining activity into the calories tracker.
 Macronutrients such as Carbohydrates, Proteins and Fats can be included if needed.
+The `caloriesID` of each entry increments based on the previous `caloriesID`. For example, if highest
+`caloriesID` is now 10, and user deletes the highest entry, the `caloriesID` of the next addition 
+would be 11. 
 
 **Format:** 
 `calories in DESCRIPTION c/CALORIES d/DATE [m/CARBOHYDRATES,PROTEIN,FATS]`
