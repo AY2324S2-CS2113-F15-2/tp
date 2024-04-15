@@ -2,7 +2,7 @@
 
 rectangle User
 
-rectangle FileHandler
+rectangle UserFileHandler
 
 rectangle ParserUser
 
@@ -12,7 +12,7 @@ rectangle HydrationList
 rectangle CaloriesList
 rectangle SleepList
 
-User ---> "1" FileHandler
+User ---> "1" UserFileHandler
 User --[dotted]> ParserUser
 
 User <-[dotted]> UserGoals
