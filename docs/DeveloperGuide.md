@@ -449,7 +449,7 @@ Given below is an example usage scenario and how this mechanism behaves at every
 - Step 5: The latest sleep list will be updated to saving file by calling `SleepList#updateFile()`.
 
 The Sequence diagram for Sleep delete feature is shown below:
-![sleepDeleteSeqDiagram.png](assets%2FSsleepDeleteSeqDiagram.png)
+![sleepDeleteSeqDiagram.png](assets%2FsleepDeleteSeqDiagram.png)
 
 ### Calculating sleep requirements for each user (Planning)
 
