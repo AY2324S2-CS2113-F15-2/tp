@@ -454,10 +454,13 @@ quickly on the go, and thus know whether they need to eat/drink/sleep more/less.
 | v2.0    | busy student | store my personal details such has height, weight, age, gender, exercise levels and body goals for the program calculator to calculate my recommended daily caloric intake | hit my body goals and be healthier                                     |
 
 ## Non-Functional Requirements
-
-{Give non-functional requirements}
+1. Should work on mainstream OS as long as it has Java `11` installed.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able
+to accomplish most of the tasks fast and efficiently.
+3. 
 
 ## Glossary
+* Mainstream OS: Windows, Linux, Unix, MacOS
 
 * *glossary item* - Definition
 
