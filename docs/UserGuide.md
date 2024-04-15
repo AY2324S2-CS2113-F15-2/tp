@@ -189,6 +189,8 @@ Deletes the specified calories ID entry from the calories tracker according to t
          The following calorie record has been successfully deleted!
                  caloriesID: 3, Date: 2024-04-14, Description: drink liho milk tea, Calories: 200 (C: 50, P: 20, F: 10)
          -----------------------------------------------------------------------------
+
+
 ### Searching for a calorie item: `calories find`
 Finds and retrieves all calories entries from the caloric list containing the keyword to search for.
 
