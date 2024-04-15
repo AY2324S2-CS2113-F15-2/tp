@@ -515,35 +515,51 @@ to accomplish most of the tasks fast and efficiently.
 ### Deleting calories entries
 1. Prerequisites: Calories data has already been added into the Calories list.
 2. Test case: `calories list`, followed by `calories delete 1`
-   Expected: Calories entry with `SLEEPID` 1 is deleted from list.
+
+    Expected: Calories entry with `SLEEPID` 1 is deleted from list. 
+
 3. Test case: `sleep list`, followed by `sleep delete -1`
+
    Expected: No sleep entry deleted. Error details shown in message.
-   
+
+### Searching for calories item or items
+1. Prerequisites: Calories data with `cream` has already been added into the Calories list.
+2. Test case: `calories find cream`
+   Expected: Calories entry with keyword cream in description is shown.
+
 ### Adding hydration entries
-1. Test case: hydration in water v/500 d/2024-04-15
+1. Test case: `hydration in water v/500 d/2024-04-15`
 
-Expected: Hydration entry is added to the hydration list.
+    Expected: Hydration entry is added to the hydration list.
 
-2. Test case: hydration in water v/500 d/24-04-15
+2. Test case: `hydration in water v/500 d/24-04-15`
 
-Expected: No hydration entry is added to the hydration list. Error details shown in message.
+    Expected: No hydration entry is added to the hydration list. Error details shown in message.
 
-3. Test case: hydration in water d/2024-04-15 v/500
+3. Test case: `hydration in water d/2024-04-15 v/500`
 
-Expected: No hydration entry is added to the hydration list. Error details shown in message.
+    Expected: No hydration entry is added to the hydration list. Error details shown in message.
 
 ### Listing hydration entries
 1. Prerequisites: Hydration data has already been added into hydration list.
-2. Test case: hydration list
+2. Test case: `hydration list`
 
    Expected: List of hydration data is displayed.
 
 ### Deleting a hydration entry
 1. Prerequisites: hydration data has already been added into hydration list.
-2. Test case: hydration list, followed by hydration delete 1
+2. Test case: `hydration list, followed by hydration delete 1`
+
    Expected: Hydration entry with HYDRATIONID 1 is deleted from list.
+
 3. Test case: hydration list, followed by hydration delete -1
+
    Expected: No hydration entry deleted. Error details shown in message.
+
+### Searching for hydration item or items
+1. Prerequisites: Hydration data with `milo` has already been added into the Hydration list.
+2. Test case: `hydration find milo`
+   Expected: Hydration entry with keyword milo in description is shown.
 
 ### Adding sleep entries
 1. Test case: `sleep add 7 d/2024-04-15`
@@ -571,22 +587,28 @@ Expected: No hydration entry is added to the hydration list. Error details shown
 3. Test case: `sleep list`, followed by `sleep delete -1`
     Expected: No sleep entry deleted. Error details shown in message. 
 
+### Setup user details
+1. Prerequisites: User details already populated with User Setup.
+2. Test case: `user details`
+
+   Expected: List of user details is displayed.
+
 ### Listing user details
 1. Prerequisites: User details already populated with User Setup.
-2. Test case: user details
+2. Test case: `user details`
 
    Expected: List of user details is displayed.
 
 ### Updating user details
 1. Prerequisites: User details already populated with User Setup.
-2. Test case: user update height 170
+2. Test case: `user update height 170`
 
    Expected: User details height updated.
 
 ### Viewing user progress
 1. Prerequisites: User details already populated with User Setup. Calories and hydration and sleep lists have been
 populated with some entries.
-2. Test case: user progress
+2. Test case: `user progress`
 
    Expected: User progress is shown for calories, hydration and sleep.
 
